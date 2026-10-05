@@ -2,1673 +2,499 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mathe-Trainer Klasse 6: Brüche & Teilbarkeit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathe-Trainer Klasse 6</title>
   <style>
     :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
       --bg: #f8fafc;
-      --surface: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #cbd5e1;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
       --success: #16a34a;
-      --success-bg: #dcfce7;
+      --warning: #ca8a04;
       --danger: #dc2626;
-      --danger-bg: #fee2e2;
-      --accent: #f59e0b;
-      --accent-hover: #d97706;
-      --radius: 16px;
+      --border: #cbd5e1;
     }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); margin: 0; padding: 12px; }
+    .container { max-width: 580px; margin: 0 auto; }
+    
+    .card { background: var(--card); border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+    h1 { font-size: 1.35rem; text-align: center; margin: 4px 0 16px; color: var(--primary); }
+    h2 { font-size: 1.1rem; margin: 0 0 12px; }
+    
+    .mode-select { display: flex; gap: 8px; margin-bottom: 14px; }
+    .mode-btn { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: #f1f5f9; font-weight: 600; cursor: pointer; text-align: center; }
+    .mode-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    }
+    .select-box { width: 100%; padding: 11px; border-radius: 8px; border: 1px solid var(--border); font-size: 1rem; margin-bottom: 14px; background: white; }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 14px;
-    }
+    .task-display { font-size: 1.35rem; font-weight: 700; text-align: center; padding: 22px 14px; background: #eff6ff; border-radius: 10px; margin: 12px 0; border: 1px solid #dbeafe; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+    .fraction { display: inline-flex; flex-direction: column; vertical-align: middle; padding: 0 4px; text-align: center; font-size: 1.15rem; }
+    .fraction .top { border-bottom: 2px solid currentColor; padding-bottom: 2px; }
+    .fraction .bottom { padding-top: 2px; }
 
-    .container {
-      width: 100%;
-      max-width: 520px;
-    }
+    .input-group { margin-bottom: 12px; }
+    input[type="text"] { width: 100%; padding: 13px; font-size: 1.15rem; border: 2px solid var(--border); border-radius: 8px; text-align: center; outline: none; }
+    input[type="text"]:focus { border-color: var(--primary); }
+    .hint { font-size: 0.8rem; color: var(--muted); text-align: center; margin-top: 5px; }
 
-    header {
-      text-align: center;
-      margin-bottom: 14px;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 13px; font-size: 1rem; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; transition: 0.15s; }
+    .btn-primary { background: var(--primary); color: white; margin-top: 6px; }
+    .btn-secondary { background: #e2e8f0; color: var(--text); margin-top: 10px; }
+    .btn-whatsapp { background: #25D366; color: white; font-size: 1.05rem; margin-top: 12px; }
 
-    header h1 {
-      font-size: 1.45rem;
-      color: var(--primary);
-      font-weight: 800;
-    }
+    .feedback { text-align: center; font-weight: 700; padding: 12px; border-radius: 8px; margin-top: 12px; display: none; line-height: 1.4; }
+    .feedback.ok { background: #dcfce7; color: var(--success); }
+    .feedback.err { background: #fee2e2; color: var(--danger); }
 
-    header p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
+    /* Elternbereich ganz unten */
+    details { border: 1px solid var(--border); border-radius: 10px; background: white; margin-top: 26px; overflow: hidden; }
+    summary { padding: 14px; font-weight: 700; cursor: pointer; color: var(--text); background: #f8fafc; border-bottom: 1px solid transparent; }
+    details[open] summary { border-bottom: 1px solid var(--border); }
+    .parent-body { padding: 16px; }
+    .stat-line { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.95rem; }
+    .badge { display: inline-block; padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
+    .badge-green { background: #dcfce7; color: var(--success); }
+    .badge-yellow { background: #fef9c3; color: var(--warning); }
+    .badge-red { background: #fee2e2; color: var(--danger); }
 
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border);
-      margin-bottom: 14px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 13px 16px;
-      font-size: 1rem;
-      font-weight: 700;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-decoration: none;
-    }
-
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:active { background: var(--primary-hover); transform: scale(0.98); }
-
-    .btn-learn {
-      background: linear-gradient(135deg, #0284c7, #0369a1);
-      color: white;
-      font-size: 1.05rem;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
-      margin-bottom: 12px;
-    }
-    .btn-learn:active { transform: scale(0.98); }
-
-    .btn-exam {
-      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-      color: white;
-      font-size: 1.05rem;
-      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
-    }
-    .btn-exam:active { transform: scale(0.98); }
-
-    .btn-whatsapp {
-      background: #25D366;
-      color: white;
-      font-size: 1rem;
-      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
-      margin-bottom: 8px;
-    }
-    .btn-whatsapp:active { transform: scale(0.98); }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 2px solid var(--border);
-      margin-top: 10px;
-    }
-
-    .diff-selector {
-      display: flex;
-      gap: 6px;
-      margin: 10px 0;
-    }
-
-    .diff-btn {
-      flex: 1;
-      padding: 8px 4px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      background: #ffffff;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-    .diff-btn.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .diff-btn-mini {
-      padding: 4px 8px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: #ffffff;
-      border: 1.5px solid var(--border);
-      border-radius: 6px;
-      cursor: pointer;
-      color: var(--text-muted);
-    }
-    .diff-btn-mini.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 13px 14px;
-      background: #ffffff;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: all 0.1s;
-    }
-    .menu-item:active { background: #f1f5f9; }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .status-pill {
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 4px 9px;
-      border-radius: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
-    .st-neu { background: #f1f5f9; color: #475569; }
-    .st-rot { background: #fee2e2; color: #991b1b; }
-    .st-gelb { background: #fef3c7; color: #92400e; }
-    .st-gruen { background: #dcfce7; color: #166534; }
-    .st-stern { background: #14532d; color: #fef08a; box-shadow: 0 2px 6px rgba(20,83,45,0.3); }
-
-    .progress-bar {
-      height: 6px;
-      width: 100%;
-      background: #e2e8f0;
-      border-radius: 3px;
-      overflow: hidden;
-      margin: 10px 0;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--primary);
-      width: 0%;
-      transition: width 0.25s ease;
-    }
-
-    .task-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      line-height: 1.35;
-    }
-
-    .task-display {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px;
-      margin: 8px 0;
-      text-align: center;
-      min-height: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .input-row {
-      display: flex;
-      gap: 6px;
-      margin-top: 10px;
-      align-items: stretch;
-    }
-
-    .input-row input {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 10px;
-      font-size: 1.15rem;
-      text-align: center;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      font-weight: 700;
-      outline: none;
-    }
-    .input-row input:focus { border-color: var(--primary); }
-
-    .key-btn {
-      padding: 0 12px;
-      font-size: 1.1rem;
-      font-weight: 800;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      background: #ffffff;
-      color: #1e293b;
-      cursor: pointer;
-    }
-    .key-btn:active { background: #e2e8f0; }
-
-    .btn-submit-row {
-      padding: 0 14px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      border-radius: 10px;
-      border: none;
-      background: var(--primary);
-      color: white;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .feedback-box {
-      margin-top: 10px;
-      padding: 11px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      display: none;
-      line-height: 1.35;
-    }
-    .feedback-box.correct { background: var(--success-bg); color: #14532d; border: 1px solid #86efac; display: block; }
-    .feedback-box.wrong { background: var(--danger-bg); color: #7f1d1d; border: 1px solid #fca5a5; display: block; }
-
-    .learn-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      padding: 10px 0;
-      z-index: 10;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .learn-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    }
-
-    .learn-card h2 {
-      font-size: 1.25rem;
-      color: #0369a1;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .learn-card p {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: #334155;
-      margin-bottom: 8px;
-    }
-
-    .aha-box {
-      background: #f0fdf4;
-      border-left: 4px solid #16a34a;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 12px 0;
-      font-size: 0.88rem;
-      color: #166534;
-      line-height: 1.45;
-    }
-
-    .rule-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 10px 0;
-      font-size: 0.85rem;
-    }
-    .rule-table th, .rule-table td {
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      text-align: left;
-    }
-    .rule-table th { background: #f1f5f9; font-weight: 700; color: #1e293b; }
-
-    .nav-pill-row {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      margin-bottom: 14px;
-      -webkit-overflow-scrolling: touch;
-    }
-    .nav-pill {
-      flex: 0 0 auto;
-      padding: 6px 12px;
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #0284c7;
-      text-decoration: none;
-    }
-
-    .banner {
-      background: #e0f2fe;
-      color: #0369a1;
-      padding: 12px;
-      border-radius: 12px;
-      margin-bottom: 14px;
-      text-align: center;
-      font-weight: 700;
-      border: 1px solid #bae6fd;
-      line-height: 1.4;
-    }
-
-    svg { max-width: 100%; height: auto; display: block; margin: 6px auto; }
-    .hidden { display: none !important; }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      z-index: 100;
-    }
-    .modal-content {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 20px;
-      width: 100%;
-      max-width: 380px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
+    .banner { background: #e0f2fe; color: #0369a1; padding: 12px; border-radius: 8px; margin-bottom: 14px; text-align: center; font-weight: bold; border: 1px solid #bae6fd; display: none; }
   </style>
 </head>
 <body>
 
 <div class="container">
-
-  <!-- Hinweis-Banner für geteilten Lernstand -->
-  <div id="shared-banner" class="banner hidden"></div>
-
-  <!-- ================= 1. HAUPTMENÜ ================= -->
-  <div id="view-menu">
-    <header id="main-header">
-      <h1>Mathe-Held Klasse 6</h1>
-      <p>Gymnasium Niedersachsen • Bruchrechnung & Teilbarkeit</p>
-    </header>
-
-    <button class="btn btn-learn" onclick="openLearnView()">
-      📖 Mathe-Akademie: Erklärungen & Tricks ➔
-    </button>
-
-    <div class="card" style="background:#fffbeb; border:2px solid #fde68a;">
-      <div style="font-weight:800; font-size:1.1rem; color:#b45309; text-align:center; margin-bottom:4px;">
-        📝 Klassenarbeit simulieren
-      </div>
-      <div style="font-size:0.8rem; color:#92400e; text-align:center; margin-bottom:8px;">
-        Wähle den Prüfungsumfang:
-      </div>
-      <div class="diff-selector" style="margin-bottom:12px;">
-        <button class="diff-btn active" id="btn-exam-leicht" onclick="setExamDiff('leicht')">Leicht (10)</button>
-        <button class="diff-btn" id="btn-exam-mittel" onclick="setExamDiff('mittel')">Mittel (15)</button>
-        <button class="diff-btn" id="btn-exam-schwer" onclick="setExamDiff('schwer')">Schwer (20)</button>
-      </div>
-      <button class="btn btn-exam" onclick="startExam()">Klassenarbeit starten ➔</button>
-    </div>
-
-    <div class="card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-        <span style="font-size:0.95rem; font-weight:800;">🎯 Themen-Training</span>
-        <span style="font-size:0.75rem; color:var(--text-muted);">Standard-Stufe:</span>
-      </div>
-      <div class="diff-selector">
-        <button class="diff-btn active" id="btn-p-leicht" onclick="setPracticeDiff('leicht')">Leicht</button>
-        <button class="diff-btn" id="btn-p-mittel" onclick="setPracticeDiff('mittel')">Mittel</button>
-        <button class="diff-btn" id="btn-p-schwer" onclick="setPracticeDiff('schwer')">Schwer</button>
-      </div>
-
-      <div id="topic-list" style="margin-top:12px;"></div>
-    </div>
-
-    <div class="card" style="background:#f8fafc;">
-      <div style="display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="toggleParent()">
-        <span style="font-size:0.95rem; font-weight:800;">👨‍👧 Eltern-Übersicht & Trainingsstand</span>
-        <span id="parent-toggle-icon">▼</span>
-      </div>
-
-      <div id="parent-content" class="hidden" style="margin-top:14px; border-top:1px solid var(--border); padding-top:12px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:0.85rem; color:var(--text-muted);">
-          <span>Aktives Profil (Dateiname):</span>
-          <strong id="stat-profile-name" style="color:var(--text); font-size:0.9rem;">-</strong>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
-          <div style="background:#fff; padding:10px; border-radius:10px; border:1px solid var(--border); text-align:center;">
-            <div style="font-size:1.4rem; font-weight:900; color:var(--primary);" id="stat-total-tasks">0</div>
-            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Gerechnete Aufgaben</div>
-          </div>
-          <div style="background:#fff; padding:10px; border-radius:10px; border:1px solid var(--border); text-align:center;">
-            <div style="font-size:1.4rem; font-weight:900; color:var(--success);" id="stat-total-rate">0%</div>
-            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Gesamt-Quote</div>
-          </div>
-        </div>
-
-        <div style="font-size:0.85rem; font-weight:700; margin-bottom:6px;">Bisherige Klassenarbeiten:</div>
-        <div id="exam-history-list" style="max-height:120px; overflow-y:auto; font-size:0.8rem; margin-bottom:14px;">
-          <div style="color:var(--text-muted); font-style:italic;">Noch keine Arbeit abgeschlossen.</div>
-        </div>
-
-        <button class="btn btn-whatsapp" onclick="shareProgressViaWhatsApp()">
-          📲 Ergebnisse an Eltern übermitteln
-        </button>
-
-        <button class="btn btn-outline" style="border-color:#ef4444; color:#dc2626; padding:8px; margin-bottom:8px;" onclick="openResetModal()">
-          ⚠ Fortschritt komplett auf Null setzen
-        </button>
-
-        <button class="btn btn-outline" style="border-color:#0284c7; color:#0369a1; padding:8px;" onclick="saveHtmlLocally()">
-          💾 Als HTML-Datei auf Handy speichern
-        </button>
-      </div>
-    </div>
+  <div id="sharedBanner" class="banner">
+    📥 Geteilter Lernstand geladen (Eltern-Ansichtsmodus)
   </div>
 
-  <!-- ================= 2. DIE LERN-AKADEMIE ================= -->
-  <div id="view-learn" class="hidden">
-    <div class="learn-header">
-      <button class="btn btn-outline" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="closeLearnView()">
-        ← Zurück zum Menü
+  <h1>📐 Mathe-Trainer Klasse 6</h1>
+
+  <!-- Übungs-Ablauf -->
+  <div class="card" id="mainTrainerCard">
+    <div class="mode-select">
+      <button class="mode-btn active" id="btnModePractice" onclick="setMode('practice')">Freies Training</button>
+      <button class="mode-btn" id="btnModeExam" onclick="setMode('exam')">Klassenarbeit (10 Aufg.)</button>
+    </div>
+
+    <div id="topicSelectorWrap">
+      <select id="topicSelect" class="select-box" onchange="generateTask()">
+        <option value="teilbarkeit">Teilbarkeitsregeln (2, 3, 5, 9, 10)</option>
+        <option value="kuerzen">Brüche kürzen & erweitern</option>
+        <option value="vergleichen">Brüche vergleichen (&lt;, &gt;, =)</option>
+        <option value="add_sub">Brüche addieren & subtrahieren</option>
+      </select>
+    </div>
+
+    <div id="examInfo" style="display:none; text-align:center; font-weight:bold; color:var(--primary); margin-bottom:10px;">
+      Aufgabe <span id="examCur">1</span> von 10
+    </div>
+
+    <div class="task-display" id="taskBox">Lade Aufgabe...</div>
+
+    <div class="input-group">
+      <input type="text" id="userAnswer" placeholder="Deine Antwort" inputmode="text" autocomplete="off">
+      <div class="hint" id="formatHint">Tipp: Brüche mit Schrägstrich schreiben (z. B. 3/4) oder ja/nein</div>
+    </div>
+
+    <button class="btn btn-primary" id="btnCheck" onclick="checkAnswer()">Antwort prüfen</button>
+    <div class="feedback" id="feedbackBox"></div>
+    <button class="btn btn-secondary" id="btnNext" style="display: none;" onclick="nextStep()">Nächste Aufgabe ➔</button>
+  </div>
+
+  <!-- Eltern-Übersicht (Ganz unten & einklappbar) -->
+  <details id="parentDetails">
+    <summary>👨‍👧 Eltern-Übersicht & Trainingsstand anzeigen</summary>
+    <div class="parent-body">
+      <div class="stat-line">
+        <span>Aktives Profil (Dateiname):</span>
+        <strong id="statProfile">-</strong>
+      </div>
+      <div class="stat-line">
+        <span>Gelöste Übungsaufgaben:</span>
+        <strong id="statTotal">0</strong>
+      </div>
+      <div class="stat-line">
+        <span>Gesamt-Quote im Training:</span>
+        <strong id="statRate">0 %</strong>
+      </div>
+      <div class="stat-line">
+        <span>Letzte Klassenarbeit:</span>
+        <strong id="statLastExam">Keine</strong>
+      </div>
+
+      <div style="font-weight:bold; margin: 14px 0 6px; font-size: 0.95rem;">Themen-Status (Übungen):</div>
+      <div id="topicStatsContainer"></div>
+
+      <button class="btn btn-whatsapp" onclick="shareProgressViaWhatsApp()">
+        📲 Ergebnisse an Eltern übermitteln
       </button>
-      <span style="font-weight:800; font-size:0.95rem; color:#0369a1;">📖 Mathe-Akademie</span>
-    </div>
 
-    <div class="nav-pill-row">
-      <a href="#l-teilbarkeit" class="nav-pill">1. Teilbarkeit</a>
-      <a href="#l-prim" class="nav-pill">2. Primzahlen</a>
-      <a href="#l-ggt" class="nav-pill">3. ggT & kgV</a>
-      <a href="#l-bruch" class="nav-pill">4. Der Bruch</a>
-      <a href="#l-kuerzen" class="nav-pill">5. Kürzen/Erweitern</a>
-      <a href="#l-rechnen" class="nav-pill">6. Addieren & Währung</a>
-    </div>
-
-    <div id="l-teilbarkeit" class="learn-card">
-      <h2>🔍 1. Teilbarkeitsregeln – Der Röntgenblick</h2>
-      <p>
-        Wenn du vor einem Bruch wie <strong>84 / 126</strong> sitzt, musst du nicht raten! Teilbarkeitsregeln sind wie ein Röntgenblick: Du siehst einer Zahl in zwei Sekunden an, wodurch sie sich glatt teilen lässt.
-      </p>
-
-      <div class="aha-box">
-        <strong>💡 Das große Geheimnis der Endstellen (2, 5, 10 und 4):</strong><br>
-        Unser Zahlensystem basiert auf Zehnern und Hundertern. Da eine <strong>10</strong> immer glatt durch 2, 5 und 10 teilbar ist, geht auch jeder Zehner davor (z. B. 750, 800, 9.000) garantiert glatt auf!<br>
-        Deshalb ist der gesamte vordere Teil der Zahl für 2, 5 und 10 völlig egal – <strong>nur die allerletzte Ziffer entscheidet!</strong>
-      </div>
-
-      <svg viewBox="0 0 460 120">
-        <rect x="10" y="20" width="310" height="70" rx="8" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
-        <text x="165" y="48" font-size="16" font-weight="800" fill="#475569" text-anchor="middle">3 7 1 0 (Zehner-Block)</text>
-        <text x="165" y="72" font-size="12" font-weight="600" fill="#16a34a" text-anchor="middle">Geht IMMER glatt durch 2, 5, 10 auf!</text>
-        
-        <rect x="330" y="20" width="115" height="70" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2.5"/>
-        <text x="387" y="52" font-size="24" font-weight="900" fill="#dc2626" text-anchor="middle">...6</text>
-        <text x="387" y="74" font-size="11" font-weight="700" fill="#991b1b" text-anchor="middle">Nur DAS zählt!</text>
-      </svg>
-
-      <table class="rule-table">
-        <tr><th>Teiler</th><th>Die Regel</th><th>Beispiel</th></tr>
-        <tr><td><strong>durch 2</strong></td><td>Endet auf <strong>0, 2, 4, 6, 8</strong> (gerade Zahl).</td><td>53<strong>8</strong> (Ja)</td></tr>
-        <tr><td><strong>durch 5</strong></td><td>Endet auf <strong>0 oder 5</strong>.</td><td>41<strong>5</strong> (Ja)</td></tr>
-        <tr><td><strong>durch 10</strong></td><td>Endet auf <strong>0</strong>.</td><td>92<strong>0</strong> (Ja)</td></tr>
-        <tr><td><strong>durch 4</strong></td><td>Da 100 durch 4 geht, zählen nur die <strong>letzten 2 Ziffern</strong>!</td><td>5.3<strong>16</strong> (16 : 4 = 4 → Ja!)</td></tr>
-      </table>
-
-      <div class="aha-box" style="background:#fef3c7; border-color:#d97706; color:#92400e;">
-        <strong>⚡ Warum funktioniert die Quersumme bei 3 und 9?</strong><br>
-        Aus 10 wird (9 + 1) → 1 Rest.<br>
-        Aus 100 wird (99 + 1) → 1 Rest.<br>
-        Jede Stelle hinterlässt beim Teilen durch 3 oder 9 genau den Rest 1 pro Ziffer! Wenn du die Ziffern zusammenzählst (Quersumme), sammelst du in Wirklichkeit nur die Reste ein. Ist diese Summe durch 3 oder 9 teilbar, geht die ganze Zahl glatt auf!
-      </div>
-      <p><strong>Beispiel für 3 und 9:</strong> Zahl <strong>423</strong> → 4 + 2 + 3 = 9. Da 9 durch 3 und durch 9 teilbar ist, geht 423 glatt durch 3 und 9!</p>
-      <p><strong>Team-Regel für 6:</strong> Da 6 = 2 · 3, muss die Zahl <strong>gerade sein UND die Quersumme muss durch 3 teilbar sein</strong>!</p>
-    </div>
-
-    <div id="l-prim" class="learn-card">
-      <h2>🧱 2. Primzahlen & Der Faktorbaum</h2>
-      <p>
-        Primzahlen (2, 3, 5, 7, 11, 13, 17, ...) sind die unzerstörbaren <strong>Lego-Grundsteine</strong> der Mathematik. Sie lassen sich nur durch 1 und sich selbst teilen.
-      </p>
-      <p>Jede andere Zahl kannst du mit einem <strong>Faktorbaum</strong> komplett in diese Grundsteine zerlegen:</p>
-
-      <svg viewBox="0 0 460 160">
-        <rect x="200" y="10" width="60" height="30" rx="8" fill="#0284c7"/>
-        <text x="230" y="31" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">60</text>
-
-        <line x1="210" y1="40" x2="130" y2="70" stroke="#334155" stroke-width="2.5"/>
-        <line x1="250" y1="40" x2="330" y2="70" stroke="#334155" stroke-width="2.5"/>
-
-        <rect x="100" y="65" width="60" height="28" rx="6" fill="#e2e8f0"/>
-        <text x="130" y="84" font-size="14" font-weight="800" fill="#334155" text-anchor="middle">6</text>
-
-        <rect x="300" y="65" width="60" height="28" rx="6" fill="#e2e8f0"/>
-        <text x="330" y="84" font-size="14" font-weight="800" fill="#334155" text-anchor="middle">10</text>
-
-        <line x1="115" y1="93" x2="80" y2="120" stroke="#334155" stroke-width="2"/>
-        <line x1="145" y1="93" x2="180" y2="120" stroke="#334155" stroke-width="2"/>
-        <line x1="315" y1="93" x2="280" y2="120" stroke="#334155" stroke-width="2"/>
-        <line x1="345" y1="93" x2="380" y2="120" stroke="#334155" stroke-width="2"/>
-
-        <circle cx="80" cy="132" r="16" fill="#16a34a"/>
-        <text x="80" y="137" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">2</text>
-
-        <circle cx="180" cy="132" r="16" fill="#16a34a"/>
-        <text x="180" y="137" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">3</text>
-
-        <circle cx="280" cy="132" r="16" fill="#16a34a"/>
-        <text x="280" y="137" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">2</text>
-
-        <circle cx="380" cy="132" r="16" fill="#16a34a"/>
-        <text x="380" y="137" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">5</text>
-      </svg>
-      <div class="aha-box">
-        <strong>Ergebnis:</strong> 60 = 2 · 2 · 3 · 5.<br>
-        Egal welches Einmaleins du am Anfang nimmst (z. B. 4 · 15 statt 6 · 10) – am Ende kommen immer exakt dieselben grünen Primzahl-Bausteine heraus!
-      </div>
-    </div>
-
-    <div id="l-ggt" class="learn-card">
-      <h2>⚔️ 3. ggT vs. kgV – Messer vs. Rennbahn</h2>
-      <p>Hier geraten viele durcheinander. Dabei machen beide das genaue Gegenteil:</p>
-
-      <div style="display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px;">
-        <div style="background:#eff6ff; border:2px solid #bfdbfe; border-radius:12px; padding:12px;">
-          <h3 style="color:#1e40af; margin-top:0;">🔪 ggT = DAS MESSER zum Kürzen</h3>
-          <p>Was steckt in <strong>beiden</strong> Zahlen drin, das wir mit einem Schnitt wegschneiden können?</p>
-          <p><strong>Beispiel: Bruch 24 / 36</strong></p>
-          <ul style="padding-left:18px; font-size:0.85rem; line-height:1.4;">
-            <li>Teiler von 24: 1, 2, 3, 4, 6, <strong>12</strong>, 24</li>
-            <li>Teiler von 36: 1, 2, 3, 4, 6, 9, <strong>12</strong>, 18, 36</li>
-          </ul>
-          <p style="margin-top:6px;">Das größte gemeinsame Messer ist <strong>12</strong>. → (24 : 12) / (36 : 12) = <strong>2/3</strong> (sofort fertig gekürzt!).</p>
-        </div>
-
-        <div style="background:#fefce8; border:2px solid #fef08a; border-radius:12px; padding:12px;">
-          <h3 style="color:#854d0e; margin-top:0;">🏃 kgV = DIE RENNBAHN für den Hauptnenner</h3>
-          <p>Wann treffen sich zwei Läufer mit verschiedenen Schrittlängen das erste Mal?</p>
-          <p><strong>Beispiel: Hauptnenner für 1/4 und 1/6</strong></p>
-          <ul style="padding-left:18px; font-size:0.85rem; line-height:1.4;">
-            <li>Läufer 4 springt: 4, 8, <strong>12</strong>, 16, 20...</li>
-            <li>Läufer 6 springt: 6, <strong>12</strong>, 18, 24...</li>
-          </ul>
-          <p style="margin-top:6px;">Bei <strong>12</strong> treffen sie sich! 12 ist das kgV und somit dein perfekter <strong>Hauptnenner</strong>.</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="l-bruch" class="learn-card">
-      <h2>🍕 4. Der Bruchbegriff & Gemischte Zahlen</h2>
-      <p>Ein Bruch ist keine Zauberei, sondern eine Pizza-Bestellung:</p>
-      <ul style="padding-left:18px; font-size:0.9rem; line-height:1.5; margin-bottom:10px;">
-        <li><strong>Nenner (unten):</strong> Er <em>benennt</em> die Art der Stücke (z. B. Viertel).</li>
-        <li><strong>Zähler (oben):</strong> Er <em>zählt</em> ab, wie viele Stücke auf deinem Teller liegen.</li>
-      </ul>
-
-      <svg viewBox="0 0 460 110">
-        <circle cx="120" cy="55" r="40" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
-        <line x1="80" y1="55" x2="160" y2="55" stroke="#ea580c" stroke-width="2"/>
-        <line x1="120" y1="15" x2="120" y2="95" stroke="#ea580c" stroke-width="2"/>
-        <text x="120" y="106" font-size="12" font-weight="800" fill="#9a3412" text-anchor="middle">4 Viertel = 1 Ganzes</text>
-
-        <text x="210" y="62" font-size="24" font-weight="900" fill="#64748b" text-anchor="middle">+</text>
-
-        <circle cx="300" cy="55" r="40" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
-        <path d="M 300 55 L 300 15 A 40 40 0 1 1 260 55 Z" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
-        <text x="300" y="106" font-size="12" font-weight="800" fill="#9a3412" text-anchor="middle">3 Viertel</text>
-      </svg>
-
-      <div class="aha-box">
-        <strong>Unechter Bruch ↔ Gemischte Zahl:</strong><br>
-        Wenn du <strong>7 Viertel (7/4)</strong> hast, teile einfach mit Rest:<br>
-        7 : 4 = <strong>1 Rest 3</strong> → <strong>1 3/4</strong>.<br>
-        (1 ganze Pizza und 3 Viertel bleiben übrig).
-      </div>
-    </div>
-
-    <div id="l-kuerzen" class="learn-card">
-      <h2>✂️ 5. Erweitern & Kürzen – Dieselbe Pizza!</h2>
-      <p>
-        Beim Erweitern oder Kürzen verändert sich der <strong>Wert niemals</strong>! Es ändert sich nur die Anzahl der Schnitte.
-      </p>
-
-      <svg viewBox="0 0 460 110">
-        <rect x="20" y="15" width="120" height="45" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>
-        <rect x="20" y="15" width="60" height="45" fill="#38bdf8"/>
-        <text x="80" y="80" font-size="14" font-weight="800" fill="#0369a1" text-anchor="middle">1 / 2</text>
-
-        <text x="165" y="42" font-size="20" font-weight="900" fill="#64748b">=</text>
-
-        <rect x="190" y="15" width="120" height="45" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>
-        <rect x="190" y="15" width="60" height="45" fill="#38bdf8"/>
-        <line x1="220" y1="15" x2="220" y2="60" stroke="#0284c7" stroke-width="1.5"/>
-        <line x1="250" y1="15" x2="250" y2="60" stroke="#334155" stroke-width="1.5"/>
-        <line x1="280" y1="15" x2="280" y2="60" stroke="#334155" stroke-width="1.5"/>
-        <text x="250" y="80" font-size="14" font-weight="800" fill="#0369a1" text-anchor="middle">2 / 4</text>
-
-        <text x="335" y="42" font-size="20" font-weight="900" fill="#64748b">=</text>
-
-        <rect x="355" y="15" width="90" height="45" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>
-        <rect x="355" y="15" width="45" height="45" fill="#38bdf8"/>
-        <line x1="400" y1="15" x2="400" y2="60" stroke="#334155" stroke-width="1.5"/>
-        <text x="400" y="80" font-size="14" font-weight="800" fill="#0369a1" text-anchor="middle">4 / 8</text>
-      </svg>
-
-      <div class="aha-box">
-        <strong>Die goldene Regel:</strong><br>
-        Was du oben machst, musst du auch unten machen!<br>
-        <strong>Erweitern (feiner schneiden):</strong> Zähler UND Nenner mit derselben Zahl multiplizieren.<br>
-        <strong>Kürzen (zusammenfassen):</strong> Zähler UND Nenner durch dieselbe Zahl teilen.
-      </div>
-    </div>
-
-    <div id="l-rechnen" class="learn-card">
-      <h2>💶 6. Addieren & Der Währungs-Trick</h2>
-      <p>
-        Du kannst nicht 1 Euro und 1 US-Dollar zusammenzählen und sagen, du hast 2 Geldstücke. Du musst sie zuerst in dieselbe <strong>Währung</strong> umtauschen!
-      </p>
-
-      <div class="aha-box" style="background:#fee2e2; border-color:#dc2626; color:#991b1b;">
-        <strong>🚨 Der größte Fehler in Klasse 6:</strong><br>
-        1/2 + 1/2 ≠ 2/4! (Zwei halbe Pizzen sind eine ganze Pizza, nicht zwei Viertel!).<br>
-        <strong>Beim Plus- und Minusrechnen wird der Nenner NIEMALS addiert!</strong>
-      </div>
-
-      <p><strong>So geht die ungleichnamige Addition: 1/2 + 1/3</strong></p>
-      <ol style="padding-left:18px; font-size:0.9rem; line-height:1.5;">
-        <li><strong>Hauptnenner (Währung) suchen:</strong> kgV(2, 3) = 6.</li>
-        <li><strong>Beide Brüche auf Sechstel umtauschen:</strong><br>
-            (1 · 3) / (2 · 3) = 3/6 &nbsp;und&nbsp; (1 · 2) / (3 · 2) = 2/6.</li>
-        <li><strong>Jetzt nur die Zähler addieren:</strong> 3/6 + 2/6 = <strong>5/6</strong>. Fertig!</li>
-      </ol>
-    </div>
-
-    <button class="btn btn-primary" style="margin-bottom:24px;" onclick="closeLearnView()">
-      Fertig gelesen? Jetzt direkt üben! ➔
-    </button>
-  </div>
-
-  <!-- ================= 3. AUFGABEN-ANSICHT ================= -->
-  <div id="view-quiz" class="card hidden">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <span id="quiz-badge" class="badge" style="background:#e0e7ff; color:#3730a3;">Thema</span>
-      
-      <div id="quiz-diff-box" style="display:flex; gap:3px;">
-        <button class="diff-btn-mini active" id="quiz-btn-leicht" onclick="changeQuizDiff('leicht')">L</button>
-        <button class="diff-btn-mini" id="quiz-btn-mittel" onclick="changeQuizDiff('mittel')">M</button>
-        <button class="diff-btn-mini" id="quiz-btn-schwer" onclick="changeQuizDiff('schwer')">S</button>
-      </div>
-
-      <span id="quiz-counter" style="font-weight:700; font-size:0.85rem; color:var(--text-muted);">Aufgabe 1/10</span>
-    </div>
-
-    <div id="progress-container" class="progress-bar">
-      <div id="progress-fill" class="progress-fill"></div>
-    </div>
-
-    <div id="task-question" class="task-title">Aufgabenstellung</div>
-    <div id="task-visual" class="task-display"></div>
-
-    <div style="text-align:right; margin-bottom:4px;">
-      <button onclick="toggleInTaskHelp()" style="background:none; border:none; color:#0284c7; font-size:0.75rem; font-weight:700; cursor:pointer;">
-        💡 Tipp & Erklärung einblenden
+      <button onclick="resetStats()" style="width: 100%; padding: 10px; background: transparent; color: var(--muted); border: none; font-size: 0.85rem; cursor: pointer; margin-top: 10px;">
+        🗑️ Alle Daten für dieses Profil zurücksetzen
       </button>
     </div>
-    <div id="intask-help-box" class="aha-box hidden" style="margin:4px 0 10px 0; font-size:0.8rem;"></div>
-
-    <div class="input-row">
-      <input type="text" id="answer-input" placeholder="Antwort..." autocomplete="off" autocapitalize="off" autocorrect="off">
-      <div id="quick-keys" style="display:flex; gap:4px;"></div>
-      <button id="btn-submit" class="btn-submit-row" onclick="checkAnswer()">Prüfen ✓</button>
-    </div>
-
-    <div id="feedback-box" class="feedback-box"></div>
-
-    <div style="display:flex; gap:8px; margin-top:12px;">
-      <button id="btn-next" class="btn btn-primary hidden" onclick="nextTask()">Nächste Aufgabe ➔</button>
-      <button id="btn-quit" class="btn btn-outline" style="margin:0;" onclick="backToMenu()">Abbrechen</button>
-    </div>
-  </div>
-
-  <!-- ================= 4. ERGEBNIS-ANSICHT ================= -->
-  <div id="view-results" class="card hidden" style="text-align:center;">
-    <h2 style="font-size:1.35rem; font-weight:800;">Klassenarbeit beendet!</h2>
-    <p style="color:var(--text-muted); margin-top:4px;">Hier ist dein Gymnasial-Ergebnis:</p>
-
-    <div id="grade-badge" style="display:inline-block; padding:8px 22px; border-radius:30px; font-size:1.5rem; font-weight:900; color:#fff; margin:14px auto;">
-      Note 1
-    </div>
-
-    <div style="font-size:1.2rem; font-weight:800;" id="result-score">10 von 10 richtig</div>
-    <p id="result-percent" style="color:var(--text-muted); font-weight:600; margin-bottom:12px;">100% erreicht</p>
-    <p id="result-feedback" style="font-size:0.9rem; margin-bottom:16px; line-height:1.4;"></p>
-
-    <button class="btn btn-exam" onclick="startExam()">Nochmal versuchen</button>
-    <button class="btn btn-outline" onclick="backToMenu()">Zurück zum Menü</button>
-  </div>
-
-  <!-- ================= 5. RESET MODAL ================= -->
-  <div id="reset-modal" class="modal-overlay hidden">
-    <div class="modal-content">
-      <h3 style="color:#dc2626; margin-bottom:8px;">⚠️ Fortschritt löschen?</h3>
-      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4; margin-bottom:16px;">
-        Möchtest du wirklich alle gespeicherten Aufgaben, Noten und Meisterschafts-Ampeln für dieses Profil auf Null zurücksetzen?
-      </p>
-      <div style="display:flex; gap:8px;">
-        <button class="btn" style="background:#fee2e2; color:#dc2626;" onclick="confirmReset()">Ja, alles löschen</button>
-        <button class="btn btn-outline" style="margin:0;" onclick="closeResetModal()">Abbrechen</button>
-      </div>
-    </div>
-  </div>
-
+  </details>
 </div>
 
-<canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
-
 <script>
-// --- AUDIO-FEEDBACK ---
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-function playTone(success) {
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-
-  if (success) {
-    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.14);
-    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.22);
-  } else {
-    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.08);
-    gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.25);
-  }
-}
-
-// --- MATHEMATISCHE HILFSFUNKTIONEN ---
-function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-
-function calcGgt(a, b) {
-  a = Math.abs(a); b = Math.abs(b);
-  while (b) { let t = b; b = a % b; a = t; }
-  return a || 1;
-}
-
-function calcKgv(a, b) {
-  return Math.abs(a * b) / calcGgt(a, b);
-}
-
-function getPrimeFactors(n) {
-  const factors = [];
-  let d = 2;
-  while (d * d <= n) {
-    while (n % d === 0) { factors.push(d); n /= d; }
-    d++;
-  }
-  if (n > 1) factors.push(n);
-  return factors;
-}
-
-function parseFraction(str) {
-  if (!str) return null;
-  str = str.trim().replace(/\s+/g, ' ');
-  const mixedMatch = str.match(/^(-?\d+)\s+(\d+)\/(\d+)$/);
-  if (mixedMatch) {
-    const whole = parseInt(mixedMatch[1]), num = parseInt(mixedMatch[2]), den = parseInt(mixedMatch[3]);
-    if (den === 0) return null;
-    const sign = whole < 0 ? -1 : 1;
-    return { num: (Math.abs(whole) * den + num) * sign, den: den };
-  }
-  const fracMatch = str.match(/^(-?\d+)\/(\d+)$/);
-  if (fracMatch) {
-    const num = parseInt(fracMatch[1]), den = parseInt(fracMatch[2]);
-    if (den === 0) return null;
-    return { num, den };
-  }
-  const intMatch = str.match(/^(-?\d+)$/);
-  if (intMatch) {
-    return { num: parseInt(intMatch[1]), den: 1 };
-  }
-  return null;
-}
-
-const TOPICS = [
-  { id: 'teilbarkeit', name: '1. Teilbarkeit & Primfaktoren' },
-  { id: 'ggt_kgv', name: '2. ggT & kgV bestimmen' },
-  { id: 'modelle', name: '3. Brüche an Modellen & Strahl' },
-  { id: 'gemischt', name: '4. Unechte Brüche ↔ Gemischt' },
-  { id: 'kuerzen', name: '5. Erweitern & vollständig Kürzen' },
-  { id: 'vergleich', name: '6. Brüche vergleichen (<, =, >)' },
-  { id: 'addition', name: '7. Addition & Subtraktion' }
-];
-
-// --- DYNAMISCHE SPEICHERISOLATION OHNE NAMEN ---
-function getProfileName() {
-  const path = window.location.pathname;
-  const rawFile = path.split('/').pop();
-  const cleanName = rawFile.replace(/\.html$/i, '').trim();
-  return cleanName || "Standard";
-}
-
-function getStorageKey() {
-  return 'mathe_gym6_data_' + getProfileName();
-}
-
-let appData = { topics: {}, examHistory: [] };
-
-function loadData() {
-  const saved = localStorage.getItem(getStorageKey());
-  if (saved) {
-    try { appData = JSON.parse(saved); } catch(e){}
-  }
-  if (!appData.topics) appData.topics = {};
-  if (!appData.examHistory) appData.examHistory = [];
-  TOPICS.forEach(t => {
-    if (!appData.topics[t.id]) {
-      appData.topics[t.id] = { total: 0, correct: 0, recent: [] };
-    }
-  });
-}
-
-function saveData() {
-  localStorage.setItem(getStorageKey(), JSON.stringify(appData));
-}
-
-function recordAnswer(topicId, isCorrect) {
-  const t = appData.topics[topicId];
-  if (!t) return;
-  t.total++;
-  if (isCorrect) t.correct++;
-  t.recent.push(isCorrect ? 1 : 0);
-  if (t.recent.length > 5) t.recent.shift();
-  saveData();
-  renderTopicList();
-}
-
-function getTopicMastery(topicId) {
-  const t = appData.topics[topicId];
-  if (!t || !t.recent || t.recent.length < 3) return { status: 'neu', label: 'Neu', class: 'st-neu' };
-  const sum = t.recent.reduce((a,b)=>a+b, 0);
-  const len = t.recent.length;
-  if (len === 5 && sum === 5) return { status: 'stern', label: '🌟 Meister', class: 'st-stern' };
-  const rate = sum / len;
-  if (rate >= 0.8) return { status: 'gruen', label: '🟢 Fit', class: 'st-gruen' };
-  if (rate >= 0.6) return { status: 'gelb', label: '🟡 Geht so', class: 'st-gelb' };
-  return { status: 'rot', label: '🔴 Üben', class: 'st-rot' };
-}
-
-function renderTopicList() {
-  const container = document.getElementById('topic-list');
-  container.innerHTML = "";
-
-  TOPICS.forEach(t => {
-    const mastery = getTopicMastery(t.id);
-    const count = appData.topics[t.id]?.total || 0;
-
-    let borderLeft = "3px solid #cbd5e1";
-    if (mastery.status === 'rot') borderLeft = "4px solid #ef4444";
-    if (mastery.status === 'gelb') borderLeft = "4px solid #f59e0b";
-    if (mastery.status === 'gruen') borderLeft = "4px solid #22c55e";
-    if (mastery.status === 'stern') borderLeft = "4px solid #14532d";
-
-    const div = document.createElement('div');
-    div.className = "menu-item";
-    div.style.borderLeft = borderLeft;
-    div.onclick = () => startPractice(t.id);
-    div.innerHTML = `
-      <div>
-        <div style="font-weight:700; font-size:0.92rem;">${t.name}</div>
-        <div style="font-size:0.72rem; color:var(--text-muted);">${count} Aufgaben geübt</div>
-      </div>
-      <span class="status-pill ${mastery.class}">${mastery.label}</span>
-    `;
-    container.appendChild(div);
-  });
-
-  let totalTasks = 0, totalCorrect = 0;
-  TOPICS.forEach(t => {
-    totalTasks += appData.topics[t.id]?.total || 0;
-    totalCorrect += appData.topics[t.id]?.correct || 0;
-  });
-  document.getElementById('stat-total-tasks').textContent = totalTasks;
-  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
-  document.getElementById('stat-total-rate').textContent = `${rate}%`;
-
-  const hList = document.getElementById('exam-history-list');
-  if (!appData.examHistory || appData.examHistory.length === 0) {
-    hList.innerHTML = `<div style="color:var(--text-muted); font-style:italic;">Noch keine Arbeit abgeschlossen.</div>`;
-  } else {
-    hList.innerHTML = appData.examHistory.map(h => `
-      <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #e2e8f0;">
-        <span>${h.date} (${h.level})</span>
-        <strong style="color:var(--primary);">${h.percent}% → Note ${h.grade}</strong>
-      </div>
-    `).reverse().join('');
-  }
-}
-
-// --- WHATSAPP-ÜBERMITTLUNG & URL-SYNC ---
-function shareProgressViaWhatsApp() {
-  const profile = getProfileName();
-  const payload = {
-    profile: profile,
-    appData: appData
+  const TOPICS = {
+    teilbarkeit: "Teilbarkeitsregeln",
+    kuerzen: "Brüche kürzen & erweitern",
+    vergleichen: "Brüche vergleichen",
+    add_sub: "Brüche addieren & subtrahieren"
   };
-  const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
-  const shareUrl = window.location.origin + window.location.pathname + "?data=" + encoded;
 
-  let totalTasks = 0, totalCorrect = 0;
-  TOPICS.forEach(t => {
-    totalTasks += appData.topics[t.id]?.total || 0;
-    totalCorrect += appData.topics[t.id]?.correct || 0;
-  });
-  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
-  const today = new Date().toLocaleDateString('de-DE');
+  let currentMode = 'practice'; // 'practice' oder 'exam'
+  let currentTask = {};
+  let examData = { index: 0, score: 0 };
 
-  let msg = `📊 *Mathe-Trainer – Lernbericht (${profile})* 🎯\n`;
-  msg += `📅 Datum: ${today}\n\n`;
-  msg += `⭐ *Gesamtübersicht:*\n`;
-  msg += `• Aufgaben gelöst: ${totalTasks} 📝\n`;
-  msg += `• Richtige Antworten: ${totalCorrect} ✅\n`;
-  msg += `• Erfolgsquote: ${rate} % 🚀\n\n`;
-
-  if (appData.examHistory && appData.examHistory.length > 0) {
-    const lastExam = appData.examHistory[appData.examHistory.length - 1];
-    msg += `🏆 *Letzte Klassenarbeit:*\n`;
-    msg += `• Note ${lastExam.grade} (${lastExam.percent} %) am ${lastExam.date} [Stufe: ${lastExam.level}] 🎖️\n\n`;
+  // Dateinamen dynamisch ermitteln (isoliert Daten automatisch)
+  function getProfileName() {
+    const path = window.location.pathname;
+    const rawFile = path.split('/').pop();
+    const cleanName = rawFile.replace(/\.html$/i, '').trim();
+    return cleanName || "Standard";
   }
 
-  msg += `🚦 *Themen-Ampel:*\n`;
-  TOPICS.forEach(t => {
-    const m = getTopicMastery(t.id);
-    const count = appData.topics[t.id]?.total || 0;
-    const corr = appData.topics[t.id]?.correct || 0;
-    let icon = "⚪";
-    if (m.status === 'stern') icon = "🌟";
-    else if (m.status === 'gruen') icon = "🟢";
-    else if (m.status === 'gelb') icon = "🟡";
-    else if (m.status === 'rot') icon = "🔴";
-    msg += `• ${icon} ${t.name}: ${m.label} (${corr}/${count})\n`;
-  });
-
-  msg += `\n🔗 *Eltern-Dashboard aufrufen:*\n${shareUrl}`;
-
-  window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
-}
-
-function showView(viewId) {
-  ['view-menu', 'view-learn', 'view-quiz', 'view-results'].forEach(id => {
-    document.getElementById(id).classList.add('hidden');
-  });
-  document.getElementById(viewId).classList.remove('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openLearnView() { showView('view-learn'); }
-function closeLearnView() { showView('view-menu'); }
-function backToMenu() {
-  document.getElementById('main-header').classList.remove('hidden');
-  showView('view-menu');
-}
-
-function toggleParent() {
-  const c = document.getElementById('parent-content');
-  const icon = document.getElementById('parent-toggle-icon');
-  c.classList.toggle('hidden');
-  icon.textContent = c.classList.contains('hidden') ? '▼' : '▲';
-}
-
-function openResetModal() { document.getElementById('reset-modal').classList.remove('hidden'); }
-function closeResetModal() { document.getElementById('reset-modal').classList.add('hidden'); }
-function confirmReset() {
-  localStorage.removeItem(getStorageKey());
-  appData = { topics: {}, examHistory: [] };
-  loadData();
-  renderTopicList();
-  closeResetModal();
-}
-
-function saveHtmlLocally() {
-  const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = getProfileName() + '.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-// --- ZUSTANDSMANAGEMENT ---
-let selectedExamDiff = 'leicht';
-let selectedPracticeDiff = 'leicht';
-let currentMode = 'practice';
-let currentTopic = 'teilbarkeit';
-let examTasks = [];
-let examIndex = 0;
-let examScore = 0;
-let currentTask = null;
-
-function setExamDiff(d) {
-  selectedExamDiff = d;
-  ['leicht','mittel','schwer'].forEach(x => {
-    const el = document.getElementById(`btn-exam-${x}`);
-    if (el) el.classList.toggle('active', x === d);
-  });
-}
-
-function setPracticeDiff(d) {
-  selectedPracticeDiff = d;
-  ['leicht','mittel','schwer'].forEach(x => {
-    const el = document.getElementById(`btn-p-${x}`);
-    if (el) el.classList.toggle('active', x === d);
-    const qEl = document.getElementById(`quiz-btn-${x}`);
-    if (qEl) qEl.classList.toggle('active', x === d);
-  });
-}
-
-function changeQuizDiff(d) {
-  setPracticeDiff(d);
-  loadTask();
-}
-
-// 1. Teilbarkeit & Primfaktorzerlegung
-function genTeilbarkeit(diff) {
-  const isPrimeTask = Math.random() < 0.45;
-  if (isPrimeTask) {
-    let num;
-    if (diff === 'leicht') num = [12, 18, 20, 24, 28][randInt(0, 4)];
-    else if (diff === 'mittel') num = [36, 40, 48, 50, 60, 72][randInt(0, 5)];
-    else num = [84, 90, 100, 120, 140, 150][randInt(0, 5)];
-
-    const factors = getPrimeFactors(num);
-    const correct = factors.join('*');
-
-    return {
-      topicId: 'teilbarkeit',
-      topicName: 'Primfaktorzerlegung',
-      question: `Zerlege <strong>${num}</strong> in Primfaktoren (z. B. 2*3*5):`,
-      visual: `<div style="font-size:1.8rem; font-weight:900; color:#0369a1;">${num}</div>`,
-      correct: correct,
-      help: `Tipp: Nutze den Faktorbaum! Finde zwei Zahlen aus dem Einmaleins und zerlege sie bis zu den Primzahlen.`,
-      normalize: (s) => s.replace(/\s+/g, '').replace(/[xX·.]/g, '*').split('*').sort().join('*')
-    };
-  } else {
-    let dPool = diff === 'leicht' ? [2, 5, 10] : (diff === 'mittel' ? [2, 3, 4, 5, 10] : [2, 3, 4, 5, 6, 9, 10]);
-    const d = dPool[randInt(0, dPool.length - 1)];
-    let num = randInt(20, diff === 'leicht' ? 120 : (diff === 'mittel' ? 600 : 2500));
-    const isTeilbar = (num % d === 0);
-
-    return {
-      topicId: 'teilbarkeit',
-      topicName: 'Teilbarkeitsregeln',
-      question: `Ist die Zahl <strong>${num}</strong> ohne Rest durch <strong>${d}</strong> teilbar?`,
-      visual: `<div style="font-size:1.8rem; font-weight:900; color:#1e293b;">${num} : ${d} ?</div>`,
-      correct: isTeilbar ? 'ja' : 'nein',
-      help: `Regel für ${d}: ` + (d === 3 || d === 9 ? 'Quersumme bilden!' : (d === 4 ? 'Letzte 2 Ziffern prüfen!' : (d === 6 ? 'Gerade UND Quersumme durch 3!' : 'Letzte Ziffer ansehen!'))),
-      customKeys: ['ja', 'nein'],
-      normalize: (s) => {
-        s = s.toLowerCase().trim();
-        if (s === 'j') return 'ja';
-        if (s === 'n') return 'nein';
-        return s;
-      }
-    };
-  }
-}
-
-// 2. ggT & kgV
-function genGgtKgv(diff) {
-  const isGgt = Math.random() < 0.5;
-  let a, b;
-  if (diff === 'leicht') {
-    a = [12, 16, 20, 24][randInt(0, 3)];
-    b = [18, 24, 30, 36][randInt(0, 3)];
-  } else if (diff === 'mittel') {
-    a = randInt(12, 36);
-    b = randInt(14, 42);
-  } else {
-    a = randInt(18, 60);
-    b = randInt(24, 72);
-  }
-  if (a === b) b += 6;
-
-  const target = isGgt ? calcGgt(a, b) : calcKgv(a, b);
-  const name = isGgt ? 'ggT' : 'kgV';
-
-  return {
-    topicId: 'ggt_kgv',
-    topicName: `${name} bestimmen`,
-    question: `Bestimme das <strong>${name}(${a}, ${b})</strong>:`,
-    visual: `<div style="font-size:1.6rem; font-weight:900; color:#0369a1;">${name}(${a}, ${b}) = ?</div>`,
-    correct: target.toString(),
-    help: isGgt 
-      ? "ggT ist das MESSER: Welche größte Zahl teilt beide glatt?"
-      : "kgV ist die RENNBAHN: Wann treffen sich die Vielfachen von beiden das erste Mal?"
-  };
-}
-
-// 3. Brüche an Modellen & Zahlenstrahl
-function genModelle(diff) {
-  const isCircle = Math.random() < 0.5;
-  const n = diff === 'leicht' ? [2, 3, 4][randInt(0, 2)] : (diff === 'mittel' ? [5, 6, 8][randInt(0, 2)] : [6, 8, 10, 12][randInt(0, 3)]);
-  const z = randInt(1, n - 1);
-
-  if (isCircle) {
-    let paths = "";
-    for (let i = 0; i < n; i++) {
-      const a1 = (i / n) * 2 * Math.PI - Math.PI / 2;
-      const a2 = ((i + 1) / n) * 2 * Math.PI - Math.PI / 2;
-      const x1 = 150 + 45 * Math.cos(a1), y1 = 55 + 45 * Math.sin(a1);
-      const x2 = 150 + 45 * Math.cos(a2), y2 = 55 + 45 * Math.sin(a2);
-      const fill = i < z ? "#38bdf8" : "#f8fafc";
-      paths += `<path d="M 150 55 L ${x1} ${y1} A 45 45 0 0 1 ${x2} ${y2} Z" fill="${fill}" stroke="#0369a1" stroke-width="1.5"/>`;
-    }
-    const svg = `<svg viewBox="0 0 300 110">${paths}</svg>`;
-    return {
-      topicId: 'modelle',
-      topicName: 'Bruchmodell ablesen',
-      question: "Welcher Anteil der Pizza ist blau gefärbt? (z. B. 3/4):",
-      visual: svg,
-      correct: `${z}/${n}`,
-      quickSlash: true,
-      help: "Zähle die blauen Stücke für den Zähler (oben) und ALLE Stücke für den Nenner (unten)."
-    };
-  } else {
-    const w = 400, pad = 30, lineW = w - 2 * pad;
-    const dx = lineW / n;
-    let ticks = "";
-    for (let i = 0; i <= n; i++) {
-      const x = pad + i * dx;
-      ticks += `<line x1="${x}" y1="45" x2="${x}" y2="65" stroke="#334155" stroke-width="2"/>`;
-      if (i === 0) ticks += `<text x="${x}" y="85" font-size="12" font-weight="700" fill="#64748b" text-anchor="middle">0</text>`;
-      if (i === n) ticks += `<text x="${x}" y="85" font-size="12" font-weight="700" fill="#64748b" text-anchor="middle">1</text>`;
-      if (i === z) {
-        ticks += `<polygon points="${x},42 ${x-7},24 ${x+7},24" fill="#ef4444"/>
-                  <text x="${x}" y="18" font-size="14" font-weight="900" fill="#ef4444" text-anchor="middle">?</text>`;
-      }
-    }
-    const svg = `
-      <svg viewBox="0 0 ${w} 100">
-        <line x1="${pad-10}" y1="55" x2="${w-pad+10}" y2="55" stroke="#334155" stroke-width="2.5"/>
-        ${ticks}
-      </svg>
-    `;
-    return {
-      topicId: 'modelle',
-      topicName: 'Zahlenstrahl',
-      question: "Welcher Bruch steht beim roten Pfeil ( ? )?",
-      visual: svg,
-      correct: `${z}/${n}`,
-      quickSlash: true,
-      help: "Zähle die Abschnitte von 0 bis 1 für den Nenner und die Schritte bis zum Pfeil für den Zähler."
-    };
-  }
-}
-
-// 4. Gemischte Zahlen ↔ Unechte Brüche
-function genGemischt(diff) {
-  const toMixed = Math.random() < 0.5;
-  const n = diff === 'leicht' ? randInt(2, 5) : (diff === 'mittel' ? randInt(4, 8) : randInt(6, 12));
-  const whole = randInt(1, diff === 'leicht' ? 3 : 6);
-  const rem = randInt(1, n - 1);
-  const improperZ = whole * n + rem;
-
-  if (toMixed) {
-    return {
-      topicId: 'gemischt',
-      topicName: 'Unechter Bruch ➔ Gemischt',
-      question: `Wandle in eine gemischte Zahl um (z. B. <strong>2 1/3</strong>):`,
-      visual: `<div style="font-size:2rem; font-weight:900; color:#0369a1;">${improperZ} / ${n}</div>`,
-      correct: `${whole} ${rem}/${n}`,
-      quickSlash: true,
-      quickSpace: true,
-      help: `Teile mit Rest: ${improperZ} : ${n} = ${whole} Rest ${rem} → ${whole} ${rem}/${n}.`
-    };
-  } else {
-    return {
-      topicId: 'gemischt',
-      topicName: 'Gemischt ➔ Unechter Bruch',
-      question: `Wandle in einen unechten Bruch um (z. B. <strong>7/3</strong>):`,
-      visual: `<div style="font-size:2rem; font-weight:900; color:#0369a1;">${whole} ${rem}/${n}</div>`,
-      correct: `${improperZ}/${n}`,
-      quickSlash: true,
-      help: `Ganze mal Nenner plus Zähler: (${whole} * ${n}) + ${rem} = ${improperZ} → ${improperZ}/${n}.`
-    };
-  }
-}
-
-// 5. Erweitern & Kürzen
-function genKuerzen(diff) {
-  const isKuerzen = Math.random() < 0.6;
-  if (isKuerzen) {
-    const nFinal = diff === 'leicht' ? randInt(2, 4) : (diff === 'mittel' ? randInt(3, 6) : randInt(4, 9));
-    const zFinal = randInt(1, nFinal - 1);
-    const factor = diff === 'leicht' ? [2, 3][randInt(0, 1)] : (diff === 'mittel' ? [3, 4, 5][randInt(0, 2)] : randInt(4, 8));
-    
-    const zRaw = zFinal * factor;
-    const nRaw = nFinal * factor;
-    const g = calcGgt(zFinal, nFinal);
-    const zBest = zFinal / g;
-    const nBest = nFinal / g;
-
-    return {
-      topicId: 'kuerzen',
-      topicName: 'Vollständig kürzen',
-      question: `Kürze den Bruch vollständig mit dem ggT:`,
-      visual: `<div style="font-size:2rem; font-weight:900; color:#0369a1;">${zRaw} / ${nRaw}</div>`,
-      correct: `${zBest}/${nBest}`,
-      quickSlash: true,
-      help: `Suche den ggT von ${zRaw} und ${nRaw} und teile Zähler und Nenner durch diese Zahl.`
-    };
-  } else {
-    const z = randInt(1, 5), n = randInt(z + 1, 8);
-    const factor = randInt(2, diff === 'schwer' ? 7 : 5);
-    return {
-      topicId: 'kuerzen',
-      topicName: 'Bruch erweitern',
-      question: `Erweitere den Bruch mit <strong>${factor}</strong>:`,
-      visual: `<div style="font-size:2rem; font-weight:900; color:#0369a1;">${z} / ${n}</div>`,
-      correct: `${z * factor}/${n * factor}`,
-      quickSlash: true,
-      help: `Rechne: Zähler * ${factor} und Nenner * ${factor}.`
-    };
-  }
-}
-
-// 6. Brüche vergleichen (<, =, >)
-function genVergleich(diff) {
-  let z1, n1, z2, n2;
-  if (diff === 'leicht') {
-    n1 = randInt(3, 8); n2 = n1;
-    z1 = randInt(1, n1 - 1); z2 = randInt(1, n1 - 1);
-    if (z1 === z2) z2 = (z1 % (n1 - 1)) + 1;
-  } else if (diff === 'mittel') {
-    n1 = [2, 3, 4, 5][randInt(0, 3)];
-    n2 = n1 * [2, 3][randInt(0, 1)];
-    z1 = randInt(1, n1 - 1);
-    z2 = randInt(1, n2 - 1);
-  } else {
-    n1 = randInt(3, 7); n2 = randInt(4, 9);
-    if (n1 === n2) n2++;
-    z1 = randInt(1, n1 - 1); z2 = randInt(1, n2 - 1);
+  function getStorageKey() {
+    return "mathe_data_" + getProfileName();
   }
 
-  const v1 = z1 / n1;
-  const v2 = z2 / n2;
-  let correct = '=';
-  if (v1 < v2) correct = '<';
-  if (v1 > v2) correct = '>';
-
-  return {
-    topicId: 'vergleich',
-    topicName: 'Brüche vergleichen',
-    question: `Setze das richtige Zeichen ( <strong><</strong> , <strong>=</strong> oder <strong>></strong> ):`,
-    visual: `<div style="font-size:1.8rem; font-weight:900; color:#0369a1;">${z1}/${n1} &nbsp; [ ? ] &nbsp; ${z2}/${n2}</div>`,
-    correct: correct,
-    customKeys: ['<', '=', '>'],
-    help: `Bringe beide Brüche durch Erweitern auf denselben Hauptnenner (kgV von ${n1} und ${n2}). Dann vergleiche die Zähler.`
-  };
-}
-
-// 7. Addition & Subtraktion
-function genAddition(diff) {
-  const isPlus = Math.random() < 0.6;
-  let z1, n1, z2, n2;
-
-  if (diff === 'leicht') {
-    n1 = randInt(3, 8); n2 = n1;
-    z1 = randInt(1, n1 - 2);
-    z2 = randInt(1, isPlus ? (n1 - z1) : z1);
-  } else if (diff === 'mittel') {
-    n1 = [2, 3, 4][randInt(0, 2)];
-    const mult = [2, 3][randInt(0, 1)];
-    n2 = n1 * mult;
-    z1 = randInt(1, n1 - 1);
-    z2 = randInt(1, n2 - 1);
-  } else {
-    n1 = randInt(2, 5);
-    n2 = randInt(3, 6);
-    if (n1 === n2) n2++;
-    z1 = randInt(1, n1 - 1);
-    z2 = randInt(1, n2 - 1);
-  }
-
-  const hn = calcKgv(n1, n2);
-  const ez1 = z1 * (hn / n1);
-  const ez2 = z2 * (hn / n2);
-  let resZ = isPlus ? (ez1 + ez2) : (ez1 - ez2);
-  if (resZ <= 0) { resZ = ez1 + ez2; }
-
-  const g = calcGgt(resZ, hn);
-  const bestZ = resZ / g;
-  const bestN = hn / g;
-  const correctStr = (bestN === 1) ? `${bestZ}` : `${bestZ}/${bestN}`;
-
-  return {
-    topicId: 'addition',
-    topicName: isPlus ? 'Brüche addieren' : 'Brüche subtrahieren',
-    question: `Berechne das Ergebnis:`,
-    visual: `<div style="font-size:1.8rem; font-weight:900; color:#0369a1;">${z1}/${n1} ${isPlus ? '+' : '-'} ${z2}/${n2} = ?</div>`,
-    correct: correctStr,
-    quickSlash: true,
-    help: `1. Hauptnenner suchen (kgV von ${n1} und ${n2} ist ${hn}). 2. Erweitern. 3. Nur Zähler ${isPlus ? 'addieren' : 'subtrahieren'}!`,
-    isFractionCheck: true
-  };
-}
-
-function createTask(tId, diff) {
-  switch(tId) {
-    case 'teilbarkeit': return genTeilbarkeit(diff);
-    case 'ggt_kgv': return genGgtKgv(diff);
-    case 'modelle': return genModelle(diff);
-    case 'gemischt': return genGemischt(diff);
-    case 'kuerzen': return genKuerzen(diff);
-    case 'vergleich': return genVergleich(diff);
-    case 'addition': return genAddition(diff);
-  }
-}
-
-function startPractice(topicId) {
-  currentMode = 'practice';
-  currentTopic = topicId;
-  document.getElementById('progress-container').classList.add('hidden');
-  document.getElementById('quiz-diff-box').classList.remove('hidden');
-  document.getElementById('quiz-counter').textContent = 'Übung';
-  document.getElementById('main-header').classList.add('hidden');
-  setPracticeDiff(selectedPracticeDiff);
-  showView('view-quiz');
-  loadTask();
-}
-
-function startExam() {
-  currentMode = 'exam';
-  examIndex = 0;
-  examScore = 0;
-  examTasks = [];
-
-  let count = 10;
-  if (selectedExamDiff === 'mittel') count = 15;
-  if (selectedExamDiff === 'schwer') count = 20;
-
-  for (let i = 0; i < count; i++) {
-    const t = TOPICS[i % TOPICS.length];
-    examTasks.push(createTask(t.id, selectedExamDiff));
-  }
-  examTasks.sort(() => Math.random() - 0.5);
-
-  document.getElementById('progress-container').classList.remove('hidden');
-  document.getElementById('quiz-diff-box').classList.add('hidden');
-  document.getElementById('main-header').classList.add('hidden');
-  showView('view-quiz');
-  loadTask();
-}
-
-function loadTask() {
-  document.getElementById('feedback-box').className = 'feedback-box';
-  document.getElementById('btn-next').classList.add('hidden');
-  document.getElementById('btn-submit').classList.remove('hidden');
-  document.getElementById('intask-help-box').classList.add('hidden');
-
-  const input = document.getElementById('answer-input');
-  input.value = "";
-  input.disabled = false;
-
-  if (currentMode === 'exam') {
-    currentTask = examTasks[examIndex];
-    const total = examTasks.length;
-    document.getElementById('quiz-counter').textContent = `Aufgabe ${examIndex + 1} von ${total}`;
-    document.getElementById('progress-fill').style.width = `${(examIndex / total) * 100}%`;
-  } else {
-    currentTask = createTask(currentTopic, selectedPracticeDiff);
-  }
-
-  document.getElementById('quiz-badge').textContent = currentTask.topicName;
-  document.getElementById('task-question').innerHTML = currentTask.question;
-  document.getElementById('task-visual').innerHTML = currentTask.visual;
-  document.getElementById('intask-help-box').innerHTML = currentTask.help || "Keine zusätzliche Hilfe verfügbar.";
-
-  const keysContainer = document.getElementById('quick-keys');
-  keysContainer.innerHTML = "";
-
-  if (currentTask.customKeys) {
-    currentTask.customKeys.forEach(k => {
-      const b = document.createElement('button');
-      b.className = 'key-btn';
-      b.textContent = k;
-      b.onclick = () => { input.value = k; checkAnswer(); };
-      keysContainer.appendChild(b);
-    });
-  } else {
-    if (currentTask.quickSlash) {
-      const b = document.createElement('button');
-      b.className = 'key-btn';
-      b.textContent = '/';
-      b.onclick = () => { input.value += '/'; input.focus(); };
-      keysContainer.appendChild(b);
-    }
-    if (currentTask.quickSpace) {
-      const b = document.createElement('button');
-      b.className = 'key-btn';
-      b.textContent = '␣';
-      b.onclick = () => { input.value += ' '; input.focus(); };
-      keysContainer.appendChild(b);
-    }
-  }
-
-  setTimeout(() => input.focus(), 150);
-}
-
-function toggleInTaskHelp() {
-  document.getElementById('intask-help-box').classList.toggle('hidden');
-}
-
-function checkAnswer() {
-  const input = document.getElementById('answer-input');
-  let raw = input.value.trim();
-  if (!raw) return;
-
-  let isCorrect = false;
-
-  if (currentTask.isFractionCheck) {
-    const uFrac = parseFraction(raw);
-    const tFrac = parseFraction(currentTask.correct);
-    if (uFrac && tFrac) {
-      isCorrect = (uFrac.num * tFrac.den === tFrac.num * uFrac.den);
-    } else {
-      isCorrect = (raw.replace(/\s+/g, '') === currentTask.correct.replace(/\s+/g, ''));
-    }
-  } else if (currentTask.normalize) {
-    const user = currentTask.normalize(raw);
-    const target = currentTask.normalize(currentTask.correct);
-    isCorrect = (user === target);
-  } else {
-    const user = raw.replace(/\s+/g, '').toLowerCase();
-    const target = currentTask.correct.replace(/\s+/g, '').toLowerCase();
-    isCorrect = (user === target);
-  }
-
-  playTone(isCorrect);
-
-  const fb = document.getElementById('feedback-box');
-  input.disabled = true;
-  document.getElementById('btn-submit').classList.add('hidden');
-  document.getElementById('btn-next').classList.remove('hidden');
-
-  if (currentMode === 'practice') {
-    recordAnswer(currentTask.topicId, isCorrect);
-  }
-
-  if (isCorrect) {
-    fb.className = 'feedback-box correct';
-    fb.innerHTML = `<strong>Richtig!</strong> Super gelöst.`;
-    if (currentMode === 'exam') examScore++;
-  } else {
-    fb.className = 'feedback-box wrong';
-    fb.innerHTML = `<strong>Nicht ganz.</strong> Richtige Antwort: <strong>${currentTask.correct}</strong>`;
-  }
-}
-
-document.getElementById('answer-input').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    if (!document.getElementById('btn-submit').classList.contains('hidden')) {
-      checkAnswer();
-    } else if (!document.getElementById('btn-next').classList.contains('hidden')) {
-      nextTask();
-    }
-  }
-});
-
-function nextTask() {
-  if (currentMode === 'exam') {
-    examIndex++;
-    if (examIndex >= examTasks.length) {
-      finishExam();
-      return;
-    }
-  }
-  loadTask();
-}
-
-function finishExam() {
-  showView('view-results');
-  const total = examTasks.length;
-  const percent = Math.round((examScore / total) * 100);
-
-  document.getElementById('result-score').textContent = `${examScore} von ${total} Aufgaben richtig`;
-  document.getElementById('result-percent').textContent = `${percent}% erreicht`;
-
-  let grade = 6, color = "#dc2626", feedback = "";
-  if (percent >= 90) { grade = 1; color = "#16a34a"; feedback = "Hervorragend! Du beherrschst die Bruchrechnung absolut sicher!"; startConfetti(); }
-  else if (percent >= 75) { grade = 2; color = "#22c55e"; feedback = "Sehr gut! Du bist bestens für die Arbeit am Gymnasium vorbereitet."; startConfetti(); }
-  else if (percent >= 60) { grade = 3; color = "#eab308"; feedback = "Befriedigend. Die Grundlagen sitzen, schau dir noch das Kürzen an."; }
-  else if (percent >= 50) { grade = 4; color = "#f97316"; feedback = "Ausreichend. Lies dir die Erklärungen in der Akademie nochmal in Ruhe durch."; }
-  else if (percent >= 25) { grade = 5; color = "#ef4444"; feedback = "Mangelhaft. Nutze das Themen-Training gezielt für deine Schwachstellen."; }
-  else { grade = 6; color = "#991b1b"; feedback = "Ungenügend. Wiederhole Schritt für Schritt die Teilbarkeitsregeln und den Bruchbegriff."; }
-
-  const badge = document.getElementById('grade-badge');
-  badge.textContent = `Note ${grade}`;
-  badge.style.background = color;
-  document.getElementById('result-feedback').textContent = feedback;
-
-  const now = new Date();
-  const dateStr = `${now.getDate().toString().padStart(2,'0')}.${(now.getMonth()+1).toString().padStart(2,'0')}.`;
-  appData.examHistory.push({
-    date: dateStr,
-    level: selectedExamDiff,
-    percent: percent,
-    grade: grade
-  });
-  saveData();
-}
-
-function startConfetti() {
-  const canvas = document.getElementById('confetti-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const pieces = [];
-  const colors = ['#2563eb', '#38bdf8', '#16a34a', '#f59e0b', '#ec4899'];
-  for (let i = 0; i < 90; i++) {
-    pieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * -canvas.height,
-      size: Math.random() * 8 + 4,
-      color: colors[randInt(0, colors.length - 1)],
-      speed: Math.random() * 4 + 2,
-      angle: Math.random() * 6.28
-    });
-  }
-
-  let frames = 0;
-  function update() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    pieces.forEach(p => {
-      p.y += p.speed;
-      p.x += Math.sin(p.angle);
-      p.angle += 0.05;
-      ctx.fillStyle = p.color;
-      ctx.fillRect(p.x, p.y, p.size, p.size);
-    });
-    frames++;
-    if (frames < 140) requestAnimationFrame(update);
-    else ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-  update();
-}
-
-// --- INITIALISIERUNG BEIM START ---
-window.addEventListener("DOMContentLoaded", () => {
-  const profile = getProfileName();
-  const statProfileEl = document.getElementById('stat-profile-name');
-  if (statProfileEl) statProfileEl.textContent = profile;
-
-  // Prüfen, ob über Eltern-Sync-Link geöffnet (?data=...)
-  const params = new URLSearchParams(window.location.search);
-  if (params.has("data")) {
-    try {
-      const decoded = decodeURIComponent(atob(params.get("data")));
-      const shared = JSON.parse(decoded);
-      if (shared && shared.appData) {
-        appData = shared.appData;
-        const banner = document.getElementById('shared-banner');
-        if (banner) {
-          banner.textContent = `📥 Geteilter Lernbericht geladen: Profil "${shared.profile || 'Unbekannt'}" (Ansichtsmodus)`;
-          banner.classList.remove('hidden');
+  function loadStats() {
+    const data = localStorage.getItem(getStorageKey());
+    if (!data) {
+      return {
+        totalSolved: 0,
+        totalCorrect: 0,
+        lastExam: null,
+        topics: {
+          teilbarkeit: { solved: 0, correct: 0 },
+          kuerzen: { solved: 0, correct: 0 },
+          vergleichen: { solved: 0, correct: 0 },
+          add_sub: { solved: 0, correct: 0 }
         }
-        if (statProfileEl) statProfileEl.textContent = `${shared.profile || profile} (Übermittelt)`;
-        
-        // Eltern-Bereich sofort aufklappen
-        const c = document.getElementById('parent-content');
-        if (c && c.classList.contains('hidden')) toggleParent();
-      }
-    } catch(e) {
-      console.error("Fehler beim Laden der übermittelten Daten", e);
-      loadData();
+      };
     }
-  } else {
-    loadData();
+    try {
+      return JSON.parse(data);
+    } catch(e) {
+      return { totalSolved: 0, totalCorrect: 0, lastExam: null, topics: {} };
+    }
   }
-  
-  renderTopicList();
-});
+
+  function saveStats(stats) {
+    localStorage.setItem(getStorageKey(), JSON.stringify(stats));
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById("btnModePractice").className = mode === 'practice' ? 'mode-btn active' : 'mode-btn';
+    document.getElementById("btnModeExam").className = mode === 'exam' ? 'mode-btn active' : 'mode-btn';
+    document.getElementById("topicSelectorWrap").style.display = mode === 'practice' ? 'block' : 'none';
+    document.getElementById("examInfo").style.display = mode === 'exam' ? 'block' : 'none';
+    
+    if (mode === 'exam') {
+      examData = { index: 0, score: 0 };
+    }
+    generateTask();
+  }
+
+  // Größter gemeinsamer Teiler
+  function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
+  }
+
+  // Aufgaben-Generierung
+  function generateTask() {
+    const feedback = document.getElementById("feedbackBox");
+    const nextBtn = document.getElementById("btnNext");
+    const input = document.getElementById("userAnswer");
+    
+    input.value = "";
+    input.disabled = false;
+    feedback.style.display = "none";
+    nextBtn.style.display = "none";
+    document.getElementById("btnCheck").style.display = "block";
+
+    let topic = document.getElementById("topicSelect").value;
+    if (currentMode === 'exam') {
+      const keys = Object.keys(TOPICS);
+      topic = keys[Math.floor(Math.random() * keys.length)];
+      document.getElementById("examCur").innerText = examData.index + 1;
+    }
+
+    if (topic === "teilbarkeit") {
+      const divisors = [2, 3, 5, 9, 10];
+      const div = divisors[Math.floor(Math.random() * divisors.length)];
+      const num = Math.floor(Math.random() * 850) + 14;
+      const isDiv = (num % div === 0);
+      currentTask = {
+        topic: "teilbarkeit",
+        question: `Ist <b>${num}</b> durch <b>${div}</b> teilbar?`,
+        answer: isDiv ? "ja" : "nein",
+        hint: "Antworte mit ja oder nein"
+      };
+    } else if (topic === "kuerzen") {
+      const f = Math.floor(Math.random() * 5) + 2;
+      let z = Math.floor(Math.random() * 5) + 1;
+      let n = z + Math.floor(Math.random() * 5) + 1;
+      const teiler = gcd(z, n);
+      z = z / teiler;
+      n = n / teiler;
+      currentTask = {
+        topic: "kuerzen",
+        question: `Kürze vollständig: <span class="fraction"><span class="top">${z * f}</span><span class="bottom">${n * f}</span></span>`,
+        answer: `${z}/${n}`,
+        hint: "Format: Zähler/Nenner (z. B. 2/3)"
+      };
+    } else if (topic === "vergleichen") {
+      const n = Math.floor(Math.random() * 8) + 3;
+      const z1 = Math.floor(Math.random() * (n - 1)) + 1;
+      let z2 = Math.floor(Math.random() * (n - 1)) + 1;
+      while (z2 === z1) z2 = Math.floor(Math.random() * (n - 1)) + 1;
+      const sign = z1 > z2 ? ">" : "<";
+      currentTask = {
+        topic: "vergleichen",
+        question: `<span class="fraction"><span class="top">${z1}</span><span class="bottom">${n}</span></span> &nbsp; [ ? ] &nbsp; <span class="fraction"><span class="top">${z2}</span><span class="bottom">${n}</span></span>`,
+        answer: sign,
+        hint: "Setze ein: &lt; oder &gt;"
+      };
+    } else {
+      const n = Math.floor(Math.random() * 7) + 3;
+      const z1 = Math.floor(Math.random() * (n - 2)) + 1;
+      const z2 = Math.floor(Math.random() * (n - z1 - 1)) + 1;
+      const isAdd = Math.random() > 0.4;
+      if (isAdd) {
+        currentTask = {
+          topic: "add_sub",
+          question: `<span class="fraction"><span class="top">${z1}</span><span class="bottom">${n}</span></span> + <span class="fraction"><span class="top">${z2}</span><span class="bottom">${n}</span></span>`,
+          answer: `${z1 + z2}/${n}`,
+          hint: "Format: Zähler/Nenner (z. B. 4/7)"
+        };
+      } else {
+        const big = Math.max(z1, z2);
+        const small = Math.min(z1, z2);
+        currentTask = {
+          topic: "add_sub",
+          question: `<span class="fraction"><span class="top">${big}</span><span class="bottom">${n}</span></span> - <span class="fraction"><span class="top">${small}</span><span class="bottom">${n}</span></span>`,
+          answer: `${big - small}/${n}`,
+          hint: "Format: Zähler/Nenner (z. B. 1/5)"
+        };
+      }
+    }
+
+    document.getElementById("taskBox").innerHTML = currentTask.question;
+    document.getElementById("formatHint").innerText = currentTask.hint;
+  }
+
+  function checkAnswer() {
+    const rawInput = document.getElementById("userAnswer").value.trim().toLowerCase().replace(/\s+/g, '');
+    if (!rawInput) return;
+
+    const feedback = document.getElementById("feedbackBox");
+    const nextBtn = document.getElementById("btnNext");
+    const btnCheck = document.getElementById("btnCheck");
+    const isCorrect = (rawInput === currentTask.answer.toLowerCase());
+
+    document.getElementById("userAnswer").disabled = true;
+    btnCheck.style.display = "none";
+    nextBtn.style.display = "block";
+
+    if (currentMode === 'practice') {
+      const stats = loadStats();
+      stats.totalSolved += 1;
+      if (!stats.topics[currentTask.topic]) {
+        stats.topics[currentTask.topic] = { solved: 0, correct: 0 };
+      }
+      stats.topics[currentTask.topic].solved += 1;
+
+      if (isCorrect) {
+        stats.totalCorrect += 1;
+        stats.topics[currentTask.topic].correct += 1;
+        feedback.className = "feedback ok";
+        feedback.innerHTML = "✅ Richtig gerechnet! Sehr gut.";
+      } else {
+        feedback.className = "feedback err";
+        feedback.innerHTML = `❌ Leider nicht ganz richtig.<br>Lösung: <b>${currentTask.answer}</b>`;
+      }
+      saveStats(stats);
+      updateDashboard(stats);
+    } else {
+      // Klassenarbeits-Modus
+      if (isCorrect) {
+        examData.score += 1;
+        feedback.className = "feedback ok";
+        feedback.innerHTML = "✅ Aufgabe erfasst!";
+      } else {
+        feedback.className = "feedback err";
+        feedback.innerHTML = `❌ Nicht richtig.<br>Lösung: <b>${currentTask.answer}</b>`;
+      }
+    }
+
+    feedback.style.display = "block";
+  }
+
+  function nextStep() {
+    if (currentMode === 'practice') {
+      generateTask();
+    } else {
+      examData.index += 1;
+      if (examData.index < 10) {
+        generateTask();
+      } else {
+        finishExam();
+      }
+    }
+  }
+
+  function finishExam() {
+    const percent = Math.round((examData.score / 10) * 100);
+    let grade = 6;
+    if (percent >= 90) grade = 1;
+    else if (percent >= 75) grade = 2;
+    else if (percent >= 60) grade = 3;
+    else if (percent >= 45) grade = 4;
+    else if (percent >= 20) grade = 5;
+
+    const stats = loadStats();
+    stats.lastExam = {
+      date: new Date().toLocaleDateString('de-DE'),
+      score: examData.score,
+      percent: percent,
+      grade: grade
+    };
+    saveStats(stats);
+    updateDashboard(stats);
+
+    const feedback = document.getElementById("feedbackBox");
+    feedback.className = percent >= 60 ? "feedback ok" : "feedback err";
+    feedback.innerHTML = `🏁 <b>Klassenarbeit beendet!</b><br>Ergebnis: ${examData.score}/10 richtig (${percent} %)<br><b>Note: ${grade}</b>`;
+    feedback.style.display = "block";
+    
+    document.getElementById("btnNext").style.display = "none";
+    document.getElementById("taskBox").innerHTML = "🎉 Durchgang abgeschlossen!";
+    document.getElementById("parentDetails").open = true;
+  }
+
+  function updateDashboard(stats, profileOverride = null) {
+    const currentName = profileOverride || getProfileName();
+    document.getElementById("statProfile").innerText = currentName;
+    document.getElementById("statTotal").innerText = stats.totalSolved || 0;
+    
+    const rate = stats.totalSolved > 0 ? Math.round((stats.totalCorrect / stats.totalSolved) * 100) : 0;
+    document.getElementById("statRate").innerText = rate + " %";
+
+    if (stats.lastExam) {
+      document.getElementById("statLastExam").innerText = `Note ${stats.lastExam.grade} (${stats.lastExam.percent} %) am ${stats.lastExam.date}`;
+    } else {
+      document.getElementById("statLastExam").innerText = "Noch keine absolviert";
+    }
+
+    const container = document.getElementById("topicStatsContainer");
+    container.innerHTML = "";
+
+    for (const [key, label] of Object.entries(TOPICS)) {
+      const t = (stats.topics && stats.topics[key]) ? stats.topics[key] : { solved: 0, correct: 0 };
+      const tRate = t.solved > 0 ? Math.round((t.correct / t.solved) * 100) : 0;
+      let badgeClass = "badge-red";
+      let statusText = "Üben";
+
+      if (t.solved >= 3) {
+        if (tRate >= 80) { badgeClass = "badge-green"; statusText = "Sicher"; }
+        else if (tRate >= 60) { badgeClass = "badge-yellow"; statusText = "Training"; }
+      } else {
+        badgeClass = "badge-yellow";
+        statusText = "Neu";
+      }
+
+      container.innerHTML += `
+        <div class="stat-line">
+          <span>${label}</span>
+          <span class="badge ${badgeClass}">${statusText} (${tRate} %)</span>
+        </div>
+      `;
+    }
+  }
+
+  // WhatsApp Bericht erstellen
+  function shareProgressViaWhatsApp() {
+    const stats = loadStats();
+    const profile = getProfileName();
+
+    // Daten paketieren für den Link
+    const payload = { profile: profile, stats: stats };
+    const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+    const link = window.location.origin + window.location.pathname + "?data=" + encoded;
+
+    const total = stats.totalSolved || 0;
+    const correct = stats.totalCorrect || 0;
+    const rate = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const today = new Date().toLocaleDateString('de-DE');
+
+    let msg = `📊 *Mathe-Trainer – Lernbericht (${profile})* 🎯\n`;
+    msg += `📅 Datum: ${today}\n\n`;
+    msg += `⭐ *Übungsstand:*\n`;
+    msg += `• Aufgaben gelöst: ${total} 📝\n`;
+    msg += `• Richtige Antworten: ${correct} ✅\n`;
+    msg += `• Trefferquote: ${rate} % 🚀\n\n`;
+
+    if (stats.lastExam) {
+      msg += `🏆 *Letzte Klassenarbeit:*\n`;
+      msg += `• Note: ${stats.lastExam.grade} (${stats.lastExam.percent} %) am ${stats.lastExam.date} 🎖️\n\n`;
+    }
+
+    msg += `🚦 *Themen-Ampel:*\n`;
+    for (const [key, label] of Object.entries(TOPICS)) {
+      const t = (stats.topics && stats.topics[key]) ? stats.topics[key] : { solved: 0, correct: 0 };
+      const tRate = t.solved > 0 ? Math.round((t.correct / t.solved) * 100) : 0;
+      let icon = "🔴";
+      if (t.solved >= 3) {
+        if (tRate >= 80) icon = "🟢";
+        else if (tRate >= 60) icon = "🟡";
+      } else {
+        icon = "⚪";
+      }
+      msg += `• ${icon} ${label}: ${tRate} % (${t.correct}/${t.solved})\n`;
+    }
+
+    msg += `\n🔗 *Eltern-Dashboard aufrufen:*\n${link}`;
+
+    // Öffnet WhatsApp direkt zur Kontaktauswahl
+    window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+  }
+
+  function resetStats() {
+    const profile = getProfileName();
+    if (confirm(`Möchtest du alle Statistiken für "${profile}" auf 0 zurücksetzen?`)) {
+      localStorage.removeItem(getStorageKey());
+      updateDashboard(loadStats());
+    }
+  }
+
+  // Initialisierung
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("data")) {
+      try {
+        const decoded = decodeURIComponent(atob(params.get("data")));
+        const payload = JSON.parse(decoded);
+        document.getElementById("sharedBanner").style.display = "block";
+        document.getElementById("parentDetails").open = true;
+        updateDashboard(payload.stats, payload.profile);
+      } catch (e) {
+        console.error("Link ungültig", e);
+        updateDashboard(loadStats());
+      }
+    } else {
+      updateDashboard(loadStats());
+    }
+    generateTask();
+  });
 </script>
+
 </body>
 </html>
