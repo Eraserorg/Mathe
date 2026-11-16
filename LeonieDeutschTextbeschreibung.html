@@ -1,0 +1,3861 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Deutsch-Trainer: Sachlich beschreiben</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --purple: #7c3aed;
+      --purple-hover: #6d28d9;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    header p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:active { background: var(--primary-hover); transform: scale(0.98); }
+
+    .btn-learn {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      font-size: 0.98rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+      margin-bottom: 10px;
+    }
+
+    .btn-heft {
+      background: linear-gradient(135deg, var(--purple), var(--purple-hover));
+      color: white;
+      font-size: 1.02rem;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+      margin-bottom: 14px;
+    }
+
+    .btn-exam {
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      font-size: 0.98rem;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+      margin-bottom: 8px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .diff-selector {
+      display: flex;
+      gap: 6px;
+      margin: 8px 0 12px;
+    }
+
+    .diff-btn {
+      flex: 1;
+      padding: 8px 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .diff-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .diff-btn-mini {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .diff-btn-mini.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .topic-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .topic-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .topic-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-mini-practice {
+      flex: 2;
+      padding: 8px 10px;
+      background: #f0f9ff;
+      color: var(--primary);
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
+    .btn-mini-test {
+      flex: 1;
+      padding: 8px 10px;
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 8px 0 12px;
+      text-align: left;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      background: #ffffff;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .status-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .st-neu { background: #f1f5f9; color: #475569; }
+    .st-rot { background: #fee2e2; color: #991b1b; }
+    .st-gelb { background: #fef3c7; color: #92400e; }
+    .st-gruen { background: #dcfce7; color: #166534; }
+    .st-stern { background: #14532d; color: #fef08a; box-shadow: 0 2px 6px rgba(20,83,45,0.25); }
+
+    .progress-bar {
+      height: 6px;
+      width: 100%;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .task-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .task-display {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 12px;
+      margin: 8px 0;
+      text-align: center;
+      min-height: 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
+
+    .quote-card {
+      background: #fff;
+      border-left: 4px solid var(--primary);
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-style: italic;
+      color: #1e293b;
+      text-align: left;
+      width: 100%;
+      font-size: 0.94rem;
+    }
+
+    .choice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.35;
+      transition: all 0.1s;
+    }
+    .choice-btn:active { background: #f1f5f9; }
+    .choice-btn.correct-choice { border-color: var(--success) !important; background: var(--success-bg) !important; color: #14532d !important; }
+    .choice-btn.wrong-choice { border-color: var(--danger) !important; background: var(--danger-bg) !important; color: #7f1d1d !important; }
+
+    .input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      align-items: stretch;
+    }
+
+    .input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 10px;
+      font-size: 1.05rem;
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      outline: none;
+    }
+    .input-row input:focus { border-color: var(--primary); }
+
+    .btn-submit-row {
+      padding: 0 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      display: none;
+      line-height: 1.45;
+    }
+    .feedback-box.correct { background: var(--success-bg); color: #14532d; border: 1px solid #86efac; display: block; }
+    .feedback-box.wrong { background: var(--danger-bg); color: #7f1d1d; border: 1px solid #fca5a5; display: block; }
+
+    .learn-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 10px 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .learn-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .learn-card h2 {
+      font-size: 1.15rem;
+      color: #0369a1;
+      margin-bottom: 8px;
+    }
+
+    .learn-card p {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .aha-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 11px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.85rem;
+      color: #166534;
+      line-height: 1.45;
+    }
+
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 0.82rem;
+    }
+    .rule-table th, .rule-table td {
+      border: 1px solid var(--border);
+      padding: 7px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .rule-table th { background: #f1f5f9; font-weight: 700; }
+
+    .nav-pill-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-pill {
+      flex: 0 0 auto;
+      padding: 6px 12px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #0284c7;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-pill.active {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+    }
+
+    .prompt-selector-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .prompt-item-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 12px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .prompt-item-btn.active {
+      border-color: var(--purple);
+      background: #f5f3ff;
+      color: #5b21b6;
+    }
+
+    .illustration-frame {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 8px;
+      margin: 10px 0;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+      text-align: center;
+    }
+    .illustration-frame canvas, .illustration-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+    .illustration-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding: 0 4px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .btn-tiny-link {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.75rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .checklist-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+    .checklist-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .checklist-row input {
+      margin-top: 3px;
+      transform: scale(1.15);
+    }
+
+    .photo-preview-wrap {
+      margin: 10px 0;
+      padding: 10px;
+      background: #f0fdf4;
+      border: 1.5px dashed #16a34a;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .photo-preview-wrap img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 8px;
+      margin-top: 6px;
+      border: 1px solid #86efac;
+    }
+
+    .banner {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      text-align: center;
+      font-weight: 700;
+      border: 1px solid #bae6fd;
+      line-height: 1.4;
+    }
+
+    .hidden { display: none !important; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+    .modal-content {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div id="shared-banner" class="banner hidden"></div>
+
+  <!-- ================= 1. HAUPTMENÜ ================= -->
+  <div id="view-menu">
+    <header id="main-header">
+      <h1>✍️ Deutsch-Trainer: Beschreiben</h1>
+      <p>Gegenstände • Wege • Räume • Satzbau &amp; Heft-Aufsätze</p>
+    </header>
+
+    <button class="btn btn-learn" onclick="openLearnView()">
+      📖 Schreib-Profi &amp; Wissen kompakt (Erklärungen) ➔
+    </button>
+
+    <button class="btn btn-heft" onclick="openHeftView()">
+      📝 Heft-Aufgaben mit Buch-Illustrationen (13 Themen) ➔
+    </button>
+
+    <!-- KLASSENARBEITS-ZENTRALE -->
+    <div class="card" style="background:#fffbeb; border:2px solid #fde68a;">
+      <div style="font-weight:800; font-size:1.06rem; color:#b45309; text-align:center; margin-bottom:4px;">
+        📝 Gemischte Klassenarbeit (Fragen-Test)
+      </div>
+      <div style="font-size:0.78rem; color:#92400e; text-align:center; margin-bottom:6px;">
+        Hake an, welche Kapitel im Unterricht schon besprochen wurden:
+      </div>
+
+      <div class="check-grid" id="exam-topic-checks"></div>
+
+      <div style="font-size:0.78rem; color:#92400e; text-align:center;">
+        Schwierigkeit &amp; Umfang:
+      </div>
+      <div class="diff-selector">
+        <button class="diff-btn active" id="btn-exam-leicht" onclick="setExamDiff('leicht')">Leicht (10)</button>
+        <button class="diff-btn" id="btn-exam-mittel" onclick="setExamDiff('mittel')">Mittel (15)</button>
+        <button class="diff-btn" id="btn-exam-schwer" onclick="setExamDiff('schwer')">Schwer (20)</button>
+      </div>
+      <button class="btn btn-exam" onclick="startMixedExam()">Gemischte Klassenarbeit starten ➔</button>
+    </div>
+
+    <!-- EINZELNE KAPITEL -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="font-size:0.95rem; font-weight:800;">🎯 Kapitel einzeln üben oder testen</span>
+        <span style="font-size:0.75rem; color:var(--text-muted);">Modus/Stufe:</span>
+      </div>
+      <div class="diff-selector">
+        <button class="diff-btn active" id="btn-p-leicht" onclick="setPracticeDiff('leicht')">Leicht (Klick)</button>
+        <button class="diff-btn" id="btn-p-mittel" onclick="setPracticeDiff('mittel')">Mittel</button>
+        <button class="diff-btn" id="btn-p-schwer" onclick="setPracticeDiff('schwer')">Schwer (Mix/Tippen)</button>
+      </div>
+
+      <div id="topic-list" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- ELTERN-ÜBERSICHT GANZ UNTEN -->
+    <div class="card" style="background:#f8fafc;">
+      <div style="display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="toggleParent()">
+        <span style="font-size:0.95rem; font-weight:800;">👨‍👧 Eltern-Übersicht &amp; Trainingsstand</span>
+        <span id="parent-toggle-icon">▼</span>
+      </div>
+
+      <div id="parent-content" class="hidden" style="margin-top:14px; border-top:1px solid var(--border); padding-top:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:0.85rem; color:var(--text-muted);">
+          <span>Aktives Profil (Dateiname):</span>
+          <strong id="stat-profile-name" style="color:var(--text); font-size:0.9rem;">-</strong>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px;">
+          <div style="background:#fff; padding:9px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.3rem; font-weight:900; color:var(--primary);" id="stat-total-tasks">0</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Quiz-Aufgaben</div>
+          </div>
+          <div style="background:#fff; padding:9px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.3rem; font-weight:900; color:var(--success);" id="stat-total-rate">0%</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Trefferquote</div>
+          </div>
+          <div style="background:#fff; padding:9px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.3rem; font-weight:900; color:var(--purple);" id="stat-total-essays">0</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Heft-Aufsätze</div>
+          </div>
+        </div>
+
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:6px;">Geschriebene Tests &amp; Heft-Aufsätze:</div>
+        <div id="exam-history-list" style="max-height:150px; overflow-y:auto; font-size:0.8rem; margin-bottom:14px;">
+          <div style="color:var(--text-muted); font-style:italic;">Noch keine Einträge vorhanden.</div>
+        </div>
+
+        <button class="btn btn-whatsapp" onclick="shareProgressViaWhatsApp()">
+          📲 Ergebnisse an Eltern übermitteln
+        </button>
+
+        <button class="btn btn-outline" style="border-color:#ef4444; color:#dc2626; padding:8px; margin-bottom:8px;" onclick="openResetModal()">
+          ⚠ Fortschritt komplett auf Null setzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. HEFT-AUFGABEN MIT ECHTEN ILLUSTRATIONEN ================= -->
+  <div id="view-heft" class="hidden">
+    <div class="learn-header">
+      <button class="btn btn-outline" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="closeHeftView()">
+        ← Zurück zum Menü
+      </button>
+      <span style="font-weight:800; font-size:0.95rem; color:var(--purple);">📝 Heft-Aufsatz schreiben</span>
+    </div>
+
+    <div class="card">
+      <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
+        1. KATEGORIE FILTERN:
+      </div>
+      <div class="nav-pill-row" style="margin-bottom:10px;">
+        <button class="nav-pill active" id="heft-cat-all" onclick="filterHeftPrompts('all')">Alle (13)</button>
+        <button class="nav-pill" id="heft-cat-gegenstand" onclick="filterHeftPrompts('gegenstand')">🎒 Gegenstände (5)</button>
+        <button class="nav-pill" id="heft-cat-weg" onclick="filterHeftPrompts('weg')">🗺️ Wege (4)</button>
+        <button class="nav-pill" id="heft-cat-raum" onclick="filterHeftPrompts('raum')">🐢 Räume (4)</button>
+      </div>
+
+      <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
+        2. SCHREIBAUFGABE AUSWÄHLEN:
+      </div>
+      <div id="heft-prompt-list" class="prompt-selector-grid"></div>
+    </div>
+
+    <!-- AKTIVE SCHREIBAUFGABE -->
+    <div class="card" id="heft-active-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span id="heft-badge" class="badge" style="background:#ede9fe; color:#5b21b6;">Gegenstandsbeschreibung</span>
+        <span id="heft-origin" style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Buch / Neu</span>
+      </div>
+
+      <h2 id="heft-title" style="font-size:1.2rem; color:#1e293b; margin-bottom:6px;">Titel der Aufgabe</h2>
+      <p id="heft-task-desc" style="font-size:0.9rem; color:#334155; line-height:1.45; margin-bottom:10px;"></p>
+
+      <!-- Hochauflösende Buch-Illustration (Canvas oder hinterlegtes Originalfoto) -->
+      <div class="illustration-frame">
+        <canvas id="heft-canvas" width="760" height="440"></canvas>
+        <img id="heft-custom-img" class="hidden" src="" alt="Aufgabenbild">
+        <div class="illustration-toolbar">
+          <span id="illus-caption">🎨 Buch-Illustration (Beobachte alle Details genau!)</span>
+          <div>
+            <input type="file" id="custom-illus-input" accept="image/*" class="hidden" onchange="handleCustomIllusUpload(event)">
+            <button class="btn-tiny-link" onclick="document.getElementById('custom-illus-input').click()">🖼️ Eigenes Buchfoto wählen</button>
+            <button id="btn-reset-illus" class="btn-tiny-link hidden" style="margin-left:8px; color:#dc2626;" onclick="resetCustomIllus()">✕ Standardbild</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Steckbrief & Wortsammlung (einklappbar, damit sie erst selbst schauen kann) -->
+      <details open style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:12px; margin:12px 0;">
+        <summary style="font-weight:800; font-size:0.88rem; color:#0369a1; cursor:pointer;">
+          📋 Stichpunkte &amp; Wortsammlung (Hilfe für deinen Text im Heft)
+        </summary>
+        <div id="heft-facts" style="font-size:0.84rem; line-height:1.5; color:#1e293b; margin-top:8px;"></div>
+      </details>
+
+      <!-- Abhak-Checkliste vor dem Fotografieren -->
+      <div class="checklist-box">
+        <div style="font-weight:800; font-size:0.88rem; color:#1e293b; margin-bottom:6px;">
+          ✅ Schreib-Profi Checkliste (Hake ab, wenn du im Heft fertig bist):
+        </div>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>1. Einleitung:</strong> Ich habe genannt, worum es geht (Name, Funktion / Start &amp; Ziel / Raumgröße).</span>
+        </label>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>2. Hauptteil geordnet:</strong> Ich bin vom Allgemeinen (Groben) zu den besonderen Einzelheiten vorgegangen.</span>
+        </label>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>3. Zeitform Präsens:</strong> Alle Verben stehen in der Gegenwart (z. B. <em>liegt, besteht, befindet sich, führt</em>).</span>
+        </label>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>4. Sachlich &amp; abwechslungsreich:</strong> Keine Wertungen (wie „cool/schön“) und abwechslungsreiche Satzanfänge!</span>
+        </label>
+      </div>
+
+      <!-- FOTO AUFNEHMEN & PER WHATSAPP SENDEN -->
+      <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px; margin-top:14px;">
+        <div style="font-weight:800; font-size:0.95rem; color:#0f172a; margin-bottom:4px; text-align:center;">
+          📸 Aufsatz im Heft fertig geschrieben?
+        </div>
+        <div style="font-size:0.8rem; color:var(--text-muted); text-align:center; margin-bottom:12px;">
+          Mache ein Foto von deiner Heftseite und schicke es per WhatsApp an deine Eltern:
+        </div>
+
+        <input type="file" id="camera-input" accept="image/*" capture="environment" class="hidden" onchange="handleCameraPhoto(event)">
+
+        <button class="btn btn-primary" style="background:var(--purple); margin-bottom:8px;" onclick="triggerCamera()">
+          📷 1. Foto vom Heft mit Kamera aufnehmen
+        </button>
+
+        <div id="photo-preview-container" class="photo-preview-wrap hidden">
+          <div style="font-size:0.82rem; font-weight:800; color:#166534;">✅ Foto aufgenommen! Jetzt absenden:</div>
+          <img id="photo-preview-img" src="" alt="Heft-Foto Vorschau">
+          <button class="btn btn-whatsapp" style="margin-top:10px;" onclick="sharePhotoViaWebShare()">
+            📲 2. Dieses Foto jetzt per WhatsApp senden
+          </button>
+        </div>
+
+        <button class="btn btn-whatsapp" onclick="openWhatsAppForHeftPhoto()">
+          💬 Direkt WhatsApp öffnen (Foto im Chat knipsen)
+        </button>
+      </div>
+
+      <!-- Musterlösung zum Aufklappen -->
+      <details style="margin-top:14px; border:1px solid var(--border); border-radius:10px; padding:10px; background:#fff;">
+        <summary style="font-size:0.85rem; font-weight:800; color:#0369a1; cursor:pointer;">
+          💡 Muster-Aufsatz zum Vergleich anzeigen (erst nach dem Schreiben öffnen!)
+        </summary>
+        <div id="heft-sample-text" style="margin-top:10px; font-size:0.86rem; line-height:1.55; color:#1e293b; border-top:1px solid #e2e8f0; padding-top:8px;"></div>
+      </details>
+    </div>
+  </div>
+
+  <!-- ================= 3. DER SCHREIB-PROFI (ERKLÄRUNGEN) ================= -->
+  <div id="view-learn" class="hidden">
+    <div class="learn-header">
+      <button class="btn btn-outline" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="closeLearnView()">
+        ← Zurück zum Menü
+      </button>
+      <span style="font-weight:800; font-size:0.95rem; color:#0369a1;">📖 Der Schreib-Profi</span>
+    </div>
+
+    <div class="nav-pill-row">
+      <a href="#l-regeln" class="nav-pill">Grundregeln</a>
+      <a href="#l-aufbau" class="nav-pill">3 Schritte</a>
+      <a href="#l-gegenstand" class="nav-pill">Gegenstand</a>
+      <a href="#l-weg" class="nav-pill">Weg</a>
+      <a href="#l-raum" class="nav-pill">Raum &amp; Satzbau</a>
+    </div>
+
+    <div id="l-regeln" class="learn-card">
+      <h2>🎯 Wissen kompakt: Was heißt „sachlich beschreiben“?</h2>
+      <p>In einer Beschreibung stellst du etwas so genau dar, dass sich eine andere Person den Gegenstand, den Weg oder den Raum genau vorstellen (oder im Fundbüro wiederfinden) kann.</p>
+      <div class="aha-box">
+        <strong>Die 4 goldenen Regeln (Buch S. 15):</strong><br>
+        1. <strong>Zeitform Präsens (Gegenwart):</strong> Schreibe immer im Präsens (z. B. <em>„Die Tasche besteht aus Stoff“</em>, <em>„Unten links liegt ein Stein“</em>).<br>
+        2. <strong>Sachlich bleiben:</strong> Lass im Hauptteil eigene Wertungen oder Geschichten weg (Nicht: <em>„Meine Oma hat mir die coole Tasche geschenkt“</em>).<br>
+        3. <strong>Treffende Adjektive:</strong> Nutze genaue Eigenschaftswörter wie <em>hellrot, dunkelrot, rechteckig, kurzärmelig, zweifarbig</em>.<br>
+        4. <strong>Geordnete Reihenfolge:</strong> Beschreibe immer vom <strong>Allgemeinen (Groben) zum Besonderen (Einzelheiten)</strong>!
+      </div>
+    </div>
+
+    <div id="l-aufbau" class="learn-card">
+      <h2>🪜 Aufbau in 3 Schritten (Arbeitsblatt &amp; Schreib-Profi)</h2>
+      <table class="rule-table">
+        <tr>
+          <th>Abschnitt</th>
+          <th>Was gehört hinein?</th>
+        </tr>
+        <tr>
+          <td><strong>1. Einleitung</strong></td>
+          <td><strong>Was</strong> wird beschrieben? Wie heißt der Gegenstand / Raum oder wohin führt der Weg? <strong>Wofür</strong> benutzt man ihn (Funktion)?</td>
+        </tr>
+        <tr>
+          <td><strong>2. Hauptteil</strong></td>
+          <td><strong>Wie sieht es genau aus?</strong><br>
+          • <strong>Größe &amp; Form</strong> (z. B. 50 cm lang, rechteckig, rund)<br>
+          • <strong>Material &amp; Farbe</strong> (z. B. aus blauem Nylon, aus Glas, zweifarbig)<br>
+          • <strong>Einzelteile &amp; Kennzeichen</strong> (z. B. zwei Griffe, Reißverschluss, Aufkleber)<br>
+          • <strong>Inhalt / Ausstattung</strong> (z. B. Turnschuhe, Stein, Schreibtisch)</td>
+        </tr>
+        <tr>
+          <td><strong>3. Schluss</strong></td>
+          <td>Besondere Bedeutung, abschließender Hinweis oder warum der Gegenstand/Raum im Alltag besonders praktisch ist.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="l-gegenstand" class="learn-card">
+      <h2>🎒 1. Gegenstände beschreiben (S. 16–18)</h2>
+      <p>Beschreibe zuerst die <strong>äußeren Merkmale</strong> (Größe, Material, Farbe, Form, Griffe), danach <strong>besondere Kennzeichen</strong> (Aufkleber, Anhänger, Kratzer) und erst zum Schluss den <strong>Inhalt</strong>.</p>
+    </div>
+
+    <div id="l-weg" class="learn-card">
+      <h2>🗺️ 2. Wege beschreiben (S. 19–21)</h2>
+      <p>Führe die Person Schritt für Schritt vom <strong>Startpunkt</strong> über <strong>Zwischenhalte</strong> bis zum <strong>Zielort</strong>. Nutze feste Orientierungspunkte (Kirchen, Brücken, Plätze, Straßennamen) und abwechslungsreiche Richtungswörter (<em>zuerst, danach, anschließend, rechts abbiegen, überqueren, schließlich</em>).</p>
+    </div>
+
+    <div id="l-raum" class="learn-card">
+      <h2>🐢 3. Räume beschreiben &amp; Satzbau-Trick (S. 22–24)</h2>
+      <p>Beschreibe zuerst den Raum im Ganzen (Größe, Material) und danach geordnet die Gegenstände im Inneren mit genauen Ortsangaben.</p>
+      <div class="aha-box" style="background:#fef3c7; border-color:#d97706; color:#92400e;">
+        <strong>💡 Satzbau-Trick von Paul (Buch S. 23 – Satzglieder umstellen):</strong><br>
+        Wechsle den Satzanfang ab! Das <strong>Verb bleibt dabei immer an der 2. Stelle</strong>:<br>
+        • Variante A (Ortsangabe vorn): <em>„<strong>Unten links</strong> <u>liegt</u> ein ausgehöhlter Stein.“</em><br>
+        • Variante B (Gegenstand vorn): <em>„<strong>Ein ausgehöhlter Stein</strong> <u>liegt</u> unten links.“</em>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" style="margin-bottom:24px;" onclick="closeLearnView()">
+      Alles klar! Zurück zum Menü ➔
+    </button>
+  </div>
+
+  <!-- ================= 4. AUFGABEN-ANSICHT (QUIZ & TESTS) ================= -->
+  <div id="view-quiz" class="card hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span id="quiz-badge" class="badge" style="background:#e0f2fe; color:#0369a1;">Thema</span>
+      
+      <div id="quiz-diff-box" style="display:flex; gap:3px;">
+        <button class="diff-btn-mini active" id="quiz-btn-leicht" onclick="changeQuizDiff('leicht')">L</button>
+        <button class="diff-btn-mini" id="quiz-btn-mittel" onclick="changeQuizDiff('mittel')">M</button>
+        <button class="diff-btn-mini" id="quiz-btn-schwer" onclick="changeQuizDiff('schwer')">S</button>
+      </div>
+
+      <span id="quiz-counter" style="font-weight:700; font-size:0.85rem; color:var(--text-muted);">Aufgabe 1/10</span>
+    </div>
+
+    <div id="progress-container" class="progress-bar">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+
+    <div id="task-question" class="task-title">Aufgabenstellung</div>
+    <div id="task-visual" class="task-display"></div>
+
+    <div style="text-align:right; margin-bottom:4px;">
+      <button onclick="toggleInTaskHelp()" style="background:none; border:none; color:#0284c7; font-size:0.76rem; font-weight:700; cursor:pointer;">
+        💡 Schreib-Profi Tipp einblenden
+      </button>
+    </div>
+    <div id="intask-help-box" class="aha-box hidden" style="margin:4px 0 10px 0; font-size:0.82rem;"></div>
+
+    <div id="choice-input-area" class="choice-list hidden"></div>
+
+    <div id="text-input-area" class="input-row hidden">
+      <input type="text" id="answer-input" placeholder="Begriff eintippen..." autocomplete="off" autocapitalize="off" autocorrect="off">
+      <button id="btn-submit" class="btn-submit-row" onclick="checkTextAnswer()">Prüfen ✓</button>
+    </div>
+
+    <div id="feedback-box" class="feedback-box"></div>
+
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button id="btn-next" class="btn btn-primary hidden" onclick="nextTask()">Nächste Aufgabe ➔</button>
+      <button id="btn-quit" class="btn btn-outline" style="margin:0;" onclick="backToMenu()">Beenden</button>
+    </div>
+  </div>
+
+  <!-- ================= 5. ERGEBNIS-ANSICHT ================= -->
+  <div id="view-results" class="card hidden" style="text-align:center;">
+    <h2 style="font-size:1.35rem; font-weight:800;" id="result-title">Klassenarbeit beendet!</h2>
+    <p style="color:var(--text-muted); margin-top:4px;">Ergebnis deiner Deutsch-Überprüfung:</p>
+
+    <div id="grade-badge" style="display:inline-block; padding:8px 22px; border-radius:30px; font-size:1.5rem; font-weight:900; color:#fff; margin:14px auto;">
+      Note 1
+    </div>
+
+    <div style="font-size:1.2rem; font-weight:800;" id="result-score">10 von 10 richtig</div>
+    <p id="result-percent" style="color:var(--text-muted); font-weight:600; margin-bottom:12px;">100% erreicht</p>
+    <p id="result-feedback" style="font-size:0.9rem; margin-bottom:16px; line-height:1.4;"></p>
+
+    <button class="btn btn-exam" onclick="repeatLastExam()">Diesen Test wiederholen</button>
+    <button class="btn btn-outline" onclick="backToMenu()">Zurück zum Hauptmenü</button>
+  </div>
+
+  <!-- ================= 6. RESET MODAL ================= -->
+  <div id="reset-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <h3 style="color:#dc2626; margin-bottom:8px;">⚠️ Fortschritt löschen?</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4; margin-bottom:16px;">
+        Möchtest du wirklich alle gespeicherten Aufgaben, Noten und Meisterschafts-Ampeln für dieses Profil auf Null zurücksetzen?
+      </p>
+      <div style="display:flex; gap:8px;">
+        <button class="btn" style="background:#fee2e2; color:#dc2626;" onclick="confirmReset()">Ja, alles löschen</button>
+        <button class="btn btn-outline" style="margin:0;" onclick="closeResetModal()">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
+
+<script>
+// --- AUDIO-FEEDBACK ---
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playTone(success) {
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  if (success) {
+    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.14);
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.22);
+  } else {
+    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.25);
+  }
+}
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+const TOPICS = [
+  { id: 'grundlagen', name: '1. Grundlagen & Aufbau (3 Schritte)', short: 'Aufbau & Regeln', info: 'AB 1–2 & Buch S. 15' },
+  { id: 'gegenstand', name: '2. Gegenstände beschreiben', short: 'Gegenstände', info: 'Sporttasche, Federtasche & 3 neue' },
+  { id: 'weg',        name: '3. Wege beschreiben', short: 'Wegbeschreibung', info: 'Schokoladenmuseum & 3 neue Routen' },
+  { id: 'raum',       name: '4. Räume & Gehege beschreiben', short: 'Raum & Tier', info: 'Terrarium & 3 neue Räume' },
+  { id: 'satzbau',    name: '5. Satzbau-Profi & Ortsangaben', short: 'Satzbau & Stil', info: 'Buch S. 22–23 (Umstellprobe)' },
+  { id: 'detektiv',   name: '6. Text-Detektiv: Überarbeiten & Präsens', short: 'Text-Detektiv', info: 'Schritt 3: Textprüfung' }
+];
+
+// ============================================================================
+// BUCH-ILLUSTRATIONS-ENGINE (HOCHAUFLÖSENDE 2D/3D CANVAS-ZEICHNUNGEN)
+// ============================================================================
+function rr(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawCompass(ctx, x, y) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.fillStyle = "rgba(255,255,255,0.92)";
+  ctx.strokeStyle = "#475569";
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(0, 0, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  // Nordpfeil
+  ctx.fillStyle = "#dc2626";
+  ctx.beginPath(); ctx.moveTo(0, -18); ctx.lineTo(6, 0); ctx.lineTo(-6, 0); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#64748b";
+  ctx.beginPath(); ctx.moveTo(0, 18); ctx.lineTo(6, 0); ctx.lineTo(-6, 0); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#0f172a";
+  ctx.font = "bold 10px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("N", 0, -19);
+  ctx.fillText("S", 0, 25);
+  ctx.fillText("O", 21, 4);
+  ctx.fillText("W", -21, 4);
+  ctx.restore();
+}
+
+function drawTree(ctx, x, y, scale = 1) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.fillStyle = "#78350f";
+  ctx.fillRect(-3, 2, 6, 12);
+  const g = ctx.createRadialGradient(-4, -6, 2, 0, -4, 16);
+  g.addColorStop(0, "#4ade80");
+  g.addColorStop(1, "#15803d");
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(0, -6, 13, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(-9, -1, 9, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(9, -1, 9, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+function renderBookIllustration(promptId) {
+  const canvas = document.getElementById('heft-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  // Sanfter Studio-Hintergrund
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, "#f8fafc");
+  bg.addColorStop(1, "#e2e8f0");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  if (promptId === 'g_sporttasche') {
+    // --- 1. PEDROS SPORTTASCHE + INHALT (wie im Buch S. 16/17) ---
+    // Untergrundtisch
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(0, 320, W, 120);
+
+    // Schatten unter Tasche
+    ctx.fillStyle = "rgba(15,23,42,0.18)";
+    ctx.beginPath(); ctx.ellipse(250, 355, 195, 22, 0, 0, Math.PI * 2); ctx.fill();
+
+    // Hinterer Schultergurt (dunkelrot)
+    ctx.strokeStyle = "#7f1d1d";
+    ctx.lineWidth = 14;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(80, 210);
+    ctx.bezierCurveTo(20, 70, 460, 70, 420, 210);
+    ctx.stroke();
+    // Karabinerhaken silber
+    ctx.fillStyle = "#94a3b8";
+    ctx.fillRect(70, 198, 18, 20);
+    ctx.fillRect(412, 198, 18, 20);
+
+    // Hauptkörper der Tasche (hellrot mit 3D-Verlauf)
+    const bagGrad = ctx.createLinearGradient(75, 150, 75, 345);
+    bagGrad.addColorStop(0, "#f87171");
+    bagGrad.addColorStop(0.55, "#ef4444");
+    bagGrad.addColorStop(1, "#dc2626");
+    ctx.fillStyle = bagGrad;
+    ctx.strokeStyle = "#7f1d1d";
+    ctx.lineWidth = 3.5;
+    rr(ctx, 75, 155, 350, 190, 34);
+    ctx.fill(); ctx.stroke();
+
+    // Dunkelroter verstärkter Taschenboden
+    const botGrad = ctx.createLinearGradient(75, 295, 75, 345);
+    botGrad.addColorStop(0, "#991b1b");
+    botGrad.addColorStop(1, "#7f1d1d");
+    ctx.fillStyle = botGrad;
+    rr(ctx, 75, 292, 350, 53, 20);
+    ctx.fill(); ctx.stroke();
+
+    // Seitenteile-Nähte (links & rechts gewölbt)
+    ctx.strokeStyle = "#991b1b";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(140, 155); ctx.quadraticCurveTo(155, 250, 140, 345); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(360, 155); ctx.quadraticCurveTo(345, 250, 360, 345); ctx.stroke();
+
+    // Reißverschluss oben (silberne Zähnchen)
+    ctx.fillStyle = "#475569";
+    rr(ctx, 130, 151, 240, 10, 4); ctx.fill();
+    ctx.fillStyle = "#e2e8f0";
+    for (let x = 138; x < 362; x += 8) {
+      ctx.fillRect(x, 153, 4, 6);
+    }
+    // Zipper
+    ctx.fillStyle = "#cbd5e1";
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 2;
+    rr(ctx, 242, 146, 18, 22, 4); ctx.fill(); ctx.stroke();
+
+    // 2 dunkelrote Tragegriffe
+    ctx.strokeStyle = "#7f1d1d";
+    ctx.lineWidth = 13;
+    ctx.beginPath(); ctx.moveTo(175, 175); ctx.quadraticCurveTo(175, 88, 250, 88); ctx.quadraticCurveTo(325, 88, 325, 175); ctx.stroke();
+    ctx.strokeStyle = "#991b1b";
+    ctx.lineWidth = 8;
+    ctx.beginPath(); ctx.moveTo(195, 175); ctx.quadraticCurveTo(195, 105, 250, 105); ctx.quadraticCurveTo(305, 105, 305, 175); ctx.stroke();
+    // Griffpolster oben
+    ctx.fillStyle = "#450a0a";
+    rr(ctx, 222, 80, 56, 20, 6); ctx.fill();
+
+    // Runder Vereinsaufkleber links & rechts (Fußball + Lorbeerkranz)
+    [108, 392].forEach(cx => {
+      ctx.fillStyle = "#ffffff";
+      ctx.strokeStyle = "#1e3a8a";
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(cx, 232, 23, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.strokeStyle = "#16a34a";
+      ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.arc(cx, 232, 17, 0.3, Math.PI - 0.3); ctx.stroke();
+      // Fußball-Fünfeck in der Mitte
+      ctx.fillStyle = "#0f172a";
+      ctx.beginPath(); ctx.arc(cx, 228, 7, 0, Math.PI * 2); ctx.fill();
+    });
+
+    // Zwei kleine Abzeichen vorne in der Mitte
+    ctx.fillStyle = "#facc15";
+    ctx.strokeStyle = "#854d0e";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(225, 225, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#38bdf8";
+    ctx.beginPath(); ctx.moveTo(265, 214); ctx.lineTo(277, 218); ctx.lineTo(271, 236); ctx.lineTo(259, 218); ctx.closePath(); ctx.fill(); ctx.stroke();
+
+    // Maßpfeile dezent
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 1.8;
+    ctx.beginPath(); ctx.moveTo(75, 385); ctx.lineTo(425, 385); ctx.stroke();
+    ctx.fillStyle = "#1e293b";
+    ctx.font = "bold 14px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("↔ ca. 50 cm lang / 30 cm hoch", 250, 405);
+
+    // --- INHALT RECHTS DANEBEN AUSGEBREITET ---
+    // 1. Kurzärmeliges blau-weiß gestreiftes Sporthemd
+    ctx.save();
+    ctx.translate(545, 70);
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#1e3a8a";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(35, 0); ctx.lineTo(85, 0);
+    ctx.lineTo(125, 28); ctx.lineTo(108, 52); ctx.lineTo(90, 38);
+    ctx.lineTo(90, 115); ctx.lineTo(30, 115);
+    ctx.lineTo(30, 38); ctx.lineTo(12, 52); ctx.lineTo(-5, 28);
+    ctx.closePath();
+    ctx.fill();
+    ctx.save();
+    ctx.clip();
+    ctx.fillStyle = "#2563eb";
+    for (let y = 10; y < 115; y += 16) {
+      ctx.fillRect(-10, y, 140, 8);
+    }
+    ctx.restore();
+    ctx.stroke();
+    // Kragen
+    ctx.fillStyle = "#1e3a8a";
+    ctx.beginPath(); ctx.arc(60, 2, 16, 0, Math.PI); ctx.stroke();
+    ctx.restore();
+
+    // 2. Kurze einfarbig blaue Sporthose
+    ctx.save();
+    ctx.translate(475, 215);
+    ctx.fillStyle = "#1d4ed8";
+    ctx.strokeStyle = "#1e3a8a";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(15, 0); ctx.lineTo(95, 0);
+    ctx.lineTo(105, 72); ctx.lineTo(62, 72);
+    ctx.lineTo(55, 38); ctx.lineTo(48, 72);
+    ctx.lineTo(5, 72); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#93c5fd";
+    ctx.fillRect(15, 0, 80, 9);
+    ctx.restore();
+
+    // 3. Weiße Turnschuhe + kleiner Waschbeutel
+    ctx.save();
+    ctx.translate(605, 235);
+    // Waschbeutel türkis
+    ctx.fillStyle = "#0ea5e9";
+    ctx.strokeStyle = "#0369a1";
+    ctx.lineWidth = 2;
+    rr(ctx, 20, -20, 85, 52, 10); ctx.fill(); ctx.stroke();
+    // Turnschuh weiß
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(0, 95); ctx.lineTo(0, 58); ctx.lineTo(35, 58);
+    ctx.lineTo(75, 78); ctx.quadraticCurveTo(115, 78, 115, 95);
+    ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    // Graue Sohle
+    ctx.fillStyle = "#94a3b8";
+    rr(ctx, -2, 92, 119, 10, 4); ctx.fill();
+    // Schnürsenkel
+    ctx.strokeStyle = "#ef4444";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(25, 88); ctx.lineTo(55, 72); ctx.stroke();
+    ctx.restore();
+  }
+
+  else if (promptId === 'g_federtasche') {
+    // --- 2. DIE FEDERTASCHE (Arbeitsblatt 1: Pink mit weißen Blättern & gelbem Reißverschluss + Stifte) ---
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(0, 315, W, 125);
+
+    // Schatten
+    ctx.fillStyle = "rgba(15,23,42,0.16)";
+    ctx.beginPath(); ctx.ellipse(260, 335, 190, 20, 0, 0, Math.PI * 2); ctx.fill();
+
+    // Federtasche Körper (kräftiges Pink/Rosa mit 3D-Schattierung)
+    const pGrad = ctx.createLinearGradient(70, 120, 70, 325);
+    pGrad.addColorStop(0, "#f472b6");
+    pGrad.addColorStop(0.5, "#ec4899");
+    pGrad.addColorStop(1, "#be185d");
+    ctx.fillStyle = pGrad;
+    ctx.strokeStyle = "#831843";
+    ctx.lineWidth = 3.5;
+    rr(ctx, 70, 130, 370, 190, 42);
+    ctx.fill(); ctx.stroke();
+
+    // Weiße Blätter-Ranken als Muster auf dem pinken Stoff
+    const leafPositions = [
+      [120, 185, 0.3], [165, 225, -0.4], [130, 275, 0.5],
+      [215, 175, -0.2], [255, 240, 0.4], [210, 285, -0.5],
+      [310, 185, 0.2], [355, 230, -0.3], [315, 280, 0.4],
+      [395, 195, -0.4], [385, 265, 0.2]
+    ];
+    leafPositions.forEach(([lx, ly, rot]) => {
+      ctx.save();
+      ctx.translate(lx, ly);
+      ctx.rotate(rot);
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.moveTo(0, -16);
+      ctx.quadraticCurveTo(14, -4, 0, 16);
+      ctx.quadraticCurveTo(-14, -4, 0, -16);
+      ctx.fill();
+      ctx.strokeStyle = "#fbcfe8";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(0, -12); ctx.lineTo(0, 14); ctx.stroke();
+      ctx.restore();
+    });
+
+    // Leuchtend gelber Reißverschluss oben
+    ctx.fillStyle = "#facc15";
+    ctx.strokeStyle = "#ca8a04";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 92, 122, 326, 18, 8);
+    ctx.fill(); ctx.stroke();
+    // Metallzähnchen auf dem gelben Band
+    ctx.fillStyle = "#eab308";
+    for (let x = 105; x < 405; x += 8) {
+      ctx.fillRect(x, 126, 4, 10);
+    }
+    // Silberner Metall-Zipper mit Ring
+    ctx.fillStyle = "#e2e8f0";
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 405, 118, 28, 22, 5); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.arc(442, 129, 10, 0, Math.PI * 2); ctx.stroke();
+
+    // Rechts daneben: Einblick in die 2 Fächer, Gummischlaufen & Stifte
+    ctx.save();
+    ctx.translate(485, 85);
+    ctx.fillStyle = "#fdf2f8";
+    ctx.strokeStyle = "#be185d";
+    ctx.lineWidth = 3;
+    rr(ctx, 0, 0, 235, 255, 18); ctx.fill(); ctx.stroke();
+    // Trennwand zwischen den 2 Fächern
+    ctx.strokeStyle = "#f472b6";
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(118, 8); ctx.lineTo(118, 247); ctx.stroke();
+
+    // Stifte in schwarzen Gummischlaufen (linkes Fach)
+    const penColors = ["#2563eb", "#ef4444", "#16a34a", "#eab308", "#9333ea"];
+    penColors.forEach((col, idx) => {
+      const px = 20 + idx * 18;
+      // Stiftkörper
+      ctx.fillStyle = col;
+      ctx.fillRect(px, 45, 11, 165);
+      // Holzspitze
+      ctx.fillStyle = "#fde68a";
+      ctx.beginPath(); ctx.moveTo(px, 45); ctx.lineTo(px + 5.5, 24); ctx.lineTo(px + 11, 45); ctx.closePath(); ctx.fill();
+      // Mine
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.moveTo(px + 3, 33); ctx.lineTo(px + 5.5, 24); ctx.lineTo(px + 8, 33); ctx.closePath(); ctx.fill();
+    });
+    // Schwarze Gummischlaufe quer
+    ctx.fillStyle = "#1e293b";
+    ctx.fillRect(14, 115, 98, 18);
+
+    // Rechtes Fach: Lineal, Füller & Radiergummi
+    // Durchsichtiges Lineal
+    ctx.fillStyle = "rgba(186,230,253,0.7)";
+    ctx.strokeStyle = "#0284c7";
+    ctx.lineWidth = 2;
+    ctx.fillRect(135, 30, 32, 195); ctx.strokeRect(135, 30, 32, 195);
+    for (let y = 40; y < 220; y += 12) {
+      ctx.beginPath(); ctx.moveTo(135, y); ctx.lineTo(146, y); ctx.stroke();
+    }
+    // Radiergummi (rot-blau)
+    ctx.fillStyle = "#ef4444"; ctx.fillRect(180, 55, 36, 32);
+    ctx.fillStyle = "#1d4ed8"; ctx.fillRect(180, 87, 36, 20);
+    // Silberner Anspitzer
+    ctx.fillStyle = "#cbd5e1"; ctx.strokeStyle = "#475569";
+    ctx.fillRect(182, 135, 34, 42); ctx.strokeRect(182, 135, 34, 42);
+    ctx.fillStyle = "#334155";
+    ctx.beginPath(); ctx.arc(199, 156, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  else if (promptId === 'g_rucksack') {
+    // --- 3. NEU: SCHULRUCKSACK MIT REFLEKTOREN, TRINKFLASCHE & FUSSBALL-ANHÄNGER ---
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(0, 350, W, 90);
+
+    // Gepolsterte schwarze Schultergurte links/rechts sichtbar
+    ctx.strokeStyle = "#1e293b";
+    ctx.lineWidth = 22;
+    ctx.lineCap = "round";
+    ctx.beginPath(); ctx.moveTo(175, 75); ctx.quadraticCurveTo(105, 190, 145, 330); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(415, 75); ctx.quadraticCurveTo(485, 190, 445, 330); ctx.stroke();
+    // Trageschlaufe oben
+    ctx.lineWidth = 10;
+    ctx.beginPath(); ctx.arc(295, 52, 34, Math.PI, 0); ctx.stroke();
+
+    // Linke Netztasche + Silberne Metall-Trinkflasche
+    ctx.fillStyle = "#94a3b8";
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 132, 155, 42, 120, 10); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#0f172a";
+    rr(ctx, 140, 132, 26, 25, 5); ctx.fill();
+    // Netz-Gitter unten drüber
+    ctx.fillStyle = "rgba(30,41,59,0.75)";
+    rr(ctx, 128, 220, 48, 115, 12); ctx.fill();
+
+    // Rechte Netztasche
+    ctx.fillStyle = "rgba(30,41,59,0.75)";
+    rr(ctx, 414, 220, 44, 115, 12); ctx.fill();
+
+    // Hauptkörper Rucksack (dunkelblaues Nylon)
+    const rGrad = ctx.createLinearGradient(165, 50, 425, 360);
+    rGrad.addColorStop(0, "#1e40af");
+    rGrad.addColorStop(1, "#172554");
+    ctx.fillStyle = rGrad;
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 3.5;
+    rr(ctx, 165, 55, 260, 305, 55);
+    ctx.fill(); ctx.stroke();
+
+    // Oberer neongelber Reflektorstreifen
+    ctx.fillStyle = "#fde047";
+    ctx.strokeStyle = "#ca8a04";
+    ctx.lineWidth = 2;
+    ctx.fillRect(182, 135, 226, 22);
+    ctx.strokeRect(182, 135, 226, 22);
+
+    // Aufgesetzte hellblaue Vordertasche
+    const fGrad = ctx.createLinearGradient(190, 195, 190, 345);
+    fGrad.addColorStop(0, "#3b82f6");
+    fGrad.addColorStop(1, "#1d4ed8");
+    ctx.fillStyle = fGrad;
+    ctx.strokeStyle = "#1e3a8a";
+    ctx.lineWidth = 3;
+    rr(ctx, 195, 195, 200, 145, 26);
+    ctx.fill(); ctx.stroke();
+
+    // Unterer neongelber Reflektorstreifen auf der Vordertasche
+    ctx.fillStyle = "#fde047";
+    ctx.fillRect(205, 255, 180, 18);
+    ctx.strokeRect(205, 255, 180, 18);
+
+    // Fußball-Schlüsselanhänger rechts am Reißverschluss
+    ctx.strokeStyle = "#94a3b8";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(420, 175); ctx.lineTo(455, 200); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(465, 212, 22, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Schwarze Fünfecke auf dem Fußball
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath(); ctx.arc(465, 212, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(452, 199, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(478, 199, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(455, 226, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(475, 226, 5, 0, Math.PI * 2); ctx.fill();
+
+    // Rechts daneben: Inhalt aus dem Hauptfach (Roter Mathe-Ordner + grüne Brotdose)
+    ctx.save();
+    ctx.translate(535, 105);
+    // Roter Ordner
+    ctx.fillStyle = "#dc2626";
+    ctx.strokeStyle = "#7f1d1d";
+    ctx.lineWidth = 3;
+    rr(ctx, 0, 0, 135, 175, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(14, 20, 32, 95);
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath(); ctx.arc(30, 145, 9, 0, Math.PI * 2); ctx.fill();
+    // Grüne Brotdose davor
+    ctx.fillStyle = "#22c55e";
+    ctx.strokeStyle = "#14532d";
+    rr(ctx, 45, 135, 135, 90, 16); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#86efac";
+    rr(ctx, 42, 130, 141, 22, 8); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
+  else if (promptId === 'g_fahrrad') {
+    // --- 4. NEU: DAS JUGEND-MOUNTAINBIKE (26 Zoll, Schwarz-Giftgrün, Rotes Schloss) ---
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(0, 355, W, 85);
+
+    const w1x = 185, w2x = 575, wy = 265, wr = 92;
+
+    // Beide 26-Zoll-Räder mit Stollenprofil & Speichen
+    [w1x, w2x].forEach((wx, idx) => {
+      // Speichen
+      ctx.strokeStyle = "#94a3b8";
+      ctx.lineWidth = 1.8;
+      for (let a = 0; a < Math.PI * 2; a += Math.PI / 8) {
+        ctx.beginPath();
+        ctx.moveTo(wx, wy);
+        ctx.lineTo(wx + Math.cos(a) * (wr - 10), wy + Math.sin(a) * (wr - 10));
+        ctx.stroke();
+      }
+      // Felge silber
+      ctx.strokeStyle = "#cbd5e1";
+      ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.arc(wx, wy, wr - 10, 0, Math.PI * 2); ctx.stroke();
+      // Schwarzer Stollenreifen
+      ctx.strokeStyle = "#0f172a";
+      ctx.lineWidth = 14;
+      ctx.beginPath(); ctx.arc(wx, wy, wr, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([6, 6]);
+      ctx.lineWidth = 18;
+      ctx.beginPath(); ctx.arc(wx, wy, wr + 2, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Gelbe Katzenaugen im Vorderrad (rechts)
+      if (idx === 1) {
+        ctx.fillStyle = "#facc15";
+        ctx.strokeStyle = "#ca8a04";
+        ctx.lineWidth = 2;
+        rr(ctx, wx - 58, wy - 8, 22, 12, 4); ctx.fill(); ctx.stroke();
+        rr(ctx, wx + 36, wy - 8, 22, 12, 4); ctx.fill(); ctx.stroke();
+      }
+    });
+
+    // Schwarze Steckschutzbleche
+    ctx.strokeStyle = "#1e293b";
+    ctx.lineWidth = 8;
+    ctx.beginPath(); ctx.arc(w1x, wy, wr + 16, Math.PI * 1.1, Math.PI * 1.65); ctx.stroke();
+    ctx.beginPath(); ctx.arc(w2x, wy, wr + 16, Math.PI * 1.2, Math.PI * 1.7); ctx.stroke();
+
+    // Diamantrahmen (Mattschwarz + Giftgrünes Oberrohr)
+    const crankX = 345, crankY = 275;
+    const seatX = 295, seatY = 128;
+    const headX = 515, headY = 122;
+
+    // Mattschwarze Rohre
+    ctx.strokeStyle = "#1e293b";
+    ctx.lineWidth = 14;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    // Kettenstrebe & Sitzstrebe
+    ctx.beginPath(); ctx.moveTo(w1x, wy); ctx.lineTo(crankX, crankY); ctx.lineTo(seatX, seatY); ctx.closePath(); ctx.stroke();
+    // Unterrohr
+    ctx.beginPath(); ctx.moveTo(crankX, crankY); ctx.lineTo(headX, headY + 25); ctx.stroke();
+    // Federgabel vorne
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 12;
+    ctx.beginPath(); ctx.moveTo(headX - 5, headY); ctx.lineTo(w2x, wy); ctx.stroke();
+
+    // Giftgrünes Oberrohr (Besonderes Merkmal!)
+    ctx.strokeStyle = "#22c55e";
+    ctx.lineWidth = 15;
+    ctx.beginPath(); ctx.moveTo(seatX + 4, seatY + 12); ctx.lineTo(headX - 4, headY + 8); ctx.stroke();
+
+    // Sattelstütze + Schwarzer Gelsattel
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 9;
+    ctx.beginPath(); ctx.moveTo(seatX, seatY); ctx.lineTo(seatX - 12, 88); ctx.stroke();
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath();
+    ctx.moveTo(seatX - 48, 82); ctx.quadraticCurveTo(seatX - 10, 75, seatX + 25, 88);
+    ctx.quadraticCurveTo(seatX - 10, 98, seatX - 48, 92);
+    ctx.closePath(); ctx.fill();
+
+    // Rotes Spiralkabel-Zahlenschloss um die Sattelstütze gewickelt!
+    ctx.strokeStyle = "#dc2626";
+    ctx.lineWidth = 6;
+    for (let i = 0; i < 3; i++) {
+      ctx.beginPath();
+      ctx.ellipse(seatX - 6, 108 + i * 8, 18, 9, 0.2, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // Lenkervorbau, Gummigriffe & silberne Klingel mit Kratzer
+    ctx.strokeStyle = "#1e293b";
+    ctx.lineWidth = 10;
+    ctx.beginPath(); ctx.moveTo(headX - 5, headY); ctx.lineTo(headX - 15, 72); ctx.lineTo(headX - 45, 72); ctx.stroke();
+    // Silberne Klingel oben am Lenker
+    ctx.fillStyle = "#e2e8f0";
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(headX - 25, 58, 12, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Kratzer auf der Klingel
+    ctx.strokeStyle = "#dc2626";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(headX - 31, 52); ctx.lineTo(headX - 19, 64); ctx.stroke();
+
+    // Tretlager & Pedale
+    ctx.fillStyle = "#334155";
+    ctx.beginPath(); ctx.arc(crankX, crankY, 22, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 6;
+    ctx.beginPath(); ctx.moveTo(crankX, crankY); ctx.lineTo(crankX + 18, crankY + 28); ctx.stroke();
+    ctx.fillRect(crankX + 8, crankY + 26, 22, 7);
+  }
+
+  else if (promptId === 'g_uhr') {
+    // --- 5. NEU: DIE DIGITALE SPORT-ARMBANDUHR ---
+    // Dunkelgrünes Silikonarmband (oben mit Schnalle, unten mit 8 Löchern)
+    const bandGrad = ctx.createLinearGradient(295, 20, 405, 20);
+    bandGrad.addColorStop(0, "#166534");
+    bandGrad.addColorStop(0.5, "#15803d");
+    bandGrad.addColorStop(1, "#14532d");
+    ctx.fillStyle = bandGrad;
+    ctx.strokeStyle = "#052e16";
+    ctx.lineWidth = 3;
+    rr(ctx, 295, 35, 110, 370, 18);
+    ctx.fill(); ctx.stroke();
+
+    // Silberne Edelstahlschnalle oben
+    ctx.strokeStyle = "#cbd5e1";
+    ctx.lineWidth = 6;
+    rr(ctx, 290, 22, 120, 32, 8);
+    ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(350, 22); ctx.lineTo(350, 48); ctx.stroke();
+
+    // 8 kleine Verstell-Löcher im unteren Armband
+    ctx.fillStyle = "#052e16";
+    for (let i = 0; i < 6; i++) {
+      ctx.beginPath(); ctx.arc(350, 305 + i * 16, 4.5, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Zwei seitliche Bedienknöpfe rechts (oben ROT, unten SILBER)
+    ctx.fillStyle = "#ef4444";
+    ctx.strokeStyle = "#991b1b";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 438, 165, 22, 34, 6); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = "#cbd5e1";
+    ctx.strokeStyle = "#475569";
+    rr(ctx, 438, 235, 22, 34, 6); ctx.fill(); ctx.stroke();
+
+    // Kreisrundes mattschwarzes Kunststoff-Gehäuse
+    ctx.fillStyle = "#1e293b";
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.arc(350, 215, 98, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // Hellblauer Zier-Ring um das Display
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(350, 215, 80, 0, Math.PI * 2); ctx.stroke();
+
+    // Tiefschwarzes OLED-Display
+    ctx.fillStyle = "#020617";
+    ctx.beginPath(); ctx.arc(350, 215, 76, 0, Math.PI * 2); ctx.fill();
+
+    // Leuchtziffern Uhrzeit (blau) & Schrittzähler (gelb)
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "900 38px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("14:35", 350, 212);
+
+    ctx.fillStyle = "#fde047";
+    ctx.font = "bold 15px sans-serif";
+    ctx.fillText("👟 4.210", 350, 248);
+
+    // Rechts daneben: Detailansicht der Gehäuse-Unterseite mit grünem Sensor
+    ctx.save();
+    ctx.translate(595, 215);
+    ctx.fillStyle = "#334155";
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(0, 0, 62, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    const sGrad = ctx.createRadialGradient(0, 0, 2, 0, 0, 22);
+    sGrad.addColorStop(0, "#4ade80");
+    sGrad.addColorStop(1, "#15803d");
+    ctx.fillStyle = sGrad;
+    ctx.beginPath(); ctx.arc(0, 0, 22, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Unterseite (Sensor)", 0, 82);
+    ctx.restore();
+  }
+
+  else if (promptId === 'w_schoko') {
+    // --- 6. STADTPLAN KÖLN: HAUPTBAHNHOF ZUM SCHOKOLADENMUSEUM (Buch S. 19) ---
+    ctx.fillStyle = "#f1f5f9";
+    ctx.fillRect(0, 0, W, H);
+
+    // Häuserblöcke (warmes Beige wie im Schulbuch-Stadtplan)
+    ctx.fillStyle = "#fed7aa";
+    ctx.strokeStyle = "#fdba74";
+    ctx.lineWidth = 2;
+    const blocks = [
+      [30, 30, 140, 75], [30, 130, 135, 95], [30, 250, 135, 85], [30, 360, 145, 60],
+      [205, 115, 115, 75], [205, 215, 110, 65], [205, 310, 130, 95],
+      [355, 120, 95, 75], [355, 315, 115, 85]
+    ];
+    blocks.forEach(([bx, by, bw, bh]) => {
+      rr(ctx, bx, by, bw, bh, 6); ctx.fill(); ctx.stroke();
+    });
+
+    // Grünflächen am Rheinufer
+    ctx.fillStyle = "#bbf7d0";
+    ctx.fillRect(475, 95, 45, 220);
+
+    // Der Rhein (rechts breit und blau) + Rheinauhafen-Becken
+    const rGrad = ctx.createLinearGradient(520, 0, W, 0);
+    rGrad.addColorStop(0, "#38bdf8");
+    rGrad.addColorStop(1, "#0284c7");
+    ctx.fillStyle = rGrad;
+    ctx.fillRect(535, 0, W - 535, H);
+    // Hafenbecken vor der Halbinsel
+    ctx.fillStyle = "#38bdf8";
+    rr(ctx, 488, 330, 30, 95, 6); ctx.fill();
+
+    ctx.save();
+    ctx.translate(665, 215);
+    ctx.rotate(Math.PI / 2);
+    ctx.fillStyle = "rgba(255,255,255,0.75)";
+    ctx.font = "900 26px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("R H E I N", 0, 0);
+    ctx.restore();
+
+    // Brücken über den Rhein
+    // 1. Hohenzollernbrücke (oben)
+    ctx.fillStyle = "#64748b";
+    ctx.fillRect(360, 38, 390, 18);
+    ctx.fillStyle = "#1e293b";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Hohenzollernbrücke", 550, 32);
+
+    // 2. Deutzer Brücke (Mitte unten)
+    ctx.fillStyle = "#64748b";
+    ctx.fillRect(340, 268, 410, 20);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Deutzer Brücke", 555, 282);
+
+    // 3. Severinsbrücke (ganz unten)
+    ctx.fillStyle = "#64748b";
+    ctx.fillRect(380, 412, 370, 16);
+    ctx.fillStyle = "#1e293b";
+    ctx.fillText("Severinsbrücke", 595, 406);
+
+    // WICHTIGE GEBÄUDE & PLÄTZE (wie auf der Buchkarte S. 19)
+    // Treffpunkt: Hauptbahnhof & Bahnhofsvorplatz
+    ctx.fillStyle = "#16a34a";
+    rr(ctx, 195, 16, 155, 36, 8); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 13px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("🚉 Hauptbahnhof (Start)", 272, 39);
+    ctx.fillStyle = "#334155";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Bahnhofsvorplatz", 272, 66);
+
+    // Kölner Dom (mit zwei Domspitzen)
+    ctx.fillStyle = "#78350f";
+    ctx.beginPath();
+    ctx.moveTo(235, 108); ctx.lineTo(235, 82); ctx.lineTo(245, 66); ctx.lineTo(255, 82);
+    ctx.lineTo(265, 66); ctx.lineTo(275, 82); ctx.lineTo(295, 82); ctx.lineTo(295, 108);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Dom", 265, 102);
+
+    // Philharmonie & Röm.-Germ. Museum
+    ctx.fillStyle = "#0369a1";
+    rr(ctx, 365, 76, 105, 32, 6); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Philharmonie", 417, 96);
+
+    // Zwischenhalt: Alter Markt + Rathaus
+    ctx.fillStyle = "#fef08a";
+    ctx.strokeStyle = "#ca8a04";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 355, 145, 105, 52, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#854d0e";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Alter Markt", 407, 166);
+    ctx.fillStyle = "#b45309";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("🏛️ Rathaus", 407, 186);
+
+    // Heumarkt
+    ctx.fillStyle = "#e2e8f0";
+    ctx.strokeStyle = "#64748b";
+    rr(ctx, 355, 212, 105, 48, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#1e293b";
+    ctx.fillText("Heumarkt", 407, 240);
+
+    // Straßennamen
+    ctx.fillStyle = "#475569";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Cäcilienstraße", 260, 298);
+    ctx.fillText("Am Hof", 260, 128);
+    ctx.fillText("Frankenwerft (Rheinufer)", 445, 310);
+
+    // ZIELORT: Schokoladenmuseum auf der Halbinsel im Rhein
+    ctx.fillStyle = "#dc2626";
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 3;
+    rr(ctx, 495, 342, 125, 46, 10); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("🍫 Schokoladen-", 557, 362);
+    ctx.fillText("museum (ZIEL)", 557, 379);
+
+    drawCompass(ctx, 710, 95);
+  }
+
+  else if (promptId === 'w_buecherei') {
+    // --- 7. NEU: KARTE BUSHALTESTELLE ZUR STADTBÜCHEREI ---
+    ctx.fillStyle = "#ecfdf5";
+    ctx.fillRect(0, 0, W, H);
+
+    // Straßennetz
+    ctx.fillStyle = "#cbd5e1";
+    ctx.strokeStyle = "#94a3b8";
+    ctx.lineWidth = 3;
+    // Hauptstraße oben
+    ctx.fillRect(0, 45, W, 48);
+    // Lindenallee vertikal
+    ctx.fillRect(205, 45, 52, 290);
+    // Marktplatz unten Mitte
+    ctx.fillStyle = "#fef3c7";
+    ctx.strokeStyle = "#d97706";
+    rr(ctx, 185, 295, 285, 95, 10); ctx.fill(); ctx.stroke();
+    // Rathausgasse rechts vertikal
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(415, 125, 46, 175);
+
+    // Zebrastreifen über die Hauptstraße
+    ctx.fillStyle = "#ffffff";
+    for (let y = 49; y < 90; y += 8) {
+      ctx.fillRect(212, y, 36, 5);
+    }
+
+    // Lindenbäume entlang der Lindenallee
+    [125, 175, 225, 270].forEach(ty => {
+      drawTree(ctx, 185, ty, 0.9);
+      drawTree(ctx, 275, ty, 0.9);
+    });
+
+    // START: Bushaltestelle „Schulzentrum“
+    ctx.fillStyle = "#16a34a";
+    rr(ctx, 35, 12, 155, 34, 8); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("🚌 Hst. Schulzentrum", 112, 34);
+
+    // Bäckerei mit Brezel
+    ctx.fillStyle = "#f59e0b";
+    ctx.strokeStyle = "#78350f";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 292, 118, 95, 52, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("🥨 Bäckerei", 340, 149);
+
+    // Rote Stadtkirche mit Kirchturm
+    ctx.fillStyle = "#ef4444";
+    ctx.strokeStyle = "#7f1d1d";
+    rr(ctx, 292, 195, 102, 68, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("⛪ Stadtkirche", 343, 234);
+
+    // Löwenbrunnen auf dem Marktplatz
+    ctx.fillStyle = "#94a3b8";
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(325, 342, 32, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#38bdf8";
+    ctx.beginPath(); ctx.arc(325, 342, 24, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#ca8a04";
+    ctx.beginPath(); ctx.arc(325, 342, 9, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#78350f";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Marktplatz (Löwenbrunnen)", 325, 412);
+
+    // ZIEL: Stadtbücherei (gelbes Fachwerkhaus)
+    ctx.fillStyle = "#fde047";
+    ctx.strokeStyle = "#78350f";
+    ctx.lineWidth = 3.5;
+    rr(ctx, 480, 130, 175, 78, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#78350f";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText("📚 Stadtbücherei", 567, 162);
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("(Gelbes Fachwerkhaus)", 567, 184);
+
+    // Straßennamen
+    ctx.fillStyle = "#1e293b";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText("Hauptstraße", 545, 74);
+    ctx.save();
+    ctx.translate(231, 190); ctx.rotate(-Math.PI / 2);
+    ctx.fillText("Lindenallee", 0, 4);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(438, 215); ctx.rotate(-Math.PI / 2);
+    ctx.fillText("Rathausgasse", 0, 4);
+    ctx.restore();
+
+    drawCompass(ctx, 705, 375);
+  }
+
+  else if (promptId === 'w_sporthalle') {
+    // --- 8. NEU: SCHULGELÄNDE – VOM HAUPTEINGANG ZUR NEUEN SPORTHALLE ---
+    ctx.fillStyle = "#dcfce7";
+    ctx.fillRect(0, 0, W, H);
+
+    // Gepflasterter Pausenhof links
+    ctx.fillStyle = "#cbd5e1";
+    ctx.strokeStyle = "#64748b";
+    ctx.lineWidth = 3;
+    rr(ctx, 35, 130, 230, 210, 12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#334155";
+    ctx.font = "bold 15px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Pausenhof (gepflastert)", 150, 245);
+
+    // START: Schuleingang links
+    ctx.fillStyle = "#16a34a";
+    rr(ctx, 18, 200, 52, 85, 8); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("START", 44, 238);
+    ctx.fillText("Eingang", 44, 254);
+
+    // Gelber Schulkiosk + Fahrradständer oben
+    ctx.fillStyle = "#facc15";
+    ctx.strokeStyle = "#a16207";
+    rr(ctx, 175, 42, 110, 58, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#713f12";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("🥨 Schulkiosk", 230, 75);
+
+    ctx.fillStyle = "#94a3b8";
+    ctx.strokeStyle = "#475569";
+    rr(ctx, 300, 42, 120, 58, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#0f172a";
+    ctx.fillText("🚲 Fahrradständer", 360, 75);
+
+    // Fußweg vom Tor über den Bach zur Sporthalle
+    ctx.fillStyle = "#d6d3d1";
+    ctx.beginPath();
+    ctx.moveTo(265, 155); ctx.lineTo(580, 155); ctx.lineTo(630, 105);
+    ctx.lineTo(665, 120); ctx.lineTo(600, 190); ctx.lineTo(265, 190);
+    ctx.closePath(); ctx.fill();
+
+    // Grünes Metalltor am Ausgang des Pausenhofs
+    ctx.fillStyle = "#15803d";
+    ctx.fillRect(260, 138, 12, 65);
+    ctx.fillStyle = "#14532d";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Grünes Metalltor", 315, 132);
+
+    // Rotes Gerätehaus links neben dem Fußweg
+    ctx.fillStyle = "#ef4444";
+    ctx.strokeStyle = "#991b1b";
+    rr(ctx, 345, 212, 105, 68, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("🏠 Rotes", 397, 242);
+    ctx.fillText("Gerätehaus", 397, 260);
+
+    // Schmaler Bach von oben nach unten
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 38;
+    ctx.beginPath();
+    ctx.moveTo(505, 0); ctx.quadraticCurveTo(485, 220, 520, H);
+    ctx.stroke();
+    ctx.fillStyle = "#0369a1";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText("Bach", 506, 360);
+
+    // Braune Holzbrücke über den Bach
+    ctx.fillStyle = "#a16207";
+    ctx.strokeStyle = "#451a03";
+    ctx.lineWidth = 3;
+    rr(ctx, 468, 146, 68, 52, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Holzbrücke", 502, 176);
+
+    // ZIEL: Neue Sporthalle mit blauem Dach (oben rechts)
+    ctx.fillStyle = "#2563eb";
+    ctx.strokeStyle = "#1e3a8a";
+    ctx.lineWidth = 4;
+    rr(ctx, 565, 32, 170, 105, 14); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 14px sans-serif";
+    ctx.fillText("🏀 Neue Sporthalle", 650, 78);
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("(Blaues Dach • ZIEL)", 650, 100);
+
+    drawTree(ctx, 455, 85, 1.1);
+    drawTree(ctx, 575, 285, 1.2);
+    drawCompass(ctx, 700, 375);
+  }
+
+  else if (promptId === 'w_spielplatz') {
+    // --- 9. NEU: STADTPARK – VOM WALDPARKPLATZ ZUM ABENTEUERSPIELPLATZ ---
+    ctx.fillStyle = "#bbf7d0";
+    ctx.fillRect(0, 0, W, H);
+
+    // Schotterwege durch den Park
+    ctx.strokeStyle = "#e7e5e4";
+    ctx.lineWidth = 30;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    ctx.moveTo(45, 215);
+    ctx.lineTo(295, 215);
+    ctx.quadraticCurveTo(395, 305, 535, 265);
+    ctx.lineTo(625, 135);
+    ctx.stroke();
+
+    // START: Waldparkplatz „Nordtor“ mit hölzernem Torbogen
+    ctx.fillStyle = "#78350f";
+    rr(ctx, 28, 155, 72, 120, 8); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 11px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("START", 64, 205);
+    ctx.fillText("Nordtor", 64, 222);
+
+    // Blumenwiese + Holzbank links vom Weg
+    ctx.fillStyle = "#fef08a";
+    ctx.strokeStyle = "#eab308";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 130, 68, 145, 95, 18); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#854d0e";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("🌸 Blumenwiese", 202, 112);
+    ctx.fillText("+ Holzbank", 202, 132);
+
+    // Großer runder Ententeich in der Mitte
+    const pGrad = ctx.createRadialGradient(395, 145, 10, 395, 145, 95);
+    pGrad.addColorStop(0, "#7dd3fc");
+    pGrad.addColorStop(1, "#0284c7");
+    ctx.fillStyle = pGrad;
+    ctx.strokeStyle = "#0369a1";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(400, 145, 92, 62, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 14px sans-serif";
+    ctx.fillText("🦆 Ententeich", 400, 150);
+
+    // Eiscafé „Sonnenschein“ unten rechts am Weg
+    ctx.fillStyle = "#fed7aa";
+    ctx.strokeStyle = "#ea580c";
+    ctx.lineWidth = 3;
+    rr(ctx, 435, 315, 145, 75, 10); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#9a3412";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("🍨 Eiscafé", 507, 348);
+    ctx.fillText("„Sonnenschein“", 507, 368);
+
+    // Alte Eiche an der Abzweigung
+    drawTree(ctx, 565, 195, 1.5);
+    ctx.fillStyle = "#14532d";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Alte Eiche", 565, 232);
+
+    // ZIEL: Eingezäunter Abenteuerspielplatz mit hohem Holz-Kletterturm
+    ctx.fillStyle = "#fef3c7";
+    ctx.strokeStyle = "#b45309";
+    ctx.lineWidth = 3.5;
+    rr(ctx, 560, 28, 175, 115, 14); ctx.fill(); ctx.stroke();
+    // Kleiner Kletterturm gezeichnet
+    ctx.fillStyle = "#92400e";
+    ctx.fillRect(625, 52, 34, 48);
+    ctx.fillStyle = "#dc2626";
+    ctx.beginPath(); ctx.moveTo(618, 52); ctx.lineTo(642, 34); ctx.lineTo(666, 52); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#78350f";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("🏰 Abenteuerspielplatz", 647, 118);
+    ctx.fillText("(Kletterturm • ZIEL)", 647, 134);
+
+    drawCompass(ctx, 95, 365);
+  }
+
+  else if (promptId === 'r_terrarium') {
+    // --- 10. PAULS SCHILDKRÖTENTERRARIUM (Buch S. 22) + 2 SCHILDKRÖTEN (S. 24) ---
+    // Linke Seite (530px breit): Das 3D-Glasterrarium OHNE Textspoiler
+    ctx.fillStyle = "#e0f2fe";
+    rr(ctx, 20, 25, 505, 385, 8); ctx.fill();
+
+    // Hintere Glaswand (3D-Trapez)
+    ctx.fillStyle = "rgba(224,242,254,0.7)";
+    ctx.strokeStyle = "#0284c7";
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(65, 55, 415, 225);
+
+    // Sandboden mit sanften Dünen (unten im Terrarium)
+    const sGrad = ctx.createLinearGradient(20, 250, 20, 410);
+    sGrad.addColorStop(0, "#fde047");
+    sGrad.addColorStop(1, "#eab308");
+    ctx.fillStyle = sGrad;
+    ctx.beginPath();
+    ctx.moveTo(65, 265);
+    ctx.quadraticCurveTo(185, 252, 295, 268);
+    ctx.quadraticCurveTo(395, 280, 480, 262);
+    ctx.lineTo(525, 410);
+    ctx.lineTo(20, 410);
+    ctx.closePath();
+    ctx.fill();
+
+    // 1. Hinter dem Stein (links hinten an der Rückwand): Grünpflanze 1 (Busch)
+    drawTree(ctx, 135, 235, 1.8);
+
+    // 2. Unten links im Vordergrund: Großer grauer ausgehöhlter Stein (Höhle)
+    const stGrad = ctx.createRadialGradient(125, 315, 10, 135, 335, 95);
+    stGrad.addColorStop(0, "#cbd5e1");
+    stGrad.addColorStop(1, "#64748b");
+    ctx.fillStyle = stGrad;
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(45, 385);
+    ctx.quadraticCurveTo(42, 265, 135, 265);
+    ctx.quadraticCurveTo(220, 268, 225, 385);
+    ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    // Dunkle Höhlenöffnung im Stein
+    ctx.fillStyle = "#1e293b";
+    ctx.beginPath();
+    ctx.moveTo(85, 385);
+    ctx.quadraticCurveTo(88, 310, 138, 310);
+    ctx.quadraticCurveTo(185, 312, 188, 385);
+    ctx.closePath();
+    ctx.fill();
+
+    // 3. Zwischen Rückwand und Wurzel (hinten rechts): Zweite Grünpflanze (Farn/Grasbüschel)
+    ctx.strokeStyle = "#15803d";
+    ctx.lineWidth = 6;
+    ctx.lineCap = "round";
+    [-25, -12, 0, 12, 25].forEach(dx => {
+      ctx.beginPath();
+      ctx.moveTo(410, 275);
+      ctx.quadraticCurveTo(410 + dx * 1.4, 215, 410 + dx * 2.2, 175);
+      ctx.stroke();
+    });
+
+    // 4. Auf der rechten Seite: Knorrige hölzerne Wurzel
+    ctx.strokeStyle = "#78350f";
+    ctx.lineWidth = 22;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(345, 365);
+    ctx.quadraticCurveTo(405, 295, 485, 335);
+    ctx.stroke();
+    ctx.lineWidth = 14;
+    ctx.beginPath();
+    ctx.moveTo(395, 322);
+    ctx.quadraticCurveTo(435, 265, 470, 275);
+    ctx.stroke();
+
+    // 5. Neben der hölzernen Wurzel (Mitte vorne): Flache graue Wasserschale
+    ctx.fillStyle = "#94a3b8";
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(285, 362, 52, 22, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#38bdf8";
+    ctx.beginPath(); ctx.ellipse(285, 360, 42, 15, 0, 0, Math.PI * 2); ctx.fill();
+
+    // 3D-Glaskanten des Terrariums vorne
+    ctx.strokeStyle = "#0369a1";
+    ctx.lineWidth = 3.5;
+    ctx.strokeRect(20, 25, 505, 385);
+    ctx.beginPath();
+    ctx.moveTo(20, 25); ctx.lineTo(65, 55);
+    ctx.moveTo(525, 25); ctx.lineTo(480, 55);
+    ctx.moveTo(20, 410); ctx.lineTo(65, 280);
+    ctx.moveTo(525, 410); ctx.lineTo(480, 280);
+    ctx.stroke();
+
+    // Rechte Spalte (Buch S. 24 Nr. 8): Die 2 Schildkröten zum Vergleich
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#cbd5e1";
+    ctx.lineWidth = 2;
+    rr(ctx, 542, 25, 200, 385, 12); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 13px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Buch S. 24: Schildkröten", 642, 50);
+
+    // Tier A: Landschildkröte (hochgewölbter Panzer, kräftige Krallenbeine)
+    ctx.fillStyle = "#a16207";
+    ctx.strokeStyle = "#451a03";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(642, 145, 48, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+    // Kopf & Krallenbeine
+    ctx.fillStyle = "#ca8a04";
+    ctx.beginPath(); ctx.arc(582, 135, 12, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillRect(602, 145, 18, 28); ctx.strokeRect(602, 145, 18, 28);
+    ctx.fillRect(662, 145, 18, 28); ctx.strokeRect(662, 145, 18, 28);
+    ctx.fillStyle = "#334155";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Tier 1: Hoher Panzer,", 642, 195);
+    ctx.fillText("Säulenbeine mit Krallen", 642, 210);
+
+    // Tier B: Wasserschildkröte (flacher Panzer, Schwimmhäute)
+    ctx.fillStyle = "#15803d";
+    ctx.strokeStyle = "#052e16";
+    ctx.beginPath(); ctx.ellipse(642, 295, 52, 20, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#4ade80";
+    ctx.beginPath(); ctx.arc(578, 292, 11, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    // Flossen/Schwimmfüße
+    ctx.beginPath(); ctx.ellipse(605, 318, 18, 7, -0.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(675, 318, 18, 7, 0.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#334155";
+    ctx.fillText("Tier 2: Flacher Panzer,", 642, 355);
+    ctx.fillText("Schwimmhäute", 642, 370);
+  }
+
+  else if (promptId === 'r_jugendzimmer') {
+    // --- 11. NEU: 3D-JUGENDZIMMER (OHNE TEXTSPOILER AUF DEN MÖBELN!) ---
+    // Rückwand, Seitenwände & heller Holzboden in echter 3D-Raumperspektive
+    ctx.fillStyle = "#f1f5f9";
+    ctx.fillRect(110, 40, 540, 230); // Rückwand
+    ctx.fillStyle = "#e2e8f0";
+    ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(110, 40); ctx.lineTo(110, 270); ctx.lineTo(0, 440); ctx.closePath(); ctx.fill(); // Wand links
+    ctx.beginPath(); ctx.moveTo(W, 0); ctx.lineTo(650, 40); ctx.lineTo(650, 270); ctx.lineTo(W, 440); ctx.closePath(); ctx.fill(); // Wand rechts
+
+    // Heller Holzboden mit Dielenlinien
+    const flGrad = ctx.createLinearGradient(0, 270, 0, H);
+    flGrad.addColorStop(0, "#fde68a");
+    flGrad.addColorStop(1, "#f59e0b");
+    ctx.fillStyle = flGrad;
+    ctx.beginPath(); ctx.moveTo(110, 270); ctx.lineTo(650, 270); ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = "#cbd5e1"; ctx.lineWidth = 2;
+    ctx.strokeRect(110, 40, 540, 230);
+
+    // 1. Großes zweiflügeliges Fenster hinten in der Mitte (mit Wolkenhimmel)
+    ctx.fillStyle = "#7dd3fc";
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 6;
+    ctx.fillRect(285, 62, 190, 105);
+    ctx.strokeRect(285, 62, 190, 105);
+    ctx.beginPath(); ctx.moveTo(380, 62); ctx.lineTo(380, 167); ctx.stroke();
+
+    // 2. Schreibtisch aus hellem Birkenholz unter dem Fenster + silberne Lampe
+    ctx.fillStyle = "#fcd34d";
+    ctx.strokeStyle = "#92400e";
+    ctx.lineWidth = 2.5;
+    ctx.fillRect(270, 195, 220, 22); ctx.strokeRect(270, 195, 220, 22);
+    ctx.fillRect(278, 217, 20, 68); ctx.strokeRect(278, 217, 20, 68);
+    ctx.fillRect(425, 217, 58, 68); ctx.strokeRect(425, 217, 58, 68); // Schubladen rechts
+    // Silberne Schreibtischlampe links auf dem Schreibtisch
+    ctx.strokeStyle = "#64748b";
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(298, 195); ctx.lineTo(288, 160); ctx.lineTo(312, 148); ctx.stroke();
+    ctx.fillStyle = "#94a3b8";
+    ctx.beginPath(); ctx.arc(316, 150, 10, 0, Math.PI); ctx.fill();
+
+    // 3. Schwarzer Drehstuhl vor dem Schreibtisch
+    ctx.fillStyle = "#1e293b";
+    rr(ctx, 342, 182, 56, 62, 10); ctx.fill();
+    rr(ctx, 336, 240, 68, 16, 6); ctx.fill();
+    ctx.strokeStyle = "#334155"; ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.moveTo(370, 256); ctx.lineTo(370, 295); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(345, 295); ctx.lineTo(395, 295); ctx.stroke();
+
+    // 4. An der linken Wand: Weißes Bett mit hellblauer Tagesdecke & weißem Kopfkissen
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#64748b";
+    ctx.lineWidth = 3;
+    // Bettkasten perspektivisch
+    ctx.beginPath();
+    ctx.moveTo(45, 385); ctx.lineTo(98, 255); ctx.lineTo(235, 255); ctx.lineTo(215, 385);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    // Hellblaue Tagesdecke
+    ctx.fillStyle = "#38bdf8";
+    ctx.beginPath();
+    ctx.moveTo(52, 365); ctx.lineTo(95, 265); ctx.lineTo(232, 265); ctx.lineTo(212, 365);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    // Weißes Kopfkissen hinten
+    ctx.fillStyle = "#ffffff";
+    rr(ctx, 105, 245, 95, 28, 8); ctx.fill(); ctx.stroke();
+
+    // 5. Runder hellgrauer Teppich auf dem Boden rechts neben der Mitte
+    ctx.fillStyle = "#cbd5e1";
+    ctx.strokeStyle = "#94a3b8";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(475, 355, 88, 38, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // 6. An der rechten Wand: Hohes braunes Bücherregal mit bunten Büchern
+    ctx.fillStyle = "#92400e";
+    ctx.strokeStyle = "#451a03";
+    ctx.lineWidth = 3;
+    ctx.fillRect(575, 78, 95, 255); ctx.strokeRect(575, 78, 95, 255);
+    // 4 Regalfächer mit bunten Buchrücken
+    [130, 185, 240, 295].forEach(sy => {
+      ctx.fillStyle = "#451a03";
+      ctx.fillRect(575, sy, 95, 6);
+      const bCols = ["#ef4444", "#3b82f6", "#22c55e", "#facc15", "#a855f7"];
+      bCols.forEach((bc, bi) => {
+        ctx.fillStyle = bc;
+        ctx.fillRect(584 + bi * 15, sy - 34, 12, 34);
+      });
+    });
+  }
+
+  else if (promptId === 'r_meerschweinchen') {
+    // --- 12. NEU: 3D-MEERSCHWEINCHEN-BODENGEHEGE ---
+    // Helle Holzwände hinten und seitlich
+    ctx.fillStyle = "#fef3c7";
+    ctx.strokeStyle = "#b45309";
+    ctx.lineWidth = 4;
+    ctx.fillRect(75, 55, 610, 185); ctx.strokeRect(75, 55, 610, 185);
+
+    // Boden mit weicher Holzstreu
+    ctx.fillStyle = "#fde68a";
+    ctx.beginPath();
+    ctx.moveTo(75, 240); ctx.lineTo(685, 240); ctx.lineTo(730, 395); ctx.lineTo(30, 395);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+
+    // 1. Unten links: Braunes Schlafhäuschen aus Holz mit flachem Dach & 2 Eingängen
+    ctx.fillStyle = "#a16207";
+    ctx.strokeStyle = "#451a03";
+    ctx.lineWidth = 3;
+    ctx.fillRect(85, 225, 165, 115); ctx.strokeRect(85, 225, 165, 115);
+    ctx.fillStyle = "#78350f";
+    ctx.fillRect(78, 212, 180, 18); ctx.strokeRect(78, 212, 180, 18);
+    // Zwei dunkle Bogentüren
+    ctx.fillStyle = "#1e293b";
+    ctx.beginPath(); ctx.arc(130, 340, 24, Math.PI, 0); ctx.fill();
+    ctx.beginPath(); ctx.arc(205, 340, 24, Math.PI, 0); ctx.fill();
+
+    // 2. Hinten in der Mitte: Hölzerne Heuraufe mit grünem/goldenem Heu
+    ctx.fillStyle = "#22c55e";
+    ctx.beginPath(); ctx.arc(380, 145, 42, Math.PI, 0); ctx.fill();
+    ctx.fillStyle = "#854d0e";
+    ctx.strokeStyle = "#451a03";
+    ctx.fillRect(325, 140, 110, 62); ctx.strokeRect(325, 140, 110, 62);
+    // Gitterstäbe der Heuraufe
+    for (let x = 338; x < 430; x += 14) {
+      ctx.strokeStyle = "#fde047";
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(x, 140); ctx.lineTo(x, 202); ctx.stroke();
+    }
+
+    // 3. Hinten rechts: Schräge hohle Korkröhre zum Durchlaufen
+    ctx.save();
+    ctx.translate(565, 235);
+    ctx.rotate(0.18);
+    ctx.fillStyle = "#713f12";
+    ctx.strokeStyle = "#451a03";
+    ctx.lineWidth = 3;
+    rr(ctx, -75, -28, 150, 56, 22); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#1e293b";
+    ctx.beginPath(); ctx.ellipse(-70, 0, 12, 24, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+
+    // 4. Vorne rechts: Blaue Wasserschale & grüner Futternapf nebeneinander
+    // Blaue Wasserschale links
+    ctx.fillStyle = "#0284c7";
+    ctx.strokeStyle = "#0369a1";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(495, 342, 38, 18, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#7dd3fc";
+    ctx.beginPath(); ctx.ellipse(495, 339, 30, 12, 0, 0, Math.PI * 2); ctx.fill();
+
+    // Grüner Futternapf rechts daneben
+    ctx.fillStyle = "#16a34a";
+    ctx.strokeStyle = "#14532d";
+    ctx.beginPath(); ctx.ellipse(595, 342, 38, 18, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#f97316"; // Karottenstücke drin
+    ctx.beginPath(); ctx.arc(588, 338, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(604, 340, 7, 0, Math.PI * 2); ctx.fill();
+
+    // Durchsichtige Plexiglasscheibe an der Vorderseite
+    ctx.fillStyle = "rgba(186,230,253,0.22)";
+    ctx.strokeStyle = "#38bdf8";
+    ctx.lineWidth = 3;
+    ctx.fillRect(30, 295, 700, 100);
+    ctx.strokeRect(30, 295, 700, 100);
+  }
+
+  else if (promptId === 'r_leseecke') {
+    // --- 13. NEU: DIE GEMÜTLICHE LESECKE IM KLASSENZIMMER ---
+    ctx.fillStyle = "#f1f5f9";
+    ctx.fillRect(95, 45, 585, 215);
+    ctx.fillStyle = "#e2e8f0";
+    ctx.beginPath(); ctx.moveTo(95, 260); ctx.lineTo(680, 260); ctx.lineTo(740, 420); ctx.lineTo(35, 420); ctx.closePath(); ctx.fill();
+
+    // 1. Großer rechteckiger dunkelgrüner Teppich auf dem Boden
+    ctx.fillStyle = "#15803d";
+    ctx.strokeStyle = "#14532d";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(155, 275); ctx.lineTo(645, 275); ctx.lineTo(695, 405); ctx.lineTo(115, 405);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+
+    // 2. Links: Halbhohes weißes Holzregal als Raumteiler
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#64748b";
+    ctx.lineWidth = 3;
+    ctx.fillRect(65, 165, 55, 225); ctx.strokeRect(65, 165, 55, 225);
+
+    // 3. Hinten links an der Wand: Braunes Bücherregal mit bunten Büchern
+    ctx.fillStyle = "#92400e";
+    ctx.strokeStyle = "#451a03";
+    ctx.fillRect(165, 75, 215, 185); ctx.strokeRect(165, 75, 215, 185);
+    [130, 185, 240].forEach((sy, rIdx) => {
+      ctx.fillStyle = "#451a03";
+      ctx.fillRect(165, sy, 215, 6);
+      const rowColor = ["#ef4444", "#3b82f6", "#eab308"][rIdx];
+      for (let bx = 178; bx < 365; bx += 18) {
+        ctx.fillStyle = rowColor;
+        ctx.fillRect(bx, sy - 38, 13, 38);
+      }
+    });
+
+    // 4. Hinten rechts in der Ecke: Zwei große runde rote Sitzsäcke
+    [485, 595].forEach((sx, idx) => {
+      const sy = idx === 0 ? 245 : 275;
+      const sGrad = ctx.createRadialGradient(sx - 12, sy - 15, 8, sx, sy, 58);
+      sGrad.addColorStop(0, "#f87171");
+      sGrad.addColorStop(1, "#b91c1c");
+      ctx.fillStyle = sGrad;
+      ctx.strokeStyle = "#7f1d1d";
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.ellipse(sx, sy, 56, 44, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    });
+
+    // 5. In der Mitte auf dem grünen Teppich: Runder gelber Beistelltisch mit Leselampe & Topfpflanze
+    ctx.fillStyle = "#facc15";
+    ctx.strokeStyle = "#a16207";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.ellipse(365, 335, 62, 26, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillRect(358, 360, 14, 34);
+    // Kleine grüne Topfpflanze rechts auf dem Tisch
+    ctx.fillStyle = "#ea580c";
+    ctx.fillRect(382, 312, 22, 22);
+    ctx.fillStyle = "#22c55e";
+    ctx.beginPath(); ctx.arc(393, 304, 16, 0, Math.PI * 2); ctx.fill();
+    // Helle Leselampe links auf dem Tisch
+    ctx.strokeStyle = "#475569"; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(340, 332); ctx.lineTo(335, 285); ctx.lineTo(355, 275); ctx.stroke();
+    ctx.fillStyle = "#fef08a";
+    ctx.beginPath(); ctx.arc(358, 278, 12, 0, Math.PI); ctx.fill();
+  }
+}
+
+// ============================================================================
+// 13 AUSGEARBEITETE HEFT-SCHREIBAUFGABEN (4x BUCH/AB + 9x NEU)
+// ============================================================================
+const HEFT_PROMPTS = [
+  {
+    id: 'g_sporttasche',
+    cat: 'gegenstand',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: 'Deutschbuch S. 16–18',
+    title: '1. Pedros verlorene Sporttasche',
+    desc: 'Pedro hat seine Sporttasche im Bus stehen lassen. Sieh dir die Illustration mit der Tasche und den ausgebreiteten Sportsachen genau an und schreibe eine vollständige Beschreibung für das Fundbüro in dein Heft.',
+    facts: `
+      • <strong>Einleitung (Was &amp; Wofür?):</strong> Sporttasche für den Schulsport und das Vereinstraining.<br>
+      • <strong>Größe &amp; Form:</strong> rechteckig, ungefähr 50 cm lang und 30 cm hoch.<br>
+      • <strong>Material &amp; Farbe:</strong> aus festem Stoff; oben und an den Seiten <em>hellrot</em>, am Boden <em>dunkelrot</em> (zweifarbig).<br>
+      • <strong>Einzelteile:</strong> zwei dunkelrote Tragegriffe, ein verstellbarer Schultergurt, oben ein langer Reißverschluss.<br>
+      • <strong>Besondere Kennzeichen:</strong> an beiden Seitenteilen klebt jeweils ein <em>runder Aufkleber vom Sportverein</em> sowie zwei kleine Abzeichen.<br>
+      • <strong>Inhalt:</strong> weiße Turnschuhe, eine kurze blaue Sporthose, ein kurzärmeliges blau-weiß gestreiftes Sporthemd und ein kleiner Waschbeutel.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Ich beschreibe meine verlorene Sporttasche, die ich für den Sportunterricht und das Training benutze.<br>
+    Die rechteckige Tasche besteht aus festem Stoff und ist ungefähr 50 cm lang sowie 30 cm hoch. Sie ist zweifarbig gestaltet: Während der obere Teil und die Seitenflächen hellrot sind, ist der verstärkte Taschenboden dunkelrot. Zum Tragen verfügt die Tasche über zwei dunkelrote Handgriffe und einen langen, verstellbaren Schultergurt. An der Oberseite befindet sich ein langer Reißverschluss, mit dem man das Hauptfach öffnet. Ein besonderes Erkennungsmerkmal sind die beiden runden Vereinsaufkleber an den linken und rechten Seitenteilen sowie zwei kleine Abzeichen an der Vorderseite. Im Inneren der Tasche liegen weiße Turnschuhe, eine kurze, einfarbig blaue Sporthose, ein kurzärmeliges, blau-weiß gestreiftes Sporthemd und mein Waschzeug.<br>
+    Durch die Vereinsaufkleber und die zweifarbige Gestaltung lässt sich die Sporttasche im Fundbüro leicht wiedererkennen.`
+  },
+  {
+    id: 'g_federtasche',
+    cat: 'gegenstand',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: 'Arbeitsblatt 1',
+    title: '2. Die gemusterte Federtasche',
+    desc: 'Beschreibe die abgebildete Federtasche und ihren Inhalt in drei klaren Schritten (Einleitung, Hauptteil, Schluss) in deinem Heft.',
+    facts: `
+      • <strong>Einleitung:</strong> Federtasche (Federmäppchen) für die Schule zum Aufbewahren von Schreibgeräten.<br>
+      • <strong>Größe &amp; Form:</strong> länglich, rechteckig mit abgerundeten Ecken, etwa 22 cm lang und 9 cm hoch.<br>
+      • <strong>Material &amp; Farbe:</strong> außen aus festem Stoff/Kunststoff in kräftigem <em>Pink/Rosa</em>, bedruckt mit vielen <em>kleinen weißen Blättern</em>.<br>
+      • <strong>Einzelteile:</strong> oben ein auffälliger <em>gelber Reißverschluss</em> mit silbernem Metall-Zipper; innen zwei abgetrennte Fächer und schwarze Gummischlaufen.<br>
+      • <strong>Inhalt:</strong> Füller, Buntstifte, Bleistift, durchsichtiges Lineal, rot-blauer Radiergummi und silberner Anspitzer.<br>
+      • <strong>Schluss:</strong> Warum ist sie im Schulalltag besonders praktisch?
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Der Gegenstand, den ich beschreibe, ist meine Federtasche. Man benutzt sie jeden Tag in der Schule, um Stifte und Zeichenwerkzeuge ordentlich aufzubewahren.<br>
+    Die Federtasche hat eine längliche, rechteckige Form mit abgerundeten Ecken und ist etwa 22 cm lang. Außen besteht sie aus widerstandsfähigem, pinkfarbenem Stoff, auf dem viele kleine weiße Blätter als Muster abgebildet sind. An der Oberseite befindet sich ein leuchtend gelber Reißverschluss mit einem metallenen Zipper. Wenn man die Federtasche aufklappt, sieht man zwei unterteilte Fächer sowie schwarze Gummischlaufen. Darin stecken verschiedene Stifte, ein kurzes Lineal, ein rot-blauer Radiergummi sowie ein Anspitzer aus Metall.<br>
+    Die Federtasche ist im Schulalltag sehr praktisch, weil alle Stifte ihren festen Platz haben und im Rucksack nichts verloren geht.`
+  },
+  {
+    id: 'g_rucksack',
+    cat: 'gegenstand',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 1',
+    title: '3. NEU: Der verlorene Schulrucksack',
+    desc: 'Auf dem Schulhof ist der abgebildete Schulrucksack stehen geblieben. Schreibe eine präzise Gegenstandsbeschreibung in dein Heft, damit der Besitzer ihn sofort erkennt.',
+    facts: `
+      • <strong>Einleitung:</strong> Schulrucksack für den täglichen Transport von Büchern, Heften und Pausenbrot.<br>
+      • <strong>Größe &amp; Form:</strong> hochkant, oben abgerundet, ca. 45 cm hoch, 30 cm breit.<br>
+      • <strong>Material &amp; Farbe:</strong> aus wasserabweisendem Nylon-Stoff; Grundfarbe <em>dunkelblau</em>, aufgesetzte Vordertasche in <em>hellblau</em>.<br>
+      • <strong>Einzelteile:</strong> zwei gepolsterte, schwarze Schultergurte, Trageschlaufe oben, aufgesetzte Vordertasche, links und rechts je eine dunkle Netztasche.<br>
+      • <strong>Besondere Kennzeichen:</strong> zwei leuchtend <em>neongelbe Reflektorstreifen</em> quer auf der Vorderseite; am rechten Reißverschluss hängt ein runder <em>Schlüsselanhänger in Form eines Fußballs</em>.<br>
+      • <strong>Inhalt:</strong> in der linken Seitentasche steckt eine silberne Trinkflasche aus Metall; im Hauptfach liegen ein roter Mathe-Ordner und eine grüne Brotdose.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Bei dem beschriebenen Gegenstand handelt es sich um einen Schulrucksack, in dem Schülerinnen und Schüler ihre Hefte, Bücher und Verpflegung transportieren.<br>
+    Der Rucksack ist etwa 45 cm hoch, 30 cm breit und hat eine hochkante, oben abgerundete Form. Er besteht aus wasserabweisendem, dunkelblauem Nylon-Gewebe. Auf der Vorderseite ist eine kleinere, hellblaue Außentasche aufgenäht. Für die Sicherheit im Straßenverkehr verlaufen quer über das Hauptfach und die Vordertasche zwei breite, neongelbe Reflektorstreifen. Auf der Rückseite befinden sich zwei schwarz gepolsterte Schultergurte sowie eine Trageschlaufe. Ein auffälliges Erkennungsmerkmal ist ein kleiner Anhänger in Form eines schwarz-weißen Fußballs am rechten Reißverschluss. In der linken seitlichen Netztasche steckt eine silberne Trinkflasche aus Metall, während sich im großen Hauptfach ein roter Mathe-Ordner und eine grüne Brotdose befinden.<br>
+    Durch die gelben Reflektoren und den Fußball-Anhänger ist der Rucksack unverwechselbar.`
+  },
+  {
+    id: 'g_fahrrad',
+    cat: 'gegenstand',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 2',
+    title: '4. NEU: Das vermisste Jugend-Mountainbike',
+    desc: 'Vor der Turnhalle steht das abgebildete Fahrrad, aber der Schlüssel ist weg. Beschreibe das Mountainbike mit allen Details für den Hausmeister in deinem Heft.',
+    facts: `
+      • <strong>Einleitung:</strong> Ein Jugend-Mountainbike (Fahrrad) für den Schulweg und Fahrten im Gelände.<br>
+      • <strong>Größe &amp; Bauart:</strong> 26-Zoll-Reifen mit grobem Stollenprofil, sportlicher Diamantrahmen.<br>
+      • <strong>Material &amp; Farbe:</strong> Rahmen aus leichtem Aluminium; Grundfarbe <em>mattschwarz</em>, das obere Rahmenrohr ist auffällig <em>giftgrün</em> lackiert.<br>
+      • <strong>Einzelteile &amp; Ausstattung:</strong> schwarzer Gelsattel, Federgabel vorne, gerader Lenker mit schwarzen Gummigriffen, Steckschutzbleche aus schwarzem Kunststoff.<br>
+      • <strong>Besondere Kennzeichen:</strong> um die Sattelstütze ist ein <em>rotes Spiralkabel-Zahlenschloss</em> gewickelt; an der silbernen Fahrradklingel am Lenker ist ein Kratzer; im Vorderrad stecken zwei gelbe Katzenaugen.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Ich beschreibe mein Jugend-Mountainbike, mit dem ich täglich zur Schule fahre.<br>
+    Das Fahrrad hat 26 Zoll große schwarze Reifen mit einem groben Stollenprofil und besteht aus einem stabilen Aluminiumrahmen. Der Rahmen ist überwiegend mattschwarz lackiert, wobei sich die obere Rahmenstange durch eine auffällige giftgrüne Farbe abhebt. Über beiden Rädern sind schmale Steckschutzbleche aus schwarzem Kunststoff montiert. Als besonderes Kennzeichen ist unterhalb des schwarzen Gelsattels ein rotes Spiralkabel-Zahlenschloss um die Sattelstütze gewickelt. Außerdem stecken in den Speichen des Vorderrads zwei gelbe Reflektoren, und die silberne Klingel am Lenker weist einen deutlichen Kratzer auf.<br>
+    An der schwarz-grünen Lackierung und dem roten Schloss unter dem Sattel lässt sich das Mountainbike eindeutig identifizieren.`
+  },
+  {
+    id: 'g_uhr',
+    cat: 'gegenstand',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 3',
+    title: '5. NEU: Die digitale Sport-Armbanduhr',
+    desc: 'In der Umkleidekabine der Sporthalle wurde die abgebildete digitale Armbanduhr gefunden. Beschreibe die Uhr sachlich und genau in deinem Heft.',
+    facts: `
+      • <strong>Einleitung:</strong> Digitale Sport-Armbanduhr zum Ablesen der Uhrzeit, Stoppen von Zeiten und Zählen von Schritten.<br>
+      • <strong>Größe &amp; Form:</strong> kreisrundes Uhrengehäuse (ca. 4 cm Durchmesser), längliches Armband.<br>
+      • <strong>Material &amp; Farbe:</strong> Gehäuse aus mattschwarzem Kunststoff, Armband aus biegsamem <em>dunkelgrünem Silikon</em> mit Verstell-Löchern und einer silbernen Schnalle aus Edelstahl.<br>
+      • <strong>Einzelteile:</strong> rundes schwarzes Display mit dünnem hellblauem Rand; an der rechten Gehäuseseite zwei kleine Druckknöpfe (der obere Knopf ist <em>rot</em>, der untere <em>silbern</em>).<br>
+      • <strong>Besondere Kennzeichen:</strong> auf dem Display stehen die Uhrzeit in großen hellblauen Ziffern und darunter in Gelb die Schrittzahl; auf der Gehäuse-Unterseite sitzt ein runder grüner Sensor.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Der Gegenstand ist eine digitale Sport-Armbanduhr, die man am Handgelenk trägt, um die Uhrzeit abzulesen und beim Sport Zeiten oder Schritte zu messen.<br>
+    In der Mitte befindet sich ein kreisrundes Gehäuse aus mattschwarzem Kunststoff mit einem Durchmesser von etwa 4 cm. Daran ist ein biegsames, dunkelgrünes Armband aus Silikon befestigt, das mit einer silbernen Schnalle aus Metall geschlossen wird. Das runde schwarze Display ist von einem dünnen hellblauen Ring umgeben. Es zeigt in der Mitte groß die Uhrzeit in blauen Leuchtziffern und direkt darunter in gelber Schrift die gezählten Schritte an. An der rechten Seite des Gehäuses sitzen zwei kleine Bedienknöpfe, wobei der obere Knopf auffällig rot und der untere silbern gefärbt ist. Auf der Rückseite des Gehäuses befindet sich ein grüner optischer Sensor.<br>
+    Durch die Kombination aus dem dunkelgrünen Silikonband und dem roten Startknopf ist die Sportuhr sehr gut zu erkennen.`
+  },
+  {
+    id: 'w_schoko',
+    cat: 'weg',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: 'Deutschbuch S. 19–21',
+    title: '6. Vom Kölner Hauptbahnhof zum Schokoladenmuseum',
+    desc: 'Sieh dir den Stadtplan von Köln genau an. Beschreibe in deinem Heft für deine Klasse den Fußweg vom Kölner Hauptbahnhof über den Zwischenhalt „Alter Markt“ bis zum Schokoladenmuseum am Rhein.',
+    facts: `
+      • <strong>Startpunkt (Treffpunkt):</strong> Bahnhofsvorplatz direkt vor dem Kölner Hauptbahnhof.<br>
+      • <strong>1. Abschnitt:</strong> Zuerst Richtung Süden direkt am großen <em>Kölner Dom</em> und an der <em>Philharmonie</em> vorbeigehen.<br>
+      • <strong>Zwischenhalt:</strong> Geradeaus weiter über die Straße „Am Hof“ bis zum Platz <em>„Alter Markt“</em> (dort steht das historische <em>Rathaus</em>).<br>
+      • <strong>2. Abschnitt:</strong> Vom Alten Markt weiter südlich über den großen Platz <em>„Heumarkt“</em> gehen und unter der Auffahrt zur <em>Deutzer Brücke</em> hindurchgehen.<br>
+      • <strong>Schlussteil &amp; Ziel:</strong> Links hinunter zum <em>Rheinufer (Frankenwerft)</em> biegen und direkt am Rhein entlang nach Süden gehen, bis man auf der Halbinsel im Rheinauhafen das <em>Schokoladenmuseum</em> erreicht.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Unsere Wanderung beginnt auf dem Bahnhofsvorplatz direkt vor dem Kölner Hauptbahnhof und führt uns in Richtung Süden bis zum Schokoladenmuseum.<br>
+    Zuerst gehen wir vom Hauptbahnhof aus an der großen Domkirche vorbei und halten uns links in Richtung Rheinufer. Anschließend passieren wir die Philharmonie und folgen der Straße geradeaus weiter nach Süden. Nach wenigen Minuten erreichen wir unseren Zwischenhalt auf dem Platz „Alter Markt“, an dem sich das historische Rathaus befindet. Von dort aus laufen wir geradeaus weiter über den weitläufigen Heumarkt und gehen unter der großen Auffahrt zur Deutzer Brücke hindurch. Danach biegen wir nach links direkt zur Uferpromenade am Rhein (Frankenwerft) ab. Wir folgen dem Fußweg am Fluss entlang weiter Richtung Süden, bis wir schließlich vor uns auf einer Halbinsel im Rheinauhafen das Schokoladenmuseum sehen.<br>
+    Dort vor dem Haupteingang des Museums haben wir unser Ziel erreicht.`
+  },
+  {
+    id: 'w_buecherei',
+    cat: 'weg',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 4',
+    title: '7. NEU: Von der Bushaltestelle zur Stadtbücherei',
+    desc: 'Eine neue Mitschülerin möchte nach dem Unterricht von der Bushaltestelle „Schulzentrum“ zu Fuß zur Stadtbücherei gehen. Beschreibe ihr den Weg anhand der abgebildeten Stadtkarte.',
+    facts: `
+      • <strong>Startpunkt:</strong> Bushaltestelle „Schulzentrum“ an der Hauptstraße.<br>
+      • <strong>1. Abschnitt:</strong> Zuerst der Hauptstraße ein kurzes Stück nach Osten folgen, am Zebrastreifen die Hauptstraße überqueren und nach rechts in die <em>Lindenallee</em> abbiegen.<br>
+      • <strong>Orientierungspunkte unterwegs:</strong> Auf der linken Straßenseite der Lindenallee liegt zuerst eine <em>Bäckerei</em> und kurz dahinter die rote <em>Stadtkirche</em>.<br>
+      • <strong>Zwischenhalt:</strong> Am Ende der Lindenallee erreicht man den <em>Marktplatz</em>, in dessen Mitte der runde <em>Löwenbrunnen</em> steht.<br>
+      • <strong>Schlussteil &amp; Ziel:</strong> Den Marktplatz nach Osten überqueren und hinter dem Brunnen nach links in die <em>Rathausgasse</em> einbiegen. Nach etwa 100 Metern steht auf der rechten Seite ein gelbes Fachwerkhaus: die <em>Stadtbücherei</em>.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Der Fußweg beginnt an der Bushaltestelle „Schulzentrum“ in der Hauptstraße und führt bis zur Stadtbücherei in der Rathausgasse.<br>
+    Von der Haltestelle aus gehst du zuerst wenige Meter an der Hauptstraße entlang bis zum Zebrastreifen. Dort überquerst du die Straße und biegst direkt gegenüber nach rechts in die mit Bäumen bepflanzte Lindenallee ein. Du folgst der Lindenallee geradeaus. Dabei kommst du auf der linken Straßenseite zuerst an einer Bäckerei und kurz darauf an der großen roten Stadtkirche vorbei. Am Ende der Allee gelangst du auf den offenen Marktplatz, in dessen Mitte sich ein steinerner Löwenbrunnen befindet. Du überquerst den Marktplatz an dem Brunnen vorbei und biegst am anderen Ende nach links in die schmale Rathausgasse ab. Wenn du dieser Gasse etwa 100 Meter geradeaus folgst, siehst du auf der rechten Seite ein gelbes Fachwerkhaus.<br>
+    In diesem Gebäude befindet sich dein Ziel, die Stadtbücherei.`
+  },
+  {
+    id: 'w_sporthalle',
+    cat: 'weg',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 5',
+    title: '8. NEU: Vom Schuleingang zur neuen Sporthalle',
+    desc: 'Am Tag der offenen Tür suchen Eltern den Weg vom Haupteingang der Schule über das Schulgelände zur neuen Sporthalle hinter dem Bach. Schreibe eine klare Wegbeschreibung.',
+    facts: `
+      • <strong>Startpunkt:</strong> Haupteingang des Schulgebäudes am großen Pausenhof.<br>
+      • <strong>1. Abschnitt:</strong> Zuerst geradeaus über den gepflasterten Pausenhof gehen.<br>
+      • <strong>Orientierungspunkte:</strong> Vorne links sieht man den gelben <em>Schulkiosk</em> und die <em>Fahrradständer</em>; rechts durch das <em>grüne Metalltor</em> den Hof verlassen.<br>
+      • <strong>Zwischenhalt:</strong> Dem Fußweg folgen, der links am roten <em>Gerätehaus</em> vorbei Richtung Bach führt.<br>
+      • <strong>Schlussteil &amp; Ziel:</strong> Über die braune <em>Holzbrücke</em> den schmalen Bach überqueren. Dahinter führt der Weg schräg nach links oben direkt zur neuen <em>Sporthalle mit dem blauen Dach</em>.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Diese Wegbeschreibung führt vom Haupteingang des Schulgebäudes quer über das Außengelände bis zur neuen Sporthalle.<br>
+    Vom Schuleingang aus gehen Sie zuerst geradeaus über den gepflasterten Pausenhof, an dessen oberem Rand der gelbe Schulkiosk und die Fahrradständer liegen. Am rechten Ende des Pausenhofs passieren Sie das grüne Metalltor. Anschließend folgen Sie dem Fußweg, der rechts an einem kleinen roten Gerätehaus vorbeiführt. Nach wenigen Metern erreichen Sie einen schmalen Bach, den Sie über eine braune Holzbrücke überqueren. Direkt hinter der Brücke führt der Weg schräg nach links weiter.<br>
+    Nach etwa 30 Metern stehen Sie direkt vor der neuen Sporthalle, die man sofort an ihrem leuchtend blauen Dach erkennt.`
+  },
+  {
+    id: 'w_spielplatz',
+    cat: 'weg',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 6',
+    title: '9. NEU: Vom Waldparkplatz zum Abenteuerspielplatz',
+    desc: 'Ihr trefft euch am Waldparkplatz „Nordtor“ zum Kindergeburtstag auf dem Abenteuerspielplatz im Stadtpark. Beschreibe den Weg anhand der Parkkarte.',
+    facts: `
+      • <strong>Startpunkt:</strong> Waldparkplatz „Nordtor“ am Eingang des Stadtparks.<br>
+      • <strong>1. Abschnitt:</strong> Dem breiten Schotterweg geradeaus nach Osten folgen; links liegt eine große <em>Blumenwiese mit einer Holzbank</em>.<br>
+      • <strong>Zwischenhalt:</strong> Vor dem runden <em>Ententeich</em> macht der Weg einen Bogen nach rechts unten und führt südlich am Teichufer entlang.<br>
+      • <strong>Schlussteil &amp; Ziel:</strong> Rechts am <em>Eiscafé „Sonnenschein“</em> vorbeigehen. Direkt dahinter an der <em>Alten Eiche</em> nach links oben abbiegen, bis man vor dem <em>Abenteuerspielplatz mit dem hohen Kletterturm</em> steht.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Der Weg zum Abenteuerspielplatz beginnt am Waldparkplatz „Nordtor“ am Eingang des Stadtparks.<br>
+    Zuerst folgst du vom Nordtor aus dem breiten Schotterweg geradeaus in den Park hinein. Auf der linken Seite kommst du dabei an einer bunten Blumenwiese mit einer Holzbank vorbei. Kurz dahinter gelangst du an einen großen runden Ententeich. Hier biegst du mit dem Weg nach rechts ab und gehst am unteren Ufer des Ententeichs entlang. Anschließend siehst du auf der rechten Seite das Eiscafé „Sonnenschein“. Gleich hinter dem Eiscafé biegst du bei der alten Eiche nach links ab.<br>
+    Nach wenigen Schritten erreichst du den eingezäunten Abenteuerspielplatz, den man schon von Weitem an seinem hohen hölzernen Kletterturm mit dem roten Dach erkennt.`
+  },
+  {
+    id: 'r_terrarium',
+    cat: 'raum',
+    catLabel: '🐢 Raumbeschreibung',
+    origin: 'Deutschbuch S. 22–24',
+    title: '10. Pauls Schildkrötenterrarium (+ Schildkröten-Wahl)',
+    desc: 'Sieh dir die Zeichnung des Schildkrötenterrariums genau an (ohne dass die Gegenstände im Bild beschriftet sind!) und beschreibe es geordnet in deinem Heft. Erkläre Paul am Schluss auch kurz, welche der beiden Schildkröten rechts im Bild für das Terrarium geeignet ist.',
+    facts: `
+      • <strong>Allgemeines zum Raum (Einleitung):</strong> Rechteckiges Schildkrötenterrarium aus Glas; 2 m breit, 1 m hoch und 1 m tief; Boden dick mit gelbem Sand bedeckt.<br>
+      • <strong>Unten links:</strong> liegt ein großer, grauer, <em>ausgehöhlter Stein</em> (Unterschlupf).<br>
+      • <strong>Hinter dem Stein:</strong> befindet sich vor der Rückwand eine <em>grüne Pflanze</em>.<br>
+      • <strong>Auf der rechten Seite:</strong> liegt eine verzweigte, <em>hölzerne Wurzel</em> im Sand.<br>
+      • <strong>Zwischen Rückwand und Wurzel:</strong> steht hinten rechts eine <em>weitere Grünpflanze</em>.<br>
+      • <strong>Neben der Wurzel (in der Mitte vorne):</strong> steht eine flache, graue <em>Wasserschale</em>.<br>
+      • <strong>Zusatz (Buch S. 24 Nr. 8):</strong> Tier 1 (Landschildkröte mit hochgewölbtem Panzer und kräftigen Krallenbeinen) passt ins Trockenterrarium; Tier 2 (Wasserschildkröte mit flachem Panzer und Schwimmhäuten) bräuchte ein Aquarium.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich (wie Pauls überarbeiteter 2. Entwurf, S. 23):</strong><br>
+    Das rechteckige Schildkrötenterrarium besteht aus Glas und ist ungefähr 2 m breit, 1 m hoch sowie 1 m tief.<br>
+    Der gesamte Boden des Terrariums ist mit hellem Sand bedeckt. Unten links im Vordergrund liegt ein großer, ausgehöhlter Stein, der der Schildkröte als Unterschlupf dient. Direkt hinter dem ausgehöhlten Stein befindet sich an der Rückwand eine grüne Pflanze. Auf der rechten Seite des Terrariums liegt eine knorrige, hölzerne Wurzel im Sand. Zwischen der hinteren Glaswand und dieser Wurzel steht eine weitere Grünpflanze. Links neben der hölzernen Wurzel befindet sich in der Mitte eine flache graue Wasserschale.<br>
+    Für dieses Terrarium eignet sich die erste Schildkröte (Landschildkröte), da sie einen hochgewölbten Panzer und kräftige Laufbeine mit Krallen für den Sandboden besitzt.`
+  },
+  {
+    id: 'r_jugendzimmer',
+    cat: 'raum',
+    catLabel: '🐢 Raumbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 7',
+    title: '11. NEU: Das neu eingerichtete Jugendzimmer',
+    desc: 'Betrachte die 3D-Zeichnung des Jugendzimmers genau. Beschreibe den Raum und seine Einrichtung sachlich und geordnet vom Allgemeinen zum Besonderen in deinem Heft.',
+    facts: `
+      • <strong>Allgemeines zum Raum:</strong> Rechteckiges Jugendzimmer, etwa 4 m lang, 3 m breit; helle Wände und ein Boden aus hellen Holzdielen.<br>
+      • <strong>An der linken Seitenwand:</strong> steht ein weißes Bett mit einer <em>hellblauen Tagesdecke</em> und einem weißen Kopfkissen.<br>
+      • <strong>An der hinteren Wand (Mitte):</strong> befindet sich ein großes zweiflügeliges <em>Fenster</em>; direkt darunter steht ein <em>Schreibtisch aus hellem Holz</em> mit Schubladen auf der rechten Seite und einer silbernen Lampe links.<br>
+      • <strong>Vor dem Schreibtisch:</strong> steht ein schwarzer <em>Drehstuhl</em>.<br>
+      • <strong>An der rechten Wand:</strong> ragt ein hohes, braunes <em>Bücherregal</em> mit vier Fächern voller bunter Bücher auf.<br>
+      • <strong>Vor dem Bücherregal:</strong> liegt auf dem Holzboden ein <em>runder, hellgrauer Teppich</em>.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Das neu eingerichtete Jugendzimmer hat einen rechteckigen Grundriss, ist ungefähr 4 m lang sowie 3 m breit und besitzt einen hellen Holzboden.<br>
+    An der linken Zimmerwand steht ein weißes Jugendbett, das mit einer hellblauen Tagesdecke und einem weißen Kopfkissen ausgestattet ist. In der Mitte der hinteren Wand befindet sich ein breites, zweiflügeliges Fenster. Direkt unter diesem Fenster steht ein rechteckiger Schreibtisch aus hellem Holz, auf dessen linker Seite eine silberne Schreibtischlampe platziert ist. Vor dem Schreibtisch befindet sich ein schwarzer Drehstuhl. Gegenüber dem Bett ragt an der rechten Seitenwand ein hohes, braunes Bücherregal mit vier Fächern auf. Davor liegt auf dem Holzboden ein runder, hellgrauer Teppich.<br>
+    Durch die klare Aufteilung in Schlaf-, Arbeits- und Lesebereich wirkt das Zimmer sehr aufgeräumt.`
+  },
+  {
+    id: 'r_meerschweinchen',
+    cat: 'raum',
+    catLabel: '🐢 Raumbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 8',
+    title: '12. NEU: Das große Meerschweinchen-Gehege',
+    desc: 'Betrachte die 3D-Zeichnung des Meerschweinchen-Geheges. Beschreibe den Aufbau und die Einrichtung sachlich und mit abwechslungsreichen Ortsangaben in deinem Heft.',
+    facts: `
+      • <strong>Allgemeines zum Gehege:</strong> Rechteckiges Bodengehege aus hellem Holz mit einer durchsichtigen <em>Plexiglasscheibe an der Vorderseite</em>; 1,80 m breit und 80 cm tief; Boden komplett mit weicher <em>Holzstreu</em> bedeckt.<br>
+      • <strong>Unten links:</strong> steht ein braunes, rechteckiges <em>Schlafhäuschen aus Holz</em> mit flachem Dach und zwei gewölbten Eingängen.<br>
+      • <strong>Hinten in der Mitte (an der Rückwand):</strong> ist eine <em>Heuraufe mit Gitterstäben</em> angebracht, die mit frischem grünem Heu gefüllt ist.<br>
+      • <strong>Hinten rechts:</strong> liegt schräg eine hohle, dunkelbraune <em>Korkröhre</em> zum Durchlaufen.<br>
+      • <strong>Vorne auf der rechten Seite:</strong> stehen nebeneinander eine <em>blaue Wasserschale</em> und ein <em>grüner Futternapf</em> mit Karottenstücken.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Das rechteckige Meerschweinchen-Gehege ist 1,80 m breit sowie 80 cm tief. Während die Rückwand und die Seitenteile aus hellem Holz bestehen, befindet sich an der Vorderseite eine durchsichtige Plexiglasscheibe.<br>
+    Der gesamte Boden des Geheges ist dick mit weicher Holzstreu ausgelegt. Unten links steht ein braunes Schlafhäuschen aus Holz, das ein flaches Dach und zwei bogenförmige Eingänge an der Vorderseite besitzt. An der hinteren Holzwand ist genau in der Mitte eine Heuraufe angebracht, aus der grünes Heu ragt. Rechts daneben liegt im hinteren Bereich schräg eine hohle, dunkelbraune Korkröhre. Im vorderen rechten Bereich stehen zwei runde Schalen nebeneinander: Links befindet sich eine blaue Wasserschale und direkt rechts daneben ein grüner Futternapf.<br>
+    Durch die große Lauffläche und die Versteckmöglichkeiten bietet das Gehege den Tieren viel Platz.`
+  },
+  {
+    id: 'r_leseecke',
+    cat: 'raum',
+    catLabel: '🐢 Raumbeschreibung',
+    origin: 'NEU • Zusatzaufgabe 9',
+    title: '13. NEU: Die gemütliche Leseecke im Klassenzimmer',
+    desc: 'Sieh dir die Zeichnung der Leseecke im Klassenzimmer genau an und beschreibe sie sachlich für eure Schülerzeitung in deinem Heft.',
+    facts: `
+      • <strong>Allgemeines zum Bereich:</strong> Rechteckige Leseecke im hinteren Teil des Klassenzimmers (ca. 3 m breit und 2 m tief); nach links durch ein <em>halbhohes weißes Holzregal</em> abgetrennt.<br>
+      • <strong>Auf dem Boden:</strong> liegt ein großer, rechteckiger, <em>dunkelgrüner Teppich</em>.<br>
+      • <strong>Hinten links an der Wand:</strong> steht ein braunes <em>Bücherregal</em>, in dem die Bücher nach Farben (Rot, Blau, Gelb) sortiert stehen.<br>
+      • <strong>In der rechten Ecke:</strong> liegen zwei große, runde, <em>rote Sitzsäcke</em> nebeneinander.<br>
+      • <strong>In der Mitte auf dem grünen Teppich:</strong> steht ein kleiner, runder, <em>gelber Beistelltisch</em> mit einer Leselampe und einer kleinen Topfpflanze.
+    `,
+    sample: `<strong>Mustergliederung zum Vergleich:</strong><br>
+    Die Leseecke befindet sich im hinteren Bereich unseres Klassenzimmers und ist etwa 3 m breit sowie 2 m tief. Vom übrigen Unterrichtsraum wird sie auf der linken Seite durch ein halbhohes, weißes Holzregal abgetrennt.<br>
+    Den Boden der Leseecke bedeckt ein großer, rechteckiger, dunkelgrüner Teppich. An der hinteren Wand steht auf der linken Seite ein braunes Bücherregal, in dessen drei Fächern die Bücher nach den Farben Rot, Blau und Gelb sortiert sind. Rechts neben dem Bücherregal liegen in der Ecke zwei große, runde, rote Sitzsäcke. Vor dem Bücherregal steht in der Mitte des grünen Teppichs ein kleiner, runder, gelber Beistelltisch. Darauf befinden sich links eine Leselampe und rechts eine kleine grüne Topfpflanze.<br>
+    In den Pausen und Freiarbeitsstunden ist die Leseecke ein ruhiger Rückzugsort für die Klasse.`
+  }
+];
+
+// --- DYNAMISCHE SPEICHERISOLATION ÜBER DATEINAMEN ---
+function getProfileName() {
+  const path = window.location.pathname;
+  const rawFile = path.split('/').pop();
+  const cleanName = rawFile.replace(/\.html$/i, '').trim();
+  return cleanName || "Standard";
+}
+
+function getStorageKey() {
+  return 'deutsch_beschreibung_data_' + getProfileName();
+}
+
+let appData = {
+  topics: {},
+  examHistory: [],
+  writtenEssays: [],
+  customImages: {},
+  activeExamTopics: TOPICS.map(t => t.id)
+};
+
+function loadData() {
+  const saved = localStorage.getItem(getStorageKey());
+  if (saved) {
+    try { appData = JSON.parse(saved); } catch(e){}
+  }
+  if (!appData.topics) appData.topics = {};
+  if (!appData.examHistory) appData.examHistory = [];
+  if (!appData.writtenEssays) appData.writtenEssays = [];
+  if (!appData.customImages) appData.customImages = {};
+  if (!appData.activeExamTopics || appData.activeExamTopics.length === 0) {
+    appData.activeExamTopics = TOPICS.map(t => t.id);
+  }
+  TOPICS.forEach(t => {
+    if (!appData.topics[t.id]) {
+      appData.topics[t.id] = { total: 0, correct: 0, recent: [] };
+    }
+  });
+}
+
+function saveData() {
+  try {
+    localStorage.setItem(getStorageKey(), JSON.stringify(appData));
+  } catch (e) {
+    console.warn("Speicherlimit erreicht", e);
+  }
+}
+
+function recordAnswer(topicId, isCorrect) {
+  const t = appData.topics[topicId];
+  if (!t) return;
+  t.total++;
+  if (isCorrect) t.correct++;
+  t.recent.push(isCorrect ? 1 : 0);
+  if (t.recent.length > 5) t.recent.shift();
+  saveData();
+  renderMenu();
+}
+
+function getTopicMastery(topicId) {
+  const t = appData.topics[topicId];
+  if (!t || !t.recent || t.recent.length < 3) return { status: 'neu', label: 'Neu', class: 'st-neu' };
+  const sum = t.recent.reduce((a,b)=>a+b, 0);
+  const len = t.recent.length;
+  if (len === 5 && sum === 5) return { status: 'stern', label: '🌟 Meister', class: 'st-stern' };
+  const rate = sum / len;
+  if (rate >= 0.8) return { status: 'gruen', label: '🟢 Fit', class: 'st-gruen' };
+  if (rate >= 0.6) return { status: 'gelb', label: '🟡 Geht so', class: 'st-gelb' };
+  return { status: 'rot', label: '🔴 Üben', class: 'st-rot' };
+}
+
+function toggleExamTopicCheck(topicId, checked) {
+  if (checked) {
+    if (!appData.activeExamTopics.includes(topicId)) appData.activeExamTopics.push(topicId);
+  } else {
+    appData.activeExamTopics = appData.activeExamTopics.filter(id => id !== topicId);
+  }
+  saveData();
+}
+
+function renderMenu() {
+  const checkContainer = document.getElementById('exam-topic-checks');
+  checkContainer.innerHTML = "";
+  TOPICS.forEach(t => {
+    const isChecked = appData.activeExamTopics.includes(t.id);
+    const label = document.createElement('label');
+    label.className = 'check-item';
+    label.innerHTML = `
+      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleExamTopicCheck('${t.id}', this.checked)">
+      <span>${t.short}</span>
+    `;
+    checkContainer.appendChild(label);
+  });
+
+  const container = document.getElementById('topic-list');
+  container.innerHTML = "";
+
+  TOPICS.forEach(t => {
+    const mastery = getTopicMastery(t.id);
+    const count = appData.topics[t.id]?.total || 0;
+
+    let borderLeft = "4px solid #cbd5e1";
+    if (mastery.status === 'rot') borderLeft = "4px solid #ef4444";
+    if (mastery.status === 'gelb') borderLeft = "4px solid #f59e0b";
+    if (mastery.status === 'gruen') borderLeft = "4px solid #22c55e";
+    if (mastery.status === 'stern') borderLeft = "4px solid #14532d";
+
+    const div = document.createElement('div');
+    div.className = "topic-row";
+    div.style.borderLeft = borderLeft;
+    div.innerHTML = `
+      <div class="topic-row-top">
+        <div>
+          <div style="font-weight:800; font-size:0.92rem;">${t.name}</div>
+          <div style="font-size:0.72rem; color:var(--text-muted);">${t.info} • ${count} Aufgaben geübt</div>
+        </div>
+        <span class="status-pill ${mastery.class}">${mastery.label}</span>
+      </div>
+      <div class="topic-actions">
+        <button class="btn-mini-practice" onclick="startPractice('${t.id}')">🎯 Üben</button>
+        <button class="btn-mini-test" onclick="startTopicExam('${t.id}')">📝 Thema-Test (10)</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  let totalTasks = 0, totalCorrect = 0;
+  TOPICS.forEach(t => {
+    totalTasks += appData.topics[t.id]?.total || 0;
+    totalCorrect += appData.topics[t.id]?.correct || 0;
+  });
+  document.getElementById('stat-total-tasks').textContent = totalTasks;
+  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
+  document.getElementById('stat-total-rate').textContent = `${rate}%`;
+  document.getElementById('stat-total-essays').textContent = (appData.writtenEssays || []).length;
+
+  const hList = document.getElementById('exam-history-list');
+  const combinedHistory = [];
+  (appData.examHistory || []).forEach(h => {
+    combinedHistory.push(`
+      <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #e2e8f0;">
+        <span>📝 ${h.date} • <b>${h.scope || 'Test'}</b> (${h.level})</span>
+        <strong style="color:var(--primary);">${h.percent}% → Note ${h.grade}</strong>
+      </div>
+    `);
+  });
+  (appData.writtenEssays || []).forEach(w => {
+    combinedHistory.push(`
+      <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #e2e8f0;">
+        <span>✍️ ${w.date} • <b>Heft-Aufsatz:</b> ${w.title}</span>
+        <strong style="color:var(--purple);">Im Heft ✓</strong>
+      </div>
+    `);
+  });
+
+  if (combinedHistory.length === 0) {
+    hList.innerHTML = `<div style="color:var(--text-muted); font-style:italic;">Noch keine Arbeit oder Heft-Aufgabe abgeschlossen.</div>`;
+  } else {
+    hList.innerHTML = combinedHistory.reverse().join('');
+  }
+}
+
+// ============================================================================
+// HEFT-AUFGABEN STEUERUNG, EIGENES BUCHFOTO & KAMERA / WHATSAPP LOGIK
+// ============================================================================
+let currentHeftFilter = 'all';
+let currentHeftPrompt = HEFT_PROMPTS[0];
+let capturedPhotoFile = null;
+
+function openHeftView() {
+  showView('view-heft');
+  filterHeftPrompts('all');
+}
+
+function closeHeftView() {
+  renderMenu();
+  showView('view-menu');
+}
+
+function filterHeftPrompts(cat) {
+  currentHeftFilter = cat;
+  ['all', 'gegenstand', 'weg', 'raum'].forEach(c => {
+    const btn = document.getElementById('heft-cat-' + c);
+    if (btn) btn.classList.toggle('active', c === cat);
+  });
+
+  const list = cat === 'all' ? HEFT_PROMPTS : HEFT_PROMPTS.filter(p => p.cat === cat);
+  const container = document.getElementById('heft-prompt-list');
+  container.innerHTML = "";
+
+  list.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'prompt-item-btn' + (currentHeftPrompt && currentHeftPrompt.id === p.id ? ' active' : '');
+    btn.innerHTML = `
+      <span>${p.title}</span>
+      <span style="font-size:0.72rem; color:var(--text-muted); font-weight:600;">${p.origin.includes('NEU') ? '✨ NEU' : '📖 Buch/AB'}</span>
+    `;
+    btn.onclick = () => selectHeftPrompt(p.id);
+    container.appendChild(btn);
+  });
+
+  if (!list.some(p => p.id === currentHeftPrompt?.id)) {
+    selectHeftPrompt(list[0].id);
+  } else {
+    selectHeftPrompt(currentHeftPrompt.id);
+  }
+}
+
+function selectHeftPrompt(promptId) {
+  const p = HEFT_PROMPTS.find(x => x.id === promptId) || HEFT_PROMPTS[0];
+  currentHeftPrompt = p;
+  capturedPhotoFile = null;
+  document.getElementById('photo-preview-container').classList.add('hidden');
+  document.querySelectorAll('.heft-check').forEach(cb => cb.checked = false);
+
+  document.getElementById('heft-badge').textContent = p.catLabel;
+  document.getElementById('heft-origin').textContent = p.origin;
+  document.getElementById('heft-title').textContent = p.title;
+  document.getElementById('heft-task-desc').textContent = p.desc;
+  document.getElementById('heft-facts').innerHTML = p.facts;
+  document.getElementById('heft-sample-text').innerHTML = p.sample;
+
+  updateIllustrationDisplay(p.id);
+
+  document.querySelectorAll('.prompt-item-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(p.title));
+  });
+}
+
+function updateIllustrationDisplay(promptId) {
+  const canvas = document.getElementById('heft-canvas');
+  const customImg = document.getElementById('heft-custom-img');
+  const resetBtn = document.getElementById('btn-reset-illus');
+  const caption = document.getElementById('illus-caption');
+
+  if (appData.customImages && appData.customImages[promptId]) {
+    canvas.classList.add('hidden');
+    customImg.src = appData.customImages[promptId];
+    customImg.classList.remove('hidden');
+    resetBtn.classList.remove('hidden');
+    caption.textContent = "📷 Eigenes Buchfoto hinterlegt";
+  } else {
+    customImg.classList.add('hidden');
+    canvas.classList.remove('hidden');
+    resetBtn.classList.add('hidden');
+    caption.textContent = "🎨 Buch-Illustration (Beobachte alle Details genau!)";
+    renderBookIllustration(promptId);
+  }
+}
+
+function handleCustomIllusUpload(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file || !currentHeftPrompt) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    if (!appData.customImages) appData.customImages = {};
+    appData.customImages[currentHeftPrompt.id] = e.target.result;
+    saveData();
+    updateIllustrationDisplay(currentHeftPrompt.id);
+  };
+  reader.readAsDataURL(file);
+}
+
+function resetCustomIllus() {
+  if (appData.customImages && currentHeftPrompt) {
+    delete appData.customImages[currentHeftPrompt.id];
+    saveData();
+    updateIllustrationDisplay(currentHeftPrompt.id);
+  }
+}
+
+function logWrittenEssay() {
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2,'0')}.${(now.getMonth()+1).toString().padStart(2,'0')}.`;
+  if (!appData.writtenEssays) appData.writtenEssays = [];
+  appData.writtenEssays.push({
+    date: dateStr,
+    title: currentHeftPrompt.title
+  });
+  saveData();
+}
+
+function triggerCamera() {
+  document.getElementById('camera-input').click();
+}
+
+function handleCameraPhoto(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  capturedPhotoFile = file;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('photo-preview-img').src = e.target.result;
+    document.getElementById('photo-preview-container').classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+}
+
+async function sharePhotoViaWebShare() {
+  logWrittenEssay();
+  const profile = getProfileName();
+  const textMsg = `📝 Hallo! Ich (${profile}) habe meinen Deutsch-Aufsatz zum Thema „${currentHeftPrompt.title}“ im Heft fertig geschrieben. Hier ist das Foto meiner Heftseite:`;
+
+  if (capturedPhotoFile && navigator.canShare && navigator.canShare({ files: [capturedPhotoFile] })) {
+    try {
+      await navigator.share({
+        title: `Deutsch-Aufsatz: ${currentHeftPrompt.title}`,
+        text: textMsg,
+        files: [capturedPhotoFile]
+      });
+      return;
+    } catch (err) {
+      console.log("Web Share abgebrochen, öffne WhatsApp direkt.");
+    }
+  }
+  openWhatsAppForHeftPhoto();
+}
+
+function openWhatsAppForHeftPhoto() {
+  logWrittenEssay();
+  const profile = getProfileName();
+  const checkedCount = Array.from(document.querySelectorAll('.heft-check')).filter(c => c.checked).length;
+  const today = new Date().toLocaleDateString('de-DE');
+
+  let msg = `📝 *Deutsch-Aufsatz im Heft fertig!* ✍️\n`;
+  msg += `👤 Profil: ${profile} (${today})\n`;
+  msg += `📌 Thema: *${currentHeftPrompt.title}*\n`;
+  msg += `✅ Schreib-Profi-Checkliste: ${checkedCount}/4 Punkte geprüft\n\n`;
+  msg += `📸 *Ich schicke jetzt direkt das Foto von meiner Heftseite mit!*`;
+
+  window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+}
+
+// ============================================================================
+// INTERAKTIVE QUIZ-GENERATOREN
+// ============================================================================
+function genGrundlagen(diff) {
+  const pool = [
+    {
+      q: "In welchen <strong>drei Schritten</strong> baust du eine Gegenstands-, Weg- oder Raumbeschreibung sinnvoll auf?",
+      v: "Aufbau einer Beschreibung: 1. ? ➔ 2. ? ➔ 3. ?",
+      choices: ["1. Einleitung ➔ 2. Hauptteil ➔ 3. Schluss", "1. Hauptteil ➔ 2. Überschrift ➔ 3. Nachwort", "1. Anfang ➔ 2. Höhepunkt ➔ 3. Ende"],
+      correct: "1. Einleitung ➔ 2. Hauptteil ➔ 3. Schluss",
+      help: "Jede Beschreibung gliedert sich in: 1. Einleitung, 2. Hauptteil und 3. Schluss."
+    },
+    {
+      q: "In welchen Abschnitt der Beschreibung gehören die Fragen: <em>„Was ist der Gegenstand? Wofür benutzt man ihn?“</em>",
+      v: "„Der Gegenstand, den ich beschreibe, ist eine digitale Sportuhr. Man trägt sie am Handgelenk, um die Zeit und Schritte zu messen.“",
+      choices: ["1. Einleitung", "2. Hauptteil", "3. Schluss"],
+      correct: "1. Einleitung",
+      typeable: true,
+      help: "In der Einleitung nennst du immer zuerst den Namen und den Verwendungszweck (Funktion)."
+    },
+    {
+      q: "In welchen Abschnitt gehören die genauen Angaben zu <strong>Größe, Material, Farbe, Form und Einzelteilen</strong>?",
+      v: "„Der Schulrucksack ist 45 cm hoch, besteht aus dunkelblauem Nylon und hat zwei neongelbe Reflektorstreifen.“",
+      choices: ["1. Einleitung", "2. Hauptteil", "3. Schluss"],
+      correct: "2. Hauptteil",
+      typeable: true,
+      help: "Im Hauptteil wird das Aussehen mit allen Details genau beschrieben."
+    },
+    {
+      q: "In welcher <strong>Zeitform</strong> musst du eine sachliche Beschreibung immer verfassen? (Wissen kompakt, S. 15)",
+      v: "„Ich schreibe die Verben in einer Beschreibung immer im ...“",
+      choices: ["Präsens (Gegenwart)", "Präteritum (1. Vergangenheit)", "Futur (Zukunft)"],
+      correct: "Präsens (Gegenwart)",
+      acceptedText: ["präsens", "gegenwart"],
+      typeable: true,
+      help: "Beschreibungen gelten allgemein und stehen deshalb immer im Präsens (Gegenwart)."
+    },
+    {
+      q: "Zu welchem Schritt des <strong>Schreib-Profis (S. 15)</strong> gehört das Anlegen einer <strong>Wortsammlung und das Machen von Notizen</strong>?",
+      v: "„Ich plane meinen Text. Ich überlege: Für wen schreibe ich? Welche Wörter brauche ich?“",
+      choices: ["Schritt 1: Vor dem Schreiben", "Schritt 2: Beim Schreiben", "Schritt 3: Nach dem Schreiben"],
+      correct: "Schritt 1: Vor dem Schreiben",
+      help: "Bevor du loslegst (Schritt 1: Vor dem Schreiben), sammelst du Wörter und machst dir Notizen."
+    },
+    {
+      q: "<strong>Gegenstands-Rätsel (Arbeitsblatt 2):</strong> Welcher Gegenstand wird hier sachlich beschrieben?",
+      v: `<div class="quote-card">„Mit diesem kleinen Gerät kann man den Fernseher aus der Entfernung steuern. Es hat viele Knöpfe für Lautstärke und Programme.“</div>`,
+      choices: ["Fernbedienung", "Taschenlampe", "Wecker", "Computermaus"],
+      correct: "Fernbedienung",
+      acceptedText: ["fernbedienung"],
+      typeable: true,
+      help: "Man steuert damit den Fernseher aus der Entfernung: die Fernbedienung."
+    },
+    {
+      q: "<strong>Gegenstands-Rätsel (Arbeitsblatt 2):</strong> Welcher Gegenstand wird hier beschrieben?",
+      v: `<div class="quote-card">„Dieser Gegenstand wird benutzt, wenn es dunkel ist. Er erzeugt Licht und funktioniert meistens mit Batterien oder einem Akku.“</div>`,
+      choices: ["Taschenlampe", "Kerze", "Fernbedienung", "Sonnenbrille"],
+      correct: "Taschenlampe",
+      acceptedText: ["taschenlampe"],
+      typeable: true,
+      help: "Tragbares Licht mit Batterie oder Akku: die Taschenlampe."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'grundlagen',
+    topicName: 'Grundlagen & Aufbau',
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+function genGegenstand(diff) {
+  const pool = [
+    {
+      q: "<strong>Merkmale zuordnen:</strong> Zu welchem Oberbegriff gehören die Angaben <strong>„aus festem Stoff“, „aus dunkelgrünem Silikon“ oder „aus Aluminium“</strong>?",
+      v: "Woraus ein Gegenstand hergestellt ist:",
+      choices: ["Material", "Form", "Größe", "Inhalt"],
+      correct: "Material",
+      acceptedText: ["material"],
+      typeable: true,
+      help: "Stoff, Silikon, Aluminium, Holz oder Glas bezeichnen das Material."
+    },
+    {
+      q: "<strong>Schulrucksack-Beschreibung:</strong> Welches Detail ist ein <strong>besonderes Kennzeichen</strong>, an dem man den verlorenen Rucksack sofort unter vielen ähnlichen erkennt?",
+      v: "Im Fundbüro stehen drei dunkelblaue Schulrucksäcke...",
+      choices: [
+        "Am rechten Reißverschluss hängt ein kleiner Schlüsselanhänger in Form eines Fußballs.",
+        "Man trägt den Rucksack auf dem Rücken zur Schule.",
+        "Der Rucksack hat zwei Schultergurte."
+      ],
+      correct: "Am rechten Reißverschluss hängt ein kleiner Schlüsselanhänger in Form eines Fußballs.",
+      help: "Schultergurte hat jeder Rucksack – der Fußball-Anhänger am Reißverschluss ist ein individuelles Erkennungsmerkmal!"
+    },
+    {
+      q: "<strong>Mountainbike-Beschreibung:</strong> Welcher Satz beschreibt das vermisste Jugendfahrrad <strong>sachlich und genau</strong>?",
+      v: "Vergleiche die drei Beschreibungen für den Hausmeister:",
+      choices: [
+        "„Das 26-Zoll-Mountainbike hat einen mattschwarzen Rahmen mit einer giftgrünen oberen Rahmenstange und ein rotes Zahlenschloss unter dem Sattel.“",
+        "„Mein cooles Fahrrad fährt mega schnell und war zum Geburtstag echt teuer.“",
+        "„Das Fahrrad hat zwei runde Räder, einen Lenker und Pedale zum Treten.“"
+      ],
+      correct: "„Das 26-Zoll-Mountainbike hat einen mattschwarzen Rahmen mit einer giftgrünen oberen Rahmenstange und ein rotes Zahlenschloss unter dem Sattel.“",
+      help: "Nur präzise Angaben zu Größe, Farben und besonderen Kennzeichen (rotes Schloss) helfen beim Wiederfinden."
+    },
+    {
+      q: "<strong>Sportuhr-Beschreibung:</strong> Zu welchem Merkmal gehört die Angabe <strong>„kreisrundes Gehäuse mit einem Durchmesser von 4 cm“</strong>?",
+      v: "„In der Mitte sitzt ein <b>kreisrundes</b> Gehäuse mit <b>4 cm Durchmesser</b>.“",
+      choices: ["Form und Größe", "Material und Inhalt", "Funktion und Schluss", "Farbe und Muster"],
+      correct: "Form und Größe",
+      help: "„Kreisrund“ beschreibt die Form, „4 cm Durchmesser“ gibt die Größe an."
+    },
+    {
+      q: "<strong>Pedros Sporttasche (Buch S. 18 Nr. 5):</strong> In welcher Reihenfolge beschreibst du eine Tasche oder einen Rucksack im Hauptteil am sinnvollsten?",
+      v: "Vom Allgemeinen zum Besonderen:",
+      choices: [
+        "1. Äußeres im Ganzen (Größe, Form, Farbe) ➔ 2. Besondere Kennzeichen außen ➔ 3. Inhalt im Inneren",
+        "1. Inhalt im Inneren ➔ 2. Eigene Meinung ➔ 3. Größe",
+        "1. Kleinster Kratzer ➔ 2. Inhalt ➔ 3. Welche Form die Tasche hat"
+      ],
+      correct: "1. Äußeres im Ganzen (Größe, Form, Farbe) ➔ 2. Besondere Kennzeichen außen ➔ 3. Inhalt im Inneren",
+      help: "Man betrachtet einen Gegenstand zuerst von außen im Ganzen, dann die Details und öffnet ihn erst zum Schluss."
+    },
+    {
+      q: "<strong>Treffende Adjektive (Buch S. 17):</strong> Welches Adjektiv beschreibt genau, dass die Sporttasche aus <strong>zwei verschiedenen Farben</strong> (hellrot und dunkelrot) gestaltet ist?",
+      v: "„Die Sporttasche ist nicht einfarbig, sondern ...“",
+      choices: ["zweifarbig", "kurzärmelig", "durchsichtig", "rechteckig"],
+      correct: "zweifarbig",
+      acceptedText: ["zweifarbig"],
+      typeable: true,
+      help: "Besteht etwas aus zwei Farben, nennt man es „zweifarbig“."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'gegenstand',
+    topicName: 'Gegenstände beschreiben',
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+function genWeg(diff) {
+  const pool = [
+    {
+      q: "<strong>Orientierungspunkte (Weg zur Stadtbücherei):</strong> Welcher Hinweis auf dem Weg durch die Lindenallee ist ein <strong>verlässlicher Orientierungspunkt</strong>?",
+      v: "Woran kann sich deine neue Mitschülerin sicher orientieren?",
+      choices: [
+        "An der großen roten Stadtkirche und dem steinernen Löwenbrunnen auf dem Marktplatz",
+        "An einer weißen Katze, die vor der Bäckerei in der Sonne schläft",
+        "An einem gelben Lieferwagen, der gerade Brötchen ausliefert"
+      ],
+      correct: "An der großen roten Stadtkirche und dem steinernen Löwenbrunnen auf dem Marktplatz",
+      help: "Kirchen und Brunnen bleiben fest an ihrem Platz – Tiere und Fahrzeuge bewegen sich weiter!"
+    },
+    {
+      q: "<strong>Weg zur neuen Sporthalle:</strong> Welches Verb passt am besten in die Lücke, wenn man über die kleine Holzbrücke auf die andere Seite des Baches geht?",
+      v: "„Hinter dem roten Gerätehaus _______ Sie den schmalen Bach über eine braune Holzbrücke.“",
+      choices: ["überqueren", "unterqueren", "umrunden", "klettern"],
+      correct: "überqueren",
+      acceptedText: ["überqueren", "überquert"],
+      typeable: true,
+      help: "Über eine Brücke, eine Straße oder einen Platz „überquert“ man etwas."
+    },
+    {
+      q: "<strong>Weg zum Abenteuerspielplatz im Stadtpark:</strong> Der Schotterweg teilt sich vor dem Ententeich in zwei Richtungen. Welcher Fachbegriff beschreibt diese Stelle genau?",
+      v: "„Direkt vor dem Ententeich kommst du an eine _______, an der du nach rechts abbiegst.“",
+      choices: ["Weggabelung (Kreuzung)", "Sackgasse", "Fußgängerzone", "Unterführung"],
+      correct: "Weggabelung (Kreuzung)",
+      help: "Wenn sich ein Weg wie eine Gabel in zwei Richtungen teilt, nennt man das eine Weggabelung."
+    },
+    {
+      q: "<strong>Reihenfolge-Wörter in Wegbeschreibungen:</strong> Welche Wortreihe verknüpft die einzelnen Wegabschnitte sprachlich abwechslungsreich?",
+      v: "Satzanfänge für eine flüssige Wegbeschreibung:",
+      choices: [
+        "Zuerst ... • Anschließend ... • Danach ... • Schließlich ...",
+        "Und dann ... • Und dann ... • Und dann ... • Und dann ...",
+        "Gestern ... • Vor einem Jahr ... • Früher ... • Damals ..."
+      ],
+      correct: "Zuerst ... • Anschließend ... • Danach ... • Schließlich ...",
+      help: "Mit Wörtern wie zuerst, anschließend, danach, kurz darauf und schließlich vermeidest du das eintönige „Und dann“."
+    },
+    {
+      q: "<strong>Schokoladenmuseum Köln (Buch S. 19):</strong> Welche drei Punkte musst du vor dem Schreiben einer Wegbeschreibung auf der Karte festlegen?",
+      v: "Planung der Route:",
+      choices: [
+        "Startpunkt (Treffpunkt), wichtige Zwischenhalte und den genauen Zielort",
+        "Nur den Namen der Stadt und das Wetter",
+        "Alle Straßennamen der gesamten Stadt"
+      ],
+      correct: "Startpunkt (Treffpunkt), wichtige Zwischenhalte und den genauen Zielort",
+      help: "Jede Wegbeschreibung führt klar vom Start über Zwischenstationen zum Ziel."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'weg',
+    topicName: 'Wege beschreiben',
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+function genRaum(diff) {
+  const pool = [
+    {
+      q: "<strong>Reihenfolge bei Raumbeschreibungen (Jugendzimmer &amp; Terrarium):</strong> Womit beginnst du eine Raumbeschreibung immer?",
+      v: "Vom Allgemeinen zum Besonderen:",
+      choices: [
+        "Mit der Größe, der Form und dem Boden/Material des gesamten Raumes",
+        "Mit dem kleinsten Radiergummi, der in der Schreibtischschublade liegt",
+        "Mit einer Geschichte darüber, wer gestern zu Besuch im Zimmer war"
+      ],
+      correct: "Mit der Größe, der Form und dem Boden/Material des gesamten Raumes",
+      help: "Zuerst braucht der Leser einen Überblick über den Raum im Ganzen (z. B. 4 m × 3 m, rechteckig, Holzboden)."
+    },
+    {
+      q: "<strong>Meerschweinchen-Gehege:</strong> Welche Wortgruppe im folgenden Satz gibt den <strong>genauen Ort (die Position)</strong> an?",
+      v: "„<b>Zwischen dem Schlafhäuschen und der Korkröhre</b> hängt eine gefüllte Heuraufe an der Rückwand.“",
+      choices: [
+        "Zwischen dem Schlafhäuschen und der Korkröhre",
+        "eine gefüllte Heuraufe",
+        "hängt"
+      ],
+      correct: "Zwischen dem Schlafhäuschen und der Korkröhre",
+      help: "Frage: Wo hängt die Heuraufe? Zwischen dem Schlafhäuschen und der Korkröhre."
+    },
+    {
+      q: "<strong>Leseecke im Klassenzimmer:</strong> Welches Verb im Präsens passt am besten für einen Teppich auf dem Boden?",
+      v: "„Auf dem Boden der Leseecke _______ ein großer, dunkelgrüner Teppich.“",
+      choices: ["liegt", "steht", "hängt", "wächst"],
+      correct: "liegt",
+      acceptedText: ["liegt", "befindet sich"],
+      typeable: true,
+      help: "Ein flacher Gegenstand wie ein Teppich oder ein Stein „liegt“ auf dem Boden."
+    },
+    {
+      q: "<strong>Jugendzimmer-Beschreibung:</strong> Welches Verb drückt präzise aus, dass das hohe Bücherregal aufrecht an der rechten Wand steht?",
+      v: "„An der rechten Zimmerwand _______ ein hohes, braunes Bücherregal auf.“",
+      choices: ["ragt (oder steht)", "liegt", "kriecht", "fällt"],
+      correct: "ragt (oder steht)",
+      help: "Hohe Möbelstücke oder Wurzeln „stehen“ oder „ragen ... auf“."
+    },
+    {
+      q: "<strong>Wortsammlung Terrarium (Buch S. 22 Nr. 1):</strong> Zu welcher Kategorie gehören <strong>„unten links, auf der rechten Seite, im Hintergrund, daneben“</strong>?",
+      v: "Sortierung in der Vorbereitungstabelle:",
+      choices: [
+        "Ortsbeschreibende Wörter",
+        "Gegenstände im Raum",
+        "Angaben zum Material",
+        "Verben"
+      ],
+      correct: "Ortsbeschreibende Wörter",
+      help: "Diese Ausdrücke beschreiben genau, an welchem Ort sich etwas befindet."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'raum',
+    topicName: 'Räume & Gehege beschreiben',
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+function genSatzbau(diff) {
+  const pool = [
+    {
+      q: "<strong>Umstellprobe (Buch S. 23):</strong> Stelle den Satz aus der Jugendzimmer-Beschreibung so um, dass der <strong>Gegenstand am Satzanfang</strong> steht:",
+      v: "Ausgangssatz: <em>„Unter dem großen Fenster steht ein heller Schreibtisch.“</em>",
+      choices: [
+        "„Ein heller Schreibtisch steht unter dem großen Fenster.“",
+        "„Steht ein heller Schreibtisch unter dem großen Fenster.“",
+        "„Unter dem großen Fenster ein heller Schreibtisch steht.“"
+      ],
+      correct: "„Ein heller Schreibtisch steht unter dem großen Fenster.“",
+      help: "Gegenstand („Ein heller Schreibtisch“) auf Platz 1, das Verb („steht“) bleibt fest auf Platz 2, Ortsangabe ans Ende!"
+    },
+    {
+      q: "<strong>Umstellprobe (Meerschweinchen-Gehege):</strong> Stelle den Satz so um, dass die <strong>Ortsangabe am Satzanfang</strong> steht:",
+      v: "Ausgangssatz: <em>„Zwei runde Keramiknäpfe stehen vorne rechts in der Ecke.“</em>",
+      choices: [
+        "„Vorne rechts in der Ecke stehen zwei runde Keramiknäpfe.“",
+        "„Stehen vorne rechts in der Ecke zwei runde Keramiknäpfe.“",
+        "„Zwei runde Keramiknäpfe vorne rechts in der Ecke stehen.“"
+      ],
+      correct: "„Vorne rechts in der Ecke stehen zwei runde Keramiknäpfe.“",
+      help: "Ortsangabe („Vorne rechts in der Ecke“) nach vorn, das Verb („stehen“) bleibt an der 2. Stelle!"
+    },
+    {
+      q: "<strong>Regel zur Umstellprobe (Buch S. 23 Nr. 4b):</strong> Welches Satzglied behält beim Umstellen eines Aussagesatzes <strong>immer seinen festen Platz an der 2. Stelle</strong>?",
+      v: "1. <u>Unten links</u> <b>liegt</b> ein Stein.<br>2. <u>Ein Stein</u> <b>liegt</b> unten links.",
+      choices: [
+        "Das Verb / Prädikat (z. B. „liegt“, „steht“, „befindet sich“)",
+        "Die Ortsangabe",
+        "Das Adjektiv"
+      ],
+      correct: "Das Verb / Prädikat (z. B. „liegt“, „steht“, „befindet sich“)",
+      help: "Im deutschen Aussagesatz steht das gebeugte Verb (Prädikat) immer an der 2. Satzgliedstelle."
+    },
+    {
+      q: "<strong>Abwechslungsreiche Verben:</strong> Welches Verb kannst du statt des langweiligen Wortes „ist“ in diesem Satz verwenden?",
+      v: "„An der Oberseite des Rucksacks <u>ist</u> ein langer Reißverschluss.“ ➔ Besser:",
+      choices: [
+        "befindet sich (oder verläuft)",
+        "schläft",
+        "war gewesen",
+        "rennt"
+      ],
+      correct: "befindet sich (oder verläuft)",
+      help: "„befindet sich“, „sitzt“ oder „verläuft“ klingt viel präziser als immer nur „ist“."
+    }
+  ];
+
+  const item = pick(pool);
+  return {
+    topicId: 'satzbau',
+    topicName: 'Satzbau-Profi & Ortsangaben',
+    question: item.q,
+    visual: item.v,
+    choices: shuffle(item.choices),
+    correct: item.correct,
+    help: item.help
+  };
+}
+
+function genDetektiv(diff) {
+  const pool = [
+    {
+      q: "<strong>Zeitform-Detektiv:</strong> Setze das unterstrichene Verb aus der Vergangenheit in das richtige <strong>Präsens</strong>:",
+      v: "„In der rechten Ecke der Leseecke <u>lagen</u> zwei rote Sitzsäcke.“ ➔ Richtig im Präsens:",
+      choices: ["liegen", "liegt", "gelegen", "lagen"],
+      correct: "liegen",
+      acceptedText: ["liegen"],
+      typeable: true,
+      help: "Mehrzahl (zwei Sitzsäcke) im Präsens: „In der rechten Ecke liegen zwei rote Sitzsäcke.“"
+    },
+    {
+      q: "<strong>Zeitform-Detektiv:</strong> Wie muss das unterstrichene Verb im <strong>Präsens</strong> heißen?",
+      v: "„Der Fahrradrahmen <u>bestand</u> aus mattschwarzem Aluminium.“ ➔ Richtig im Präsens:",
+      choices: ["besteht", "bestanden", "bestehen", "bestand"],
+      correct: "besteht",
+      acceptedText: ["besteht"],
+      typeable: true,
+      help: "Einzahl im Präsens: „Der Fahrradrahmen besteht aus Aluminium.“"
+    },
+    {
+      q: "<strong>Zeitform-Detektiv:</strong> Korrigiere den Zeitformfehler ins <strong>Präsens</strong>:",
+      v: "„Nach der Holzbrücke <u>führte</u> der Fußweg direkt zur neuen Sporthalle.“ ➔ Richtig im Präsens:",
+      choices: ["führt", "führen", "geführt", "führte"],
+      correct: "führt",
+      acceptedText: ["führt"],
+      typeable: true,
+      help: "Im Präsens heißt es: „Nach der Holzbrücke führt der Fußweg direkt zur Sporthalle.“"
+    },
+    {
+      q: "<strong>Sachlichkeits-Detektiv:</strong> Welcher Satz aus der Beschreibung des Meerschweinchen-Geheges ist <strong>unsachlich</strong> und gehört gestrichen?",
+      v: "Prüfe die drei Sätze aus dem Hauptteil:",
+      choices: [
+        "„Das braune Meerschweinchen heißt Krümel und quiekt immer total süß, wenn ich mit einer Gurke komme.“",
+        "„Der Boden des Geheges ist vollständig mit weicher Holzstreu bedeckt.“",
+        "„An der Vorderseite befindet sich eine durchsichtige Scheibe aus Plexiglas.“"
+      ],
+      correct: "„Das braune Meerschweinchen heißt Krümel und quiekt immer total süß, wenn ich mit einer Gurke komme.“",
+      help: "Bei einer Raumbeschreibung des Geheges wird die Einrichtung sachlich beschrieben, nicht wie süß das Tier quiekt."
+    },
+    {
+      q: "<strong>Wortwahl-Detektiv:</strong> Ersetze das ungenaue Wort „Ding“ durch den passenden Fachbegriff:",
+      v: "„Am rechten Reißverschluss des Rucksacks hängt ein rundes <u>Ding</u> in Fußballform.“ ➔ Besser:",
+      choices: [
+        "ein runder Schlüsselanhänger in Fußballform",
+        "ein rundes Teilchen",
+        "ein komisches Zeug"
+      ],
+      correct: "ein runder Schlüsselanhänger in Fußballform",
+      help: "Vermeide in Beschreibungen ungenaue Wörter wie „Ding“, „Sache“ oder „Zeug“."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.6);
+  return {
+    topicId: 'detektiv',
+    topicName: 'Text-Detektiv & Überarbeiten',
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+function createTask(tId, diff) {
+  switch(tId) {
+    case 'grundlagen': return genGrundlagen(diff);
+    case 'gegenstand': return genGegenstand(diff);
+    case 'weg':        return genWeg(diff);
+    case 'raum':       return genRaum(diff);
+    case 'satzbau':    return genSatzbau(diff);
+    case 'detektiv':   return genDetektiv(diff);
+    default:           return genGrundlagen(diff);
+  }
+}
+
+// ============================================================================
+// ABLAUF-STEUERUNG: TRAINING, EINZEL-TEST & GEMISCHTE KLASSENARBEIT
+// ============================================================================
+let selectedExamDiff = 'leicht';
+let selectedPracticeDiff = 'leicht';
+let currentMode = 'practice';
+let currentTopic = 'grundlagen';
+let examTasks = [];
+let examIndex = 0;
+let examScore = 0;
+let currentExamScopeLabel = 'Gemischt';
+let currentTask = null;
+
+function setExamDiff(d) {
+  selectedExamDiff = d;
+  ['leicht','mittel','schwer'].forEach(x => {
+    const el = document.getElementById(`btn-exam-${x}`);
+    if (el) el.classList.toggle('active', x === d);
+  });
+}
+
+function setPracticeDiff(d) {
+  selectedPracticeDiff = d;
+  ['leicht','mittel','schwer'].forEach(x => {
+    const el = document.getElementById(`btn-p-${x}`);
+    if (el) el.classList.toggle('active', x === d);
+    const qEl = document.getElementById(`quiz-btn-${x}`);
+    if (qEl) qEl.classList.toggle('active', x === d);
+  });
+}
+
+function changeQuizDiff(d) {
+  setPracticeDiff(d);
+  loadTask();
+}
+
+function startPractice(topicId) {
+  currentMode = 'practice';
+  currentTopic = topicId;
+  document.getElementById('progress-container').classList.add('hidden');
+  document.getElementById('quiz-diff-box').classList.remove('hidden');
+  document.getElementById('quiz-counter').textContent = 'Freies Üben';
+  document.getElementById('main-header').classList.add('hidden');
+  setPracticeDiff(selectedPracticeDiff);
+  showView('view-quiz');
+  loadTask();
+}
+
+function startTopicExam(topicId) {
+  currentMode = 'topic_exam';
+  currentTopic = topicId;
+  const topicObj = TOPICS.find(t => t.id === topicId);
+  currentExamScopeLabel = topicObj ? topicObj.short : topicId;
+
+  examIndex = 0;
+  examScore = 0;
+  examTasks = [];
+  for (let i = 0; i < 10; i++) {
+    examTasks.push(createTask(topicId, selectedPracticeDiff));
+  }
+
+  document.getElementById('progress-container').classList.remove('hidden');
+  document.getElementById('quiz-diff-box').classList.add('hidden');
+  document.getElementById('main-header').classList.add('hidden');
+  showView('view-quiz');
+  loadTask();
+}
+
+function startMixedExam() {
+  const pool = appData.activeExamTopics && appData.activeExamTopics.length > 0
+    ? appData.activeExamTopics
+    : TOPICS.map(t => t.id);
+
+  currentMode = 'mixed_exam';
+  currentExamScopeLabel = pool.length === TOPICS.length ? 'Alle Kapitel' : `${pool.length} Kapitel`;
+  examIndex = 0;
+  examScore = 0;
+  examTasks = [];
+
+  let count = 10;
+  if (selectedExamDiff === 'mittel') count = 15;
+  if (selectedExamDiff === 'schwer') count = 20;
+
+  for (let i = 0; i < count; i++) {
+    const tId = pool[i % pool.length];
+    examTasks.push(createTask(tId, selectedExamDiff));
+  }
+  examTasks.sort(() => Math.random() - 0.5);
+
+  document.getElementById('progress-container').classList.remove('hidden');
+  document.getElementById('quiz-diff-box').classList.add('hidden');
+  document.getElementById('main-header').classList.add('hidden');
+  showView('view-quiz');
+  loadTask();
+}
+
+function repeatLastExam() {
+  if (currentMode === 'topic_exam') startTopicExam(currentTopic);
+  else startMixedExam();
+}
+
+function loadTask() {
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('btn-next').classList.add('hidden');
+  document.getElementById('intask-help-box').classList.add('hidden');
+
+  const input = document.getElementById('answer-input');
+  input.value = "";
+  input.disabled = false;
+
+  if (currentMode === 'practice') {
+    currentTask = createTask(currentTopic, selectedPracticeDiff);
+  } else {
+    currentTask = examTasks[examIndex];
+    const total = examTasks.length;
+    document.getElementById('quiz-counter').textContent = `Test: ${examIndex + 1}/${total}`;
+    document.getElementById('progress-fill').style.width = `${(examIndex / total) * 100}%`;
+  }
+
+  document.getElementById('quiz-badge').textContent = currentTask.topicName;
+  document.getElementById('task-question').innerHTML = currentTask.question;
+  document.getElementById('task-visual').innerHTML = currentTask.visual;
+  document.getElementById('intask-help-box').innerHTML = currentTask.help || "Überlege: Ist die Angabe sachlich, genau und im Präsens?";
+
+  const textArea = document.getElementById('text-input-area');
+  const choiceArea = document.getElementById('choice-input-area');
+
+  if (currentTask.choices) {
+    textArea.classList.add('hidden');
+    choiceArea.classList.remove('hidden');
+    choiceArea.innerHTML = "";
+    currentTask.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.innerHTML = c;
+      btn.onclick = () => evaluateChoice(c, btn);
+      choiceArea.appendChild(btn);
+    });
+  } else {
+    choiceArea.classList.add('hidden');
+    textArea.classList.remove('hidden');
+    document.getElementById('btn-submit').classList.remove('hidden');
+    setTimeout(() => input.focus(), 120);
+  }
+}
+
+function toggleInTaskHelp() {
+  document.getElementById('intask-help-box').classList.toggle('hidden');
+}
+
+function evaluateChoice(selectedText, btnEl) {
+  const isCorrect = (selectedText === currentTask.correct);
+  document.querySelectorAll('.choice-btn').forEach(b => {
+    b.disabled = true;
+    if (b.innerHTML === currentTask.correct) b.classList.add('correct-choice');
+  });
+  if (!isCorrect && btnEl) btnEl.classList.add('wrong-choice');
+  finalizeAnswer(isCorrect);
+}
+
+function checkTextAnswer() {
+  const input = document.getElementById('answer-input');
+  const raw = input.value.trim().toLowerCase();
+  if (!raw) return;
+
+  const validList = currentTask.acceptedText || [currentTask.correct.toLowerCase()];
+  const isCorrect = validList.some(v => raw === v.toLowerCase() || raw.includes(v.toLowerCase()));
+
+  input.disabled = true;
+  document.getElementById('btn-submit').classList.add('hidden');
+  finalizeAnswer(isCorrect);
+}
+
+function finalizeAnswer(isCorrect) {
+  playTone(isCorrect);
+
+  const fb = document.getElementById('feedback-box');
+  document.getElementById('btn-next').classList.remove('hidden');
+
+  if (currentMode === 'practice') {
+    recordAnswer(currentTask.topicId, isCorrect);
+  } else {
+    if (isCorrect) examScore++;
+  }
+
+  if (isCorrect) {
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = `✅ <strong>Richtig!</strong> ${currentTask.help || ''}`;
+  } else {
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML = `❌ <strong>Nicht ganz.</strong> Richtig ist: <strong>${currentTask.correct}</strong><br><span style="font-size:0.82rem;">${currentTask.help || ''}</span>`;
+  }
+}
+
+document.getElementById('answer-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    if (!document.getElementById('btn-submit').classList.contains('hidden')) {
+      checkTextAnswer();
+    } else if (!document.getElementById('btn-next').classList.contains('hidden')) {
+      nextTask();
+    }
+  }
+});
+
+function nextTask() {
+  if (currentMode !== 'practice') {
+    examIndex++;
+    if (examIndex >= examTasks.length) {
+      finishExam();
+      return;
+    }
+  }
+  loadTask();
+}
+
+function finishExam() {
+  showView('view-results');
+  const total = examTasks.length;
+  const percent = Math.round((examScore / total) * 100);
+
+  document.getElementById('result-title').textContent = currentMode === 'topic_exam'
+    ? `Thema-Test (${currentExamScopeLabel}) beendet!`
+    : `Klassenarbeit (${currentExamScopeLabel}) beendet!`;
+
+  document.getElementById('result-score').textContent = `${examScore} von ${total} Aufgaben richtig`;
+  document.getElementById('result-percent').textContent = `${percent}% erreicht`;
+
+  let grade = 6, color = "#dc2626", feedback = "";
+  if (percent >= 90) { grade = 1; color = "#16a34a"; feedback = "Hervorragend! Du bist ein echter Schreib-Profi für sachliche Beschreibungen!"; startConfetti(); }
+  else if (percent >= 75) { grade = 2; color = "#22c55e"; feedback = "Sehr gut! Du kennst den Aufbau, die Merkmale und den Satzbau schon richtig sicher."; startConfetti(); }
+  else if (percent >= 60) { grade = 3; color = "#eab308"; feedback = "Befriedigend. Vieles klappt schon gut – achte noch genau auf das Präsens und die Reihenfolge."; }
+  else if (percent >= 50) { grade = 4; color = "#f97316"; feedback = "Ausreichend. Schau dir die 3 Schritte und Tabellen im Schreib-Profi noch einmal in Ruhe an."; }
+  else if (percent >= 25) { grade = 5; color = "#ef4444"; feedback = "Mangelhaft. Übe die einzelnen Kapitel am besten noch einmal Schritt für Schritt."; }
+  else { grade = 6; color = "#991b1b"; feedback = "Ungenügend. Lies dir zuerst die Erklärungen im Schreib-Profi durch und starte auf Stufe Leicht."; }
+
+  const badge = document.getElementById('grade-badge');
+  badge.textContent = `Note ${grade}`;
+  badge.style.background = color;
+  document.getElementById('result-feedback').textContent = feedback;
+
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2,'0')}.${(now.getMonth()+1).toString().padStart(2,'0')}.`;
+  appData.examHistory.push({
+    date: dateStr,
+    scope: currentExamScopeLabel,
+    level: currentMode === 'topic_exam' ? selectedPracticeDiff : selectedExamDiff,
+    percent: percent,
+    grade: grade
+  });
+  saveData();
+  renderMenu();
+}
+
+// --- NAVIGATION & WHATSAPP ---
+function showView(viewId) {
+  ['view-menu', 'view-heft', 'view-learn', 'view-quiz', 'view-results'].forEach(id => {
+    document.getElementById(id).classList.add('hidden');
+  });
+  document.getElementById(viewId).classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openLearnView() { showView('view-learn'); }
+function closeLearnView() { showView('view-menu'); }
+function backToMenu() {
+  document.getElementById('main-header').classList.remove('hidden');
+  renderMenu();
+  showView('view-menu');
+}
+
+function toggleParent() {
+  const c = document.getElementById('parent-content');
+  const icon = document.getElementById('parent-toggle-icon');
+  c.classList.toggle('hidden');
+  icon.textContent = c.classList.contains('hidden') ? '▼' : '▲';
+}
+
+function openResetModal() { document.getElementById('reset-modal').classList.remove('hidden'); }
+function closeResetModal() { document.getElementById('reset-modal').classList.add('hidden'); }
+function confirmReset() {
+  localStorage.removeItem(getStorageKey());
+  appData = { topics: {}, examHistory: [], writtenEssays: [], customImages: {}, activeExamTopics: TOPICS.map(t => t.id) };
+  loadData();
+  renderMenu();
+  closeResetModal();
+}
+
+function shareProgressViaWhatsApp() {
+  const profile = getProfileName();
+  // CustomImages nicht in die URL packen, damit der Link kurz bleibt
+  const syncData = {
+    topics: appData.topics,
+    examHistory: appData.examHistory,
+    writtenEssays: appData.writtenEssays,
+    activeExamTopics: appData.activeExamTopics
+  };
+  const payload = { profile: profile, appData: syncData };
+  const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+  const shareUrl = window.location.origin + window.location.pathname + "?data=" + encoded;
+
+  let totalTasks = 0, totalCorrect = 0;
+  TOPICS.forEach(t => {
+    totalTasks += appData.topics[t.id]?.total || 0;
+    totalCorrect += appData.topics[t.id]?.correct || 0;
+  });
+  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
+  const today = new Date().toLocaleDateString('de-DE');
+  const essaysCount = (appData.writtenEssays || []).length;
+
+  let msg = `✍️ *Deutsch-Trainer Textbeschreibung – Bericht (${profile})* 🎯\n`;
+  msg += `📅 Datum: ${today}\n\n`;
+  msg += `⭐ *Gesamtübersicht:*\n`;
+  msg += `• Quiz-Aufgaben gelöst: ${totalTasks} (${rate} % richtig) ✅\n`;
+  msg += `• Geschriebene Heft-Aufsätze: ${essaysCount} 📝\n\n`;
+
+  if (appData.examHistory && appData.examHistory.length > 0) {
+    const lastExam = appData.examHistory[appData.examHistory.length - 1];
+    msg += `🏆 *Letzter Test (${lastExam.scope || 'Gemischt'}):*\n`;
+    msg += `• Note ${lastExam.grade} (${lastExam.percent} %) am ${lastExam.date} 🎖️\n\n`;
+  }
+
+  if (essaysCount > 0) {
+    const lastEssay = appData.writtenEssays[essaysCount - 1];
+    msg += `📖 *Letzter Heft-Aufsatz:*\n`;
+    msg += `• ${lastEssay.title} (${lastEssay.date})\n\n`;
+  }
+
+  msg += `🚦 *Kapitel-Ampel:*\n`;
+  TOPICS.forEach(t => {
+    const m = getTopicMastery(t.id);
+    const count = appData.topics[t.id]?.total || 0;
+    const corr = appData.topics[t.id]?.correct || 0;
+    let icon = "⚪";
+    if (m.status === 'stern') icon = "🌟";
+    else if (m.status === 'gruen') icon = "🟢";
+    else if (m.status === 'gelb') icon = "🟡";
+    else if (m.status === 'rot') icon = "🔴";
+    msg += `• ${icon} ${t.short}: ${m.label} (${corr}/${count})\n`;
+  });
+
+  msg += `\n🔗 *Eltern-Dashboard öffnen:*\n${shareUrl}`;
+
+  window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+}
+
+function startConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const colors = ['#0284c7', '#38bdf8', '#16a34a', '#f59e0b', '#7c3aed'];
+  for (let i = 0; i < 90; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 4 + 2,
+      angle: Math.random() * 6.28
+    });
+  }
+
+  let frames = 0;
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.x += Math.sin(p.angle);
+      p.angle += 0.05;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+    });
+    frames++;
+    if (frames < 140) requestAnimationFrame(update);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  update();
+}
+
+// --- INITIALISIERUNG ---
+window.addEventListener("DOMContentLoaded", () => {
+  const profile = getProfileName();
+  const statProfileEl = document.getElementById('stat-profile-name');
+  if (statProfileEl) statProfileEl.textContent = profile;
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("data")) {
+    try {
+      const decoded = decodeURIComponent(atob(params.get("data")));
+      const shared = JSON.parse(decoded);
+      if (shared && shared.appData) {
+        appData = { ...appData, ...shared.appData };
+        const banner = document.getElementById('shared-banner');
+        if (banner) {
+          banner.textContent = `📥 Geteilter Lernbericht geladen: Profil "${shared.profile || 'Unbekannt'}" (Ansichtsmodus)`;
+          banner.classList.remove('hidden');
+        }
+        if (statProfileEl) statProfileEl.textContent = `${shared.profile || profile} (Übermittelt)`;
+        const c = document.getElementById('parent-content');
+        if (c && c.classList.contains('hidden')) toggleParent();
+      }
+    } catch(e) {
+      console.error("Fehler beim Laden der übermittelten Daten", e);
+      loadData();
+    }
+  } else {
+    loadData();
+  }
+
+  renderMenu();
+});
+</script>
+</body>
+</html>
