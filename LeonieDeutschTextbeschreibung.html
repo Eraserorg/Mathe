@@ -1,0 +1,3482 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Deutsch-Trainer: Sachlich beschreiben (Deutschbuch & Arbeitsheft)</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --purple: #7c3aed;
+      --purple-hover: #6d28d9;
+      --teal: #0d9488;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 570px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      font-size: 1.38rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    header p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .homework-card {
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      border: 2px solid #10b981;
+      border-radius: var(--radius);
+      padding: 15px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:active { background: var(--primary-hover); transform: scale(0.98); }
+
+    .btn-learn {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      font-size: 0.96rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+      margin-bottom: 10px;
+    }
+
+    .btn-heft {
+      background: linear-gradient(135deg, var(--purple), var(--purple-hover));
+      color: white;
+      font-size: 0.98rem;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+      margin-bottom: 14px;
+    }
+
+    .btn-exam {
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: white;
+      font-size: 0.98rem;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      font-size: 0.96rem;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+      margin-bottom: 8px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .diff-selector {
+      display: flex;
+      gap: 6px;
+      margin: 8px 0 12px;
+    }
+
+    .diff-btn {
+      flex: 1;
+      padding: 8px 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .diff-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .diff-btn-mini {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .diff-btn-mini.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .topic-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .topic-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .topic-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-mini-practice {
+      flex: 2;
+      padding: 8px 10px;
+      background: #f0f9ff;
+      color: var(--primary);
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+    }
+
+    .btn-mini-test {
+      flex: 1;
+      padding: 8px 10px;
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.83rem;
+      cursor: pointer;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 8px 0 12px;
+      text-align: left;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      background: #ffffff;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .source-tag {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      background: #dbeafe;
+      color: #1e40af;
+      margin-bottom: 6px;
+    }
+
+    .status-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .st-neu { background: #f1f5f9; color: #475569; }
+    .st-rot { background: #fee2e2; color: #991b1b; }
+    .st-gelb { background: #fef3c7; color: #92400e; }
+    .st-gruen { background: #dcfce7; color: #166534; }
+    .st-stern { background: #14532d; color: #fef08a; box-shadow: 0 2px 6px rgba(20,83,45,0.25); }
+
+    .progress-bar {
+      height: 6px;
+      width: 100%;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .task-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .task-display {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 8px 0;
+      text-align: center;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .quote-card {
+      background: #fff;
+      border-left: 4px solid var(--primary);
+      padding: 10px 12px;
+      border-radius: 6px;
+      color: #1e293b;
+      text-align: left;
+      width: 100%;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .choice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      padding: 11px 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.35;
+      transition: all 0.1s;
+    }
+    .choice-btn:active { background: #f1f5f9; }
+    .choice-btn.correct-choice { border-color: var(--success) !important; background: var(--success-bg) !important; color: #14532d !important; }
+    .choice-btn.wrong-choice { border-color: var(--danger) !important; background: var(--danger-bg) !important; color: #7f1d1d !important; }
+
+    .input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      align-items: stretch;
+    }
+
+    .input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 10px;
+      font-size: 1.05rem;
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      outline: none;
+    }
+    .input-row input:focus { border-color: var(--primary); }
+
+    .btn-submit-row {
+      padding: 0 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      display: none;
+      line-height: 1.45;
+    }
+    .feedback-box.correct { background: var(--success-bg); color: #14532d; border: 1px solid #86efac; display: block; }
+    .feedback-box.wrong { background: var(--danger-bg); color: #7f1d1d; border: 1px solid #fca5a5; display: block; }
+
+    .learn-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 10px 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .learn-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .learn-card h2 {
+      font-size: 1.12rem;
+      color: #0369a1;
+      margin-bottom: 8px;
+    }
+
+    .learn-card p {
+      font-size: 0.87rem;
+      line-height: 1.5;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .aha-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 11px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.84rem;
+      color: #166534;
+      line-height: 1.45;
+    }
+
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 0.8rem;
+    }
+    .rule-table th, .rule-table td {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .rule-table th { background: #f1f5f9; font-weight: 700; }
+
+    .nav-pill-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-pill {
+      flex: 0 0 auto;
+      padding: 6px 11px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #0284c7;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-pill.active {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+    }
+
+    .prompt-selector-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-bottom: 14px;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .prompt-item-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.84rem;
+      font-weight: 700;
+      gap: 8px;
+    }
+    .prompt-item-btn.active {
+      border-color: var(--purple);
+      background: #f5f3ff;
+      color: #5b21b6;
+    }
+
+    .illustration-frame {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 8px;
+      margin: 10px 0;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.03);
+      text-align: center;
+    }
+    .illustration-frame canvas, .illustration-frame img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+    .illustration-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      padding: 0 4px;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+    .btn-tiny-link {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.74rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .checklist-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+    .checklist-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+    .checklist-row input {
+      margin-top: 3px;
+      transform: scale(1.15);
+    }
+
+    .photo-preview-wrap {
+      margin: 10px 0;
+      padding: 10px;
+      background: #f0fdf4;
+      border: 1.5px dashed #16a34a;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .photo-preview-wrap img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 8px;
+      margin-top: 6px;
+      border: 1px solid #86efac;
+    }
+
+    .banner {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      text-align: center;
+      font-weight: 700;
+      border: 1px solid #bae6fd;
+      line-height: 1.4;
+    }
+
+    .hidden { display: none !important; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+    .modal-content {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div id="shared-banner" class="banner hidden"></div>
+
+  <!-- ================= 1. HAUPTMENÜ ================= -->
+  <div id="view-menu">
+    <header id="main-header">
+      <h1>✍️ Deutsch-Trainer: Beschreiben</h1>
+      <p>📘 Deutschbuch (S. 30–46) • 📗 Arbeitsheft (S. 15–24) • 📄 Arbeitsblätter</p>
+    </header>
+
+    <!-- DIREKT-EINSTIEG FÜR HEUTE: DEUTSCHBUCH SEITE 33 -->
+    <div class="homework-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <span class="badge" style="background:#059669; color:#fff;">🌟 Aktuelle Aufgabe</span>
+        <span style="font-size:0.76rem; font-weight:800; color:#065f46;">📘 Deutschbuch Seite 33</span>
+      </div>
+      <div style="font-weight:800; font-size:1.05rem; color:#064e3b; margin-bottom:4px;">
+        Ein Kleidungsstück beschreiben: Annas Jacke
+      </div>
+      <p style="font-size:0.82rem; color:#047857; line-height:1.4; margin-bottom:10px;">
+        Übe gezielt die Aufgaben von <strong>Deutschbuch Seite 33</strong> (Annas E-Mail, Jacken-Vergleichstabelle &amp; die andere Jacke mit Adjektiven im Heft beschreiben):
+      </p>
+      <div style="display:flex; gap:8px;">
+        <button class="btn" style="background:#059669; color:white; padding:10px; font-size:0.86rem;" onclick="startPractice('buch_s33')">
+          🎯 Quiz zu S. 33 starten
+        </button>
+        <button class="btn" style="background:#ffffff; color:#065f46; border:1.5px solid #059669; padding:10px; font-size:0.86rem;" onclick="openHeftPromptDirect('g_jacken_s33')">
+          📝 Heft-Aufgabe S. 33
+        </button>
+      </div>
+    </div>
+
+    <button class="btn btn-learn" onclick="openLearnView()">
+      📖 Schreib-Profi &amp; Wissen kompakt (Deutschbuch S. 34–35 &amp; AH S. 15) ➔
+    </button>
+
+    <button class="btn btn-heft" onclick="openHeftView()">
+      📝 Alle Heft-Aufsätze mit Buch-Illustrationen (18 Themen) ➔
+    </button>
+
+    <!-- KLASSENARBEITS-ZENTRALE -->
+    <div class="card" style="background:#fffbeb; border:2px solid #fde68a;">
+      <div style="font-weight:800; font-size:1.05rem; color:#b45309; text-align:center; margin-bottom:4px;">
+        📝 Gemischte Klassenarbeit (Fragen-Test)
+      </div>
+      <div style="font-size:0.77rem; color:#92400e; text-align:center; margin-bottom:6px;">
+        Hake an, welche Themen aus Deutschbuch &amp; Arbeitsheft drankommen sollen:
+      </div>
+
+      <div class="check-grid" id="exam-topic-checks"></div>
+
+      <div style="font-size:0.77rem; color:#92400e; text-align:center;">
+        Schwierigkeit &amp; Umfang:
+      </div>
+      <div class="diff-selector">
+        <button class="diff-btn active" id="btn-exam-leicht" onclick="setExamDiff('leicht')">Leicht (10)</button>
+        <button class="diff-btn" id="btn-exam-mittel" onclick="setExamDiff('mittel')">Mittel (15)</button>
+        <button class="diff-btn" id="btn-exam-schwer" onclick="setExamDiff('schwer')">Schwer (20)</button>
+      </div>
+      <button class="btn btn-exam" onclick="startMixedExam()">Gemischte Klassenarbeit starten ➔</button>
+    </div>
+
+    <!-- EINZELNE KAPITEL -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="font-size:0.94rem; font-weight:800;">🎯 Themenbereiche (Deutschbuch &amp; Arbeitsheft)</span>
+        <span style="font-size:0.74rem; color:var(--text-muted);">Stufe:</span>
+      </div>
+      <div class="diff-selector">
+        <button class="diff-btn active" id="btn-p-leicht" onclick="setPracticeDiff('leicht')">Leicht (Klick)</button>
+        <button class="diff-btn" id="btn-p-mittel" onclick="setPracticeDiff('mittel')">Mittel</button>
+        <button class="diff-btn" id="btn-p-schwer" onclick="setPracticeDiff('schwer')">Schwer (Mix/Tippen)</button>
+      </div>
+
+      <div id="topic-list" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- ELTERN-ÜBERSICHT GANZ UNTEN -->
+    <div class="card" style="background:#f8fafc;">
+      <div style="display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="toggleParent()">
+        <span style="font-size:0.95rem; font-weight:800;">👨‍👧 Eltern-Übersicht &amp; Trainingsstand</span>
+        <span id="parent-toggle-icon">▼</span>
+      </div>
+
+      <div id="parent-content" class="hidden" style="margin-top:14px; border-top:1px solid var(--border); padding-top:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:0.85rem; color:var(--text-muted);">
+          <span>Aktives Profil (Dateiname):</span>
+          <strong id="stat-profile-name" style="color:var(--text); font-size:0.9rem;">-</strong>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px;">
+          <div style="background:#fff; padding:9px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.3rem; font-weight:900; color:var(--primary);" id="stat-total-tasks">0</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Quiz-Aufgaben</div>
+          </div>
+          <div style="background:#fff; padding:9px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.3rem; font-weight:900; color:var(--success);" id="stat-total-rate">0%</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Trefferquote</div>
+          </div>
+          <div style="background:#fff; padding:9px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.3rem; font-weight:900; color:var(--purple);" id="stat-total-essays">0</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Heft-Aufsätze</div>
+          </div>
+        </div>
+
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:6px;">Geschriebene Tests &amp; Heft-Aufsätze:</div>
+        <div id="exam-history-list" style="max-height:150px; overflow-y:auto; font-size:0.8rem; margin-bottom:14px;">
+          <div style="color:var(--text-muted); font-style:italic;">Noch keine Einträge vorhanden.</div>
+        </div>
+
+        <button class="btn btn-whatsapp" onclick="shareProgressViaWhatsApp()">
+          📲 Ergebnisse an Eltern übermitteln
+        </button>
+
+        <button class="btn btn-outline" style="border-color:#ef4444; color:#dc2626; padding:8px; margin-bottom:8px;" onclick="openResetModal()">
+          ⚠ Fortschritt komplett auf Null setzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. HEFT-AUFGABEN MIT BUCH-ILLUSTRATIONEN ================= -->
+  <div id="view-heft" class="hidden">
+    <div class="learn-header">
+      <button class="btn btn-outline" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="closeHeftView()">
+        ← Zurück zum Menü
+      </button>
+      <span style="font-weight:800; font-size:0.95rem; color:var(--purple);">📝 Heft-Aufsatz schreiben</span>
+    </div>
+
+    <div class="card">
+      <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
+        1. NACH QUELLE ODER THEMA FILTERN:
+      </div>
+      <div class="nav-pill-row" style="margin-bottom:10px;">
+        <button class="nav-pill active" id="heft-cat-all" onclick="filterHeftPrompts('all')">Alle (18)</button>
+        <button class="nav-pill" id="heft-cat-buch" onclick="filterHeftPrompts('buch')">📘 Deutschbuch (S. 32–46)</button>
+        <button class="nav-pill" id="heft-cat-arbeitsheft" onclick="filterHeftPrompts('arbeitsheft')">📗 Arbeitsheft &amp; AB</button>
+        <button class="nav-pill" id="heft-cat-gegenstand" onclick="filterHeftPrompts('gegenstand')">🎒 Gegenstände</button>
+        <button class="nav-pill" id="heft-cat-weg" onclick="filterHeftPrompts('weg')">🗺️ Wege</button>
+        <button class="nav-pill" id="heft-cat-raum" onclick="filterHeftPrompts('raum')">🏫 Räume</button>
+      </div>
+
+      <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); margin-bottom:6px;">
+        2. AUFGABE AUSWÄHLEN:
+      </div>
+      <div id="heft-prompt-list" class="prompt-selector-grid"></div>
+    </div>
+
+    <!-- AKTIVE SCHREIBAUFGABE -->
+    <div class="card" id="heft-active-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span id="heft-badge" class="badge" style="background:#ede9fe; color:#5b21b6;">Gegenstandsbeschreibung</span>
+        <span id="heft-origin" style="font-size:0.76rem; font-weight:800; color:#0369a1;">📘 Deutschbuch S. 33</span>
+      </div>
+
+      <h2 id="heft-title" style="font-size:1.18rem; color:#1e293b; margin-bottom:6px;">Titel der Aufgabe</h2>
+      <p id="heft-task-desc" style="font-size:0.88rem; color:#334155; line-height:1.45; margin-bottom:10px;"></p>
+
+      <!-- Buch-Illustration -->
+      <div class="illustration-frame">
+        <canvas id="heft-canvas" width="760" height="440"></canvas>
+        <img id="heft-custom-img" class="hidden" src="" alt="Aufgabenbild">
+        <div class="illustration-toolbar">
+          <span id="illus-caption">🎨 Detailgetreue Buch-Illustration</span>
+          <div>
+            <input type="file" id="custom-illus-input" accept="image/*" class="hidden" onchange="handleCustomIllusUpload(event)">
+            <button class="btn-tiny-link" onclick="document.getElementById('custom-illus-input').click()">🖼️ Eigenes Buchfoto wählen</button>
+            <button id="btn-reset-illus" class="btn-tiny-link hidden" style="margin-left:8px; color:#dc2626;" onclick="resetCustomIllus()">✕ Standardbild</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stichpunkte & Tabelle -->
+      <details open style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:10px; padding:12px; margin:12px 0;">
+        <summary style="font-weight:800; font-size:0.86rem; color:#0369a1; cursor:pointer;">
+          📋 Stichpunkte, Tabelle &amp; Wortsammlung für dein Heft
+        </summary>
+        <div id="heft-facts" style="font-size:0.83rem; line-height:1.5; color:#1e293b; margin-top:8px;"></div>
+      </details>
+
+      <!-- Checkliste -->
+      <div class="checklist-box">
+        <div style="font-weight:800; font-size:0.86rem; color:#1e293b; margin-bottom:6px;">
+          ✅ Schreib-Profi Checkliste (Deutschbuch S. 34 / AH S. 15):
+        </div>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>1. Einleitung &amp; Überblick:</strong> Worum geht es? (Name/Funktion, Start/Ziel oder Gesamteindruck des Raumes).</span>
+        </label>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>2. Sinnvolle Reihenfolge:</strong> Vom Allgemeinen (Groben) zu den einzelnen Teilen / in der genauen Geh-Reihenfolge.</span>
+        </label>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>3. Sachlich &amp; im Präsens:</strong> Keine eigenen Meinungen/Bewertungen und alle Verben in der Gegenwart!</span>
+        </label>
+        <label class="checklist-row">
+          <input type="checkbox" class="heft-check">
+          <span><strong>4. Treffende Adjektive &amp; Satzanfänge:</strong> Genaue Eigenschaftswörter und abwechslungsreiche Satzanfänge genutzt.</span>
+        </label>
+      </div>
+
+      <!-- FOTO AUFNEHMEN & PER WHATSAPP SENDEN -->
+      <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:12px; padding:14px; margin-top:14px;">
+        <div style="font-weight:800; font-size:0.94rem; color:#0f172a; margin-bottom:4px; text-align:center;">
+          📸 Aufsatz im Heft fertig geschrieben?
+        </div>
+        <div style="font-size:0.79rem; color:var(--text-muted); text-align:center; margin-bottom:12px;">
+          Fotografiere deine Heftseite und schicke sie per WhatsApp an deine Eltern:
+        </div>
+
+        <input type="file" id="camera-input" accept="image/*" capture="environment" class="hidden" onchange="handleCameraPhoto(event)">
+
+        <button class="btn btn-primary" style="background:var(--purple); margin-bottom:8px;" onclick="triggerCamera()">
+          📷 1. Foto vom Heft mit Kamera aufnehmen
+        </button>
+
+        <div id="photo-preview-container" class="photo-preview-wrap hidden">
+          <div style="font-size:0.82rem; font-weight:800; color:#166534;">✅ Foto aufgenommen! Jetzt absenden:</div>
+          <img id="photo-preview-img" src="" alt="Heft-Foto Vorschau">
+          <button class="btn btn-whatsapp" style="margin-top:10px;" onclick="sharePhotoViaWebShare()">
+            📲 2. Dieses Foto jetzt per WhatsApp senden
+          </button>
+        </div>
+
+        <button class="btn btn-whatsapp" onclick="openWhatsAppForHeftPhoto()">
+          💬 Direkt WhatsApp öffnen (Foto im Chat knipsen)
+        </button>
+      </div>
+
+      <!-- Musterlösung -->
+      <details style="margin-top:14px; border:1px solid var(--border); border-radius:10px; padding:10px; background:#fff;">
+        <summary style="font-size:0.84rem; font-weight:800; color:#0369a1; cursor:pointer;">
+          💡 Muster-Lösung zum Vergleich anzeigen (erst nach dem Schreiben öffnen!)
+        </summary>
+        <div id="heft-sample-text" style="margin-top:10px; font-size:0.85rem; line-height:1.55; color:#1e293b; border-top:1px solid #e2e8f0; padding-top:8px;"></div>
+      </details>
+    </div>
+  </div>
+
+  <!-- ================= 3. DER SCHREIB-PROFI (ERKLÄRUNGEN BUCH S. 34-35 & AH S. 15) ================= -->
+  <div id="view-learn" class="hidden">
+    <div class="learn-header">
+      <button class="btn btn-outline" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="closeLearnView()">
+        ← Zurück zum Menü
+      </button>
+      <span style="font-weight:800; font-size:0.92rem; color:#0369a1;">📖 Wissen kompakt (Buch S. 34–35)</span>
+    </div>
+
+    <div class="nav-pill-row">
+      <a href="#l-profi" class="nav-pill">Schreib-Profi</a>
+      <a href="#l-gegenstand" class="nav-pill">Gegenstände</a>
+      <a href="#l-weg" class="nav-pill">Wege</a>
+      <a href="#l-raum" class="nav-pill">Räume &amp; Satzbau</a>
+    </div>
+
+    <div id="l-profi" class="learn-card">
+      <h2>🧭 Mit dem Schreib-Profi schreiben (Deutschbuch S. 34 &amp; AH S. 15)</h2>
+      <p>Der Schreib-Profi hilft dir beim Planen, Schreiben und Überarbeiten deiner Beschreibung:</p>
+      <table class="rule-table">
+        <tr><th>Schritt</th><th>Was mache ich?</th><th>Wichtige Leitfragen</th></tr>
+        <tr>
+          <td><strong>Schritt 1:<br>Vor dem Schreiben</strong></td>
+          <td>Text planen &amp; Notizen machen (Stichworte, Tabelle oder Gliederung).</td>
+          <td>• Für wen schreibe ich?<br>• Was will ich erreichen?<br>• Welche Wörter brauche ich?</td>
+        </tr>
+        <tr>
+          <td><strong>Schritt 2:<br>Beim Schreiben</strong></td>
+          <td>Den Text formulieren (mit Notizen, Checkliste und Wörterbuch).</td>
+          <td>• Was muss der Text enthalten?<br>• Was darf er <em>nicht</em> enthalten?<br>• Wie baue ich ihn sinnvoll auf?</td>
+        </tr>
+        <tr>
+          <td><strong>Schritt 3:<br>Nach dem Schreiben</strong></td>
+          <td>Text mit der Checkliste prüfen, Feedback holen &amp; überarbeiten.</td>
+          <td>• Erfüllt der Text seinen Zweck?<br>• Können andere ihn gut verstehen?<br>• Sind alle Wörter richtig geschrieben?</td>
+        </tr>
+      </table>
+
+      <div class="aha-box">
+        <strong>Merksatz zur sachlichen Beschreibung (Deutschbuch S. 34 &amp; S. 45 Nr. 3):</strong><br>
+        • Eine sachliche Beschreibung ist <strong>genau</strong> und <strong>verständlich</strong>.<br>
+        • Sie enthält <strong>wichtige Informationen</strong> und <strong>Einzelheiten</strong>.<br>
+        • Sie enthält <strong>keine überflüssigen Informationen</strong>, <strong>keine Bewertung</strong> und <strong>keine eigene Meinung</strong>.<br>
+        • Alle Verben stehen im <strong>Präsens (Gegenwart)</strong>!
+      </div>
+    </div>
+
+    <div id="l-gegenstand" class="learn-card">
+      <h2>🎒 Die Gegenstandsbeschreibung (Deutschbuch S. 35, 33, 38, 44 &amp; AH S. 16)</h2>
+      <p>Du beschreibst die Merkmale eines Gegenstandes, alle Einzelteile und ihre genaue Position:</p>
+      <table class="rule-table">
+        <tr><th>Merkmal</th><th>Beispiele für treffende Wörter (Deutschbuch S. 35 &amp; 45)</th></tr>
+        <tr><td><strong>Form</strong></td><td>oval, eckig, quadratisch, rechteckig, rund, spitz, länglich, schmal</td></tr>
+        <tr><td><strong>Farbe</strong></td><td>silbern, dunkelblau, hellblau, hellrot, dunkelrot, rosa, violett, bunt, einfarbig, zweifarbig</td></tr>
+        <tr><td><strong>Größe</strong></td><td>groß, klein, winzig, handbreit, faustgroß, 50 cm lang, 30 cm hoch</td></tr>
+        <tr><td><strong>Muster</strong></td><td>gestreift, kariert, gepunktet, schraffiert, mit weißen Blättern, mit Buntstiften</td></tr>
+        <tr><td><strong>Material</strong></td><td>aus Stoff, aus Glas, aus Metall, aus Leder, aus Kunststoff / Plastik, aus Holz</td></tr>
+        <tr><td><strong>Position</strong></td><td>am linken Rand, am Oberarm, oben, unten, über dem Schriftzug, an den Seitenteilen</td></tr>
+      </table>
+    </div>
+
+    <div id="l-weg" class="learn-card">
+      <h2>🗺️ Die Wegbeschreibung (Deutschbuch S. 35, 40–43, 46 &amp; AH S. 19)</h2>
+      <p>Du beschreibst genau in der Reihenfolge, in der man geht, nennst die Richtung und auffällige <strong>Wegmarken</strong> (z. B. <em>blaue Tür mit großer Palme, Kiosk, Sekretariat, Treppe, Bäume, Dom, Rathaus</em>).</p>
+      <table class="rule-table">
+        <tr><th>Am Anfang</th><th>In der Mitte (Reihenfolge)</th><th>Am Ende</th></tr>
+        <tr>
+          <td>• Zuerst ...<br>• Erst ...<br>• Als Erstes ...<br>• Zunächst ...</td>
+          <td>• Danach ...<br>• Dann ...<br>• Anschließend ...<br>• Im Anschluss ...<br>• Daraufhin ...<br>• Nun / Jetzt ...</td>
+          <td>• Schließlich ...<br>• Zum Schluss ...<br>• Zuletzt ...<br>• Am Ende ...</td>
+        </tr>
+      </table>
+      <p style="margin-top:6px;"><strong>Wichtige Richtungsverben (S. 40–41):</strong> <em>Du läufst auf ... zu • Du biegst hinter ... nach rechts/links ab • Du gehst am ... geradeaus weiter • Du wendest dich an ... nach links • Du steigst die Treppe hinauf/hinunter • Du überquerst den Schulhof.</em></p>
+    </div>
+
+    <div id="l-raum" class="learn-card">
+      <h2>🏫 Die Raumbeschreibung &amp; Satzbau (Deutschbuch S. 32 &amp; AH S. 22–24)</h2>
+      <p>Bei einem Raum (z. B. <em>Der neue Klassenraum der 5a</em> auf S. 32 oder das <em>Schildkrötenterrarium</em> im AH S. 22) gibst du zuerst einen Gesamteindruck und beschreibst dann von einem festen Punkt aus geordnet, wo sich was befindet.</p>
+      <div class="aha-box" style="background:#fef3c7; border-color:#d97706; color:#92400e;">
+        <strong>💡 Pauls Satzbau-Trick (AH S. 23) &amp; genaue Ortsangaben (Buch S. 32):</strong><br>
+        • Vermeide ungenaue Angaben wie <em>„Die Tische stehen wie in meiner alten Schule“</em> oder <em>„Die Garderobe ist da an der Wand“</em> (Herr Berg weiß sonst nicht, wo genau!).<br>
+        • Wechsle am Satzanfang zwischen Ortsangabe und Gegenstand ab – das <strong>Verb bleibt immer an 2. Stelle</strong>:<br>
+        1. <em>„<strong>Gegenüber der Tafel</strong> <u>steht</u> der große Schrank.“</em><br>
+        2. <em>„<strong>Das kleine Regal</strong> <u>befindet sich</u> direkt rechts neben dem Schrank.“</em>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" style="margin-bottom:24px;" onclick="closeLearnView()">
+      Alles klar! Zurück zum Menü ➔
+    </button>
+  </div>
+
+  <!-- ================= 4. AUFGABEN-ANSICHT (QUIZ & TESTS) ================= -->
+  <div id="view-quiz" class="card hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span id="quiz-badge" class="badge" style="background:#e0f2fe; color:#0369a1;">Thema</span>
+      
+      <div id="quiz-diff-box" style="display:flex; gap:3px;">
+        <button class="diff-btn-mini active" id="quiz-btn-leicht" onclick="changeQuizDiff('leicht')">L</button>
+        <button class="diff-btn-mini" id="quiz-btn-mittel" onclick="changeQuizDiff('mittel')">M</button>
+        <button class="diff-btn-mini" id="quiz-btn-schwer" onclick="changeQuizDiff('schwer')">S</button>
+      </div>
+
+      <span id="quiz-counter" style="font-weight:700; font-size:0.84rem; color:var(--text-muted);">Aufgabe 1/10</span>
+    </div>
+
+    <div id="progress-container" class="progress-bar">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+
+    <div><span id="task-source-tag" class="source-tag">📘 Deutschbuch S. 33</span></div>
+    <div id="task-question" class="task-title">Aufgabenstellung</div>
+    <div id="task-visual" class="task-display"></div>
+
+    <div style="text-align:right; margin-bottom:4px;">
+      <button onclick="toggleInTaskHelp()" style="background:none; border:none; color:#0284c7; font-size:0.76rem; font-weight:700; cursor:pointer;">
+        💡 Schreib-Profi Tipp einblenden
+      </button>
+    </div>
+    <div id="intask-help-box" class="aha-box hidden" style="margin:4px 0 10px 0; font-size:0.82rem;"></div>
+
+    <div id="choice-input-area" class="choice-list hidden"></div>
+
+    <div id="text-input-area" class="input-row hidden">
+      <input type="text" id="answer-input" placeholder="Antwort eintippen..." autocomplete="off" autocapitalize="off" autocorrect="off">
+      <button id="btn-submit" class="btn-submit-row" onclick="checkTextAnswer()">Prüfen ✓</button>
+    </div>
+
+    <div id="feedback-box" class="feedback-box"></div>
+
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button id="btn-next" class="btn btn-primary hidden" onclick="nextTask()">Nächste Aufgabe ➔</button>
+      <button id="btn-quit" class="btn btn-outline" style="margin:0;" onclick="backToMenu()">Beenden</button>
+    </div>
+  </div>
+
+  <!-- ================= 5. ERGEBNIS-ANSICHT ================= -->
+  <div id="view-results" class="card hidden" style="text-align:center;">
+    <h2 style="font-size:1.35rem; font-weight:800;" id="result-title">Klassenarbeit beendet!</h2>
+    <p style="color:var(--text-muted); margin-top:4px;">Ergebnis deiner Deutsch-Überprüfung:</p>
+
+    <div id="grade-badge" style="display:inline-block; padding:8px 22px; border-radius:30px; font-size:1.5rem; font-weight:900; color:#fff; margin:14px auto;">
+      Note 1
+    </div>
+
+    <div style="font-size:1.2rem; font-weight:800;" id="result-score">10 von 10 richtig</div>
+    <p id="result-percent" style="color:var(--text-muted); font-weight:600; margin-bottom:12px;">100% erreicht</p>
+    <p id="result-feedback" style="font-size:0.9rem; margin-bottom:16px; line-height:1.4;"></p>
+
+    <button class="btn btn-exam" onclick="repeatLastExam()">Diesen Test wiederholen</button>
+    <button class="btn btn-outline" onclick="backToMenu()">Zurück zum Hauptmenü</button>
+  </div>
+
+  <!-- ================= 6. RESET MODAL ================= -->
+  <div id="reset-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <h3 style="color:#dc2626; margin-bottom:8px;">⚠️ Fortschritt löschen?</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4; margin-bottom:16px;">
+        Möchtest du wirklich alle gespeicherten Aufgaben, Noten und Meisterschafts-Ampeln für dieses Profil auf Null zurücksetzen?
+      </p>
+      <div style="display:flex; gap:8px;">
+        <button class="btn" style="background:#fee2e2; color:#dc2626;" onclick="confirmReset()">Ja, alles löschen</button>
+        <button class="btn btn-outline" style="margin:0;" onclick="closeResetModal()">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
+
+<script>
+// --- AUDIO-FEEDBACK ---
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playTone(success) {
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  if (success) {
+    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.14);
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.22);
+  } else {
+    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.25);
+  }
+}
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+// --- KAPITEL-STRUKTUR MIT KLARER UNTERSCHEIDUNG DEUTSCHBUCH vs. ARBEITSHEFT ---
+const TOPICS = [
+  { id: 'buch_s33',   name: '🌟 1. Fokus heute: Annas Jacke (Kleidungsstück)', short: 'Buch S. 33 (Jacke)', info: '📘 Deutschbuch S. 33' },
+  { id: 'gegenstand', name: '2. Gegenstände beschreiben (Schließfach, Uhr, Tasche)', short: 'Gegenstände', info: '📘 Deutschbuch S. 31, 35, 38, 44–45 • 📗 Arbeitsheft S. 16–18 • 📄 AB 1–2' },
+  { id: 'weg',        name: '3. Wege beschreiben (Schulwege, Fundbüro & Köln)', short: 'Wege', info: '📘 Deutschbuch S. 30, 35–37, 40–43, 46 • 📗 Arbeitsheft S. 19–21' },
+  { id: 'raum',       name: '4. Räume beschreiben (Klassenraum 5a & Terrarium)', short: 'Räume', info: '📘 Deutschbuch S. 32, 34 • 📗 Arbeitsheft S. 22–24' },
+  { id: 'grundlagen', name: '5. Schreib-Profi, Satzbau & Text-Detektiv', short: 'Schreib-Profi & Stil', info: '📘 Deutschbuch S. 34–35, 45 • 📗 Arbeitsheft S. 15, 23' }
+];
+
+// ============================================================================
+// BUCH-ILLUSTRATIONS-ENGINE (INKL. DEUTSCHBUCH S. 32, 33, 36, 38, 44, 46)
+// ============================================================================
+function rr(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawCompass(ctx, x, y) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.fillStyle = "rgba(255,255,255,0.92)";
+  ctx.strokeStyle = "#475569";
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(0, 0, 26, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#dc2626";
+  ctx.beginPath(); ctx.moveTo(0, -18); ctx.lineTo(6, 0); ctx.lineTo(-6, 0); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#64748b";
+  ctx.beginPath(); ctx.moveTo(0, 18); ctx.lineTo(6, 0); ctx.lineTo(-6, 0); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = "#0f172a";
+  ctx.font = "bold 10px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("N", 0, -19);
+  ctx.fillText("S", 0, 25);
+  ctx.fillText("O", 21, 4);
+  ctx.fillText("W", -21, 4);
+  ctx.restore();
+}
+
+function drawTree(ctx, x, y, scale = 1) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.fillStyle = "#78350f";
+  ctx.fillRect(-3, 2, 6, 12);
+  const g = ctx.createRadialGradient(-4, -6, 2, 0, -4, 16);
+  g.addColorStop(0, "#4ade80");
+  g.addColorStop(1, "#15803d");
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(0, -6, 13, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(-9, -1, 9, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath(); ctx.arc(9, -1, 9, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+
+function renderBookIllustration(promptId) {
+  const canvas = document.getElementById('heft-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, "#f8fafc");
+  bg.addColorStop(1, "#e2e8f0");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  if (promptId === 'g_jacken_s33') {
+    // --- DEUTSCHBUCH S. 33: DIE ZWEI VERGESSENEN JACKEN AN DER GARDEROBE DER 5a ---
+    // Holzleiste der Garderobe oben mit silbernen Haken
+    ctx.fillStyle = "#a16207";
+    ctx.strokeStyle = "#713f12";
+    ctx.lineWidth = 3;
+    rr(ctx, 40, 22, 680, 32, 8); ctx.fill(); ctx.stroke();
+    [200, 560].forEach(hx => {
+      ctx.strokeStyle = "#94a3b8";
+      ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.moveTo(hx, 38); ctx.lineTo(hx, 68); ctx.arc(hx, 74, 8, -Math.PI/2, Math.PI/2); ctx.stroke();
+    });
+
+    // --- JACKE 1 (LINKS): ANNAS DUNKELBLAUE JACKE ---
+    ctx.save();
+    ctx.translate(200, 75);
+    // Kapuze dunkelblau
+    ctx.fillStyle = "#1e3a8a";
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(0, 24, 52, Math.PI * 0.95, Math.PI * 0.05, false);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#172554";
+    ctx.beginPath(); ctx.arc(0, 24, 34, Math.PI, 0, false); ctx.fill();
+
+    // Linker & rechter Ärmel dunkelblau
+    ctx.fillStyle = "#1e3a8a";
+    ctx.beginPath();
+    ctx.moveTo(-68, 45); ctx.lineTo(-145, 195); ctx.lineTo(-105, 212); ctx.lineTo(-65, 115);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(68, 45); ctx.lineTo(145, 195); ctx.lineTo(105, 212); ctx.lineTo(65, 115);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+
+    // Gelbe Stickerei am linken Oberarm (Stern/Wappen)
+    ctx.fillStyle = "#facc15";
+    ctx.strokeStyle = "#ca8a04";
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(-98, 108, 15, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#854d0e";
+    ctx.font = "bold 14px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("★", -98, 113);
+
+    // Hauptkörper dunkelblau
+    const j1Grad = ctx.createLinearGradient(-72, 40, 72, 295);
+    j1Grad.addColorStop(0, "#1e40af");
+    j1Grad.addColorStop(1, "#172554");
+    ctx.fillStyle = j1Grad;
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 3;
+    rr(ctx, -72, 42, 144, 250, 14); ctx.fill(); ctx.stroke();
+
+    // Knopfleiste in der Mitte mit 5 großen runden Knöpfen
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(0, 42); ctx.lineTo(0, 292); ctx.stroke();
+    for (let ky = 75; ky <= 255; ky += 45) {
+      ctx.fillStyle = "#e2e8f0";
+      ctx.strokeStyle = "#334155";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(12, ky, 8.5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#475569";
+      ctx.beginPath(); ctx.arc(10, ky - 2, 1.5, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(14, ky + 2, 1.5, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Große Brusttasche mit Reißverschluss (auf der linken Brustseite)
+    ctx.fillStyle = "#1d4ed8";
+    ctx.strokeStyle = "#93c5fd";
+    ctx.lineWidth = 2;
+    rr(ctx, -58, 92, 46, 52, 6); ctx.fill(); ctx.stroke();
+    // Reißverschluss oben an der Brusttasche
+    ctx.strokeStyle = "#fde047";
+    ctx.lineWidth = 3.5;
+    ctx.beginPath(); ctx.moveTo(-54, 98); ctx.lineTo(-16, 98); ctx.stroke();
+
+    // Zwei seitliche Eingrifftaschen unten
+    ctx.strokeStyle = "#93c5fd";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(-58, 195); ctx.lineTo(-22, 210); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(58, 195); ctx.lineTo(22, 210); ctx.stroke();
+
+    // Kordel unten am Saum mit Stoppern aus Plastik
+    ctx.strokeStyle = "#cbd5e1";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(-30, 285); ctx.quadraticCurveTo(-35, 315, -22, 325); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(30, 285); ctx.quadraticCurveTo(35, 315, 22, 325); ctx.stroke();
+    // Rote Plastikstopper an den Kordeln
+    ctx.fillStyle = "#ef4444";
+    rr(ctx, -35, 302, 12, 14, 3); ctx.fill();
+    rr(ctx, 23, 302, 12, 14, 3); ctx.fill();
+
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 15px sans-serif";
+    ctx.fillText("Jacke A (links)", 0, 345);
+    ctx.restore();
+
+    // --- JACKE 2 (RECHTS): DIE ANDERE JACKE (ZUM BESCHREIBEN IN AUFGABE 2!) ---
+    ctx.save();
+    ctx.translate(560, 75);
+    // Hoher Stehkragen (KEINE Kapuze!) in Dunkelgrün
+    ctx.fillStyle = "#14532d";
+    ctx.strokeStyle = "#052e16";
+    ctx.lineWidth = 3;
+    rr(ctx, -42, 15, 84, 32, 8); ctx.fill(); ctx.stroke();
+
+    // Ärmel (hellgrün mit weißen Bündchen am Ende)
+    ctx.fillStyle = "#22c55e";
+    ctx.beginPath();
+    ctx.moveTo(-68, 45); ctx.lineTo(-145, 195); ctx.lineTo(-105, 212); ctx.lineTo(-65, 115);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(68, 45); ctx.lineTo(145, 195); ctx.lineTo(105, 212); ctx.lineTo(65, 115);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    // Gestreifte Bündchen an den Ärmelenden
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath(); ctx.moveTo(-145, 195); ctx.lineTo(-105, 212); ctx.lineTo(-100, 198); ctx.lineTo(-138, 182); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(145, 195); ctx.lineTo(105, 212); ctx.lineTo(100, 198); ctx.lineTo(138, 182); ctx.closePath(); ctx.fill();
+
+    // Hauptkörper (leuchtend grün mit durchgehendem weißem Reißverschluss statt Knöpfen)
+    const j2Grad = ctx.createLinearGradient(-72, 42, 72, 290);
+    j2Grad.addColorStop(0, "#4ade80");
+    j2Grad.addColorStop(1, "#16a34a");
+    ctx.fillStyle = j2Grad;
+    rr(ctx, -72, 42, 144, 245, 14); ctx.fill(); ctx.stroke();
+
+    // Weiß-dunkelgrünes elastisches Bündchen unten am Saum (keine Kordel)
+    ctx.fillStyle = "#14532d";
+    rr(ctx, -72, 268, 144, 20, 6); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(-70, 278); ctx.lineTo(70, 278); ctx.stroke();
+
+    // Durchgehender weißer Front-Reißverschluss in der Mitte (keine Knöpfe)
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.moveTo(0, 18); ctx.lineTo(0, 286); ctx.stroke();
+
+    // Zwei aufgesetzte Bauchtaschen unten mit Druckknopf (keine Brusttasche)
+    ctx.fillStyle = "#15803d";
+    ctx.strokeStyle = "#052e16";
+    ctx.lineWidth = 2;
+    rr(ctx, -58, 185, 44, 58, 6); ctx.fill(); ctx.stroke();
+    rr(ctx, 14, 185, 44, 58, 6); ctx.fill(); ctx.stroke();
+    // Silberne Druckknöpfe auf den beiden Taschenklappen
+    ctx.fillStyle = "#e2e8f0";
+    ctx.beginPath(); ctx.arc(-36, 198, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(36, 198, 5, 0, Math.PI * 2); ctx.fill();
+
+    // Kleines rundes weißes Pfoten-Abzeichen auf der rechten Brustseite
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#14532d";
+    ctx.beginPath(); ctx.arc(36, 98, 14, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#14532d";
+    ctx.beginPath(); ctx.arc(36, 101, 5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(30, 93, 2.5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(36, 91, 2.5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(42, 93, 2.5, 0, Math.PI * 2); ctx.fill();
+
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 15px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Jacke B (rechts – „andere Jacke“)", 0, 345);
+    ctx.restore();
+  }
+
+  else if (promptId === 'g_uhr_naomi_s44') {
+    // --- DEUTSCHBUCH S. 44–45: NAOMIS VERLORENE BUNTSTIFT-ARMBANDUHR ---
+    // Bunt gestreiftes Stoffarmband (hellblau, dunkelblau, rosa, violett)
+    const stripeCols = ["#38bdf8", "#1d4ed8", "#f472b6", "#8b5cf6", "#fde047"];
+    ctx.save();
+    rr(ctx, 305, 25, 150, 390, 22);
+    ctx.clip();
+    for (let y = 20; y < 420; y += 22) {
+      ctx.fillStyle = stripeCols[Math.floor(y / 22) % stripeCols.length];
+      ctx.fillRect(300, y, 160, 22);
+    }
+    ctx.restore();
+    ctx.strokeStyle = "#1e293b";
+    ctx.lineWidth = 3;
+    rr(ctx, 305, 25, 150, 390, 22); ctx.stroke();
+
+    // Silberne Schnalle oben
+    ctx.strokeStyle = "#94a3b8";
+    ctx.lineWidth = 6;
+    rr(ctx, 300, 18, 160, 30, 8); ctx.stroke();
+
+    // Verstell-Löcher unten im Stoffband
+    ctx.fillStyle = "#1e293b";
+    for (let ly = 325; ly <= 390; ly += 16) {
+      ctx.beginPath(); ctx.arc(380, ly, 4.5, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Die Krone (kleiner Drehknopf rechts am Gehäuserand)
+    ctx.fillStyle = "#facc15";
+    ctx.strokeStyle = "#a16207";
+    ctx.lineWidth = 2.5;
+    rr(ctx, 482, 202, 20, 36, 5); ctx.fill(); ctx.stroke();
+
+    // Rundes blaues Uhrengehäuse
+    ctx.fillStyle = "#1d4ed8";
+    ctx.strokeStyle = "#1e3a8a";
+    ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.arc(380, 220, 108, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // Großes rundes weißes Ziffernblatt
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath(); ctx.arc(380, 220, 92, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+    // Zahlen 1 bis 12 in bunten Farben auf dem Ziffernblatt
+    ctx.font = "900 18px sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    for (let n = 1; n <= 12; n++) {
+      const ang = (n * 30 - 90) * Math.PI / 180;
+      const nx = 380 + Math.cos(ang) * 74;
+      const ny = 220 + Math.sin(ang) * 74;
+      ctx.fillStyle = stripeCols[n % stripeCols.length];
+      ctx.fillText(n.toString(), nx, ny);
+    }
+
+    // 1. Stundenzeiger: kurzer, breiter angespitzt-roter Buntstift!
+    ctx.save();
+    ctx.translate(380, 220);
+    ctx.rotate(-0.6);
+    ctx.fillStyle = "#ef4444";
+    ctx.fillRect(-7, -45, 14, 45);
+    ctx.fillStyle = "#fde68a";
+    ctx.beginPath(); ctx.moveTo(-7, -45); ctx.lineTo(0, -60); ctx.lineTo(7, -45); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#ef4444";
+    ctx.beginPath(); ctx.moveTo(-3, -53); ctx.lineTo(0, -60); ctx.lineTo(3, -53); ctx.closePath(); ctx.fill();
+    ctx.restore();
+
+    // 2. Minutenzeiger: langer, angespitzt-grüner Buntstift!
+    ctx.save();
+    ctx.translate(380, 220);
+    ctx.rotate(1.1);
+    ctx.fillStyle = "#22c55e";
+    ctx.fillRect(-6, -64, 12, 64);
+    ctx.fillStyle = "#fde68a";
+    ctx.beginPath(); ctx.moveTo(-6, -64); ctx.lineTo(0, -80); ctx.lineTo(6, -64); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#16a34a";
+    ctx.beginPath(); ctx.moveTo(-2.5, -73); ctx.lineTo(0, -80); ctx.lineTo(2.5, -73); ctx.closePath(); ctx.fill();
+    ctx.restore();
+
+    // 3. Sekundenzeiger: schwarz, schmal und lang
+    ctx.save();
+    ctx.translate(380, 220);
+    ctx.rotate(2.6);
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(0, 15); ctx.lineTo(0, -82); ctx.stroke();
+    ctx.restore();
+
+    // Mittelpunkt
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath(); ctx.arc(380, 220, 7, 0, Math.PI * 2); ctx.fill();
+
+    // Fachbegriffe-Legende wie auf Buch S. 44 links/rechts
+    ctx.fillStyle = "#1e293b";
+    ctx.font = "bold 14px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("• das Armband (bunter Stoff)", 30, 85);
+    ctx.fillText("• das Ziffernblatt (rund, weiß)", 30, 125);
+    ctx.fillText("• der Stundenzeiger (kurzer Buntstift)", 30, 165);
+    ctx.fillText("• der Minutenzeiger (langer Buntstift)", 30, 205);
+    ctx.fillText("• der Sekundenzeiger (schwarz, schmal)", 30, 245);
+    ctx.fillText("• die Krone (Drehknopf rechts)", 30, 285);
+  }
+
+  else if (promptId === 'g_schliessfach_s38') {
+    // --- DEUTSCHBUCH S. 38–39: DIE SCHLIESSFÄCHER VON ANNA & TARIK ---
+    ctx.fillStyle = "#cbd5e1";
+    ctx.fillRect(0, 380, W, 60);
+
+    // Schließfach-Schrankwand mit 4 Fächern nebeneinander
+    const lockers = [
+      { x: 55,  title: "Fach 1", topCol: "#ef4444", botCol: "#2563eb", sticker: "🌟", lockCol: "#94a3b8", stripes: false },
+      { x: 225, title: "Fach 2", topCol: "#2563eb", botCol: "#ef4444", sticker: "⚽", lockCol: "#94a3b8", stripes: false },
+      { x: 395, title: "Fach 3 (Tarik)", topCol: "#2563eb", botCol: "#2563eb", sticker: null, lockCol: "#facc15", stripes: true },
+      { x: 565, title: "Fach 4", topCol: "#2563eb", botCol: "#2563eb", sticker: "🎵", lockCol: "#ef4444", stripes: true }
+    ];
+
+    lockers.forEach(l => {
+      // Schrankkorpus
+      ctx.fillStyle = "#64748b";
+      ctx.strokeStyle = "#1e293b";
+      ctx.lineWidth = 3;
+      rr(ctx, l.x, 55, 140, 325, 6); ctx.fill(); ctx.stroke();
+
+      // Obere Hälfte & untere Hälfte der Tür
+      ctx.fillStyle = l.topCol;
+      ctx.fillRect(l.x + 8, 65, 124, 152);
+      ctx.fillStyle = l.botCol;
+      ctx.fillRect(l.x + 8, 217, 124, 153);
+      ctx.strokeRect(l.x + 8, 65, 124, 305);
+
+      // Orangefarbene Streifen oben und unten (bei Fach 3 & 4)
+      if (l.stripes) {
+        ctx.fillStyle = "#f97316";
+        ctx.fillRect(l.x + 8, 82, 124, 18);
+        ctx.fillRect(l.x + 8, 332, 124, 18);
+      }
+
+      // Lüftungsschlitze oben
+      ctx.fillStyle = "rgba(15,23,42,0.35)";
+      for (let sy = 112; sy <= 130; sy += 6) {
+        ctx.fillRect(l.x + 42, sy, 56, 3);
+      }
+
+      // Aufkleber oben (falls vorhanden)
+      if (l.sticker) {
+        ctx.fillStyle = "#ffffff";
+        ctx.beginPath(); ctx.arc(l.x + 70, 165, 18, 0, Math.PI * 2); ctx.fill();
+        ctx.font = "20px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(l.sticker, l.x + 70, 172);
+      }
+
+      // Vorhängeschloss rechts in der Mitte
+      ctx.strokeStyle = "#475569";
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(l.x + 112, 212, 8, Math.PI, 0); ctx.stroke();
+      ctx.fillStyle = l.lockCol;
+      ctx.strokeStyle = "#0f172a";
+      ctx.lineWidth = 2;
+      rr(ctx, l.x + 101, 212, 22, 26, 4); ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "bold 14px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(l.title, l.x + 70, 405);
+    });
+  }
+
+  else if (promptId === 'r_klassenraum_s32') {
+    // --- DEUTSCHBUCH S. 32: DER NEUE KLASSENRAUM DER 5a (SKIZZE FÜR HERRN BERG) ---
+    ctx.fillStyle = "#fef9c3";
+    ctx.strokeStyle = "#475569";
+    ctx.lineWidth = 4;
+    rr(ctx, 45, 30, 670, 380, 8); ctx.fill(); ctx.stroke();
+
+    // Linke Wand: 2 große Fenster + grüne Pflanze auf der Fensterbank
+    ctx.fillStyle = "#38bdf8";
+    ctx.strokeStyle = "#0284c7";
+    ctx.lineWidth = 3;
+    ctx.fillRect(40, 85, 14, 110); ctx.strokeRect(40, 85, 14, 110);
+    ctx.fillRect(40, 235, 14, 110); ctx.strokeRect(40, 235, 14, 110);
+    ctx.fillStyle = "#0369a1";
+    ctx.font = "bold 12px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("1. Fenster", 62, 135);
+    ctx.fillText("2. Fenster", 62, 295);
+    // Pflanze zwischen den Fenstern
+    drawTree(ctx, 72, 215, 1.1);
+    ctx.fillStyle = "#166534";
+    ctx.fillText("Pflanze", 92, 218);
+
+    // Obere Wand (Vorne): Die große grüne Tafel + Wanduhr (1 m unter der Decke) + Papierkorb
+    ctx.fillStyle = "#166534";
+    ctx.strokeStyle = "#052e16";
+    ctx.fillRect(235, 32, 270, 22); ctx.strokeRect(235, 32, 270, 22);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("die Tafel (vorne)", 370, 47);
+
+    // Wanduhr rechts neben der Tafel + Papierkorb darunter
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#0f172a";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(545, 52, 16, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(545, 52); ctx.lineTo(545, 42); ctx.moveTo(545, 52); ctx.lineTo(553, 52); ctx.stroke();
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("Wanduhr", 545, 82);
+
+    ctx.fillStyle = "#64748b";
+    ctx.beginPath(); ctx.arc(605, 56, 13, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#334155";
+    ctx.fillText("Papierkorb", 605, 82);
+
+    // Vorne links am 1. Fenster: Der Lehrertisch + Stuhl
+    ctx.fillStyle = "#d97706";
+    ctx.strokeStyle = "#78350f";
+    rr(ctx, 135, 88, 95, 48, 5); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Lehrertisch", 182, 116);
+
+    // Mitte: 3 Reihen Schülertische (Gruppen-/Reihentische)
+    ctx.fillStyle = "#fde68a";
+    ctx.strokeStyle = "#b45309";
+    ctx.lineWidth = 2;
+    [165, 235, 305].forEach(ty => {
+      [215, 345, 475].forEach(tx => {
+        rr(ctx, tx, ty, 105, 42, 4); ctx.fill(); ctx.stroke();
+      });
+    });
+    ctx.fillStyle = "#78350f";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Schülertische (3 Reihen)", 395, 205);
+
+    // Rechte Wand (Türwand): Die Tür vorne rechts + die Garderobe dahinter
+    ctx.fillStyle = "#a16207";
+    ctx.fillRect(703, 95, 14, 68);
+    ctx.fillStyle = "#78350f";
+    ctx.textAlign = "right";
+    ctx.fillText("die Tür", 695, 132);
+
+    ctx.fillStyle = "#94a3b8";
+    ctx.strokeStyle = "#334155";
+    rr(ctx, 682, 205, 28, 125, 5); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#0f172a";
+    ctx.fillText("Garderobe", 674, 270);
+
+    // Untere Wand (Hinten, gegenüber der Tafel): Pinnwand links, großer Schrank Mitte, kleines Regal rechts
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#fcd34d";
+    ctx.strokeStyle = "#92400e";
+    rr(ctx, 115, 382, 115, 22, 4); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#78350f";
+    ctx.fillText("Pinnwand", 172, 374);
+
+    ctx.fillStyle = "#78350f";
+    rr(ctx, 275, 376, 175, 30, 4); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("der Schrank (gegenüber Tafel)", 362, 395);
+
+    ctx.fillStyle = "#b45309";
+    rr(ctx, 465, 380, 110, 26, 4); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("das Regal", 520, 397);
+  }
+
+  else if (promptId === 'w_schulplan_s40') {
+    // --- DEUTSCHBUCH S. 36–37 & 40–41: GRUNDRISS DER SCHULE (EINGANG, SCHLIESSFÄCHER, 5a, SCHULGARTEN) ---
+    ctx.fillStyle = "#e2e8f0";
+    ctx.fillRect(0, 0, W, H);
+
+    // Schulgebäude-Grundriss + Außengelände rechts
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 4;
+    rr(ctx, 25, 25, 495, 390, 10); ctx.fill(); ctx.stroke();
+
+    // Obere Zimmerreihe: Klasse 5a, Klasse 5b, Computerraum
+    const topRooms = [
+      { x: 35, w: 145, name: "Klasse 5a", col: "#dbeafe" },
+      { x: 190, w: 145, name: "Klasse 5b", col: "#dbeafe" },
+      { x: 345, w: 165, name: "Computerraum", col: "#e0e7ff" }
+    ];
+    topRooms.forEach(r => {
+      ctx.fillStyle = r.col;
+      ctx.strokeStyle = "#1e40af";
+      ctx.lineWidth = 2.5;
+      rr(ctx, r.x, 35, r.w, 95, 6); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#1e3a8a";
+      ctx.font = "bold 13px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(r.name, r.x + r.w/2, 85);
+    });
+
+    // Blaue Schließfächer auf dem oberen Flur + große Topfpflanze an der Ecke
+    ctx.fillStyle = "#2563eb";
+    ctx.fillRect(195, 138, 120, 16);
+    ctx.fillStyle = "#1e3a8a";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("🗄️ Schließfächer", 255, 168);
+
+    // Mittelblock: Toiletten links, Treppe, Aula & Mensa rechts
+    ctx.fillStyle = "#f1f5f9";
+    ctx.strokeStyle = "#64748b";
+    rr(ctx, 35, 185, 115, 85, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#334155";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("WC / Toiletten", 92, 232);
+
+    // Große Pflanze an der Flurecke
+    drawTree(ctx, 175, 245, 1.15);
+    ctx.fillStyle = "#15803d";
+    ctx.font = "bold 11px sans-serif";
+    ctx.fillText("große Pflanze", 175, 274);
+
+    // Aula & Mensa
+    ctx.fillStyle = "#fef3c7";
+    ctx.strokeStyle = "#d97706";
+    rr(ctx, 255, 185, 120, 90, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#92400e";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText("die Aula", 315, 235);
+
+    ctx.fillStyle = "#ffedd5";
+    rr(ctx, 385, 185, 125, 90, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#9a3412";
+    ctx.fillText("die Mensa", 447, 235);
+
+    // Untere Reihe am Eingang: Krankenzimmer, Eingang (START), Sekretariat, Schulleitung
+    ctx.fillStyle = "#fee2e2";
+    ctx.strokeStyle = "#dc2626";
+    rr(ctx, 35, 315, 125, 88, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#991b1b";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Krankenzimmer", 97, 362);
+
+    // START: Der Eingang (unten Mitte)
+    ctx.fillStyle = "#16a34a";
+    rr(ctx, 175, 345, 95, 68, 8); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText("START:", 222, 374);
+    ctx.fillText("der Eingang", 222, 392);
+
+    // Sekretariat & Büro der Schulleitung rechts vom Eingang
+    ctx.fillStyle = "#e0f2fe";
+    ctx.strokeStyle = "#0284c7";
+    rr(ctx, 285, 315, 105, 88, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#0369a1";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("Sekretariat", 337, 362);
+
+    rr(ctx, 400, 315, 110, 88, 6); ctx.fill(); ctx.stroke();
+    ctx.fillText("Büro der", 455, 352);
+    ctx.fillText("Schulleitung", 455, 370);
+
+    // Außengelände rechts: Der Hof & der Schulgarten (oben rechts)
+    ctx.fillStyle = "#bbf7d0";
+    ctx.strokeStyle = "#16a34a";
+    ctx.lineWidth = 3;
+    rr(ctx, 535, 25, 200, 175, 12); ctx.fill(); ctx.stroke();
+    drawTree(ctx, 585, 85, 1.2);
+    drawTree(ctx, 685, 95, 1.2);
+    ctx.fillStyle = "#14532d";
+    ctx.font = "bold 15px sans-serif";
+    ctx.fillText("🌻 der Schulgarten", 635, 155);
+
+    ctx.fillStyle = "#cbd5e1";
+    ctx.strokeStyle = "#64748b";
+    rr(ctx, 535, 215, 200, 200, 12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#1e293b";
+    ctx.fillText("🏀 der Hof (Schulhof)", 635, 320);
+  }
+
+  else if (promptId === 'w_faustskizze_s46') {
+    // --- DEUTSCHBUCH S. 46: FAUSTSKIZZE MIT 2 WEGEN (VON KLASSE 5c ZUM SCHULTOR) ---
+    ctx.fillStyle = "#f8fafc";
+    ctx.fillRect(0, 0, W, H);
+
+    // Obergeschoss-Kasten oben
+    ctx.fillStyle = "#ffffff";
+    ctx.strokeStyle = "#334155";
+    ctx.lineWidth = 3;
+    rr(ctx, 30, 20, 700, 225, 10); ctx.fill(); ctx.stroke();
+
+    // Räume oben: Toiletten, Kunstraum, Klasse 5d, Klasse 5a, Bibliothek
+    const topR = [
+      { x: 42, w: 105, t: "die Toiletten" },
+      { x: 155, w: 120, t: "der Kunstraum" },
+      { x: 285, w: 115, t: "Klasse 5d" },
+      { x: 410, w: 115, t: "Klasse 5a" },
+      { x: 535, w: 180, t: "die Bibliothek" }
+    ];
+    topR.forEach(r => {
+      ctx.fillStyle = "#f1f5f9";
+      ctx.strokeStyle = "#64748b";
+      ctx.lineWidth = 2;
+      rr(ctx, r.x, 30, r.w, 65, 5); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#1e293b";
+      ctx.font = "bold 12px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(r.t, r.x + r.w/2, 66);
+    });
+
+    // Räume untere Flurseite: Treppe links, Klasse 5b, Klasse 5c (START), Sekretariat, Büro Schulleitung, Treppe rechts
+    const botR = [
+      { x: 42,  w: 90,  t: "Treppe (West)", col: "#fde68a" },
+      { x: 140, w: 105, t: "Klasse 5b", col: "#f1f5f9" },
+      { x: 255, w: 115, t: "START: Klasse 5c", col: "#dcfce7" },
+      { x: 380, w: 115, t: "das Sekretariat", col: "#e0f2fe" },
+      { x: 505, w: 115, t: "Büro Schulleitung", col: "#e0f2fe" },
+      { x: 630, w: 85,  t: "Treppe (Ost)", col: "#fde68a" }
+    ];
+    botR.forEach(r => {
+      ctx.fillStyle = r.col;
+      ctx.strokeStyle = "#475569";
+      rr(ctx, r.x, 155, r.w, 75, 5); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#0f172a";
+      ctx.font = "bold 11px sans-serif";
+      ctx.fillText(r.t, r.x + r.w/2, 196);
+    });
+
+    // WEG 1 (ROT - nach rechts am Sekretariat vorbei):
+    ctx.strokeStyle = "#dc2626";
+    ctx.lineWidth = 4;
+    ctx.setLineDash([7, 4]);
+    ctx.beginPath();
+    ctx.moveTo(312, 155); ctx.lineTo(312, 125); ctx.lineTo(672, 125);
+    ctx.lineTo(672, 310); ctx.lineTo(410, 345); ctx.lineTo(410, 415);
+    ctx.stroke();
+
+    // WEG 2 (BLAU - nach links an der 5b vorbei):
+    ctx.strokeStyle = "#2563eb";
+    ctx.beginPath();
+    ctx.moveTo(290, 155); ctx.lineTo(290, 115); ctx.lineTo(85, 115);
+    ctx.lineTo(85, 310); ctx.lineTo(365, 345); ctx.lineTo(365, 415);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Unten: Schulhof, Bäume & Schultor (ZIEL)
+    ctx.fillStyle = "#e2e8f0";
+    ctx.strokeStyle = "#94a3b8";
+    rr(ctx, 60, 265, 640, 150, 12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#334155";
+    ctx.font = "bold 15px sans-serif";
+    ctx.fillText("Schulhof (Erdgeschoss)", 380, 315);
+
+    drawTree(ctx, 295, 375, 1.2);
+    drawTree(ctx, 475, 375, 1.2);
+
+    ctx.fillStyle = "#16a34a";
+    rr(ctx, 335, 392, 105, 34, 6); ctx.fill();
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 13px sans-serif";
+    ctx.fillText("ZIEL: Schultor", 387, 414);
+  }
+
+  else if (promptId === 'g_sporttasche') {
+    // --- ARBEITSHEFT S. 16–18: PEDROS SPORTTASCHE + INHALT ---
+    ctx.fillStyle = "#cbd5e1"; ctx.fillRect(0, 320, W, 120);
+    ctx.fillStyle = "rgba(15,23,42,0.18)";
+    ctx.beginPath(); ctx.ellipse(250, 355, 195, 22, 0, 0, Math.PI * 2); ctx.fill();
+
+    ctx.strokeStyle = "#7f1d1d"; ctx.lineWidth = 14; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.moveTo(80, 210); ctx.bezierCurveTo(20, 70, 460, 70, 420, 210); ctx.stroke();
+
+    const bagGrad = ctx.createLinearGradient(75, 150, 75, 345);
+    bagGrad.addColorStop(0, "#f87171"); bagGrad.addColorStop(0.55, "#ef4444"); bagGrad.addColorStop(1, "#dc2626");
+    ctx.fillStyle = bagGrad; ctx.strokeStyle = "#7f1d1d"; ctx.lineWidth = 3.5;
+    rr(ctx, 75, 155, 350, 190, 34); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = "#991b1b";
+    rr(ctx, 75, 292, 350, 53, 20); ctx.fill(); ctx.stroke();
+
+    ctx.strokeStyle = "#7f1d1d"; ctx.lineWidth = 13;
+    ctx.beginPath(); ctx.moveTo(175, 175); ctx.quadraticCurveTo(175, 88, 250, 88); ctx.quadraticCurveTo(325, 88, 325, 175); ctx.stroke();
+
+    [108, 392].forEach(cx => {
+      ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#1e3a8a"; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(cx, 232, 23, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = "#0f172a"; ctx.beginPath(); ctx.arc(cx, 232, 8, 0, Math.PI * 2); ctx.fill();
+    });
+
+    // Inhalt rechts: Gestreiftes Sporthemd, blaue Hose, weiße Turnschuhe
+    ctx.save(); ctx.translate(545, 70);
+    ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#1e3a8a"; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(35, 0); ctx.lineTo(85, 0); ctx.lineTo(125, 28); ctx.lineTo(108, 52); ctx.lineTo(90, 38); ctx.lineTo(90, 115); ctx.lineTo(30, 115); ctx.lineTo(30, 38); ctx.lineTo(12, 52); ctx.lineTo(-5, 28); ctx.closePath(); ctx.fill();
+    ctx.save(); ctx.clip(); ctx.fillStyle = "#2563eb";
+    for (let y = 10; y < 115; y += 16) ctx.fillRect(-10, y, 140, 8);
+    ctx.restore(); ctx.stroke(); ctx.restore();
+
+    ctx.save(); ctx.translate(475, 215);
+    ctx.fillStyle = "#1d4ed8"; ctx.strokeStyle = "#1e3a8a"; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(15, 0); ctx.lineTo(95, 0); ctx.lineTo(105, 72); ctx.lineTo(62, 72); ctx.lineTo(55, 38); ctx.lineTo(48, 72); ctx.lineTo(5, 72); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.restore();
+
+    ctx.save(); ctx.translate(605, 255);
+    ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#475569"; ctx.lineWidth = 2.5;
+    rr(ctx, 0, 20, 110, 42, 12); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  }
+
+  else if (promptId === 'g_federtasche') {
+    // --- ARBEITSBLATT 1: FEDERTASCHE ---
+    ctx.fillStyle = "#cbd5e1"; ctx.fillRect(0, 315, W, 125);
+    const pGrad = ctx.createLinearGradient(70, 120, 70, 325);
+    pGrad.addColorStop(0, "#f472b6"); pGrad.addColorStop(0.5, "#ec4899"); pGrad.addColorStop(1, "#be185d");
+    ctx.fillStyle = pGrad; ctx.strokeStyle = "#831843"; ctx.lineWidth = 3.5;
+    rr(ctx, 70, 130, 370, 190, 42); ctx.fill(); ctx.stroke();
+
+    [[120, 185], [175, 235], [235, 180], [285, 245], [345, 190], [385, 255]].forEach(([lx, ly]) => {
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath(); ctx.ellipse(lx, ly, 14, 7, 0.4, 0, Math.PI * 2); ctx.fill();
+    });
+
+    ctx.fillStyle = "#facc15"; ctx.strokeStyle = "#ca8a04"; ctx.lineWidth = 2.5;
+    rr(ctx, 92, 122, 326, 18, 8); ctx.fill(); ctx.stroke();
+
+    ctx.save(); ctx.translate(485, 85);
+    ctx.fillStyle = "#fdf2f8"; ctx.strokeStyle = "#be185d"; ctx.lineWidth = 3;
+    rr(ctx, 0, 0, 235, 255, 18); ctx.fill(); ctx.stroke();
+    ["#2563eb", "#ef4444", "#16a34a", "#eab308", "#9333ea"].forEach((col, idx) => {
+      ctx.fillStyle = col; ctx.fillRect(25 + idx * 22, 45, 12, 165);
+    });
+    ctx.fillStyle = "#1e293b"; ctx.fillRect(18, 115, 120, 18);
+    ctx.restore();
+  }
+
+  else if (promptId === 'w_schoko') {
+    // --- ARBEITSHEFT S. 19: KÖLN KARTE ---
+    ctx.fillStyle = "#f1f5f9"; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#38bdf8"; ctx.fillRect(535, 0, W - 535, H);
+    ctx.fillStyle = "#16a34a"; rr(ctx, 195, 20, 155, 36, 8); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.font = "bold 13px sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("🚉 Hauptbahnhof (Start)", 272, 43);
+    ctx.fillStyle = "#78350f"; rr(ctx, 225, 72, 95, 34, 6); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.fillText("⛪ Kölner Dom", 272, 94);
+    ctx.fillStyle = "#fef08a"; ctx.strokeStyle = "#ca8a04"; ctx.lineWidth = 2.5;
+    rr(ctx, 345, 145, 130, 52, 6); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#854d0e"; ctx.fillText("Alter Markt & Rathaus", 410, 175);
+    ctx.fillStyle = "#cbd5e1"; rr(ctx, 345, 215, 130, 44, 6); ctx.fill();
+    ctx.fillStyle = "#1e293b"; ctx.fillText("Heumarkt", 410, 242);
+    ctx.fillStyle = "#64748b"; ctx.fillRect(340, 275, 410, 20);
+    ctx.fillStyle = "#fff"; ctx.fillText("Deutzer Brücke", 555, 289);
+    ctx.fillStyle = "#dc2626"; rr(ctx, 485, 340, 145, 48, 10); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.fillText("🍫 Schokoladenmuseum", 557, 369);
+    drawCompass(ctx, 700, 95);
+  }
+
+  else if (promptId === 'r_terrarium') {
+    // --- ARBEITSHEFT S. 22 & 24: SCHILDKRÖTENTERRARIUM ---
+    ctx.fillStyle = "#e0f2fe"; rr(ctx, 20, 25, 505, 385, 8); ctx.fill();
+    ctx.fillStyle = "#fde047"; ctx.fillRect(20, 265, 505, 145);
+    drawTree(ctx, 135, 235, 1.8);
+    ctx.fillStyle = "#94a3b8"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(135, 375, 85, Math.PI, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#1e293b";
+    ctx.beginPath(); ctx.arc(135, 375, 45, Math.PI, 0); ctx.closePath(); ctx.fill();
+    drawTree(ctx, 415, 235, 1.6);
+    ctx.strokeStyle = "#78350f"; ctx.lineWidth = 22; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.moveTo(345, 365); ctx.quadraticCurveTo(405, 295, 485, 335); ctx.stroke();
+    ctx.fillStyle = "#94a3b8"; ctx.beginPath(); ctx.ellipse(285, 362, 52, 22, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#38bdf8"; ctx.beginPath(); ctx.ellipse(285, 360, 42, 15, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#0369a1"; ctx.lineWidth = 3.5; ctx.strokeRect(20, 25, 505, 385);
+
+    ctx.fillStyle = "#ffffff"; rr(ctx, 542, 25, 200, 385, 12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#0f172a"; ctx.font = "bold 13px sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("AH S. 24: Schildkröten", 642, 52);
+    ctx.fillStyle = "#a16207"; ctx.beginPath(); ctx.arc(642, 145, 46, Math.PI, 0); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#334155"; ctx.font = "bold 11px sans-serif";
+    ctx.fillText("1: Hoher Panzer, Krallen", 642, 185);
+    ctx.fillStyle = "#15803d"; ctx.beginPath(); ctx.ellipse(642, 295, 50, 18, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#334155"; ctx.fillText("2: Flacher Panzer, Schwimmhaut", 642, 345);
+  }
+
+  else {
+    // Fallback für die Zusatzaufgaben (Rucksack, Fahrrad, Digitaluhr, Bücherei, Sporthalle, Spielplatz, Jugendzimmer, Meerschweinchen, Leseecke)
+    ctx.fillStyle = "#eff6ff";
+    rr(ctx, 35, 35, W - 70, H - 70, 16); ctx.fill();
+    ctx.strokeStyle = "#0284c7"; ctx.lineWidth = 3; ctx.stroke();
+    ctx.fillStyle = "#0369a1";
+    ctx.font = "bold 22px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(currentHeftPrompt ? currentHeftPrompt.title : "Schreibaufgabe", W / 2, H / 2 - 15);
+    ctx.fillStyle = "#334155";
+    ctx.font = "16px sans-serif";
+    ctx.fillText("Nutze die Stichpunkte in der blauen Box unten für deinen Heft-Aufsatz!", W / 2, H / 2 + 25);
+  }
+}
+
+// ============================================================================
+// 18 AUSGEARBEITETE HEFT-SCHREIBAUFGABEN (DEUTSCHBUCH S. 32–46 + ARBEITSHEFT S. 16–24 + ZUSATZ)
+// ============================================================================
+const HEFT_PROMPTS = [
+  // --- NEUE DEUTSCHBUCH-AUFGABEN (KAPITEL 3: S. 32–46) ---
+  {
+    id: 'g_jacken_s33',
+    cat: 'gegenstand',
+    sourceGroup: 'buch',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '📘 Deutschbuch S. 33 (Nr. 1 & 2)',
+    title: '1. 🌟 Annas vergessene Jacke & die andere Jacke (S. 33)',
+    desc: 'Im Klassenraum der 5a hängen zwei vergessene Jacken. Vergleiche auf Seite 33 zuerst Annas Jacke (links) und die andere Jacke (rechts) in einer Tabelle (Aufgabe 1b). Schreibe danach eine genaue Beschreibung der anderen Jacke in dein Heft und unterstreiche alle Adjektive (Aufgabe 2).',
+    facts: `
+      <strong>Aufgabe 1a &amp; 1b – Vergleichstabelle für dein Heft:</strong>
+      <table class="rule-table" style="margin-top:6px;">
+        <tr><th>Merkmal</th><th>Annas Jacke (links)</th><th>Die andere Jacke (rechts – Aufgabe 2)</th></tr>
+        <tr><td><strong>Farbe</strong></td><td>dunkelblau</td><td>hellgrün / leuchtend grün mit dunkelgrünem Kragen und weißen Streifen</td></tr>
+        <tr><td><strong>Kopfteil / Kragen</strong></td><td>hat eine <em>Kapuze</em></td><td>hat <em>keine Kapuze</em>, sondern einen hohen, dunkelgrünen <em>Stehkragen</em></td></tr>
+        <tr><td><strong>Verschluss vorn</strong></td><td>große, runde <em>Knöpfe</em></td><td>durchgehender, weißer <em>Reißverschluss</em> in der Mitte</td></tr>
+        <tr><td><strong>Taschen</strong></td><td>eine große <em>Brusttasche</em> mit Reißverschluss + zwei schräge Seitentaschen</td><td>zwei aufgesetzte, dunkelgrüne <em>Bauchtaschen</em> unten mit silbernen Druckknöpfen</td></tr>
+        <tr><td><strong>Verzierung / Abzeichen</strong></td><td>gelbe <em>Stickerei</em> (Stern) am linken Oberarm</td><td>kleines, rundes, weißes <em>Pfoten-Abzeichen</em> auf der rechten Brustseite</td></tr>
+        <tr><td><strong>Saum unten &amp; Ärmel</strong></td><td>Kordel mit roten <em>Stoppern aus Plastik</em></td><td>elastisches, gestreiftes <em>Bündchen</em> unten und weiße Bündchen an den Ärmeln</td></tr>
+      </table>
+    `,
+    sample: `<strong>Muster-Aufsatz zu Aufgabe 2 („Beschreibe die andere Jacke genau und unterstreiche alle Adjektive“):</strong><br>
+    Ich beschreibe die <u>andere</u>, <u>grüne</u> Jacke, die neben Annas Jacke an der Garderobe der Klasse 5a hängt.<br>
+    Es handelt sich um eine <u>sportliche</u>, <u>hellgrüne</u> Jacke aus <u>glattem</u> Stoff. Im Gegensatz zu Annas Jacke besitzt sie keine Kapuze, sondern oben einen <u>hohen</u>, <u>dunkelgrünen</u> Stehkragen. In der Mitte der Vorderseite verläuft ein <u>langer</u>, <u>weißer</u> Reißverschluss, mit dem man die Jacke schließt. Auf der <u>rechten</u> Brustseite befindet sich ein <u>kleines</u>, <u>rundes</u>, <u>weißes</u> Abzeichen mit einer <u>dunklen</u> Tierpfote. Im <u>unteren</u> Bereich sind links und rechts zwei <u>rechteckige</u>, <u>dunkelgrüne</u> Taschen aufgenäht, die jeweils mit einem <u>silbernen</u> Druckknopf verschlossen werden. An den beiden Ärmelenden befinden sich <u>breite</u>, <u>weiße</u> Bündchen, und auch der <u>untere</u> Saum schließt mit einem <u>elastischen</u>, <u>dunkelgrün-weiß</u> gestreiften Bündchen ab.<br>
+    An der <u>leuchtend</u> <u>grünen</u> Farbe und dem <u>runden</u> Pfoten-Aufnäher erkennt der Besitzer seine Jacke sofort wieder.`
+  },
+  {
+    id: 'r_klassenraum_s32',
+    cat: 'raum',
+    sourceGroup: 'buch',
+    catLabel: '🏫 Raumbeschreibung',
+    origin: '📘 Deutschbuch S. 32 (Nr. 1 & 2)',
+    title: '2. Der neue Klassenraum der 5a (für Herrn Berg, S. 32)',
+    desc: 'Die Klasse 5a zieht um! Der Hausmeister Herr Berg möchte beim Einrichten helfen. Manche Wunsch-Sätze der Schüler (S. 32 oben) sind noch viel zu ungenau. Beschreibe den neuen Klassenraum anhand der Skizze so genau in deinem Heft, dass Herr Berg jedes Möbelstück an den richtigen Platz stellen kann.',
+    facts: `
+      • <strong>Aufgabe 1 (Prüfung der 5 Schüler-Sätze auf S. 32):</strong><br>
+      – Satz 1 (<em>„Der Schrank steht genau gegenüber der Tafel. Daneben steht das kleine Regal“</em>): Gut, aber es fehlt, dass das Regal <strong>rechts</strong> neben dem Schrank steht.<br>
+      – Satz 2 (<em>„Bei der Tafel ist die Wanduhr... 1 m unter der Decke“</em>): Es muss ergänzt werden, dass die Wanduhr <strong>rechts neben der Tafel</strong> hängt.<br>
+      – Satz 3 (<em>„Die Garderobe ist da an der Wand mit der Tür“</em>): Viel zu ungenau! Sie befindet sich an der <strong>rechten Seitenwand hinter der Tür</strong>.<br>
+      – Satz 4 (<em>„Der Lehrertisch steht vorne am ersten Fenster von der Tafel aus gezählt“</em>): Sehr genau beschrieben!<br>
+      – Satz 5 (<em>„Die Tische stehen wie in meiner alten Schule“</em>): Unbrauchbar für Herrn Berg! Er kennt die alte Schule nicht (Richtig: <strong>drei Reihen hintereinander in der Mitte des Raumes</strong>).<br><br>
+      • <strong>Wortsammlung für Aufgabe 2a (Dein Text für Herrn Berg):</strong><br>
+      – <em>Vordere Wand:</em> große Tafel in der Mitte, rechts daneben die Wanduhr (1 m unter der Decke), ganz rechts in der Ecke der Papierkorb.<br>
+      – <em>Linke Fensterwand:</em> zwei große Fenster, dazwischen eine grüne Pflanze; vorne am ersten Fenster steht der Lehrertisch.<br>
+      – <em>Mitte des Raumes:</em> die Schülertische stehen in drei geordneten Reihen mit Blick zur Tafel.<br>
+      – <em>Rechte Seitenwand:</em> vorne befindet sich die Eingangstür, weiter hinten an derselben Wand ist die Garderobe angebracht.<br>
+      – <em>Hintere Wand (gegenüber der Tafel):</em> links hängt die Pinnwand, in der Mitte steht der große Schrank und direkt rechts daneben das kleine Regal.
+    `,
+    sample: `<strong>Muster-Beschreibung für Hausmeister Herrn Berg (Deutschbuch S. 32 Nr. 2a):</strong><br>
+    Lieber Herr Berg, so soll unser neuer, rechteckiger Klassenraum der 5a eingerichtet werden:<br>
+    An der vorderen Wand hängt genau in der Mitte die große Tafel. Rechts neben der Tafel wird die Wanduhr in einem Abstand von einem Meter unter der Decke angebracht. Darunter steht rechts in der vorderen Ecke der Papierkorb. An der linken Seitenwand befinden sich zwei große Fenster, zwischen denen eine grüne Topfpflanze steht. Vorne vor dem ersten Fenster (von der Tafel aus gezählt) steht der Lehrertisch. In der Mitte des Klassenraums stehen die Schülertische in drei geraden Reihen hintereinander, sodass alle Kinder zur Tafel blicken. An der rechten Seitenwand liegt vorne die Tür, und weiter hinten an derselben Wand befindet sich die Garderobe. An der hinteren Wand, genau gegenüber der Tafel, steht in der Mitte der große Schrank. Direkt rechts neben dem Schrank steht das kleine Regal, und auf der linken Seite der Rückwand hängt die Pinnwand.`
+  },
+  {
+    id: 'g_schliessfach_s38',
+    cat: 'gegenstand',
+    sourceGroup: 'buch',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '📘 Deutschbuch S. 38–39 (Nr. 1–3)',
+    title: '3. Mein Schließfach – Anna & Tarik (S. 38–39)',
+    desc: 'Paul soll aus den Schließfächern (S. 38) die Trinkflasche von Anna und das Sportzeug von Tarik mitbringen. Beantworte im Heft: Mit welcher Beschreibung findet Paul das richtige Fach (und warum)? Beschreibe danach Annas Schließfach so genau, dass es nicht mehr verwechselt werden kann.',
+    facts: `
+      • <strong>Aufgabe 1 (Wer hat genau beschrieben?):</strong><br>
+      – <em>Tariks Beschreibung ist genau:</em> „Mein Fach ist blau. Es hat oben und unten orangefarbene Streifen. Das Schloss ist gelb.“ ➔ Damit findet Paul eindeutig <strong>Fach 3</strong> (denn Fach 4 hat zwar auch orangefarbene Streifen, aber ein rotes Schloss und einen Aufkleber).<br>
+      – <em>Annas Beschreibung ist zu ungenau:</em> „Mein Fach ist rot und blau. Es hat oben einen Aufkleber.“ ➔ Das passt auf <strong>zwei Fächer (Fach 1 und Fach 2)</strong>!<br><br>
+      • <strong>Unterschied zwischen Fach 1 und Fach 2 (für eine genaue Beschreibung):</strong><br>
+      – <em>Fach 1:</em> ist <strong>oben rot und unten blau</strong>; oben klebt ein runder Aufkleber mit einem <strong>gelben Stern</strong>.<br>
+      – <em>Fach 2:</em> ist <strong>oben blau und unten rot</strong>; oben klebt ein runder Aufkleber mit einem <strong>Fußball</strong>.
+    `,
+    sample: `<strong>Muster-Lösung für dein Heft (Deutschbuch S. 38):</strong><br>
+    <strong>Zu Aufgabe 1:</strong> Paul findet nur mit Tariks Beschreibung sofort das richtige Schließfach. Tarik nennt nicht nur die Grundfarbe Blau, sondern auch die genaue Position der orangefarbenen Streifen (oben und unten) sowie die gelbe Farbe seines Vorhängeschlosses. Annas Beschreibung ist dagegen zu ungenau, weil es zwei rot-blaue Schließfächer mit einem Aufkleber im oberen Teil gibt.<br><br>
+    <strong>Verbesserte Beschreibung für Annas Schließfach (Fach 1):</strong><br>
+    Mein Schließfach steht ganz links in der Reihe und ist zweifarbig lackiert: Die obere Hälfte der Tür ist rot, während die untere Hälfte blau ist. Im oberen roten Bereich befinden sich in der Mitte schmale Lüftungsschlitze. Direkt darunter klebt ein runder, weißer Aufkleber mit einem gelben Stern. Auf der rechten Seite der Tür hängt in der Mitte ein silbernes Vorhängeschloss.`
+  },
+  {
+    id: 'w_schulplan_s40',
+    cat: 'weg',
+    sourceGroup: 'buch',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: '📘 Deutschbuch S. 36–37 & 40–41',
+    title: '4. Wege durch die Schule (Eingang ➔ Schließfächer / 5a / Schulgarten)',
+    desc: 'Beschreibe mit Hilfe des Schulplans (Deutschbuch S. 40–41) mindestens einen der drei Wege vom Eingang aus: a) zu den Schließfächern, b) zum Klassenraum der 5a oder c) zum Schulgarten. Nutze die Satzbausteine von Seite 40 und 41!',
+    facts: `
+      • <strong>Aufgabe 2b (Lückensätze von S. 40 unten ergänzen):</strong><br>
+      – „Du läufst auf den <strong>Flur / Gang (oder die Treppe)</strong> zu.“<br>
+      – „Du biegst hinter der großen <strong>Pflanze (Topfpflanze)</strong> nach rechts ab.“<br>
+      – „Du gehst am <strong>Sekretariat (oder an der Aula / Klasse 5b)</strong> geradeaus weiter.“<br>
+      – „Du wendest dich an der <strong>Ecke (oder bei den Schließfächern)</strong> nach links.“<br><br>
+      • <strong>Satzanfänge aus dem Baukasten (S. 41 oben):</strong><br>
+      <em>Zuerst gehst du ... • Dann läufst du ... • Im Anschluss / Danach / Nun biegst du ... • Schließlich / Zum Schluss wendest du dich ...</em>
+    `,
+    sample: `<strong>Muster-Wegbeschreibung (vom Eingang zum Klassenraum der 5a und zu den Schließfächern, S. 41 Nr. 3):</strong><br>
+    <strong>Weg 1 (Vom Eingang zum Klassenraum der 5a):</strong><br>
+    Zuerst gehst du durch den Haupteingang in das Schulgebäude hinein und läufst geradeaus den Flur entlang, wobei rechts das Sekretariat und links das Krankenzimmer liegen. Dann gehst du an den Toiletten auf der linken Seite weiter geradeaus bis zur großen grünen Topfpflanze. Im Anschluss läufst du noch ein Stück geradeaus den Gang hinauf bis zur oberen Flurecke. Schließlich wendest du dich nach links und stehst direkt vor der Tür des Klassenraums der 5a.<br><br>
+    <strong>Weg 2 (Vom Eingang zum Schulgarten):</strong><br>
+    Zuerst betrittst du die Schule durch den Eingang und gehst geradeaus bis zur großen Pflanze vor der Aula. Danach biegst du hinter der großen Pflanze nach rechts in den Querflur ab. Nun läufst du geradeaus an der Aula und der Mensa vorbei bis zur Außentür am Ende des Ganges. Zum Schluss trittst du nach draußen und hältst dich links, wo du direkt den grünen Schulgarten erreichst.`
+  },
+  {
+    id: 'w_fundbuero_s43',
+    cat: 'weg',
+    sourceGroup: 'buch',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: '📘 Deutschbuch S. 42–43 (Nr. 3–6)',
+    title: '5. Naomis Weg vom Klassenraum 5a ins Fundbüro (S. 42–43)',
+    desc: 'Naomi hat ihre Uhr verloren und fragt im Klassenchat: „Wie komme ich ins Fundbüro?“ Ordne zuerst die Satzanfänge in die 3 Spalten (Aufgabe 4) und schreibe dann die Wegbeschreibung vom Klassenraum der 5a bis zum Fundbüro in dein Heft (Aufgabe 5).',
+    facts: `
+      • <strong>Aufgabe 4 (Tabelle der Satzanfänge auf S. 43 richtig einsortieren):</strong>
+      <table class="rule-table" style="margin-top:6px;">
+        <tr><th>am Anfang</th><th>in der Mitte</th><th>am Ende</th></tr>
+        <tr><td>• Zuerst<br>• Erst<br>• Zunächst</td><td>• Dann<br>• Nun<br>• Anschließend<br>• Danach</td><td>• Zum Schluss<br>• Zuletzt</td></tr>
+      </table>
+      • <strong>Wegmarken &amp; Richtungsangaben (Aufgabe 3 &amp; 5):</strong><br>
+      Vom Klassenraum der 5a aus starten ➔ den Flur entlang ➔ die Treppe hinunter ins Erdgeschoss ➔ unten am <strong>Schulkiosk (KIOSK)</strong> vorbeigehen ➔ den Gang weiter bis zur Tür mit dem Schild <strong>„Fundbüro“</strong> (beim Hausmeister).
+    `,
+    sample: `<strong>Muster-Wegbeschreibung für Naomi (Deutschbuch S. 43 Nr. 5):</strong><br>
+    Hallo Naomi, so kommst du von unserem Klassenraum der 5a ganz leicht zum Fundbüro:<br>
+    <strong>Zuerst</strong> verlässt du den Klassenraum der 5a und biegst auf dem Flur nach rechts ab. <strong>Zunächst</strong> gehst du den Gang geradeaus entlang bis zum Treppenhaus. <strong>Dann</strong> steigst du die Treppe ein Stockwerk tiefer bis in das Erdgeschoss hinunter. <strong>Anschließend</strong> hältst du dich unten rechts und läufst direkt am bunten Schulkiosk vorbei. <strong>Danach</strong> folgst du dem Flur noch etwa zwanzig Meter geradeaus weiter. <strong>Zum Schluss</strong> siehst du auf der linken Seite neben dem Hausmeisterraum eine Tür mit dem Schild „Fundbüro“.`
+  },
+  {
+    id: 'g_uhr_naomi_s44',
+    cat: 'gegenstand',
+    sourceGroup: 'buch',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '📘 Deutschbuch S. 44–45 (Nr. 1–5)',
+    title: '6. Naomis verlorene Buntstift-Armbanduhr (S. 44–45)',
+    desc: 'Naomis erste Notiz an Hausmeister Herrn Berg enthält viele überflüssige Gefühle, aber zu wenige genaue Merkmale. Beantworte die Fragen 1 bis 3 auf S. 44/45 und schreibe dann eine sachliche, genaue Gegenstandsbeschreibung von Naomis Armbanduhr in dein Heft (Aufgabe 5).',
+    facts: `
+      • <strong>Aufgabe 1 (Stichworte zur Abbildung auf S. 44):</strong><br>
+      1. <em>Farben:</em> bunt (Gehäuse dunkelblau, Ziffernblatt weiß mit bunten Zahlen, Armband hellblau, dunkelblau, rosa, violett und gelb gestreift).<br>
+      2. <em>Ziffernblatt:</em> groß, rund, weiß, mit bunten Ziffern von 1 bis 12.<br>
+      3. <em>Anzahl der Zeiger:</em> drei Zeiger (Stundenzeiger, Minutenzeiger, Sekundenzeiger).<br>
+      4. <em>Besonderheiten der Zeiger:</em> Stunden- und Minutenzeiger sehen aus wie <strong>angespitzte Buntstifte</strong> (ein kürzerer roter und ein längerer grüner Buntstift); der Sekundenzeiger ist <strong>schwarz, schmal und lang</strong>.<br>
+      5. <em>Armband &amp; Krone:</em> langes Armband aus <strong>buntem, gestreiftem Stoff</strong> mit Schnalle und Löchern; rechts am Gehäuserand sitzt eine kleine gelbe <strong>Krone</strong> (Drehknopf).<br><br>
+      • <strong>Aufgabe 2 (Was ist in Naomis Brief überflüssig?):</strong><br>
+      Dass sie „total traurig“ ist, dass die Uhr ein „Geburtstagsgeschenk von den Großeltern“ war, dass sie Angst hat, sie wird dreckig, und die Wertung „irgendwie witzig“.<br><br>
+      • <strong>Aufgabe 3 (Merksatz S. 45):</strong><br>
+      Eine sachliche Beschreibung ist <strong>genau</strong> und <strong>verständlich</strong>. Sie enthält <strong>wichtige Informationen</strong> und <strong>Einzelheiten</strong>. Sie enthält keine <strong>überflüssigen Informationen</strong>, keine <strong>Bewertung</strong> und keine <strong>eigene Meinung</strong>.
+    `,
+    sample: `<strong>Muster-Beschreibung von Naomis Armbanduhr (Deutschbuch S. 45 Nr. 5):</strong><br>
+    Lieber Herr Berg, ich beschreibe Ihnen meine verlorene Armbanduhr, damit Sie sie unter den gefundenen Uhren erkennen können.<br>
+    Meine Uhr hat in der Mitte ein rundes, dunkelblaues Gehäuse, an dessen rechtem Rand sich eine kleine Krone zum Einstellen der Uhrzeit befindet. Das große, runde Ziffernblatt hat einen weißen Hintergrund, auf dem die Zahlen von 1 bis 12 in bunten Farben stehen. Besonders auffällig sind die drei Zeiger in der Mitte: Der kurze Stundenzeiger und der längere Minutenzeiger sind wie bunte, angespitzte Buntstifte geformt. Der dritte Zeiger ist der Sekundenzeiger, der ganz schmal, lang und schwarz ist. Das lange Armband besteht aus buntem Stoff und ist quer in den Farben Hellblau, Dunkelblau, Rosa, Violett und Gelb gestreift. Oben hat es eine Schnalle aus Metall und unten kleine Löcher zum Verschließen.`
+  },
+  {
+    id: 'w_faustskizze_s46',
+    cat: 'weg',
+    sourceGroup: 'buch',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: '📘 Deutschbuch S. 46 (Nr. 1–5)',
+    title: '7. Faustskizze: Zwei Wege von der 5c zum Schultor (S. 46)',
+    desc: 'Auf der Faustskizze (Deutschbuch S. 46) sind zwei Wege vom Klassenraum der 5c zum Schultor eingezeichnet. Bringe zuerst die 6 geschüttelten Sätze (Aufgabe 2) in die richtige Reihenfolge und beschreibe danach den zweiten (blauen) Weg selbstständig in deinem Heft (Aufgabe 5).',
+    facts: `
+      • <strong>Aufgabe 2 – Richtige Reihenfolge der 6 Sätze im Buch (beschreibt den ROTEN Weg rechts herum):</strong><br>
+      1. <em>„<strong>Zuerst</strong> verlässt du den Klassenraum der 5c und hältst dich rechts.“</em><br>
+      2. <em>„<strong>Dann</strong> kommst du am Sekretariat vorbei.“</em><br>
+      3. <em>„<strong>Danach</strong> läufst du weiter bis zur Treppe.“</em><br>
+      4. <em>„<strong>Jetzt</strong> steigst du die Treppe hinunter bis ins Erdgeschoss.“</em><br>
+      5. <em>„<strong>Anschließend</strong> gehst du hinaus auf den Schulhof und überquerst ihn.“</em><br>
+      6. <em>„<strong>Zum Schluss</strong> musst du nur noch an den Bäumen vorbei und durch das Schultor gehen.“</em><br><br>
+      • <strong>Aufgabe 5 – Stichpunkte für den anderen (BLAUEN) Weg (links herum):</strong><br>
+      Aus der 5c kommen und sich <strong>links</strong> halten ➔ an der <strong>Klasse 5b</strong> und dem <strong>Kunstraum / den Toiletten</strong> vorbeigehen ➔ zur <strong>linken Treppe</strong> laufen ➔ die Treppe hinunter ins Erdgeschoss steigen ➔ über den <strong>Schulhof</strong> gehen ➔ zwischen den <strong>Bäumen</strong> hindurch bis zum <strong>Schultor</strong>.
+    `,
+    sample: `<strong>Muster-Beschreibung für Aufgabe 5 (Der andere Weg links herum):</strong><br>
+    <strong>Zuerst</strong> kommst du aus dem Klassenraum der 5c auf den Flur und wendest dich nach links. <strong>Dann</strong> gehst du geradeaus am Klassenraum der 5b auf der linken Seite und an der Klasse 5d auf der rechten Seite vorbei. <strong>Danach</strong> läufst du zwischen dem Kunstraum und den Toiletten weiter geradeaus bis zur Treppe am Ende des Ganges. <strong>Nun</strong> steigst du diese Treppe hinunter bis ins Erdgeschoss. <strong>Anschließend</strong> trittst du durch den Ausgang nach draußen auf den Schulhof und läufst schräg nach rechts über den Platz. <strong>Schließlich</strong> gehst du an den grünen Bäumen vorbei und verlässt das Gelände durch das Schultor.`
+  },
+
+  // --- ARBEITSHEFT (S. 16–24) & ARBEITSBLÄTTER (AB 1–2) ---
+  {
+    id: 'g_sporttasche',
+    cat: 'gegenstand',
+    sourceGroup: 'arbeitsheft',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '📗 Arbeitsheft S. 16–18',
+    title: '8. Pedros verlorene Sporttasche (Arbeitsheft S. 16–18)',
+    desc: 'Pedro hat seine Sporttasche im Schulbus vergessen. Schreibe eine vollständige, sachliche Beschreibung der Tasche und ihres Inhalts für das Fundbüro in dein Heft (Arbeitsheft S. 18 Nr. 7).',
+    facts: `
+      • <strong>Größe &amp; Form:</strong> rechteckig, groß, ca. 50 cm lang und 30 cm hoch.<br>
+      • <strong>Material &amp; Farbe:</strong> aus Stoff, zweifarbig (oben und an den Seiten <em>hellrot</em>, unten am Boden sowie an den zwei Tragegriffen und dem Tragegurt <em>dunkelrot</em>).<br>
+      • <strong>Aufpassen bei Aufgabe 1d (AH S. 16):</strong> Pedro sagt im Dialog versehentlich, die Seitenteile seien hellrot und nur die untere Seite dunkelrot – auf dem Bild sieht man genau, wo welche Farbe ist und dass zusätzlich zwei Abzeichen dran sind!<br>
+      • <strong>Besondere Kennzeichen:</strong> je ein runder Vereinsaufkleber an den Seitenteilen + zwei Abzeichen.<br>
+      • <strong>Inhalt:</strong> weiße Turnschuhe, kurze einfarbig blaue Sporthose, kurzärmeliges blau-weiß gestreiftes Sporthemd, Waschzeug.
+    `,
+    sample: `<strong>Muster-Aufsatz (Arbeitsheft S. 18 Nr. 7):</strong><br>
+    Meine verlorene Sporttasche ist rechteckig, ungefähr 50 cm lang sowie 30 cm hoch und besteht aus festem Stoff. Sie ist zweifarbig gestaltet: Während der obere Teil und die Seitenflächen hellrot sind, hat der Boden eine dunkelrote Farbe. Auch die beiden Tragegriffe und der lange Schultergurt sind dunkelrot. An der Oberseite befindet sich ein langer Reißverschluss. Als besonderes Kennzeichen klebt an beiden Seitenteilen jeweils ein runder, bunter Aufkleber meines Sportvereins, und an der Vorderseite stecken zwei kleine Abzeichen. Im Inneren der Sporttasche liegen meine weißen Turnschuhe, eine kurze, einfarbig blaue Sporthose, ein kurzärmeliges, blau-weiß gestreiftes Sporthemd sowie mein Waschzeug.`
+  },
+  {
+    id: 'g_federtasche',
+    cat: 'gegenstand',
+    sourceGroup: 'arbeitsheft',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '📄 Arbeitsblatt 1 (Strategie)',
+    title: '9. Die gemusterte Federtasche in 3 Schritten (AB 1)',
+    desc: 'Schreibe die Gegenstandsbeschreibung der pinken Federtasche vom Arbeitsblatt in drei Schritten (1. Einleitung, 2. Hauptteil, 3. Schluss) in dein Heft.',
+    facts: `
+      • <strong>1. Einleitung:</strong> Federtasche für die Schule zum Aufbewahren von Stiften.<br>
+      • <strong>2. Hauptteil:</strong> länglich, rechteckig (ca. 22 cm lang); außen pinker Stoff mit weißen Blättern als Muster; gelber Reißverschluss aus Kunststoff und Metall; innen zwei Fächer mit schwarzen Gummischlaufen für Füller, Buntstifte, Lineal und Radiergummi.<br>
+      • <strong>3. Schluss:</strong> Warum magst du sie / warum ist sie im Alltag nützlich?
+    `,
+    sample: `<strong>Muster-Aufsatz (Arbeitsblatt 1):</strong><br>
+    Der Gegenstand, den ich beschreibe, ist meine Federtasche. Man benutzt sie täglich in der Schule, um Füller und Stifte ordentlich aufzubewahren.<br>
+    Die Federtasche ist länglich sowie rechteckig geformt und besteht außen aus festem, pinkfarbenem Stoff. Als Muster sind darauf viele kleine weiße Blätter abgebildet. Oben wird sie mit einem gelben Reißverschluss und einem silbernen Metallzipper geöffnet. Im Inneren gibt es zwei Fächer mit schwarzen Gummischlaufen, in denen Stifte, ein Lineal und ein Radiergummi stecken.<br>
+    Die Federtasche ist sehr praktisch, weil man im Unterricht jeden Stift sofort findet.`
+  },
+  {
+    id: 'w_schoko',
+    cat: 'weg',
+    sourceGroup: 'arbeitsheft',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: '📗 Arbeitsheft S. 19–21',
+    title: '10. Vom Kölner Hauptbahnhof zum Schokoladenmuseum (AH S. 19)',
+    desc: 'Verfasse anhand des Stadtplans im Arbeitsheft (S. 19) die Wegbeschreibung vom Bahnhofsvorplatz über den Zwischenhalt „Alter Markt“ bis zum Schokoladenmuseum am Rhein.',
+    facts: `
+      • <strong>Start (Treffpunkt):</strong> Bahnhofsvorplatz am Kölner Hauptbahnhof.<br>
+      • <strong>Unterwegs:</strong> Am Kölner Dom und der Philharmonie vorbei nach Süden.<br>
+      • <strong>Zwischenhalt:</strong> Alter Markt (mit dem historischen Rathaus).<br>
+      • <strong>Weiterweg &amp; Ziel:</strong> Über den Heumarkt, unter der Deutzer Brücke hindurch, links ans Rheinufer (Frankenwerft) und am Rhein entlang nach Süden bis zum Schokoladenmuseum.
+    `,
+    sample: `<strong>Muster-Aufsatz (Arbeitsheft S. 20–21):</strong><br>
+    Unser Weg beginnt auf dem Bahnhofsvorplatz vor dem Kölner Hauptbahnhof. Zuerst gehen wir rechts am großen Kölner Dom vorbei und halten uns links in Richtung Philharmonie. Danach folgen wir der Straße „Am Hof“ geradeaus nach Süden, bis wir unseren Zwischenhalt auf dem Platz „Alter Markt“ vor dem Rathaus erreichen. Anschließend überqueren wir den Alten Markt sowie den dahinterliegenden Heumarkt in südlicher Richtung. Wir unterqueren die Auffahrt zur Deutzer Brücke und biegen nach links zum Rheinufer ab. Schließlich laufen wir an der Uferpromenade rechts neben dem Rhein geradeaus weiter nach Süden, bis wir auf einer Halbinsel direkt vor dem Schokoladenmuseum stehen.`
+  },
+  {
+    id: 'r_terrarium',
+    cat: 'raum',
+    sourceGroup: 'arbeitsheft',
+    catLabel: '🏫 Raumbeschreibung',
+    origin: '📗 Arbeitsheft S. 22–24',
+    title: '11. Pauls Schildkrötenterrarium & Tierauswahl (AH S. 22–24)',
+    desc: 'Beschreibe das Schildkrötenterrarium aus dem Arbeitsheft (S. 22–23) mit abwechslungsreichen Satzanfängen und erkläre Paul (S. 24 Nr. 8), welche der beiden Schildkröten für das Terrarium geeignet ist.',
+    facts: `
+      • <strong>Raum im Ganzen:</strong> 2 m breit, 1 m hoch, 1 m tief, rechteckig, aus Glas, Boden mit gelbem Sand bedeckt.<br>
+      • <strong>Einrichtung:</strong> unten links ein grauer ausgehöhlter Stein; dahinter eine Grünpflanze; auf der rechten Seite eine hölzerne Wurzel; zwischen Rückwand und Wurzel eine zweite Grünpflanze; links neben der Wurzel eine flache graue Wasserschale.<br>
+      • <strong>Hinweis an Paul (S. 24 Nr. 8):</strong> Schildkröte 1 (Landschildkröte mit hochgewölbtem Panzer und Krallenfüßen) gehört ins Trocken-Terrarium; Schildkröte 2 (Wasserschildkröte mit flachem Panzer und Schwimmhäuten) gehört in ein Aquarium.
+    `,
+    sample: `<strong>Muster-Aufsatz (Arbeitsheft S. 23–24):</strong><br>
+    Das rechteckige Schildkrötenterrarium besteht aus Glas und ist ungefähr 2 m breit, 1 m hoch sowie 1 m tief. Der gesamte Boden ist mit hellem Sand bedeckt. Ein großer, grauer, ausgehöhlter Stein liegt unten links im Vordergrund. Hinter dem ausgehöhlten Stein befindet sich an der Rückwand eine grüne Pflanze. Auf der rechten Seite liegt eine knorrige, hölzerne Wurzel im Sand. Eine weitere Grünpflanze steht zwischen der Rückwand und der Wurzel. Links neben der hölzernen Wurzel steht in der Mitte eine flache Wasserschale.<br>
+    Lieber Paul, wähle für dein Terrarium unbedingt die erste Schildkröte aus! Sie hat einen hochgewölbten Panzer und kräftige Beine mit Krallen zum Laufen auf dem Sand. Die zweite Schildkröte hat einen ganz flachen Panzer und Schwimmhäute, weshalb sie ein Aquarium mit viel Wasser bräuchte.`
+  },
+
+  // --- WEITERE ZUSATZ-ÜBUNGEN FÜR NOCH MEHR TRAINING ---
+  {
+    id: 'g_schlagzeug_s31',
+    cat: 'gegenstand',
+    sourceGroup: 'buch',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '📘 Deutschbuch S. 30–31 (Nr. 4)',
+    title: '12. Das Schlagzeug im Musikraum (Deutschbuch S. 31 Nr. 4)',
+    desc: 'Auf dem Schulbild (Deutschbuch S. 30–31) steht im Musikraum ein Schlagzeug. Beantworte Aufgabe 4a und 4b schriftlich im Heft: Wo befindet sich das Schlagzeug und wie sieht es genau aus?',
+    facts: `
+      • <strong>Position im Raum (4a):</strong> Im Musikraum der Schule, gut sichtbar vor der großen Fensterfront.<br>
+      • <strong>Aussehen &amp; Einzelteile (4b):</strong> Besteht aus mehreren runden Trommeln mit blau glänzenden Kesseln und weißen Trommelfellen (eine große Basstrommel unten auf dem Boden mit Fußpedal, zwei kleinere Hängetrommeln darüber, eine flache Schnarrtrommel links auf einem Metallständer) sowie zwei runden, goldgelb glänzenden Metallbecken auf hohen silbernen Stativen und einem runden schwarzen Hocker.
+    `,
+    sample: `<strong>Muster-Beschreibung (Deutschbuch S. 31 Nr. 4):</strong><br>
+    Das Schlagzeug befindet sich im Musikraum der Schule. Es setzt sich aus verschiedenen Trommeln und metallenen Becken zusammen, die auf silbernen Metallständern montiert sind. In der Mitte steht unten auf dem Boden eine große, runde Basstrommel mit einem dunkelblauen Gehäuse, die mit einem Fußpedal gespielt wird. Darüber sind zwei kleinere, ebenfalls blaue Trommeln mit weißen Schlagfellen befestigt. Links und rechts ragen hohe Metallstative auf, an denen runde, goldgelb glänzende Becken hängen. Hinter dem Schlagzeug steht ein runder, schwarzer Hocker, auf dem man beim Spielen sitzt und zwei hölzerne Trommelstöcke benutzt.`
+  },
+  {
+    id: 'g_rucksack',
+    cat: 'gegenstand',
+    sourceGroup: 'zusatz',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '✨ Zusatz-Aufgabe',
+    title: '13. Zusatz: Der verlorene Schulrucksack',
+    desc: 'Beschreibe den dunkelblauen Schulrucksack mit den neongelben Reflektoren und dem Fußball-Anhänger sachlich für das Schwarze Brett.',
+    facts: `• 45 cm hoch, 30 cm breit, dunkelblaues Nylon mit hellblauer Vordertasche, 2 neongelbe Reflektorstreifen, Fußball-Anhänger am rechten Reißverschluss, silberne Trinkflasche links, roter Ordner & grüne Brotdose innen.`,
+    sample: `Der Schulrucksack ist 45 cm hoch, besteht aus dunkelblauem Nylon und besitzt vorne eine aufgesetzte hellblaue Tasche. Quer über die Vorderseite verlaufen zwei leuchtend gelbe Reflektorstreifen. Am rechten Reißverschluss hängt ein runder Fußball-Anhänger. In der linken Netztasche steckt eine silberne Trinkflasche, und im Hauptfach liegen ein roter Mathe-Ordner sowie eine grüne Brotdose.`
+  },
+  {
+    id: 'g_fahrrad',
+    cat: 'gegenstand',
+    sourceGroup: 'zusatz',
+    catLabel: '🎒 Gegenstandsbeschreibung',
+    origin: '✨ Zusatz-Aufgabe',
+    title: '14. Zusatz: Das vermisste Jugend-Mountainbike',
+    desc: 'Beschreibe das mattschwarze 26-Zoll-Mountainbike mit der giftgrünen Rahmenstange und dem roten Spiralschloss unter dem Sattel.',
+    facts: `• 26-Zoll-Stollenreifen, Aluminiumrahmen in Mattschwarz mit giftgrünem Oberrohr, schwarzer Gelsattel, rotes Spiralkabel-Zahlenschloss um die Sattelstütze, silberne Klingel mit Kratzer.`,
+    sample: `Das 26-Zoll-Mountainbike hat schwarze Stollenreifen und einen mattschwarzen Aluminiumrahmen, dessen obere Stange giftgrün lackiert ist. Unter dem schwarzen Gelsattel ist ein rotes Spiralschloss um die Sattelstütze gewickelt, und an der silbernen Klingel links am Lenker befindet sich ein Kratzer.`
+  },
+  {
+    id: 'w_buecherei',
+    cat: 'weg',
+    sourceGroup: 'zusatz',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: '✨ Zusatz-Aufgabe',
+    title: '15. Zusatz: Von der Bushaltestelle zur Stadtbücherei',
+    desc: 'Beschreibe den Fußweg von der Haltestelle „Schulzentrum“ über die Lindenallee und den Marktplatz bis zur Stadtbücherei.',
+    facts: `• Start: Hst. Schulzentrum (Hauptstraße) ➔ Zebrastreifen überqueren ➔ rechts in die Lindenallee (links Bäckerei & rote Stadtkirche) ➔ Marktplatz mit Löwenbrunnen überqueren ➔ links in die Rathausgasse ➔ rechts gelbes Fachwerkhaus (Stadtbücherei).`,
+    sample: `Zuerst überquerst du an der Haltestelle die Hauptstraße am Zebrastreifen und biegst rechts in die Lindenallee ein. Du gehst links an der Bäckerei und der roten Stadtkirche vorbei bis zum Marktplatz mit dem Löwenbrunnen. Anschließend überquerst du den Platz und biegst links in die Rathausgasse ab, wo rechts im gelben Fachwerkhaus die Stadtbücherei liegt.`
+  },
+  {
+    id: 'w_sporthalle',
+    cat: 'weg',
+    sourceGroup: 'zusatz',
+    catLabel: '🗺️ Wegbeschreibung',
+    origin: '✨ Zusatz-Aufgabe',
+    title: '16. Zusatz: Vom Schuleingang zur neuen Sporthalle',
+    desc: 'Beschreibe den Weg über den Pausenhof, durch das grüne Metalltor und über die Holzbrücke zur neuen Sporthalle.',
+    facts: `• Start: Haupteingang ➔ geradeaus über den Pausenhof (links gelber Kiosk) ➔ durch das grüne Metalltor ➔ rechts am roten Gerätehaus vorbei ➔ über die braune Holzbrücke den Bach überqueren ➔ schräg links zur Sporthalle mit blauem Dach.`,
+    sample: `Vom Schuleingang aus gehst du zuerst geradeaus über den Pausenhof und verlässt ihn rechts durch das grüne Metalltor. Danach folgst du dem Fußweg am roten Gerätehaus vorbei und überquerst den Bach über die braune Holzbrücke. Schließlich hältst du dich links und stehst direkt vor der Sporthalle mit dem blauen Dach.`
+  },
+  {
+    id: 'r_jugendzimmer',
+    cat: 'raum',
+    sourceGroup: 'zusatz',
+    catLabel: '🏫 Raumbeschreibung',
+    origin: '✨ Zusatz-Aufgabe',
+    title: '17. Zusatz: Das neu eingerichtete Jugendzimmer',
+    desc: 'Beschreibe das 3D-Jugendzimmer geordnet vom Allgemeinen zum Besonderen.',
+    facts: `• 4 m × 3 m, rechteckig, heller Holzboden; links weißes Bett mit hellblauer Decke; hinten Mitte großes Fenster, darunter heller Schreibtisch mit Lampe und schwarzem Drehstuhl; rechts hohes braunes Bücherregal, davor ein runder grauer Teppich.`,
+    sample: `Das rechteckige Jugendzimmer ist 4 m lang sowie 3 m breit und hat einen hellen Holzboden. An der linken Wand steht ein weißes Bett mit einer hellblauen Decke. Unter dem großen Fenster an der Rückwand befindet sich ein heller Schreibtisch mit einem schwarzen Drehstuhl. An der rechten Wand ragt ein hohes braunes Bücherregal auf, vor dem ein runder grauer Teppich liegt.`
+  },
+  {
+    id: 'r_meerschweinchen',
+    cat: 'raum',
+    sourceGroup: 'zusatz',
+    catLabel: '🏫 Raumbeschreibung',
+    origin: '✨ Zusatz-Aufgabe',
+    title: '18. Zusatz: Das große Meerschweinchen-Gehege',
+    desc: 'Beschreibe den Aufbau und die Einrichtung des Meerschweinchen-Geheges.',
+    facts: `• 1,80 m × 80 cm, aus Holz mit Plexiglasscheibe vorn, Holzstreu am Boden; unten links braunes Schlafhäuschen mit 2 Eingängen; hinten Mitte Heuraufe; hinten rechts Korkröhre; vorne rechts blaue Wasserschale und grüner Futternapf.`,
+    sample: `Das rechteckige Gehege besteht aus Holz mit einer durchsichtigen Plexiglasscheibe an der Vorderseite und ist mit Holzstreu ausgelegt. Unten links steht ein braunes Schlafhäuschen mit zwei Eingängen. An der Rückwand hängt in der Mitte eine gefüllte Heuraufe, und hinten rechts liegt eine Korkröhre. Vorne rechts stehen eine blaue Wasserschale und ein grüner Futternapf nebeneinander.`
+  }
+];
+
+// --- DYNAMISCHE SPEICHERISOLATION ÜBER DATEINAMEN ---
+function getProfileName() {
+  const path = window.location.pathname;
+  const rawFile = path.split('/').pop();
+  const cleanName = rawFile.replace(/\.html$/i, '').trim();
+  return cleanName || "Standard";
+}
+
+function getStorageKey() {
+  return 'deutsch_beschreibung_data_' + getProfileName();
+}
+
+let appData = {
+  topics: {},
+  examHistory: [],
+  writtenEssays: [],
+  customImages: {},
+  activeExamTopics: TOPICS.map(t => t.id)
+};
+
+function loadData() {
+  const saved = localStorage.getItem(getStorageKey());
+  if (saved) {
+    try { appData = JSON.parse(saved); } catch(e){}
+  }
+  if (!appData.topics) appData.topics = {};
+  if (!appData.examHistory) appData.examHistory = [];
+  if (!appData.writtenEssays) appData.writtenEssays = [];
+  if (!appData.customImages) appData.customImages = {};
+  if (!appData.activeExamTopics || appData.activeExamTopics.length === 0) {
+    appData.activeExamTopics = TOPICS.map(t => t.id);
+  }
+  TOPICS.forEach(t => {
+    if (!appData.topics[t.id]) {
+      appData.topics[t.id] = { total: 0, correct: 0, recent: [] };
+    }
+  });
+}
+
+function saveData() {
+  try {
+    localStorage.setItem(getStorageKey(), JSON.stringify(appData));
+  } catch (e) {
+    console.warn("Speicherlimit erreicht", e);
+  }
+}
+
+function recordAnswer(topicId, isCorrect) {
+  if (!appData.topics[topicId]) {
+    appData.topics[topicId] = { total: 0, correct: 0, recent: [] };
+  }
+  const t = appData.topics[topicId];
+  t.total++;
+  if (isCorrect) t.correct++;
+  t.recent.push(isCorrect ? 1 : 0);
+  if (t.recent.length > 5) t.recent.shift();
+  saveData();
+  renderMenu();
+}
+
+function getTopicMastery(topicId) {
+  const t = appData.topics[topicId];
+  if (!t || !t.recent || t.recent.length < 3) return { status: 'neu', label: 'Neu', class: 'st-neu' };
+  const sum = t.recent.reduce((a,b)=>a+b, 0);
+  const len = t.recent.length;
+  if (len === 5 && sum === 5) return { status: 'stern', label: '🌟 Meister', class: 'st-stern' };
+  const rate = sum / len;
+  if (rate >= 0.8) return { status: 'gruen', label: '🟢 Fit', class: 'st-gruen' };
+  if (rate >= 0.6) return { status: 'gelb', label: '🟡 Geht so', class: 'st-gelb' };
+  return { status: 'rot', label: '🔴 Üben', class: 'st-rot' };
+}
+
+function toggleExamTopicCheck(topicId, checked) {
+  if (checked) {
+    if (!appData.activeExamTopics.includes(topicId)) appData.activeExamTopics.push(topicId);
+  } else {
+    appData.activeExamTopics = appData.activeExamTopics.filter(id => id !== topicId);
+  }
+  saveData();
+}
+
+function renderMenu() {
+  const checkContainer = document.getElementById('exam-topic-checks');
+  checkContainer.innerHTML = "";
+  TOPICS.forEach(t => {
+    const isChecked = appData.activeExamTopics.includes(t.id);
+    const label = document.createElement('label');
+    label.className = 'check-item';
+    label.innerHTML = `
+      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleExamTopicCheck('${t.id}', this.checked)">
+      <span>${t.short}</span>
+    `;
+    checkContainer.appendChild(label);
+  });
+
+  const container = document.getElementById('topic-list');
+  container.innerHTML = "";
+
+  TOPICS.forEach(t => {
+    const mastery = getTopicMastery(t.id);
+    const count = appData.topics[t.id]?.total || 0;
+
+    let borderLeft = "4px solid #cbd5e1";
+    if (mastery.status === 'rot') borderLeft = "4px solid #ef4444";
+    if (mastery.status === 'gelb') borderLeft = "4px solid #f59e0b";
+    if (mastery.status === 'gruen') borderLeft = "4px solid #22c55e";
+    if (mastery.status === 'stern') borderLeft = "4px solid #14532d";
+
+    const div = document.createElement('div');
+    div.className = "topic-row";
+    div.style.borderLeft = borderLeft;
+    div.innerHTML = `
+      <div class="topic-row-top">
+        <div>
+          <div style="font-weight:800; font-size:0.91rem;">${t.name}</div>
+          <div style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">${t.info} • <b>${count}</b> geübt</div>
+        </div>
+        <span class="status-pill ${mastery.class}">${mastery.label}</span>
+      </div>
+      <div class="topic-actions">
+        <button class="btn-mini-practice" onclick="startPractice('${t.id}')">🎯 Üben</button>
+        <button class="btn-mini-test" onclick="startTopicExam('${t.id}')">📝 Thema-Test (10)</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  let totalTasks = 0, totalCorrect = 0;
+  TOPICS.forEach(t => {
+    totalTasks += appData.topics[t.id]?.total || 0;
+    totalCorrect += appData.topics[t.id]?.correct || 0;
+  });
+  document.getElementById('stat-total-tasks').textContent = totalTasks;
+  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
+  document.getElementById('stat-total-rate').textContent = `${rate}%`;
+  document.getElementById('stat-total-essays').textContent = (appData.writtenEssays || []).length;
+
+  const hList = document.getElementById('exam-history-list');
+  const combinedHistory = [];
+  (appData.examHistory || []).forEach(h => {
+    combinedHistory.push(`
+      <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #e2e8f0;">
+        <span>📝 ${h.date} • <b>${h.scope || 'Test'}</b> (${h.level})</span>
+        <strong style="color:var(--primary);">${h.percent}% → Note ${h.grade}</strong>
+      </div>
+    `);
+  });
+  (appData.writtenEssays || []).forEach(w => {
+    combinedHistory.push(`
+      <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #e2e8f0;">
+        <span>✍️ ${w.date} • <b>Heft:</b> ${w.title}</span>
+        <strong style="color:var(--purple);">Erledigt ✓</strong>
+      </div>
+    `);
+  });
+
+  if (combinedHistory.length === 0) {
+    hList.innerHTML = `<div style="color:var(--text-muted); font-style:italic;">Noch keine Arbeit oder Heft-Aufgabe abgeschlossen.</div>`;
+  } else {
+    hList.innerHTML = combinedHistory.reverse().join('');
+  }
+}
+
+// ============================================================================
+// HEFT-AUFGABEN STEUERUNG
+// ============================================================================
+let currentHeftFilter = 'all';
+let currentHeftPrompt = HEFT_PROMPTS[0];
+let capturedPhotoFile = null;
+
+function openHeftView() {
+  showView('view-heft');
+  filterHeftPrompts('all');
+}
+
+function openHeftPromptDirect(promptId) {
+  showView('view-heft');
+  filterHeftPrompts('all');
+  selectHeftPrompt(promptId);
+}
+
+function closeHeftView() {
+  renderMenu();
+  showView('view-menu');
+}
+
+function filterHeftPrompts(cat) {
+  currentHeftFilter = cat;
+  ['all', 'buch', 'arbeitsheft', 'gegenstand', 'weg', 'raum'].forEach(c => {
+    const btn = document.getElementById('heft-cat-' + c);
+    if (btn) btn.classList.toggle('active', c === cat);
+  });
+
+  let list = HEFT_PROMPTS;
+  if (cat === 'buch') list = HEFT_PROMPTS.filter(p => p.sourceGroup === 'buch');
+  else if (cat === 'arbeitsheft') list = HEFT_PROMPTS.filter(p => p.sourceGroup === 'arbeitsheft');
+  else if (cat !== 'all') list = HEFT_PROMPTS.filter(p => p.cat === cat);
+
+  const container = document.getElementById('heft-prompt-list');
+  container.innerHTML = "";
+
+  list.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'prompt-item-btn' + (currentHeftPrompt && currentHeftPrompt.id === p.id ? ' active' : '');
+    btn.innerHTML = `
+      <span>${p.title}</span>
+      <span style="font-size:0.7rem; color:var(--text-muted); font-weight:700; white-space:nowrap;">${p.origin}</span>
+    `;
+    btn.onclick = () => selectHeftPrompt(p.id);
+    container.appendChild(btn);
+  });
+
+  if (!list.some(p => p.id === currentHeftPrompt?.id)) {
+    selectHeftPrompt(list[0].id);
+  } else {
+    selectHeftPrompt(currentHeftPrompt.id);
+  }
+}
+
+function selectHeftPrompt(promptId) {
+  const p = HEFT_PROMPTS.find(x => x.id === promptId) || HEFT_PROMPTS[0];
+  currentHeftPrompt = p;
+  capturedPhotoFile = null;
+  document.getElementById('photo-preview-container').classList.add('hidden');
+  document.querySelectorAll('.heft-check').forEach(cb => cb.checked = false);
+
+  document.getElementById('heft-badge').textContent = p.catLabel;
+  document.getElementById('heft-origin').textContent = p.origin;
+  document.getElementById('heft-title').textContent = p.title;
+  document.getElementById('heft-task-desc').textContent = p.desc;
+  document.getElementById('heft-facts').innerHTML = p.facts;
+  document.getElementById('heft-sample-text').innerHTML = p.sample;
+
+  updateIllustrationDisplay(p.id);
+
+  document.querySelectorAll('.prompt-item-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(p.title));
+  });
+}
+
+function updateIllustrationDisplay(promptId) {
+  const canvas = document.getElementById('heft-canvas');
+  const customImg = document.getElementById('heft-custom-img');
+  const resetBtn = document.getElementById('btn-reset-illus');
+  const caption = document.getElementById('illus-caption');
+
+  if (appData.customImages && appData.customImages[promptId]) {
+    canvas.classList.add('hidden');
+    customImg.src = appData.customImages[promptId];
+    customImg.classList.remove('hidden');
+    resetBtn.classList.remove('hidden');
+    caption.textContent = "📷 Eigenes Buchfoto hinterlegt";
+  } else {
+    customImg.classList.add('hidden');
+    canvas.classList.remove('hidden');
+    resetBtn.classList.add('hidden');
+    caption.textContent = `🎨 Illustration zu: ${currentHeftPrompt.origin}`;
+    renderBookIllustration(promptId);
+  }
+}
+
+function handleCustomIllusUpload(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file || !currentHeftPrompt) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    if (!appData.customImages) appData.customImages = {};
+    appData.customImages[currentHeftPrompt.id] = e.target.result;
+    saveData();
+    updateIllustrationDisplay(currentHeftPrompt.id);
+  };
+  reader.readAsDataURL(file);
+}
+
+function resetCustomIllus() {
+  if (appData.customImages && currentHeftPrompt) {
+    delete appData.customImages[currentHeftPrompt.id];
+    saveData();
+    updateIllustrationDisplay(currentHeftPrompt.id);
+  }
+}
+
+function logWrittenEssay() {
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2,'0')}.${(now.getMonth()+1).toString().padStart(2,'0')}.`;
+  if (!appData.writtenEssays) appData.writtenEssays = [];
+  appData.writtenEssays.push({
+    date: dateStr,
+    title: `${currentHeftPrompt.title} (${currentHeftPrompt.origin})`
+  });
+  saveData();
+}
+
+function triggerCamera() {
+  document.getElementById('camera-input').click();
+}
+
+function handleCameraPhoto(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  capturedPhotoFile = file;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('photo-preview-img').src = e.target.result;
+    document.getElementById('photo-preview-container').classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+}
+
+async function sharePhotoViaWebShare() {
+  logWrittenEssay();
+  const profile = getProfileName();
+  const textMsg = `📝 Hallo! Ich (${profile}) habe meine Deutsch-Aufgabe „${currentHeftPrompt.title}“ (${currentHeftPrompt.origin}) im Heft fertig geschrieben. Hier ist das Foto meiner Heftseite:`;
+
+  if (capturedPhotoFile && navigator.canShare && navigator.canShare({ files: [capturedPhotoFile] })) {
+    try {
+      await navigator.share({
+        title: `Deutsch-Aufsatz: ${currentHeftPrompt.title}`,
+        text: textMsg,
+        files: [capturedPhotoFile]
+      });
+      return;
+    } catch (err) {
+      console.log("Web Share abgebrochen, öffne WhatsApp direkt.");
+    }
+  }
+  openWhatsAppForHeftPhoto();
+}
+
+function openWhatsAppForHeftPhoto() {
+  logWrittenEssay();
+  const profile = getProfileName();
+  const checkedCount = Array.from(document.querySelectorAll('.heft-check')).filter(c => c.checked).length;
+  const today = new Date().toLocaleDateString('de-DE');
+
+  let msg = `📝 *Deutsch-Aufgabe im Heft fertig!* ✍️\n`;
+  msg += `👤 Profil: ${profile} (${today})\n`;
+  msg += `📘 Aufgabe: *${currentHeftPrompt.title}*\n`;
+  msg += `📍 Quelle: ${currentHeftPrompt.origin}\n`;
+  msg += `✅ Schreib-Profi-Checkliste: ${checkedCount}/4 Punkte geprüft\n\n`;
+  msg += `📸 *Ich schicke jetzt direkt das Foto von meiner Heftseite mit!*`;
+
+  window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+}
+
+// ============================================================================
+// INTERAKTIVE QUIZ-GENERATOREN (ALLE SEITEN AUS DEUTSCHBUCH & ARBEITSHEFT)
+// ============================================================================
+
+// 1. SPEZIAL-MODUL FÜR HEUTE: DEUTSCHBUCH SEITE 33 (ANNAS JACKE & DIE ANDERE JACKE)
+function genBuchS33(diff) {
+  const pool = [
+    {
+      src: "📘 Deutschbuch S. 33 Nr. 1a",
+      q: "<strong>Annas E-Mail prüfen (Buch S. 33):</strong> Im Klassenraum der 5a hängen zwei vergessene Jacken. Woran erkennt Frau Müller sofort, welche Jacke <strong>Anna</strong> gehört?",
+      v: `<div class="quote-card">„Es ist eine dunkelblaue Jacke. Sie hat eine Kapuze und große Knöpfe. Am Oberarm befindet sich eine gelbe Stickerei. Die große Brusttasche hat einen Reißverschluss. Die Jacke hat auch eine Kordel mit Stoppern aus Plastik.“</div>`,
+      choices: [
+        "Annas Jacke ist dunkelblau, hat eine Kapuze, große Knöpfe, eine gelbe Stickerei am Oberarm und eine Kordel mit Plastikstoppern.",
+        "Annas Jacke ist grün, hat einen Stehkragen ohne Kapuze und ein Pfoten-Abzeichen.",
+        "Man kann die beiden Jacken überhaupt nicht voneinander unterscheiden."
+      ],
+      correct: "Annas Jacke ist dunkelblau, hat eine Kapuze, große Knöpfe, eine gelbe Stickerei am Oberarm und eine Kordel mit Plastikstoppern.",
+      help: "Alle fünf Merkmale aus der E-Mail von Beate Sondermann passen eindeutig auf die linke, dunkelblaue Jacke."
+    },
+    {
+      src: "📘 Deutschbuch S. 33 (E-Mail von Frau Sondermann)",
+      q: "<strong>Überflüssige Angaben erkennen:</strong> Welcher Satz aus der E-Mail von Annas Mutter hilft Frau Müller <strong>NICHT</strong> dabei, das Aussehen der Jacke an der Garderobe zu erkennen?",
+      v: `<div class="quote-card">1. „Es ist eine dunkelblaue Jacke.“<br>2. „Am Oberarm befindet sich eine gelbe Stickerei.“<br>3. „Anna hat sie letzte Woche erst zum Geburtstag bekommen.“</div>`,
+      choices: [
+        "Satz 3 („Anna hat sie letzte Woche erst zum Geburtstag bekommen.“)",
+        "Satz 1 („Es ist eine dunkelblaue Jacke.“)",
+        "Satz 2 („Am Oberarm befindet sich eine gelbe Stickerei.“)"
+      ],
+      correct: "Satz 3 („Anna hat sie letzte Woche erst zum Geburtstag bekommen.“)",
+      help: "Wann oder von wem Anna die Jacke geschenkt bekommen hat, sieht man der Jacke an der Garderobe nicht an!"
+    },
+    {
+      src: "📘 Deutschbuch S. 33 Nr. 1b (Tabelle)",
+      q: "<strong>Unterschiede in der Tabelle (Buch S. 33 Nr. 1b):</strong> Wie unterscheiden sich <em>Annas Jacke</em> und <em>die andere Jacke</em> beim <strong>Verschluss an der Vorderseite</strong>?",
+      v: "Vergleichstabelle: Annas Jacke ↔ andere Jacke",
+      choices: [
+        "Annas Jacke hat große Knöpfe – die andere Jacke hat einen durchgehenden Reißverschluss.",
+        "Beide Jacken haben nur Klettverschlüsse.",
+        "Annas Jacke hat keinen Verschluss – die andere Jacke hat eine Schleife."
+      ],
+      correct: "Annas Jacke hat große Knöpfe – die andere Jacke hat einen durchgehenden Reißverschluss.",
+      help: "In der E-Mail steht: „Sie hat eine Kapuze und große Knöpfe.“ Die andere Jacke wird mit einem Reißverschluss geschlossen."
+    },
+    {
+      src: "📘 Deutschbuch S. 33 Nr. 1b (Tabelle)",
+      q: "<strong>Unterschiede in der Tabelle (Buch S. 33 Nr. 1b):</strong> Welchen Unterschied trägst du beim <strong>Kopfteil / Kragen</strong> in deine Tabelle ein?",
+      v: "Annas Jacke ↔ andere Jacke",
+      choices: [
+        "Annas Jacke hat eine Kapuze – die andere Jacke hat keine Kapuze, sondern einen Stehkragen.",
+        "Beide Jacken haben eine pelzige Kapuze.",
+        "Annas Jacke hat keinen Kragen – die andere Jacke hat zwei Kapuzen."
+      ],
+      correct: "Annas Jacke hat eine Kapuze – die andere Jacke hat keine Kapuze, sondern einen Stehkragen.",
+      help: "Annas Jacke besitzt eine Kapuze, während die andere Jacke oben mit einem Kragen abschließt."
+    },
+    {
+      src: "📘 Deutschbuch S. 33 Nr. 1b",
+      q: "<strong>Besondere Einzelteile (Buch S. 33):</strong> Woraus bestehen die Stopper an der Kordel von Annas Jacke laut der E-Mail?",
+      v: "„Die Jacke hat auch eine Kordel mit Stoppern aus ...“",
+      choices: ["Plastik (Kunststoff)", "Holz", "Glas", "Gold"],
+      correct: "Plastik (Kunststoff)",
+      acceptedText: ["plastik", "kunststoff"],
+      typeable: true,
+      help: "Im Brief steht wörtlich: „Die Jacke hat auch eine Kordel mit Stoppern aus Plastik.“"
+    },
+    {
+      src: "📘 Deutschbuch S. 33 Nr. 1 & 2",
+      q: "<strong>Adjektive unterstreichen (Buch S. 33 Nr. 2):</strong> Welche drei Wörter aus der E-Mail über Annas Jacke sind <strong>Adjektive (Eigenschaftswörter)</strong>?",
+      v: "Suche die drei Adjektive heraus:",
+      choices: [
+        "neue, dunkelblaue, große, gelbe",
+        "Jacke, Kapuze, Knöpfe, Stickerei",
+        "hängen, vergessen, befindet, hoffen"
+      ],
+      correct: "neue, dunkelblaue, große, gelbe",
+      help: "Adjektive beschreiben, wie etwas ist: neue (Jacke), dunkelblaue (Jacke), große (Knöpfe/Brusttasche), gelbe (Stickerei)."
+    },
+    {
+      src: "📘 Deutschbuch S. 33",
+      q: "<strong>Genau lesen (Buch S. 33):</strong> Wo genau befindet sich die <strong>gelbe Stickerei</strong> an Annas Jacke?",
+      v: "Position des besonderen Kennzeichens:",
+      choices: ["Am Oberarm", "Mitten auf dem Rücken", "Innen im Futter", "Unten am Saum"],
+      correct: "Am Oberarm",
+      acceptedText: ["am oberarm", "oberarm"],
+      typeable: true,
+      help: "In der E-Mail steht: „Am Oberarm befindet sich eine gelbe Stickerei.“"
+    },
+    {
+      src: "📘 Deutschbuch S. 33",
+      q: "<strong>Taschen genau beschreiben (Buch S. 33):</strong> Wie wird die <strong>große Brusttasche</strong> an Annas Jacke verschlossen?",
+      v: "„Die große Brusttasche hat einen ...“",
+      choices: ["Reißverschluss", "Holzknopf", "Vorhängeschloss", "Schnürsenkel"],
+      correct: "Reißverschluss",
+      acceptedText: ["reißverschluss", "reissverschluss"],
+      typeable: true,
+      help: "„Die große Brusttasche hat einen Reißverschluss.“"
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'buch_s33',
+    topicName: 'Deutschbuch S. 33: Annas Jacke',
+    sourceLabel: item.src,
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+// 2. GEGENSTÄNDE BESCHREIBEN (Buch S. 31, 35, 38, 44-45 + AH S. 16-18 + AB 1-2)
+function genGegenstand(diff) {
+  const pool = [
+    {
+      src: "📘 Deutschbuch S. 38 Nr. 1 (Mein Schließfach)",
+      q: "<strong>Paul sucht die Schließfächer (Buch S. 38):</strong> Anna sagt: <em>„Mein Fach ist rot und blau. Es hat oben einen Aufkleber.“</em> Tarik sagt: <em>„Mein Fach ist blau. Es hat oben und unten orangefarbene Streifen. Das Schloss ist gelb.“</em> Mit welcher Beschreibung findet Paul sofort das richtige Fach?",
+      v: "Vergleiche Annas und Tariks Beschreibung!",
+      choices: [
+        "Mit Tariks Beschreibung, weil er Farben, Streifen und die gelbe Schlossfarbe eindeutig nennt.",
+        "Mit Annas Beschreibung, weil es nur ein einziges rot-blaues Fach gibt.",
+        "Mit keiner von beiden."
+      ],
+      correct: "Mit Tariks Beschreibung, weil er Farben, Streifen und die gelbe Schlossfarbe eindeutig nennt.",
+      help: "Auf dem Bild (S. 38) gibt es mehrere rot-blaue Fächer mit Aufkleber oben – Anna hat die genaue Verteilung der Farben und das Motiv des Aufklebers vergessen! Tariks Fach ist durch das gelbe Schloss und die orangefarbenen Streifen eindeutig."
+    },
+    {
+      src: "📘 Deutschbuch S. 44 (Naomis Uhr)",
+      q: "<strong>Fachbegriffe an der Armbanduhr (Buch S. 44):</strong> Wie nennt man den kleinen Drehknopf an der Seite des Uhrengehäuses, mit dem man die Uhrzeit einstellt?",
+      v: "Fachbegriff auf Seite 44 unten:",
+      choices: ["die Krone", "das Ziffernblatt", "der Sekundenzeiger", "die Schnalle"],
+      correct: "die Krone",
+      acceptedText: ["krone", "die krone"],
+      typeable: true,
+      help: "Der kleine Drehknopf am Rand einer Armbanduhr heißt „die Krone“."
+    },
+    {
+      src: "📘 Deutschbuch S. 44 Nr. 3 & 4 (Naomis Uhr)",
+      q: "<strong>Naomis Armbanduhr (Buch S. 44):</strong> Welche besondere Form haben der Stundenzeiger und der Minutenzeiger auf Naomis Uhr?",
+      v: "„... sind auch drauf, das gefällt mir am besten an meiner Uhr.“",
+      choices: [
+        "Sie sehen aus wie zwei bunte, angespitzte Buntstifte.",
+        "Sie haben die Form von Fußballschuhen.",
+        "Es sind gar keine Zeiger auf der Uhr, sondern nur digitale Zahlen."
+      ],
+      correct: "Sie sehen aus wie zwei bunte, angespitzte Buntstifte.",
+      help: "Auf Naomis Ziffernblatt sind der Stunden- und Minutenzeiger als bunte, angespitzte Buntstifte gestaltet, während der Sekundenzeiger schwarz und schmal ist."
+    },
+    {
+      src: "📘 Deutschbuch S. 44–45 Nr. 2 (Naomis Mitteilung)",
+      q: "<strong>Überflüssige Informationen streichen (Buch S. 45 Nr. 2):</strong> Welche Angabe aus Naomis Brief braucht Hausmeister Herr Berg <strong>NICHT</strong>, um die Uhr zu erkennen?",
+      v: `<div class="quote-card">„Seitdem bin ich total traurig, weil sie ein Geburtstagsgeschenk von meinen Großeltern war. Sie ist außerdem noch fast neu und ich habe Angst, dass sie jetzt dreckig wird. Meine Uhr sieht irgendwie witzig aus.“</div>`,
+      choices: [
+        "Dass Naomi traurig ist, die Uhr von den Großeltern stammt und „irgendwie witzig“ aussieht.",
+        "Dass das Armband aus buntem Stoff besteht.",
+        "Dass der Sekundenzeiger schwarz und schmal ist."
+      ],
+      correct: "Dass Naomi traurig ist, die Uhr von den Großeltern stammt und „irgendwie witzig“ aussieht.",
+      help: "Gefühle („traurig“, „Angst“), Herkunft („Großeltern“) und ungenaue Wertungen („witzig“) helfen Herrn Berg beim Erkennen der Uhr überhaupt nicht."
+    },
+    {
+      src: "📘 Deutschbuch S. 35 (Die Gegenstandsbeschreibung)",
+      q: "<strong>Beispiel-Uhr auf Seite 35:</strong> Zu welchen zwei Merkmals-Kategorien gehört die Beschreibung: <em>„Das Armband ist hellgrau gepunktet und aus Kunststoff“</em>?",
+      v: "Merkmale auf Seite 35 unten:",
+      choices: [
+        "Farbe/Muster und Material",
+        "Größe und Form",
+        "Position und Einleitung"
+      ],
+      correct: "Farbe/Muster und Material",
+      help: "„hellgrau gepunktet“ beschreibt Farbe und Muster, „aus Kunststoff“ nennt das Material."
+    },
+    {
+      src: "📗 Arbeitsheft S. 16 Nr. 1d (Pedros Sporttasche)",
+      q: "<strong>Genau hinschauen im Arbeitsheft (AH S. 16 Nr. 1d):</strong> Was hat Pedro im Gespräch mit Herrn Tal bei der Beschreibung seiner Sporttasche vergessen bzw. ungenau angegeben?",
+      v: "Vergleiche Pedros Text mit dem Bild der Tasche im Arbeitsheft (S. 16):",
+      choices: [
+        "Er hat die zwei kleinen Abzeichen an der Tasche nicht erwähnt und die Farbverteilung oben/an den Seiten ungenau beschrieben.",
+        "Er hat vergessen zu sagen, dass es eine Sporttasche ist.",
+        "Er hat vergessen, dass die Tasche Reißverschlüsse hat."
+      ],
+      correct: "Er hat die zwei kleinen Abzeichen an der Tasche nicht erwähnt und die Farbverteilung oben/an den Seiten ungenau beschrieben.",
+      help: "Auf Seite 18 (Aufgabe 5b) steht: „Als besonderes Kennzeichen hat meine Sporttasche einen bunten Aufkleber und zwei Abzeichen.“"
+    },
+    {
+      src: "📗 Arbeitsheft S. 17 Nr. 2b (Treffende Adjektive)",
+      q: "<strong>Adjektive zuordnen (AH S. 17 Nr. 2b):</strong> Welches Adjektiv aus dem Wortkasten passt zum <strong>blau-weißen Sporthemd</strong>?",
+      v: "Wortkasten: <em>rechteckig, rund, kurzärmelig, dunkelrot</em>",
+      choices: ["kurzärmelig (und gestreift)", "rechteckig", "dunkelrot", "rund"],
+      correct: "kurzärmelig (und gestreift)",
+      acceptedText: ["kurzärmelig", "gestreift"],
+      typeable: true,
+      help: "Das Sporthemd hat kurze Ärmel („kurzärmelig“) und blaue sowie weiße Streifen („blauweiß, gestreift“)."
+    },
+    {
+      src: "📄 Arbeitsblatt 1 & 2 (Federtasche & Einführung)",
+      q: "<strong>Gegenstands-Rätsel (Arbeitsblatt 2):</strong> Welcher Alltagsgegenstand wird hier beschrieben?",
+      v: `<div class="quote-card">„Diesen Gegenstand trägt man an den Füßen. Er schützt vor Kälte, Regen und Schmutz und hilft beim Gehen und Laufen.“</div>`,
+      choices: ["Schuhe", "Handschuhe", "Fernbedienung", "Taschenlampe"],
+      correct: "Schuhe",
+      acceptedText: ["schuhe", "schuh"],
+      typeable: true,
+      help: "Man trägt sie an den Füßen zum Schutz vor Kälte, Regen und Schmutz: Schuhe."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'gegenstand',
+    topicName: 'Gegenstände beschreiben',
+    sourceLabel: item.src,
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+// 3. WEGE BESCHREIBEN (Deutschbuch S. 30, 35, 36-37, 40-43, 46 + AH S. 19-21)
+function genWeg(diff) {
+  const pool = [
+    {
+      src: "📘 Deutschbuch S. 43 Nr. 4 (Tabelle Satzanfänge)",
+      q: "<strong>Satzanfänge für Wegbeschreibungen sortieren (Buch S. 43 Nr. 4):</strong> Welche Wörter gehören in der Tabelle in die erste Spalte <strong>„am Anfang“</strong>?",
+      v: "Wortkasten S. 43: <em>Zum Schluss • Zuerst • Dann • Nun • Zuletzt • Anschließend • Danach • Erst • Zunächst</em>",
+      choices: [
+        "Zuerst, Erst, Zunächst",
+        "Dann, Nun, Anschließend, Danach",
+        "Zum Schluss, Zuletzt"
+      ],
+      correct: "Zuerst, Erst, Zunächst",
+      help: "Mit „Zuerst“, „Erst“, „Als Erstes“ oder „Zunächst“ leitest du den ersten Schritt einer Wegbeschreibung ein."
+    },
+    {
+      src: "📘 Deutschbuch S. 43 Nr. 4 (Tabelle Satzanfänge)",
+      q: "<strong>Satzanfänge sortieren (Buch S. 43 Nr. 4):</strong> In welche Spalte der Tabelle gehören die Wörter <strong>„Zum Schluss“ und „Zuletzt“</strong>?",
+      v: "Spalten: 1. am Anfang | 2. in der Mitte | 3. am Ende",
+      choices: ["am Ende", "am Anfang", "in der Mitte"],
+      correct: "am Ende",
+      acceptedText: ["am ende", "ende"],
+      typeable: true,
+      help: "„Zum Schluss“, „Zuletzt“, „Schließlich“ und „Am Ende“ stehen immer beim letzten Wegabschnitt vor dem Ziel."
+    },
+    {
+      src: "📘 Deutschbuch S. 46 Nr. 2 (Faustskizze mit 2 Wegen)",
+      q: "<strong>Sätze ordnen (Buch S. 46 Nr. 2):</strong> Auf Seite 46 stehen 6 Sätze durcheinander. Mit welchem Satz muss die Wegbeschreibung vom Klassenraum der 5c zum Schultor <strong>beginnen (Platz 1)</strong>?",
+      v: "Welcher Satz steht ganz am Anfang?",
+      choices: [
+        "„Zuerst verlässt du den Klassenraum der 5c und hältst dich rechts.“",
+        "„Jetzt steigst du die Treppe hinunter bis ins Erdgeschoss.“",
+        "„Zum Schluss musst du nur noch an den Bäumen vorbei und durch das Schultor gehen.“"
+      ],
+      correct: "„Zuerst verlässt du den Klassenraum der 5c und hältst dich rechts.“",
+      help: "Das Signalwort „Zuerst“ und der Startpunkt „Klassenraum der 5c“ zeigen sofort den 1. Satz an."
+    },
+    {
+      src: "📘 Deutschbuch S. 46 Nr. 2 (Faustskizze)",
+      q: "<strong>Reihenfolge prüfen (Buch S. 46 Nr. 2):</strong> Was passiert auf dem beschriebenen Weg <strong>direkt nachdem</strong> du am Sekretariat vorbeigekommen bist und bis zur Treppe gelaufen bist?",
+      v: "1. Zuerst 5c verlassen & rechts halten ➔ 2. Dann am Sekretariat vorbei ➔ 3. Danach weiter bis zur Treppe ➔ 4. ?",
+      choices: [
+        "„Jetzt steigst du die Treppe hinunter bis ins Erdgeschoss.“",
+        "„Anschließend gehst du zurück in die Bibliothek.“",
+        "„Zuerst verlässt du das Schultor.“"
+      ],
+      correct: "„Jetzt steigst du die Treppe hinunter bis ins Erdgeschoss.“",
+      help: "Wenn man oben an der Treppe angekommen ist, steigt man sie hinunter ins Erdgeschoss, bevor man auf den Schulhof hinaustreten kann."
+    },
+    {
+      src: "📘 Deutschbuch S. 40 Nr. 2b (Schulplan)",
+      q: "<strong>Lückensätze zum Schulplan (Buch S. 40 Nr. 2b):</strong> Welches Richtungsverb passt grammatikalisch und inhaltlich in diesen Satz vom Seitenrand?",
+      v: "„Du _______ hinter der großen Pflanze nach rechts ab.“",
+      choices: ["biegst", "läufst", "stehst", "wohnst"],
+      correct: "biegst",
+      acceptedText: ["biegst"],
+      typeable: true,
+      help: "Auf Seite 40 rechts steht der Baustein: „Du biegst hinter der großen ... nach rechts ab.“"
+    },
+    {
+      src: "📘 Deutschbuch S. 35 (Die Wegbeschreibung)",
+      q: "<strong>Wegmarken im Schulgebäude (Buch S. 35):</strong> Welche auffälligen Dinge im Schulhaus eignen sich laut Seite 35 besonders gut als <strong>Wegmarken</strong>?",
+      v: "Woran kann man sich im Schulgebäude gut orientieren?",
+      choices: [
+        "Bilder, Pflanzen (z. B. große Palme), Farben an Wänden und Türen (z. B. blaue Tür), Schilder, Plakate",
+        "Mitschüler, die gerade in der Pause durch den Gang rennen",
+        "Ein Radiergummi, der zufällig auf der Treppe liegt"
+      ],
+      correct: "Bilder, Pflanzen (z. B. große Palme), Farben an Wänden und Türen (z. B. blaue Tür), Schilder, Plakate",
+      help: "Im Merkkasten auf Seite 35 stehen genau diese festen Wegmarken: Bilder, Pflanzen, Farben an Wänden und Türen, Schilder, Steine, Plakate."
+    },
+    {
+      src: "📗 Arbeitsheft S. 19 (Schokoladenmuseum Köln)",
+      q: "<strong>Stadtplan Köln (Arbeitsheft S. 19):</strong> Welche drei Stationen sind für den Weg der Klasse durch Köln vorgegeben?",
+      v: "Route im Arbeitsheft S. 19:",
+      choices: [
+        "Start: Vorplatz Hauptbahnhof ➔ Zwischenhalt: Alter Markt ➔ Ziel: Schokoladenmuseum am Rhein",
+        "Start: Schulgarten ➔ Zwischenhalt: Sekretariat ➔ Ziel: Musikraum",
+        "Start: Zoohandlung ➔ Zwischenhalt: Turnhalle ➔ Ziel: Sportplatz"
+      ],
+      correct: "Start: Vorplatz Hauptbahnhof ➔ Zwischenhalt: Alter Markt ➔ Ziel: Schokoladenmuseum am Rhein",
+      help: "Im Arbeitsheft S. 19 führt der Weg vom Kölner Hauptbahnhof über den Alten Markt zum Schokoladenmuseum."
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'weg',
+    topicName: 'Wege beschreiben',
+    sourceLabel: item.src,
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+// 4. RÄUME BESCHREIBEN (Deutschbuch S. 32 Klassenraum 5a & AH S. 22-24 Terrarium)
+function genRaum(diff) {
+  const pool = [
+    {
+      src: "📘 Deutschbuch S. 32 Nr. 1 (Der neue Klassenraum der 5a)",
+      q: "<strong>Wunsch-Sätze der 5a prüfen (Buch S. 32 Nr. 1):</strong> Ein Schüler hat geschrieben: <em>„5. Die Tische stehen wie in meiner alten Schule.“</em> Warum kann Hausmeister Herr Berg mit diesem Satz nichts anfangen?",
+      v: "Vergleiche Satz 5 mit den Regeln für eine genaue Raumbeschreibung:",
+      choices: [
+        "Weil Herr Berg die alte Schule des Schülers nicht kennt – er muss genau wissen, dass die Tische in drei Reihen in der Mitte stehen.",
+        "Weil es im neuen Klassenraum überhaupt keine Tische gibt.",
+        "Weil der Satz im Präsens geschrieben ist."
+      ],
+      correct: "Weil Herr Berg die alte Schule des Schülers nicht kennt – er muss genau wissen, dass die Tische in drei Reihen in der Mitte stehen.",
+      help: "Eine Raumbeschreibung muss für jeden Leser ohne Vorwissen genau und verständlich sein."
+    },
+    {
+      src: "📘 Deutschbuch S. 32 Nr. 1 (Klassenraum-Skizze)",
+      q: "<strong>Skizze genau lesen (Buch S. 32):</strong> Wo steht auf der Einrichtungs-Skizze der 5a der große <strong>Schrank</strong>, und was steht direkt daneben?",
+      v: "Blick auf die untere Wand der Skizze (gegenüber der Tafel):",
+      choices: [
+        "Der Schrank steht an der Rückwand genau gegenüber der Tafel; rechts daneben steht das kleine Regal und links hängt die Pinnwand.",
+        "Der Schrank steht mitten auf dem Schulhof.",
+        "Der Schrank hängt über der Tafel an der Decke."
+      ],
+      correct: "Der Schrank steht an der Rückwand genau gegenüber der Tafel; rechts daneben steht das kleine Regal und links hängt die Pinnwand.",
+      help: "Auf der Skizze (S. 32) sieht man gegenüber der Tafel den Schrank, rechts davon das Regal und links die Pinnwand."
+    },
+    {
+      src: "📘 Deutschbuch S. 32 Nr. 1 (Klassenraum-Skizze)",
+      q: "<strong>Position genau bestimmen (Buch S. 32):</strong> Wo steht laut Satz 4 und der Skizze der <strong>Lehrertisch</strong>?",
+      v: "„4. Der Lehrertisch steht vorne am ...“",
+      choices: [
+        "Vorne am ersten Fenster von der Tafel aus gezählt",
+        "Hinten in der Ecke neben der Garderobe",
+        "Direkt vor der Eingangstür auf dem Flur"
+      ],
+      correct: "Vorne am ersten Fenster von der Tafel aus gezählt",
+      help: "Satz 4 auf Seite 32 ist ein gutes Vorbild für eine genaue Ortsangabe: „vorne am ersten Fenster von der Tafel aus gezählt“."
+    },
+    {
+      src: "📗 Arbeitsheft S. 22 Nr. 1 (Schildkrötenterrarium)",
+      q: "<strong>Wortsammlung anlegen (AH S. 22 Nr. 1):</strong> In welche Spalte der Tabelle gehören die Wörter <strong>„hinter, unten links, neben, zwischen, auf der rechten Seite“</strong>?",
+      v: "Spalten: Raum | Gegenstände | Ortsbeschreibende Wörter | Verben",
+      choices: [
+        "Ortsbeschreibende Wörter",
+        "Gegenstände (im Terrarium)",
+        "Angaben zum Raum",
+        "Verben"
+      ],
+      correct: "Ortsbeschreibende Wörter",
+      help: "Mit diesen Wörtern beschreibst du die genaue Position der Gegenstände im Raum."
+    },
+    {
+      src: "📗 Arbeitsheft S. 24 Nr. 8 (Schildkröten-Auswahl)",
+      q: "<strong>Tierbeschreibung (AH S. 24 Nr. 8):</strong> Warum eignet sich nur eine der beiden Schildkröten für Pauls Sand-Terrarium?",
+      v: "Terrarium (Land) vs. Aquarium (Wasser):",
+      choices: [
+        "Die Landschildkröte hat einen hochgewölbten Panzer und kräftige Laufbeine mit Krallen; die andere hat Schwimmhäute und bräuchte ein Aquarium.",
+        "Beide Schildkröten können nur im tiefen Meerwasser leben.",
+        "Man darf Schildkröten nur nach ihrer Lieblingsfarbe auswählen."
+      ],
+      correct: "Die Landschildkröte hat einen hochgewölbten Panzer und kräftige Laufbeine mit Krallen; die andere hat Schwimmhäute und bräuchte ein Aquarium.",
+      help: "Körpermerkmale genau beachten: Hoher Panzer + Säulenbeine mit Krallen = Landschildkröte (Terrarium)."
+    }
+  ];
+
+  const item = pick(pool);
+  return {
+    topicId: 'raum',
+    topicName: 'Räume beschreiben',
+    sourceLabel: item.src,
+    question: item.q,
+    visual: item.v,
+    choices: shuffle(item.choices),
+    correct: item.correct,
+    help: item.help
+  };
+}
+
+// 5. SCHREIB-PROFI, SATZBAU & TEXT-DETEKTIV (Buch S. 34-35, 45 & AH S. 15, 23)
+function genGrundlagen(diff) {
+  const pool = [
+    {
+      src: "📘 Deutschbuch S. 45 Nr. 3 (Merksatz von Herrn Berg)",
+      q: "<strong>Merksatz ergänzen (Buch S. 45 Nr. 3):</strong> Hausmeister Herr Berg gibt Naomi einen Tipp. Welche Wörter gehören in die ersten beiden Lücken?<br><em>„Eine sachliche Beschreibung ist _______ und _______.“</em>",
+      v: "Wörter am Rand (S. 45): <em>genau • verständlich • Einzelheiten • wichtige Informationen • überflüssigen Informationen • Bewertung • eigene Meinung</em>",
+      choices: [
+        "genau und verständlich",
+        "witzig und traurig",
+        "langweilig und geheim"
+      ],
+      correct: "genau und verständlich",
+      help: "Der Merksatz auf S. 45 lautet: „Eine sachliche Beschreibung ist genau und verständlich.“"
+    },
+    {
+      src: "📘 Deutschbuch S. 45 Nr. 3 (Merksatz Teil 2)",
+      q: "<strong>Merksatz ergänzen (Buch S. 45 Nr. 3):</strong> Was enthält eine sachliche Beschreibung laut Herrn Bergs Merksatz <strong>NICHT</strong>?",
+      v: "„Sie enthält keine _______, keine _______ und keine _______.“",
+      choices: [
+        "überflüssigen Informationen, Bewertung und eigene Meinung",
+        "Adjektive, Nomen und Verben im Präsens",
+        "Farben, Formen und Größenangaben"
+      ],
+      correct: "überflüssigen Informationen, Bewertung und eigene Meinung",
+      help: "Überflüssige Infos, persönliche Bewertungen und eigene Meinungen gehören nicht in eine sachliche Beschreibung."
+    },
+    {
+      src: "📘 Deutschbuch S. 34 & 📗 Arbeitsheft S. 15 (Wissen kompakt)",
+      q: "<strong>Die 3 Schritte des Schreib-Profis (Buch S. 34):</strong> In welchem Schritt benutzt du die <strong>Checkliste</strong>, holst dir Feedback von anderen und überarbeitest deinen Text?",
+      v: "Schritt 1: Vor dem Schreiben | Schritt 2: Beim Schreiben | Schritt 3: Nach dem Schreiben",
+      choices: [
+        "Schritt 3: Nach dem Schreiben",
+        "Schritt 1: Vor dem Schreiben",
+        "Bevor man sich die Aufgabe überhaupt durchliest"
+      ],
+      correct: "Schritt 3: Nach dem Schreiben",
+      help: "Auf Seite 34 steht: „Schritt 3: Nach dem Schreiben – Ich überprüfe meinen Text mit der Checkliste. Ich lasse mir Feedback geben. Ich überarbeite meinen Text.“"
+    },
+    {
+      src: "📗 Arbeitsheft S. 23 Nr. 4 (Pauls 1. und 2. Entwurf)",
+      q: "<strong>Satzbau-Trick von Paul (AH S. 23 Nr. 4b):</strong> Paul stellt seinen Satz um:<br>1. <em>„<u>Unten links</u> <b>liegt</b> ein ausgehöhlter Stein.“</em><br>2. <em>„<u>Ein ausgehöhlter Stein</u> <b>liegt</b> unten links.“</em><br>Welches Satzglied bleibt bei beiden Sätzen fest an der 2. Stelle?",
+      v: "Vergleiche die Wortstellung in beiden Sätzen:",
+      choices: [
+        "Das Verb / Prädikat („liegt“)",
+        "Die Ortsangabe („unten links“)",
+        "Der Gegenstand („ein ausgehöhlter Stein“)"
+      ],
+      correct: "Das Verb / Prädikat („liegt“)",
+      help: "Im Aussagesatz tauschen Ortsangabe und Subjekt die Plätze, damit die Satzanfänge abwechslungsreich klingen – das Verb bleibt an 2. Stelle!"
+    },
+    {
+      src: "📘 Deutschbuch S. 34 (Info-Kasten)",
+      q: "<strong>Zeitform-Detektiv (Buch S. 34):</strong> In welcher Zeitform stehen die Verben in einer sachlichen Beschreibung immer? Korrigiere das Verb: <em>„An der rechten Seite der Uhr <u>befand</u> sich die Krone.“</em>",
+      v: "Richtig im Präsens (Gegenwart):",
+      choices: ["befindet", "befunden", "fand", "befand"],
+      correct: "befindet",
+      acceptedText: ["befindet"],
+      typeable: true,
+      help: "Im Präsens heißt es: „An der rechten Seite der Uhr befindet sich die Krone.“"
+    }
+  ];
+
+  const item = pick(pool);
+  const useText = (diff === 'schwer' && item.typeable && Math.random() < 0.5);
+  return {
+    topicId: 'grundlagen',
+    topicName: 'Schreib-Profi & Satzbau',
+    sourceLabel: item.src,
+    question: item.q,
+    visual: item.v,
+    choices: useText ? null : shuffle(item.choices),
+    correct: item.correct,
+    acceptedText: item.acceptedText || [item.correct.toLowerCase()],
+    help: item.help
+  };
+}
+
+function createTask(tId, diff) {
+  switch(tId) {
+    case 'buch_s33':   return genBuchS33(diff);
+    case 'gegenstand': return genGegenstand(diff);
+    case 'weg':        return genWeg(diff);
+    case 'raum':       return genRaum(diff);
+    case 'grundlagen': return genGrundlagen(diff);
+    default:           return genBuchS33(diff);
+  }
+}
+
+// ============================================================================
+// ABLAUF-STEUERUNG: TRAINING, EINZEL-TEST & GEMISCHTE KLASSENARBEIT
+// ============================================================================
+let selectedExamDiff = 'leicht';
+let selectedPracticeDiff = 'leicht';
+let currentMode = 'practice';
+let currentTopic = 'buch_s33';
+let examTasks = [];
+let examIndex = 0;
+let examScore = 0;
+let currentExamScopeLabel = 'Gemischt';
+let currentTask = null;
+
+function setExamDiff(d) {
+  selectedExamDiff = d;
+  ['leicht','mittel','schwer'].forEach(x => {
+    const el = document.getElementById(`btn-exam-${x}`);
+    if (el) el.classList.toggle('active', x === d);
+  });
+}
+
+function setPracticeDiff(d) {
+  selectedPracticeDiff = d;
+  ['leicht','mittel','schwer'].forEach(x => {
+    const el = document.getElementById(`btn-p-${x}`);
+    if (el) el.classList.toggle('active', x === d);
+    const qEl = document.getElementById(`quiz-btn-${x}`);
+    if (qEl) qEl.classList.toggle('active', x === d);
+  });
+}
+
+function changeQuizDiff(d) {
+  setPracticeDiff(d);
+  loadTask();
+}
+
+function startPractice(topicId) {
+  currentMode = 'practice';
+  currentTopic = topicId;
+  document.getElementById('progress-container').classList.add('hidden');
+  document.getElementById('quiz-diff-box').classList.remove('hidden');
+  document.getElementById('quiz-counter').textContent = 'Freies Üben';
+  document.getElementById('main-header').classList.add('hidden');
+  setPracticeDiff(selectedPracticeDiff);
+  showView('view-quiz');
+  loadTask();
+}
+
+function startTopicExam(topicId) {
+  currentMode = 'topic_exam';
+  currentTopic = topicId;
+  const topicObj = TOPICS.find(t => t.id === topicId);
+  currentExamScopeLabel = topicObj ? topicObj.short : topicId;
+
+  examIndex = 0;
+  examScore = 0;
+  examTasks = [];
+  for (let i = 0; i < 10; i++) {
+    examTasks.push(createTask(topicId, selectedPracticeDiff));
+  }
+
+  document.getElementById('progress-container').classList.remove('hidden');
+  document.getElementById('quiz-diff-box').classList.add('hidden');
+  document.getElementById('main-header').classList.add('hidden');
+  showView('view-quiz');
+  loadTask();
+}
+
+function startMixedExam() {
+  const pool = appData.activeExamTopics && appData.activeExamTopics.length > 0
+    ? appData.activeExamTopics
+    : TOPICS.map(t => t.id);
+
+  currentMode = 'mixed_exam';
+  currentExamScopeLabel = pool.length === TOPICS.length ? 'Alle Themen' : `${pool.length} Themen`;
+  examIndex = 0;
+  examScore = 0;
+  examTasks = [];
+
+  let count = 10;
+  if (selectedExamDiff === 'mittel') count = 15;
+  if (selectedExamDiff === 'schwer') count = 20;
+
+  for (let i = 0; i < count; i++) {
+    const tId = pool[i % pool.length];
+    examTasks.push(createTask(tId, selectedExamDiff));
+  }
+  examTasks.sort(() => Math.random() - 0.5);
+
+  document.getElementById('progress-container').classList.remove('hidden');
+  document.getElementById('quiz-diff-box').classList.add('hidden');
+  document.getElementById('main-header').classList.add('hidden');
+  showView('view-quiz');
+  loadTask();
+}
+
+function repeatLastExam() {
+  if (currentMode === 'topic_exam') startTopicExam(currentTopic);
+  else startMixedExam();
+}
+
+function loadTask() {
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('btn-next').classList.add('hidden');
+  document.getElementById('intask-help-box').classList.add('hidden');
+
+  const input = document.getElementById('answer-input');
+  input.value = "";
+  input.disabled = false;
+
+  if (currentMode === 'practice') {
+    currentTask = createTask(currentTopic, selectedPracticeDiff);
+  } else {
+    currentTask = examTasks[examIndex];
+    const total = examTasks.length;
+    document.getElementById('quiz-counter').textContent = `Test: ${examIndex + 1}/${total}`;
+    document.getElementById('progress-fill').style.width = `${(examIndex / total) * 100}%`;
+  }
+
+  document.getElementById('quiz-badge').textContent = currentTask.topicName;
+  document.getElementById('task-source-tag').textContent = currentTask.sourceLabel || '📘 Deutschbuch / Arbeitsheft';
+  document.getElementById('task-question').innerHTML = currentTask.question;
+  document.getElementById('task-visual').innerHTML = currentTask.visual;
+  document.getElementById('intask-help-box').innerHTML = currentTask.help || "Überlege: Ist die Angabe sachlich, genau und im Präsens?";
+
+  const textArea = document.getElementById('text-input-area');
+  const choiceArea = document.getElementById('choice-input-area');
+
+  if (currentTask.choices) {
+    textArea.classList.add('hidden');
+    choiceArea.classList.remove('hidden');
+    choiceArea.innerHTML = "";
+    currentTask.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.innerHTML = c;
+      btn.onclick = () => evaluateChoice(c, btn);
+      choiceArea.appendChild(btn);
+    });
+  } else {
+    choiceArea.classList.add('hidden');
+    textArea.classList.remove('hidden');
+    document.getElementById('btn-submit').classList.remove('hidden');
+    setTimeout(() => input.focus(), 120);
+  }
+}
+
+function toggleInTaskHelp() {
+  document.getElementById('intask-help-box').classList.toggle('hidden');
+}
+
+function evaluateChoice(selectedText, btnEl) {
+  const isCorrect = (selectedText === currentTask.correct);
+  document.querySelectorAll('.choice-btn').forEach(b => {
+    b.disabled = true;
+    if (b.innerHTML === currentTask.correct) b.classList.add('correct-choice');
+  });
+  if (!isCorrect && btnEl) btnEl.classList.add('wrong-choice');
+  finalizeAnswer(isCorrect);
+}
+
+function checkTextAnswer() {
+  const input = document.getElementById('answer-input');
+  const raw = input.value.trim().toLowerCase();
+  if (!raw) return;
+
+  const validList = currentTask.acceptedText || [currentTask.correct.toLowerCase()];
+  const isCorrect = validList.some(v => raw === v.toLowerCase() || raw.includes(v.toLowerCase()));
+
+  input.disabled = true;
+  document.getElementById('btn-submit').classList.add('hidden');
+  finalizeAnswer(isCorrect);
+}
+
+function finalizeAnswer(isCorrect) {
+  playTone(isCorrect);
+
+  const fb = document.getElementById('feedback-box');
+  document.getElementById('btn-next').classList.remove('hidden');
+
+  if (currentMode === 'practice') {
+    recordAnswer(currentTask.topicId, isCorrect);
+  } else {
+    if (isCorrect) examScore++;
+  }
+
+  if (isCorrect) {
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = `✅ <strong>Richtig!</strong> ${currentTask.help || ''}`;
+  } else {
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML = `❌ <strong>Nicht ganz.</strong> Richtig ist: <strong>${currentTask.correct}</strong><br><span style="font-size:0.82rem;">${currentTask.help || ''}</span>`;
+  }
+}
+
+document.getElementById('answer-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    if (!document.getElementById('btn-submit').classList.contains('hidden')) {
+      checkTextAnswer();
+    } else if (!document.getElementById('btn-next').classList.contains('hidden')) {
+      nextTask();
+    }
+  }
+});
+
+function nextTask() {
+  if (currentMode !== 'practice') {
+    examIndex++;
+    if (examIndex >= examTasks.length) {
+      finishExam();
+      return;
+    }
+  }
+  loadTask();
+}
+
+function finishExam() {
+  showView('view-results');
+  const total = examTasks.length;
+  const percent = Math.round((examScore / total) * 100);
+
+  document.getElementById('result-title').textContent = currentMode === 'topic_exam'
+    ? `Thema-Test (${currentExamScopeLabel}) beendet!`
+    : `Klassenarbeit (${currentExamScopeLabel}) beendet!`;
+
+  document.getElementById('result-score').textContent = `${examScore} von ${total} Aufgaben richtig`;
+  document.getElementById('result-percent').textContent = `${percent}% erreicht`;
+
+  let grade = 6, color = "#dc2626", feedback = "";
+  if (percent >= 90) { grade = 1; color = "#16a34a"; feedback = "Hervorragend! Du beherrschst die Aufgaben aus Deutschbuch und Arbeitsheft perfekt!"; startConfetti(); }
+  else if (percent >= 75) { grade = 2; color = "#22c55e"; feedback = "Sehr gut! Du kennst den Aufbau, die Merkmale und den Schreib-Profi schon richtig sicher."; startConfetti(); }
+  else if (percent >= 60) { grade = 3; color = "#eab308"; feedback = "Befriedigend. Vieles klappt schon gut – schau dir noch einmal die Merksätze auf Seite 34 und 45 an."; }
+  else if (percent >= 50) { grade = 4; color = "#f97316"; feedback = "Ausreichend. Lies dir die Tabellen im Schreib-Profi (S. 34–35) noch einmal in Ruhe durch."; }
+  else if (percent >= 25) { grade = 5; color = "#ef4444"; feedback = "Mangelhaft. Übe die Themenbereiche am besten noch einmal einzeln auf Stufe Leicht."; }
+  else { grade = 6; color = "#991b1b"; feedback = "Ungenügend. Schau zuerst in den Schreib-Profi und starte mit den Übungen zu Seite 33."; }
+
+  const badge = document.getElementById('grade-badge');
+  badge.textContent = `Note ${grade}`;
+  badge.style.background = color;
+  document.getElementById('result-feedback').textContent = feedback;
+
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2,'0')}.${(now.getMonth()+1).toString().padStart(2,'0')}.`;
+  appData.examHistory.push({
+    date: dateStr,
+    scope: currentExamScopeLabel,
+    level: currentMode === 'topic_exam' ? selectedPracticeDiff : selectedExamDiff,
+    percent: percent,
+    grade: grade
+  });
+  saveData();
+  renderMenu();
+}
+
+// --- NAVIGATION & WHATSAPP ---
+function showView(viewId) {
+  ['view-menu', 'view-heft', 'view-learn', 'view-quiz', 'view-results'].forEach(id => {
+    document.getElementById(id).classList.add('hidden');
+  });
+  document.getElementById(viewId).classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openLearnView() { showView('view-learn'); }
+function closeLearnView() { showView('view-menu'); }
+function backToMenu() {
+  document.getElementById('main-header').classList.remove('hidden');
+  renderMenu();
+  showView('view-menu');
+}
+
+function toggleParent() {
+  const c = document.getElementById('parent-content');
+  const icon = document.getElementById('parent-toggle-icon');
+  c.classList.toggle('hidden');
+  icon.textContent = c.classList.contains('hidden') ? '▼' : '▲';
+}
+
+function openResetModal() { document.getElementById('reset-modal').classList.remove('hidden'); }
+function closeResetModal() { document.getElementById('reset-modal').classList.add('hidden'); }
+function confirmReset() {
+  localStorage.removeItem(getStorageKey());
+  appData = { topics: {}, examHistory: [], writtenEssays: [], customImages: {}, activeExamTopics: TOPICS.map(t => t.id) };
+  loadData();
+  renderMenu();
+  closeResetModal();
+}
+
+function shareProgressViaWhatsApp() {
+  const profile = getProfileName();
+  const syncData = {
+    topics: appData.topics,
+    examHistory: appData.examHistory,
+    writtenEssays: appData.writtenEssays,
+    activeExamTopics: appData.activeExamTopics
+  };
+  const payload = { profile: profile, appData: syncData };
+  const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+  const shareUrl = window.location.origin + window.location.pathname + "?data=" + encoded;
+
+  let totalTasks = 0, totalCorrect = 0;
+  TOPICS.forEach(t => {
+    totalTasks += appData.topics[t.id]?.total || 0;
+    totalCorrect += appData.topics[t.id]?.correct || 0;
+  });
+  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
+  const today = new Date().toLocaleDateString('de-DE');
+  const essaysCount = (appData.writtenEssays || []).length;
+
+  let msg = `✍️ *Deutsch-Trainer Textbeschreibung – Bericht (${profile})* 🎯\n`;
+  msg += `📅 Datum: ${today}\n\n`;
+  msg += `⭐ *Gesamtübersicht:*\n`;
+  msg += `• Quiz-Aufgaben gelöst: ${totalTasks} (${rate} % richtig) ✅\n`;
+  msg += `• Geschriebene Heft-Aufsätze: ${essaysCount} 📝\n\n`;
+
+  if (appData.examHistory && appData.examHistory.length > 0) {
+    const lastExam = appData.examHistory[appData.examHistory.length - 1];
+    msg += `🏆 *Letzter Test (${lastExam.scope || 'Gemischt'}):*\n`;
+    msg += `• Note ${lastExam.grade} (${lastExam.percent} %) am ${lastExam.date} 🎖️\n\n`;
+  }
+
+  if (essaysCount > 0) {
+    const lastEssay = appData.writtenEssays[essaysCount - 1];
+    msg += `📖 *Letzter Heft-Aufsatz:*\n`;
+    msg += `• ${lastEssay.title} (${lastEssay.date})\n\n`;
+  }
+
+  msg += `🚦 *Themen-Ampel (Deutschbuch & Arbeitsheft):*\n`;
+  TOPICS.forEach(t => {
+    const m = getTopicMastery(t.id);
+    const count = appData.topics[t.id]?.total || 0;
+    const corr = appData.topics[t.id]?.correct || 0;
+    let icon = "⚪";
+    if (m.status === 'stern') icon = "🌟";
+    else if (m.status === 'gruen') icon = "🟢";
+    else if (m.status === 'gelb') icon = "🟡";
+    else if (m.status === 'rot') icon = "🔴";
+    msg += `• ${icon} ${t.short}: ${m.label} (${corr}/${count})\n`;
+  });
+
+  msg += `\n🔗 *Eltern-Dashboard öffnen:*\n${shareUrl}`;
+
+  window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+}
+
+function startConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const colors = ['#0284c7', '#38bdf8', '#16a34a', '#f59e0b', '#7c3aed'];
+  for (let i = 0; i < 90; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 4 + 2,
+      angle: Math.random() * 6.28
+    });
+  }
+
+  let frames = 0;
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.x += Math.sin(p.angle);
+      p.angle += 0.05;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+    });
+    frames++;
+    if (frames < 140) requestAnimationFrame(update);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  update();
+}
+
+// --- INITIALISIERUNG ---
+window.addEventListener("DOMContentLoaded", () => {
+  const profile = getProfileName();
+  const statProfileEl = document.getElementById('stat-profile-name');
+  if (statProfileEl) statProfileEl.textContent = profile;
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("data")) {
+    try {
+      const decoded = decodeURIComponent(atob(params.get("data")));
+      const shared = JSON.parse(decoded);
+      if (shared && shared.appData) {
+        appData = { ...appData, ...shared.appData };
+        const banner = document.getElementById('shared-banner');
+        if (banner) {
+          banner.textContent = `📥 Geteilter Lernbericht geladen: Profil "${shared.profile || 'Unbekannt'}" (Ansichtsmodus)`;
+          banner.classList.remove('hidden');
+        }
+        if (statProfileEl) statProfileEl.textContent = `${shared.profile || profile} (Übermittelt)`;
+        const c = document.getElementById('parent-content');
+        if (c && c.classList.contains('hidden')) toggleParent();
+      }
+    } catch(e) {
+      console.error("Fehler beim Laden der übermittelten Daten", e);
+      loadData();
+    }
+  } else {
+    loadData();
+  }
+
+  renderMenu();
+});
+</script>
+</body>
+</html>
