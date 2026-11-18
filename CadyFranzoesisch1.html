@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Französisch-Trainer: C'est parti & Unité 1</title>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --red-fr: #dc2626;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 550px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .tricolore-bar {
+      height: 6px;
+      width: 120px;
+      margin: 0 auto 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1d4ed8 0% 33.3%, #ffffff 33.3% 66.6%, #dc2626 66.6% 100%);
+      border: 1px solid #cbd5e1;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    header p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:active { background: var(--primary-hover); transform: scale(0.98); }
+
+    .btn-learn {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: white;
+      font-size: 0.98rem;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.22);
+      margin-bottom: 12px;
+    }
+
+    .btn-exam {
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: white;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      font-size: 0.98rem;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+      margin-bottom: 8px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .diff-selector {
+      display: flex;
+      gap: 6px;
+      margin: 8px 0 12px;
+    }
+
+    .diff-btn {
+      flex: 1;
+      padding: 8px 4px;
+      font-size: 0.81rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .diff-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .diff-btn-mini {
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .diff-btn-mini.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Zehner-Auswahl für Zahlen */
+    .tens-box {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 10px;
+      margin: 6px 0;
+    }
+    .tens-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      margin-top: 6px;
+    }
+    .tens-btn {
+      padding: 7px 2px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: #ffffff;
+      border: 1.5px solid #93c5fd;
+      border-radius: 7px;
+      color: #1e40af;
+      cursor: pointer;
+      text-align: center;
+    }
+    .tens-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .topic-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .topic-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .topic-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-mini-practice {
+      flex: 2;
+      padding: 8px 10px;
+      background: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
+    .btn-mini-test {
+      flex: 1;
+      padding: 8px 10px;
+      background: #fffbeb;
+      color: #b45309;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.84rem;
+      cursor: pointer;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 8px 0 12px;
+      text-align: left;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      background: #ffffff;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .status-pill {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .st-neu { background: #f1f5f9; color: #475569; }
+    .st-rot { background: #fee2e2; color: #991b1b; }
+    .st-gelb { background: #fef3c7; color: #92400e; }
+    .st-gruen { background: #dcfce7; color: #166534; }
+    .st-stern { background: #14532d; color: #fef08a; box-shadow: 0 2px 6px rgba(20,83,45,0.25); }
+
+    .progress-bar {
+      height: 6px;
+      width: 100%;
+      background: #e2e8f0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .task-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .task-display {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 18px 14px;
+      margin: 8px 0;
+      text-align: center;
+      min-height: 85px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vocab-main {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #1e3a8a;
+      line-height: 1.25;
+    }
+    .vocab-sub {
+      font-size: 0.85rem;
+      color: #0369a1;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+
+    .choice-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      padding: 13px 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--text);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.1s;
+    }
+    .choice-btn:active { background: #f1f5f9; }
+    .choice-btn.correct-choice { border-color: var(--success) !important; background: var(--success-bg) !important; color: #14532d !important; }
+    .choice-btn.wrong-choice { border-color: var(--danger) !important; background: var(--danger-bg) !important; color: #7f1d1d !important; }
+
+    /* Französische Akzent-Tastatur */
+    .accent-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .accent-key {
+      padding: 7px 11px;
+      font-size: 1rem;
+      font-weight: 800;
+      background: #f1f5f9;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      color: #0f172a;
+      cursor: pointer;
+    }
+    .accent-key:active { background: #cbd5e1; }
+
+    .input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      align-items: stretch;
+    }
+
+    .input-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 10px;
+      font-size: 1.12rem;
+      text-align: center;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      outline: none;
+    }
+    .input-row input:focus { border-color: var(--primary); }
+
+    .btn-submit-row {
+      padding: 0 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 10px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      display: none;
+      line-height: 1.45;
+      text-align: center;
+    }
+    .feedback-box.correct { background: var(--success-bg); color: #14532d; border: 1px solid #86efac; display: block; }
+    .feedback-box.wrong { background: var(--danger-bg); color: #7f1d1d; border: 1px solid #fca5a5; display: block; }
+
+    .learn-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 10px 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .learn-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .learn-card h2 {
+      font-size: 1.12rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .learn-card p {
+      font-size: 0.87rem;
+      line-height: 1.5;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .aha-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 11px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 0.84rem;
+      color: #166534;
+      line-height: 1.45;
+    }
+
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0;
+      font-size: 0.8rem;
+    }
+    .rule-table th, .rule-table td {
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .rule-table th { background: #f1f5f9; font-weight: 700; }
+
+    .nav-pill-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-pill {
+      flex: 0 0 auto;
+      padding: 6px 11px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .banner {
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      text-align: center;
+      font-weight: 700;
+      border: 1px solid #bae6fd;
+      line-height: 1.4;
+    }
+
+    .hidden { display: none !important; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+    .modal-content {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div id="shared-banner" class="banner hidden"></div>
+
+  <!-- ================= 1. HAUPTMENÜ ================= -->
+  <div id="view-menu">
+    <header id="main-header">
+      <div class="tricolore-bar"></div>
+      <h1>🇫🇷 Französisch-Trainer</h1>
+      <p>C'est parti! • Unité 1 (Volet 1–3) • Monate • Zahlen bis 100</p>
+    </header>
+
+    <button class="btn btn-learn" onclick="openLearnView()">
+      📖 Spickzettel, Grammatik &amp; Vokabelliste (S. 178–182) ➔
+    </button>
+
+    <!-- ZAHLEN-KONFIGURATION: BIS WELCHER ZEHNER? -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.93rem; font-weight:800; color:#1e3a8a;">🔢 Zahlen-Einstellung (0 bis 100)</span>
+        <span id="tens-status-badge" class="badge" style="background:#dbeafe; color:#1e40af;">Bis 100</span>
+      </div>
+      <p style="font-size:0.78rem; color:var(--text-muted); margin:4px 0 6px;">
+        Wähle aus, bis zu welchem Zehner die Zahlen im Training und in Tests abgefragt werden sollen:
+      </p>
+      <div class="tens-box">
+        <div class="tens-grid" id="menu-tens-grid"></div>
+      </div>
+    </div>
+
+    <!-- KLASSENARBEITS-ZENTRALE -->
+    <div class="card" style="background:#fffbeb; border:2px solid #fde68a;">
+      <div style="font-weight:800; font-size:1.05rem; color:#b45309; text-align:center; margin-bottom:4px;">
+        📝 Gemischter Vokabeltest (Klassenarbeit)
+      </div>
+      <div style="font-size:0.77rem; color:#92400e; text-align:center; margin-bottom:6px;">
+        Hake an, welche Themen im Test drankommen sollen:
+      </div>
+
+      <div class="check-grid" id="exam-topic-checks"></div>
+
+      <div style="font-size:0.77rem; color:#92400e; text-align:center;">
+        Art &amp; Umfang der Abfrage:
+      </div>
+      <div class="diff-selector">
+        <button class="diff-btn active" id="btn-exam-leicht" onclick="setExamDiff('leicht')">Anklicken (10)</button>
+        <button class="diff-btn" id="btn-exam-mittel" onclick="setExamDiff('mittel')">Mix (15)</button>
+        <button class="diff-btn" id="btn-exam-schwer" onclick="setExamDiff('schwer')">Schreiben (20)</button>
+      </div>
+      <button class="btn btn-exam" onclick="startMixedExam()">Vokabeltest starten ➔</button>
+    </div>
+
+    <!-- EINZELNE KAPITEL -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="font-size:0.94rem; font-weight:800;">🎯 Kapitel einzeln üben oder testen</span>
+        <span style="font-size:0.74rem; color:var(--text-muted);">Übungsmodus:</span>
+      </div>
+      <div class="diff-selector">
+        <button class="diff-btn active" id="btn-p-leicht" onclick="setPracticeDiff('leicht')">🎯 Anklicken</button>
+        <button class="diff-btn" id="btn-p-mittel" onclick="setPracticeDiff('mittel')">🔄 Mix (Klick/Tippen)</button>
+        <button class="diff-btn" id="btn-p-schwer" onclick="setPracticeDiff('schwer')">✍️ Schreiben (FR)</button>
+      </div>
+
+      <div id="topic-list" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- ELTERN-ÜBERSICHT GANZ UNTEN -->
+    <div class="card" style="background:#f8fafc;">
+      <div style="display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="toggleParent()">
+        <span style="font-size:0.95rem; font-weight:800;">👨‍👧 Eltern-Übersicht &amp; Trainingsstand</span>
+        <span id="parent-toggle-icon">▼</span>
+      </div>
+
+      <div id="parent-content" class="hidden" style="margin-top:14px; border-top:1px solid var(--border); padding-top:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:0.85rem; color:var(--text-muted);">
+          <span>Aktives Profil (Dateiname):</span>
+          <strong id="stat-profile-name" style="color:var(--text); font-size:0.9rem;">-</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:0.85rem; color:var(--text-muted);">
+          <span>Eingestellter Zahlenraum:</span>
+          <strong id="stat-max-tens" style="color:var(--primary); font-size:0.9rem;">0 bis 100</strong>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="background:#fff; padding:10px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.4rem; font-weight:900; color:var(--primary);" id="stat-total-tasks">0</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Geübte Vokabeln</div>
+          </div>
+          <div style="background:#fff; padding:10px; border-radius:10px; border:1px solid var(--border); text-align:center;">
+            <div style="font-size:1.4rem; font-weight:900; color:var(--success);" id="stat-total-rate">0%</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700;">Trefferquote</div>
+          </div>
+        </div>
+
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:6px;">Geschriebene Vokabeltests:</div>
+        <div id="exam-history-list" style="max-height:140px; overflow-y:auto; font-size:0.8rem; margin-bottom:14px;">
+          <div style="color:var(--text-muted); font-style:italic;">Noch kein Test abgeschlossen.</div>
+        </div>
+
+        <button class="btn btn-whatsapp" onclick="shareProgressViaWhatsApp()">
+          📲 Ergebnisse an Eltern übermitteln
+        </button>
+
+        <button class="btn btn-outline" style="border-color:#ef4444; color:#dc2626; padding:8px; margin-bottom:8px;" onclick="openResetModal()">
+          ⚠ Fortschritt komplett auf Null setzen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. DIE FRANZÖSISCH-AKADEMIE (GRAMMATIK & VOKABELLISTE) ================= -->
+  <div id="view-learn" class="hidden">
+    <div class="learn-header">
+      <button class="btn btn-outline" style="width:auto; margin:0; padding:8px 14px; font-size:0.85rem;" onclick="closeLearnView()">
+        ← Zurück zum Menü
+      </button>
+      <span style="font-weight:800; font-size:0.92rem; color:var(--primary);">📖 Französisch-Akademie</span>
+    </div>
+
+    <div class="nav-pill-row">
+      <a href="#l-etre" class="nav-pill">1. Verb être</a>
+      <a href="#l-artikel" class="nav-pill">2. Artikel &amp; Tipps</a>
+      <a href="#l-monate" class="nav-pill">3. Monate</a>
+      <a href="#l-zahlen" class="nav-pill">4. Zahlen 0–100</a>
+      <a href="#l-vokabeln" class="nav-pill">5. Alle Vokabeln</a>
+    </div>
+
+    <div id="l-etre" class="learn-card">
+      <h2>⚡ 1. Das wichtigste Verb: être (sein) – Buch S. 181</h2>
+      <p>Mit den Formen von <strong>être</strong> sagst du, wer du bist, wo du bist oder woher du kommst:</p>
+      <table class="rule-table">
+        <tr><th>Singular (Einzahl)</th><th>Deutsch</th><th>Plural (Mehrzahl)</th><th>Deutsch</th></tr>
+        <tr><td><strong>je suis</strong> [ʒə sɥi]</td><td>ich bin</td><td><strong>nous sommes</strong> [nu sɔm]</td><td>wir sind</td></tr>
+        <tr><td><strong>tu es</strong> [ty ɛ]</td><td>du bist</td><td><strong>vous êtes</strong> [vuz ɛt]</td><td>ihr seid / Sie sind</td></tr>
+        <tr><td><strong>il / elle est</strong> [il/ɛl ɛ]</td><td>er / sie ist</td><td><strong>ils / elles sont</strong> [il/ɛl sɔ̃]</td><td>sie sind</td></tr>
+        <tr><td><strong>on est</strong> [ɔ̃n ɛ]</td><td>man ist / wir sind</td><td></td><td></td></tr>
+      </table>
+      <div class="aha-box">
+        <strong>💡 Wichtiger Unterschied (S. 182):</strong><br>
+        • <strong>Tu es où ?</strong> = Wo bist du? ➔ <em>Je suis <strong>à</strong> Paris. / Je suis <strong>en</strong> France.</em><br>
+        • <strong>Tu es d'où ?</strong> = Woher kommst du? ➔ <em>Je suis <strong>de</strong> Berlin. / Je suis <strong>d'</strong>Erfurt.</em>
+      </div>
+    </div>
+
+    <div id="l-artikel" class="learn-card">
+      <h2>🔑 2. Artikel, Plural &amp; Merkhilfen (S. 179–182)</h2>
+      <table class="rule-table">
+        <tr><th>Grammatik</th><th>männlich (m.)</th><th>weiblich (f.)</th><th>Mehrzahl (Plural)</th></tr>
+        <tr><td><strong>Bestimmter Artikel</strong><br>(der, die, das)</td><td><strong>le</strong> garçon<br><strong>l'</strong>ami / <strong>l'</strong>hôtel (vor Vokal/h)</td><td><strong>la</strong> fille<br><strong>l'</strong>amie</td><td><strong>les</strong> garçons<br><strong>les</strong> filles</td></tr>
+        <tr><td><strong>Unbestimmter Artikel</strong><br>(ein, eine)</td><td><strong>un</strong> garçon<br><strong>un</strong> magasin</td><td><strong>une</strong> fille<br><strong>une</strong> boulangerie</td><td><strong>des</strong> garçons<br>(im Deutschen ohne Artikel!)</td></tr>
+      </table>
+      <div class="aha-box" style="background:#fef3c7; border-color:#d97706; color:#92400e;">
+        <strong>Eselsbrücken aus deinem Buch:</strong><br>
+        • <strong>où</strong> (mit Accent grave) = <strong>wo?</strong> („Auf dem <em>wo</em> sitzt ein Floh!“) ↔ <strong>ou</strong> (ohne Akzent) = <strong>oder</strong>.<br>
+        • <strong>Zusammengesetzte Nomen mit <em>de</em> (S. 182):</strong> <em>le club <strong>de</strong> drones</em> (die Drohnen-AG), <em>le fan <strong>de</strong> sciences</em> (der Wissenschaftsfan), <em>le magasin <strong>de</strong> drones</em> (der Drohnenladen).<br>
+        • <strong>Klassenstufen in Frankreich rückwärts (S. 181):</strong> 6. Klasse = <strong>la sixième</strong>, 7. Klasse = <strong>la cinquième</strong>.
+      </div>
+    </div>
+
+    <div id="l-monate" class="learn-card">
+      <h2>📅 3. Les douze mois – Die 12 Monate</h2>
+      <p>Monate werden im Französischen immer <strong>kleingeschrieben</strong>. Achte besonders auf die <strong>3 Monate mit Akzent</strong>:</p>
+      <table class="rule-table">
+        <tr><td>1. <strong>janvier</strong> (Januar)</td><td>5. <strong>mai</strong> (Mai)</td><td>9. <strong>septembre</strong> (September)</td></tr>
+        <tr><td>2. <strong>f<u>é</u>vrier</strong> (Februar) ⚡</td><td>6. <strong>juin</strong> (Juni)</td><td>10. <strong>octobre</strong> (Oktober)</td></tr>
+        <tr><td>3. <strong>mars</strong> (März)</td><td>7. <strong>juillet</strong> (Juli)</td><td>11. <strong>novembre</strong> (November)</td></tr>
+        <tr><td>4. <strong>avril</strong> (April)</td><td>8. <strong>ao<u>û</u>t</strong> (August) ⚡</td><td>12. <strong>d<u>é</u>cembre</strong> (Dezember) ⚡</td></tr>
+      </table>
+    </div>
+
+    <div id="l-zahlen" class="learn-card">
+      <h2>🔢 4. Les nombres de 0 à 100 – Die Zahlen bis 100</h2>
+      <table class="rule-table">
+        <tr><th>0 – 10</th><th>11 – 20</th><th>Die Zehner (20 – 100)</th></tr>
+        <tr>
+          <td>0 zéro<br>1 un<br>2 deux<br>3 trois<br>4 quatre<br>5 cinq<br>6 six<br>7 sept<br>8 huit<br>9 neuf<br>10 dix</td>
+          <td>11 onze<br>12 douze<br>13 treize<br>14 quatorze<br>15 quinze<br>16 seize<br>17 dix-sept<br>18 dix-huit<br>19 dix-neuf<br>20 vingt</td>
+          <td>20 <strong>vingt</strong> (21 = vingt-et-un)<br>30 <strong>trente</strong> (31 = trente-et-un)<br>40 <strong>quarante</strong><br>50 <strong>cinquante</strong><br>60 <strong>soixante</strong><br>70 <strong>soixante-dix</strong> (60 + 10; 71 = soixante-et-onze)<br>80 <strong>quatre-vingts</strong> (4 × 20; 81 = quatre-vingt-un ohne s!)<br>90 <strong>quatre-vingt-dix</strong> (80 + 10; 91 = quatre-vingt-onze)<br>100 <strong>cent</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="l-vokabeln" class="learn-card">
+      <h2>📚 5. Komplett-Vokabelliste nach Buchseiten</h2>
+      <select id="vocab-list-filter" style="width:100%; padding:9px; border-radius:8px; border:1px solid var(--border); font-weight:700; margin-bottom:10px;" onchange="renderVocabReference()">
+        <option value="cest_parti">C'est parti ! (S. 178)</option>
+        <option value="u1_theme">Unité 1 – Vocabulaire thématique (S. 179–180)</option>
+        <option value="u1_volet1">Unité 1 – Volet 1 (S. 180–181)</option>
+        <option value="u1_volet2">Unité 1 – Volet 2 (S. 181–182)</option>
+        <option value="u1_volet3">Unité 1 – Volet 3 (S. 182)</option>
+        <option value="monate">Alle 12 Monate</option>
+      </select>
+      <div style="max-height:280px; overflow-y:auto;">
+        <table class="rule-table">
+          <thead><tr><th>Französisch</th><th>Deutsch</th><th>Beispiel / Hinweis</th></tr></thead>
+          <tbody id="vocab-ref-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" style="margin-bottom:24px;" onclick="closeLearnView()">
+      Alles klar! Zurück zum Training ➔
+    </button>
+  </div>
+
+  <!-- ================= 3. AUFGABEN-ANSICHT (QUIZ & TESTS) ================= -->
+  <div id="view-quiz" class="card hidden">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span id="quiz-badge" class="badge" style="background:#dbeafe; color:#1e40af;">Thema</span>
+      
+      <div id="quiz-diff-box" style="display:flex; gap:3px;">
+        <button class="diff-btn-mini active" id="quiz-btn-leicht" onclick="changeQuizDiff('leicht')">Klick</button>
+        <button class="diff-btn-mini" id="quiz-btn-mittel" onclick="changeQuizDiff('mittel')">Mix</button>
+        <button class="diff-btn-mini" id="quiz-btn-schwer" onclick="changeQuizDiff('schwer')">Tippen</button>
+      </div>
+
+      <span id="quiz-counter" style="font-weight:700; font-size:0.84rem; color:var(--text-muted);">Übung</span>
+    </div>
+
+    <!-- Direkt-Umschalter für Zehner, wenn Zahlen geübt werden -->
+    <div id="inquiz-tens-wrap" class="tens-box hidden" style="margin-top:8px;">
+      <div style="font-size:0.74rem; font-weight:800; color:#1e40af; text-align:center;">
+        🔢 Aktueller Zahlenraum (antippen zum Ändern):
+      </div>
+      <div class="tens-grid" id="quiz-tens-grid"></div>
+    </div>
+
+    <div id="progress-container" class="progress-bar">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+
+    <div id="task-question" class="task-title">Wie heißt das auf Französisch?</div>
+    <div id="task-visual" class="task-display"></div>
+
+    <div style="text-align:right; margin-bottom:4px;">
+      <button onclick="toggleInTaskHelp()" style="background:none; border:none; color:var(--primary); font-size:0.76rem; font-weight:700; cursor:pointer;">
+        💡 Beispielsatz / Merkhilfe einblenden
+      </button>
+    </div>
+    <div id="intask-help-box" class="aha-box hidden" style="margin:4px 0 10px 0; font-size:0.82rem;"></div>
+
+    <!-- Multiple-Choice Bereich -->
+    <div id="choice-input-area" class="choice-list hidden"></div>
+
+    <!-- Schreib-Bereich mit französischer Akzent-Leiste -->
+    <div id="text-input-wrap" class="hidden">
+      <div class="input-row">
+        <input type="text" id="answer-input" placeholder="Auf Französisch eintippen..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+        <button id="btn-submit" class="btn-submit-row" onclick="checkTextAnswer()">Prüfen ✓</button>
+      </div>
+      <div class="accent-bar">
+        <button type="button" class="accent-key" onclick="insertChar('é')">é</button>
+        <button type="button" class="accent-key" onclick="insertChar('è')">è</button>
+        <button type="button" class="accent-key" onclick="insertChar('ê')">ê</button>
+        <button type="button" class="accent-key" onclick="insertChar('à')">à</button>
+        <button type="button" class="accent-key" onclick="insertChar('ù')">ù</button>
+        <button type="button" class="accent-key" onclick="insertChar('û')">û</button>
+        <button type="button" class="accent-key" onclick="insertChar('ç')">ç</button>
+        <button type="button" class="accent-key" onclick="insertChar('œ')">œ</button>
+        <button type="button" class="accent-key" onclick="insertChar('\'')">'</button>
+        <button type="button" class="accent-key" onclick="insertChar('-')">-</button>
+      </div>
+    </div>
+
+    <div id="feedback-box" class="feedback-box"></div>
+
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button id="btn-next" class="btn btn-primary hidden" onclick="nextTask()">Nächste Vokabel ➔</button>
+      <button id="btn-quit" class="btn btn-outline" style="margin:0;" onclick="backToMenu()">Menü</button>
+    </div>
+  </div>
+
+  <!-- ================= 4. ERGEBNIS-ANSICHT ================= -->
+  <div id="view-results" class="card hidden" style="text-align:center;">
+    <h2 style="font-size:1.35rem; font-weight:800;" id="result-title">Vokabeltest beendet!</h2>
+    <p style="color:var(--text-muted); margin-top:4px;">Très bien ! Hier ist dein Ergebnis:</p>
+
+    <div id="grade-badge" style="display:inline-block; padding:8px 22px; border-radius:30px; font-size:1.5rem; font-weight:900; color:#fff; margin:14px auto;">
+      Note 1
+    </div>
+
+    <div style="font-size:1.2rem; font-weight:800;" id="result-score">10 von 10 richtig</div>
+    <p id="result-percent" style="color:var(--text-muted); font-weight:600; margin-bottom:12px;">100% erreicht</p>
+    <p id="result-feedback" style="font-size:0.9rem; margin-bottom:16px; line-height:1.4;"></p>
+
+    <button class="btn btn-exam" onclick="repeatLastExam()">Diesen Test wiederholen</button>
+    <button class="btn btn-outline" onclick="backToMenu()">Zurück zum Hauptmenü</button>
+  </div>
+
+  <!-- ================= 5. RESET MODAL ================= -->
+  <div id="reset-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <h3 style="color:#dc2626; margin-bottom:8px;">⚠️ Fortschritt löschen?</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.4; margin-bottom:16px;">
+        Möchtest du wirklich alle gespeicherten Vokabel-Statistiken und Noten für dieses Profil auf Null zurücksetzen?
+      </p>
+      <div style="display:flex; gap:8px;">
+        <button class="btn" style="background:#fee2e2; color:#dc2626;" onclick="confirmReset()">Ja, alles löschen</button>
+        <button class="btn btn-outline" style="margin:0;" onclick="closeResetModal()">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999;"></canvas>
+
+<script>
+// --- AUDIO-FEEDBACK ---
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playTone(success) {
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  if (success) {
+    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.14);
+    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.22);
+  } else {
+    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.25);
+  }
+}
+
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+// --- THEMEN-KAPITEL ---
+const TOPICS = [
+  { id: 'cest_parti', name: "1. C'est parti ! (Vorlieben, Farben, Tiere)", short: "C'est parti", info: "Buch S. 178 (30 Vokabeln)" },
+  { id: 'u1_theme',   name: "2. Unité 1 – Vocabulaire (Paris & Orte in der Stadt)", short: "U1: Stadt & Paris", info: "Buch S. 179–180 (24 Vokabeln)" },
+  { id: 'u1_volet1',  name: "3. Unité 1 – Volet 1 (Sich & andere vorstellen)", short: "U1: Volet 1", info: "Buch S. 180–181 (25 Vokabeln)" },
+  { id: 'u1_volet2',  name: "4. Unité 1 – Volet 2 (Verb être, Herkunft & Schule)", short: "U1: Volet 2 (être)", info: "Buch S. 181–182 (26 Vokabeln)" },
+  { id: 'u1_volet3',  name: "5. Unité 1 – Volet 3 (il y a, Artikel & Geschäfte)", short: "U1: Volet 3", info: "Buch S. 182 (19 Vokabeln)" },
+  { id: 'monate',     name: "6. Les mois (Alle 12 Monate)", short: "12 Monate", info: "janvier bis décembre" },
+  { id: 'zahlen',     name: "7. Les nombres (Zahlen mit Zehner-Auswahl)", short: "Zahlen", info: "Wählbar: bis 10, 20 ... 100" }
+];
+
+// ============================================================================
+// KOMPLETTE VOKABEL-DATENBANK AUS DEN 5 BUCHSEITEN (S. 178–182) + MONATE
+// ============================================================================
+const VOCAB_DB = {
+  // SEITE 178: C'est parti !
+  cest_parti: [
+    { fr: "moi", de: "ich (betont)", hint: "Toi et moi. / Moi, j'aime la pizza." },
+    { fr: "j'aime", de: "ich mag", hint: "Moi, j'aime la pizza." },
+    { fr: "je n'aime pas", de: "ich mag ... nicht / ich mag keine(n)", hint: "Je n'aime pas les rats." },
+    { fr: "mais", de: "aber", hint: "Je n'aime pas les rats. Mais j'aime les chats." },
+    { fr: "les jeux vidéo", alt: ["le jeu vidéo"], de: "die Videospiele", hint: "Singular: le jeu vidéo" },
+    { fr: "le shopping", de: "das Einkaufen, das Shoppen", hint: "J'aime le shopping." },
+    { fr: "le sport", de: "der Sport", hint: "J'aime le sport." },
+    { fr: "la musique", de: "die Musik", hint: "Tu aimes la musique ?" },
+    { fr: "la nature", de: "die Natur", hint: "J'aime la nature." },
+    { fr: "le chocolat", de: "die Schokolade", hint: "J'aime les jeux vidéo et le chocolat !" },
+    { fr: "les spaghettis", de: "die Spaghetti", hint: "m. pl. (männlich Plural)" },
+    { fr: "la pizza", de: "die Pizza", hint: "Moi, j'aime la pizza." },
+    { fr: "les tomates", alt: ["la tomate"], de: "die Tomaten", hint: "Tu aimes les tomates ?" },
+    { fr: "la salade", de: "der Salat", hint: "Achtung: im Französischen weiblich (la salade)!" },
+    { fr: "le jaune", de: "Gelb / das Gelb", hint: "Farbe" },
+    { fr: "le rouge", de: "Rot / das Rot", hint: "Tu aimes le rouge ou le vert ?" },
+    { fr: "le bleu", de: "Blau / das Blau", hint: "Les Bleus = französische Nationalmannschaft" },
+    { fr: "le vert", de: "Grün / das Grün", hint: "Tu aimes le rouge ou le vert ?" },
+    { fr: "le noir", de: "Schwarz / das Schwarz", hint: "Farbe" },
+    { fr: "les chats", alt: ["le chat"], de: "die Katzen", hint: "Singular: le chat (der Kater / die Katze)" },
+    { fr: "les chiens", alt: ["le chien"], de: "die Hunde", hint: "Singular: le chien (der Hund)" },
+    { fr: "les rats", alt: ["le rat"], de: "die Ratten", hint: "Singular: le rat" },
+    { fr: "les poissons", alt: ["le poisson"], de: "die Fische", hint: "Singular: le poisson" },
+    { fr: "les tortues", alt: ["la tortue"], de: "die Schildkröten", hint: "J'aime les tortues." },
+    { fr: "Tu aimes ... ?", alt: ["tu aimes"], de: "Magst du ...?", hint: "Tu aimes les chiens ?" },
+    { fr: "oui", de: "ja", hint: "– Tu aimes la musique ? – Oui." },
+    { fr: "non", de: "nein", hint: "– Tu aimes le sport ? – Non." },
+    { fr: "ou", de: "oder", hint: "Ohne Akzent! (Tu aimes le rouge ou le vert ?)" }
+  ],
+
+  // SEITEN 179 & 180 OBEN: Unité 1 Vocabulaire & Vocabulaire thématique
+  u1_theme: [
+    { fr: "Bonjour !", alt: ["bonjour"], de: "Guten Tag! / Hallo!", hint: "Begrüßung" },
+    { fr: "Bienvenue !", alt: ["bienvenue"], de: "Willkommen!", hint: "Bienvenue à Paris !" },
+    { fr: "Ça va ?", alt: ["ça va", "ca va"], de: "Wie geht's? / Geht's gut?", hint: "Coucou, ça va ?" },
+    { fr: "Au revoir !", alt: ["au revoir"], de: "Auf Wiedersehen!", hint: "Verabschiedung" },
+    { fr: "la Tour Eiffel", de: "der Eiffelturm", hint: "Wahrzeichen von Paris: C'est la Tour Eiffel." },
+    { fr: "le Louvre", de: "der Louvre (Kunstmuseum in Paris)", hint: "Meistbesuchtes Museum der Welt" },
+    { fr: "la Villette", de: "Park im Norden von Paris (la Villette)", hint: "Großer Park mit Wissenschaftsmuseum" },
+    { fr: "le Sacré-Cœur", alt: ["le Sacré-Coeur", "le sacre-coeur"], de: "Wallfahrtskirche auf dem Montmartre (Sacré-Cœur)", hint: "Weiße Basilika in Paris" },
+    { fr: "la ville", de: "die Stadt", hint: "Paris est une ville." },
+    { fr: "le cinéma", de: "das Kino", hint: "Il y a des cinémas." },
+    { fr: "le parc", de: "der Park", hint: "Der Park" },
+    { fr: "le théâtre", de: "das Theater", hint: "Mit Accent circonflexe auf dem a (â)" },
+    { fr: "le café", de: "das Café / der Kaffee", hint: "Mit Accent aigu auf dem e (é)" },
+    { fr: "le restaurant", de: "das Restaurant", hint: "Das Restaurant" },
+    { fr: "l'hôtel", alt: ["l'hotel"], de: "das Hotel", hint: "männlich (m.) – mit Accent circonflexe (ô)" },
+    { fr: "le musée", de: "das Museum", hint: "Achtung: männlich (le) und am Ende -ée!" },
+    { fr: "le métro", de: "die U-Bahn, die Metro", hint: "Le métro, c'est là." },
+    { fr: "la tour", de: "der Turm", hint: "la Tour Eiffel" },
+    { fr: "le supermarché", de: "der Supermarkt", hint: "Mit é am Ende" },
+    { fr: "le collège", de: "die Schule (6. bis 9. Klasse in Frankreich)", hint: "Où est le collège ?" },
+    { fr: "le stade", de: "das Stadion", hint: "Où est le stade ?" },
+    { fr: "pardon", de: "Verzeihung, Entschuldigung", hint: "Pardon, Madame." },
+    { fr: "Où est ... ?", alt: ["où est"], de: "Wo ist ...?", hint: "Où est le stade ?" },
+    { fr: "où", de: "wo / wohin (Fragewort)", hint: "Auf dem „wo“ sitzt ein Floh (Accent grave: où)!" },
+    { fr: "c'est", de: "das ist", hint: "C'est le stade." },
+    { fr: "là", de: "da, hier", hint: "Le métro, c'est là." },
+    { fr: "merci", de: "danke", hint: "Merci, Monsieur." }
+  ],
+
+  // SEITEN 180 & 181 OBEN: Unité 1 Volet 1 (Se présenter)
+  u1_volet1: [
+    { fr: "Tu t'appelles comment ?", alt: ["tu t'appelles comment"], de: "Wie heißt du?", hint: "Mit doppeltem p und doppeltem l!" },
+    { fr: "Je m'appelle", alt: ["je m'appelle"], de: "Ich heiße ...", hint: "Je m'appelle + Name" },
+    { fr: "ce sont", de: "das sind (Mehrzahl)", hint: "Ce sont Noé et Max." },
+    { fr: "C'est qui ?", alt: ["c'est qui"], de: "Wer ist das?", hint: "– C'est qui ? – C'est Idriss." },
+    { fr: "moi, c'est", alt: ["moi c'est"], de: "ich heiße ... (wörtlich: ich, das ist ...)", hint: "Salut ! Moi, c'est Noé !" },
+    { fr: "Comment ... ?", alt: ["comment"], de: "Wie ...? (Fragewort)", hint: "Tu t'appelles comment ?" },
+    { fr: "voilà", de: "hier ist, hier sind / da ist", hint: "Voilà Idriss. (Mit Accent grave auf dem à)" },
+    { fr: "la fille", de: "das Mädchen", hint: "La fille, c'est Jeanne." },
+    { fr: "le garçon", de: "der Junge", hint: "Mit Cedille unter dem c (ç): le garçon" },
+    { fr: "l'ami", alt: ["l'ami / l'amie", "l'amie"], de: "der Freund / die Freundin", hint: "Jeanne, c'est l'amie de Gabin." },
+    { fr: "de", de: "von (oder: aus)", hint: "C'est l'ami de Jeanne." },
+    { fr: "mon ami", alt: ["mon amie", "mon ami / mon amie"], de: "mein Freund / meine Freundin", hint: "Noé, c'est mon ami." },
+    { fr: "il s'appelle", alt: ["elle s'appelle", "il/elle s'appelle"], de: "er heißt / sie heißt", hint: "Elle s'appelle Léa." },
+    { fr: "le, la, l'", alt: ["le/la/l'"], de: "der, die, das (bestimmte Artikel Singular)", hint: "le garçon, la fille, l'ami" },
+    { fr: "les", de: "die (bestimmter Artikel Plural)", hint: "les chats, les tomates" },
+    { fr: "avec", de: "mit", hint: "La fille avec le chien, c'est Léa !" },
+    { fr: "d'accord", de: "einverstanden, okay", hint: "– D'accord ? – Oui, d'accord !" },
+    { fr: "Je ne sais pas.", alt: ["je ne sais pas"], de: "Ich weiß es nicht.", hint: "– C'est qui ? – Je ne sais pas." },
+    { fr: "ici", de: "hier", hint: "Le métro, c'est ici ?" },
+    { fr: "depuis", de: "seit, seitdem", hint: "J'habite ici depuis samedi." },
+    { fr: "samedi", de: "Samstag, am Samstag", hint: "J'habite ici depuis samedi." },
+    { fr: "cool", de: "cool", hint: "Unveränderliches Adjektiv" },
+    { fr: "alors", de: "also", hint: "Alors, c'est parti !" },
+    { fr: "dans", de: "in", hint: "J'habite dans le quartier." },
+    { fr: "le quartier", de: "das Viertel (Stadtviertel)", hint: "C'est le quartier de Léo." }
+  ],
+
+  // SEITEN 181 & 182 OBEN: Unité 1 Volet 2 (être, Herkunft, AGs)
+  u1_volet2: [
+    { fr: "coucou", de: "hi, hallo (familiär)", hint: "Coucou, ça va ?" },
+    { fr: "c'est nous", de: "das sind wir / wir sind's", hint: "Salut, c'est nous !" },
+    { fr: "c'est moi", de: "das bin ich / ich bin's", hint: "Coucou, c'est moi !" },
+    { fr: "être", de: "sein (Grundform)", hint: "Verb mit Accent circonflexe: être" },
+    { fr: "je suis", de: "ich bin", hint: "Je suis à Paris." },
+    { fr: "tu es", de: "du bist", hint: "Tu es d'où ?" },
+    { fr: "il est", alt: ["elle est", "il/elle est"], de: "er ist / sie ist", hint: "Il est sympa." },
+    { fr: "on est", de: "man ist / wir sind", hint: "On est dans la même classe." },
+    { fr: "nous sommes", de: "wir sind", hint: "Nous sommes à Paris." },
+    { fr: "vous êtes", de: "ihr seid / Sie sind", hint: "Vous êtes en retard !" },
+    { fr: "ils sont", alt: ["elles sont", "ils/elles sont"], de: "sie sind (Mehrzahl)", hint: "Ils sont ensemble." },
+    { fr: "la rue", de: "die Straße", hint: "J'habite rue de Belleville." },
+    { fr: "la Tunisie", de: "Tunesien", hint: "J'aime la Tunisie." },
+    { fr: "sympa", alt: ["sympathique"], de: "nett, sympathisch", hint: "Il est sympa." },
+    { fr: "dans la même classe", de: "in derselben Klasse", hint: "Elles sont dans la même classe." },
+    { fr: "aussi", de: "auch", hint: "Elle est aussi ici." },
+    { fr: "ensemble", de: "zusammen", hint: "Ils sont ensemble." },
+    { fr: "le club", de: "die AG, der Verein, der Klub", hint: "Gabin est dans le club de drones." },
+    { fr: "le drone", de: "die Drohne", hint: "männlich: le drone" },
+    { fr: "le club de drones", de: "die Drohnen-AG", hint: "Zusammengesetzt mit de" },
+    { fr: "la sixième", de: "die sechste Klasse", hint: "Je suis en sixième." },
+    { fr: "la cinquième", de: "die siebte Klasse (wörtlich: die Fünfte)", hint: "In Frankreich zählt man ab Klasse 6 rückwärts!" },
+    { fr: "le basket", de: "Basketball, das Basketballspielen", hint: "J'aime le basket." },
+    { fr: "la série", de: "die Serie", hint: "Je n'aime pas les séries." },
+    { fr: "la danse", de: "der Tanz, das Tanzen", hint: "mit s geschrieben: la danse" },
+    { fr: "souvent", de: "oft", hint: "Lili-Rose est souvent en retard." },
+    { fr: "en retard", de: "zu spät, mit Verspätung", hint: "Vous êtes en retard !" },
+    { fr: "c'est un peu compliqué", de: "es/das ist etwas kompliziert", hint: "Avec toi, c'est un peu compliqué !" },
+    { fr: "Tu es d'où ?", alt: ["tu es d'où"], de: "Woher kommst du?", hint: "– Tu es d'où ? – Je suis de Paris." }
+  ],
+
+  // SEITE 182: Unité 1 Volet 3
+  u1_volet3: [
+    { fr: "Qu'est-ce qu'il y a ... ?", alt: ["qu'est-ce qu'il y a"], de: "Was gibt es ...?", hint: "Qu'est-ce qu'il y a ici ?" },
+    { fr: "il y a", de: "es gibt", hint: "Il y a six boulangeries ici." },
+    { fr: "la question", de: "die Frage", hint: "Die Frage" },
+    { fr: "la réponse", de: "die Antwort", hint: "La réponse, c'est oui !" },
+    { fr: "la cathédrale", de: "die Kathedrale, der Dom", hint: "Mit é: la cathédrale" },
+    { fr: "un, une", alt: ["un/une", "un", "une"], de: "ein, eine (unbestimmter Artikel Singular)", hint: "Gabin est un garçon. Léa est une fan." },
+    { fr: "des", de: "unbestimmter Artikel im Plural (wird im Deutschen nicht übersetzt)", hint: "Ce sont des garçons. = Das sind Jungen." },
+    { fr: "comme", de: "wie, wie z. B.", hint: "Il y a des cinémas, comme le « Rex »." },
+    { fr: "la gare", de: "der Bahnhof", hint: "Voilà la gare." },
+    { fr: "par exemple", alt: ["p. ex."], de: "zum Beispiel (z. B.)", hint: "Abkürzung: p. ex." },
+    { fr: "pour", de: "für", hint: "Le chocolat, c'est pour moi ?" },
+    { fr: "le fan", alt: ["la fan", "le/la fan"], de: "der Fan", hint: "Le stade, c'est pour les fans de sport." },
+    { fr: "la science", de: "die Wissenschaft", hint: "Léa est une fan de sciences." },
+    { fr: "le fan de sciences", alt: ["la fan de sciences"], de: "der Wissenschaftsfan", hint: "Gebildet mit de" },
+    { fr: "le magasin", de: "das Geschäft, der Laden", hint: "le magasin de drones = der Drohnenladen" },
+    { fr: "le centre commercial", de: "das Einkaufszentrum", hint: "Dans un centre commercial, il y a des magasins." },
+    { fr: "la boulangerie", de: "die Bäckerei", hint: "Il y a six boulangeries ici." },
+    { fr: "en plus", de: "außerdem", hint: "Il est sympa. En plus, il est cool !" }
+  ],
+
+  // ALLE 12 MONATE
+  monate: [
+    { fr: "janvier", de: "Januar (1. Monat)", hint: "Monate schreibt man auf Französisch klein!" },
+    { fr: "février", de: "Februar (2. Monat)", hint: "Mit Accent aigu auf dem ersten e: février" },
+    { fr: "mars", de: "März (3. Monat)", hint: "Das s am Ende wird mitgesprochen [maʀs]" },
+    { fr: "avril", de: "April (4. Monat)", hint: "Mit v in der Mitte: avril" },
+    { fr: "mai", de: "Mai (5. Monat)", hint: "Genau wie im Deutschen geschrieben, aber klein: mai" },
+    { fr: "juin", de: "Juni (6. Monat)", hint: "4 Buchstaben: j-u-i-n" },
+    { fr: "juillet", de: "Juli (7. Monat)", hint: "Mit Doppel-l: juillet" },
+    { fr: "août", de: "August (8. Monat)", hint: "Mit Dach (Accent circonflexe) auf dem u: août [ut]" },
+    { fr: "septembre", de: "September (9. Monat)", hint: "Endet auf -bre" },
+    { fr: "octobre", de: "Oktober (10. Monat)", hint: "Mit c und am Ende -bre: octobre" },
+    { fr: "novembre", de: "November (11. Monat)", hint: "Endet auf -bre" },
+    { fr: "décembre", de: "Dezember (12. Monat)", hint: "Mit Accent aigu (é) und c: décembre" }
+  ]
+};
+
+// ============================================================================
+// FRANZÖSISCHER ZAHLEN-GENERATOR (0 BIS 100 MIT ZEHNER-AUSWAHL)
+// ============================================================================
+const FR_UNITS = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf"];
+const FR_TEENS = ["dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf"];
+const FR_TENS  = ["", "dix", "vingt", "trente", "quarante", "cinquante", "soixante"];
+
+function numberToFrench(n) {
+  if (n < 10) return FR_UNITS[n];
+  if (n < 20) return FR_TEENS[n - 10];
+  if (n < 70) {
+    const t = Math.floor(n / 10);
+    const u = n % 10;
+    if (u === 0) return FR_TENS[t];
+    if (u === 1) return `${FR_TENS[t]}-et-un`;
+    return `${FR_TENS[t]}-${FR_UNITS[u]}`;
+  }
+  if (n < 80) {
+    if (n === 70) return "soixante-dix";
+    if (n === 71) return "soixante-et-onze";
+    return `soixante-${FR_TEENS[n - 60]}`;
+  }
+  if (n < 100) {
+    if (n === 80) return "quatre-vingts";
+    const rem = n - 80;
+    if (rem < 10) return `quatre-vingt-${FR_UNITS[rem]}`; // ohne s bei 81-89 und ohne et bei 81!
+    return `quatre-vingt-${FR_TEENS[rem - 10]}`;
+  }
+  return "cent";
+}
+
+function getNumberHint(n) {
+  if (n === 21 || n === 31 || n === 41 || n === 51 || n === 61) return "Bei 21, 31, 41, 51, 61 steht immer „-et-un“ dazwischen!";
+  if (n === 71) return "71 wird als 60 + 11 gebildet: soixante-et-onze!";
+  if (n >= 70 && n < 80) return `70er-Zahlen rechnet man als 60 + ${n - 60} (soixante-...)!`;
+  if (n === 80) return "80 ist 4 × 20 und hat am Ende ein -s: quatre-vingts!";
+  if (n === 81) return "Achtung bei 81: Kein „et“ und kein „s“ bei vingt ➔ quatre-vingt-un!";
+  if (n > 80 && n < 90) return "Ab 81 fällt das -s bei vingt weg: quatre-vingt-...";
+  if (n >= 90 && n < 100) return `90er-Zahlen rechnet man als 80 + ${n - 80} (quatre-vingt-${FR_TEENS[n - 90]})!`;
+  return `Zahl ${n} auf Französisch: ${numberToFrench(n)}`;
+}
+
+// --- DYNAMISCHE SPEICHERISOLATION ÜBER DATEINAMEN ---
+function getProfileName() {
+  const path = window.location.pathname;
+  const rawFile = path.split('/').pop();
+  const cleanName = rawFile.replace(/\.html$/i, '').trim();
+  return cleanName || "Standard";
+}
+
+function getStorageKey() {
+  return 'franzoesisch_data_' + getProfileName();
+}
+
+let appData = {
+  topics: {},
+  examHistory: [],
+  maxTens: 100,
+  activeExamTopics: TOPICS.map(t => t.id)
+};
+
+function loadData() {
+  const saved = localStorage.getItem(getStorageKey());
+  if (saved) {
+    try { appData = JSON.parse(saved); } catch(e){}
+  }
+  if (!appData.topics) appData.topics = {};
+  if (!appData.examHistory) appData.examHistory = [];
+  if (!appData.maxTens) appData.maxTens = 100;
+  if (!appData.activeExamTopics || appData.activeExamTopics.length === 0) {
+    appData.activeExamTopics = TOPICS.map(t => t.id);
+  }
+  TOPICS.forEach(t => {
+    if (!appData.topics[t.id]) {
+      appData.topics[t.id] = { total: 0, correct: 0, recent: [] };
+    }
+  });
+}
+
+function saveData() {
+  try {
+    localStorage.setItem(getStorageKey(), JSON.stringify(appData));
+  } catch (e) {}
+}
+
+function setMaxTens(val) {
+  appData.maxTens = val;
+  saveData();
+  renderTensSelectors();
+  renderMenu();
+  if (currentTopic === 'zahlen' && !document.getElementById('view-quiz').classList.contains('hidden') && currentMode === 'practice') {
+    loadTask();
+  }
+}
+
+function renderTensSelectors() {
+  const tensValues = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  ['menu-tens-grid', 'quiz-tens-grid'].forEach(gridId => {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    grid.innerHTML = "";
+    tensValues.forEach(v => {
+      const b = document.createElement('button');
+      b.className = 'tens-btn' + (appData.maxTens === v ? ' active' : '');
+      b.textContent = `bis ${v}`;
+      b.onclick = () => setMaxTens(v);
+      grid.appendChild(b);
+    });
+  });
+
+  const badge = document.getElementById('tens-status-badge');
+  if (badge) badge.textContent = `0 bis ${appData.maxTens}`;
+  const statTens = document.getElementById('stat-max-tens');
+  if (statTens) statTens.textContent = `0 bis ${appData.maxTens}`;
+}
+
+function recordAnswer(topicId, isCorrect) {
+  if (!appData.topics[topicId]) {
+    appData.topics[topicId] = { total: 0, correct: 0, recent: [] };
+  }
+  const t = appData.topics[topicId];
+  t.total++;
+  if (isCorrect) t.correct++;
+  t.recent.push(isCorrect ? 1 : 0);
+  if (t.recent.length > 5) t.recent.shift();
+  saveData();
+  renderMenu();
+}
+
+function getTopicMastery(topicId) {
+  const t = appData.topics[topicId];
+  if (!t || !t.recent || t.recent.length < 3) return { status: 'neu', label: 'Neu', class: 'st-neu' };
+  const sum = t.recent.reduce((a,b)=>a+b, 0);
+  const len = t.recent.length;
+  if (len === 5 && sum === 5) return { status: 'stern', label: '🌟 Meister', class: 'st-stern' };
+  const rate = sum / len;
+  if (rate >= 0.8) return { status: 'gruen', label: '🟢 Fit', class: 'st-gruen' };
+  if (rate >= 0.6) return { status: 'gelb', label: '🟡 Geht so', class: 'st-gelb' };
+  return { status: 'rot', label: '🔴 Üben', class: 'st-rot' };
+}
+
+function toggleExamTopicCheck(topicId, checked) {
+  if (checked) {
+    if (!appData.activeExamTopics.includes(topicId)) appData.activeExamTopics.push(topicId);
+  } else {
+    appData.activeExamTopics = appData.activeExamTopics.filter(id => id !== topicId);
+  }
+  saveData();
+}
+
+function renderMenu() {
+  const checkContainer = document.getElementById('exam-topic-checks');
+  checkContainer.innerHTML = "";
+  TOPICS.forEach(t => {
+    const isChecked = appData.activeExamTopics.includes(t.id);
+    const label = document.createElement('label');
+    label.className = 'check-item';
+    label.innerHTML = `
+      <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleExamTopicCheck('${t.id}', this.checked)">
+      <span>${t.short}${t.id === 'zahlen' ? ' (bis ' + appData.maxTens + ')' : ''}</span>
+    `;
+    checkContainer.appendChild(label);
+  });
+
+  const container = document.getElementById('topic-list');
+  container.innerHTML = "";
+
+  TOPICS.forEach(t => {
+    const mastery = getTopicMastery(t.id);
+    const count = appData.topics[t.id]?.total || 0;
+    const dynamicInfo = t.id === 'zahlen' ? `Aktuell eingestellt: Zahlen 0 bis ${appData.maxTens}` : t.info;
+
+    let borderLeft = "4px solid #cbd5e1";
+    if (mastery.status === 'rot') borderLeft = "4px solid #ef4444";
+    if (mastery.status === 'gelb') borderLeft = "4px solid #f59e0b";
+    if (mastery.status === 'gruen') borderLeft = "4px solid #22c55e";
+    if (mastery.status === 'stern') borderLeft = "4px solid #14532d";
+
+    const div = document.createElement('div');
+    div.className = "topic-row";
+    div.style.borderLeft = borderLeft;
+    div.innerHTML = `
+      <div class="topic-row-top">
+        <div>
+          <div style="font-weight:800; font-size:0.92rem;">${t.name}</div>
+          <div style="font-size:0.73rem; color:var(--text-muted); margin-top:2px;">${dynamicInfo} • <b>${count}</b> geübt</div>
+        </div>
+        <span class="status-pill ${mastery.class}">${mastery.label}</span>
+      </div>
+      <div class="topic-actions">
+        <button class="btn-mini-practice" onclick="startPractice('${t.id}')">🎯 Üben</button>
+        <button class="btn-mini-test" onclick="startTopicExam('${t.id}')">📝 Test (10)</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+
+  let totalTasks = 0, totalCorrect = 0;
+  TOPICS.forEach(t => {
+    totalTasks += appData.topics[t.id]?.total || 0;
+    totalCorrect += appData.topics[t.id]?.correct || 0;
+  });
+  document.getElementById('stat-total-tasks').textContent = totalTasks;
+  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
+  document.getElementById('stat-total-rate').textContent = `${rate}%`;
+
+  const hList = document.getElementById('exam-history-list');
+  if (!appData.examHistory || appData.examHistory.length === 0) {
+    hList.innerHTML = `<div style="color:var(--text-muted); font-style:italic;">Noch kein Test abgeschlossen.</div>`;
+  } else {
+    hList.innerHTML = appData.examHistory.map(h => `
+      <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #e2e8f0;">
+        <span>${h.date} • <b>${h.scope || 'Test'}</b> (${h.level})</span>
+        <strong style="color:var(--primary);">${h.percent}% → Note ${h.grade}</strong>
+      </div>
+    `).reverse().join('');
+  }
+}
+
+function renderVocabReference() {
+  const cat = document.getElementById('vocab-list-filter').value;
+  const tbody = document.getElementById('vocab-ref-body');
+  if (!tbody) return;
+  const list = VOCAB_DB[cat] || [];
+  tbody.innerHTML = list.map(item => `
+    <tr>
+      <td><strong>${item.fr}</strong></td>
+      <td>${item.de}</td>
+      <td style="color:#0369a1; font-size:0.76rem;">${item.hint || ''}</td>
+    </tr>
+  `).join('');
+}
+
+// ============================================================================
+// AUFGABEN-ERZEUGUNG (VOKABELN, MONATE & ZAHLEN BIS ZUM GEWÄHLTEN ZEHNER)
+// ============================================================================
+function createNumberTask(diff) {
+  const maxVal = appData.maxTens || 100;
+  const n = Math.floor(Math.random() * (maxVal + 1));
+  const frWord = numberToFrench(n);
+
+  const useWrite = (diff === 'schwer') || (diff === 'mittel' && Math.random() < 0.5);
+
+  if (useWrite) {
+    return {
+      topicId: 'zahlen',
+      topicName: `Zahlen (0 bis ${maxVal})`,
+      question: `Schreibe die Zahl <strong>${n}</strong> als französisches Zahlwort:`,
+      visual: `<div class="vocab-main" style="font-size:2.4rem;">${n}</div><div class="vocab-sub">Auf Französisch schreiben</div>`,
+      choices: null,
+      correct: frWord,
+      acceptedText: [frWord, frWord.replace(/-/g, ' ')],
+      help: getNumberHint(n)
+    };
+  } else {
+    // Multiple Choice (abwechselnd Zahl -> Wort oder Wort -> Zahl)
+    const askFrenchWord = Math.random() < 0.7;
+    if (askFrenchWord) {
+      const distractors = new Set([frWord]);
+      while (distractors.size < 4) {
+        const randN = Math.floor(Math.random() * (maxVal + 1));
+        distractors.add(numberToFrench(randN));
+      }
+      return {
+        topicId: 'zahlen',
+        topicName: `Zahlen (0 bis ${maxVal})`,
+        question: `Wie heißt die Zahl <strong>${n}</strong> auf Französisch?`,
+        visual: `<div class="vocab-main" style="font-size:2.4rem;">${n}</div>`,
+        choices: shuffle(Array.from(distractors)),
+        correct: frWord,
+        help: getNumberHint(n)
+      };
+    } else {
+      const distractors = new Set([n.toString()]);
+      while (distractors.size < 4) {
+        const randN = Math.floor(Math.random() * (maxVal + 1));
+        distractors.add(randN.toString());
+      }
+      return {
+        topicId: 'zahlen',
+        topicName: `Zahlen (0 bis ${maxVal})`,
+        question: `Welche Zahl ist <strong>„${frWord}“</strong>?`,
+        visual: `<div class="vocab-main">${frWord}</div>`,
+        choices: shuffle(Array.from(distractors)),
+        correct: n.toString(),
+        help: getNumberHint(n)
+      };
+    }
+  }
+}
+
+function createVocabTask(topicId, diff) {
+  if (topicId === 'zahlen') return createNumberTask(diff);
+
+  const pool = VOCAB_DB[topicId] || VOCAB_DB.cest_parti;
+  const item = pick(pool);
+  const topicObj = TOPICS.find(t => t.id === topicId);
+  const badgeName = topicObj ? topicObj.short : 'Vokabeln';
+
+  const useWrite = (diff === 'schwer') || (diff === 'mittel' && Math.random() < 0.5);
+
+  if (useWrite) {
+    // Deutsch -> Französisch eintippen
+    const cleanFr = item.fr.replace(/[?!.]/g, '').trim();
+    const accepted = [item.fr.toLowerCase(), cleanFr.toLowerCase()];
+    if (item.alt) item.alt.forEach(a => accepted.push(a.toLowerCase()));
+
+    return {
+      topicId: topicId,
+      topicName: badgeName,
+      question: `Übersetze ins <strong>Französische</strong>:`,
+      visual: `<div class="vocab-main">${item.de}</div><div class="vocab-sub">Tipp: Nutze die Akzent-Tasten unter dem Eingabefeld!</div>`,
+      choices: null,
+      correct: item.fr,
+      acceptedText: accepted,
+      help: item.hint || `${item.de} = ${item.fr}`
+    };
+  } else {
+    // Multiple Choice (Deutsch -> Französisch oder Französisch -> Deutsch)
+    const deToFr = Math.random() < 0.65;
+    if (deToFr) {
+      const others = pool.filter(x => x.fr !== item.fr);
+      const opts = [item.fr];
+      while (opts.length < 4 && others.length >= 3) {
+        const cand = pick(others).fr;
+        if (!opts.includes(cand)) opts.push(cand);
+      }
+      return {
+        topicId: topicId,
+        topicName: badgeName,
+        question: `Was heißt das auf <strong>Französisch</strong>?`,
+        visual: `<div class="vocab-main">${item.de}</div>`,
+        choices: shuffle(opts),
+        correct: item.fr,
+        help: item.hint || `${item.de} = ${item.fr}`
+      };
+    } else {
+      const others = pool.filter(x => x.de !== item.de);
+      const opts = [item.de];
+      while (opts.length < 4 && others.length >= 3) {
+        const cand = pick(others).de;
+        if (!opts.includes(cand)) opts.push(cand);
+      }
+      return {
+        topicId: topicId,
+        topicName: badgeName,
+        question: `Was bedeutet <strong>„${item.fr}“</strong> auf Deutsch?`,
+        visual: `<div class="vocab-main">${item.fr}</div>`,
+        choices: shuffle(opts),
+        correct: item.de,
+        help: item.hint || `${item.fr} = ${item.de}`
+      };
+    }
+  }
+}
+
+// ============================================================================
+// STEUERUNG: TRAINING, EINZEL-TEST & GEMISCHTER VOKABELTEST
+// ============================================================================
+let selectedExamDiff = 'leicht';
+let selectedPracticeDiff = 'leicht';
+let currentMode = 'practice';
+let currentTopic = 'cest_parti';
+let examTasks = [];
+let examIndex = 0;
+let examScore = 0;
+let currentExamScopeLabel = 'Gemischt';
+let currentTask = null;
+
+function setExamDiff(d) {
+  selectedExamDiff = d;
+  ['leicht','mittel','schwer'].forEach(x => {
+    const el = document.getElementById(`btn-exam-${x}`);
+    if (el) el.classList.toggle('active', x === d);
+  });
+}
+
+function setPracticeDiff(d) {
+  selectedPracticeDiff = d;
+  ['leicht','mittel','schwer'].forEach(x => {
+    const el = document.getElementById(`btn-p-${x}`);
+    if (el) el.classList.toggle('active', x === d);
+    const qEl = document.getElementById(`quiz-btn-${x}`);
+    if (qEl) qEl.classList.toggle('active', x === d);
+  });
+}
+
+function changeQuizDiff(d) {
+  setPracticeDiff(d);
+  loadTask();
+}
+
+function startPractice(topicId) {
+  currentMode = 'practice';
+  currentTopic = topicId;
+  document.getElementById('progress-container').classList.add('hidden');
+  document.getElementById('quiz-diff-box').classList.remove('hidden');
+  document.getElementById('inquiz-tens-wrap').classList.toggle('hidden', topicId !== 'zahlen');
+  document.getElementById('quiz-counter').textContent = 'Freies Üben';
+  document.getElementById('main-header').classList.add('hidden');
+  setPracticeDiff(selectedPracticeDiff);
+  showView('view-quiz');
+  loadTask();
+}
+
+function startTopicExam(topicId) {
+  currentMode = 'topic_exam';
+  currentTopic = topicId;
+  const topicObj = TOPICS.find(t => t.id === topicId);
+  currentExamScopeLabel = topicObj ? topicObj.short : topicId;
+  if (topicId === 'zahlen') currentExamScopeLabel = `Zahlen bis ${appData.maxTens}`;
+
+  examIndex = 0;
+  examScore = 0;
+  examTasks = [];
+  for (let i = 0; i < 10; i++) {
+    examTasks.push(createVocabTask(topicId, selectedPracticeDiff));
+  }
+
+  document.getElementById('progress-container').classList.remove('hidden');
+  document.getElementById('quiz-diff-box').classList.add('hidden');
+  document.getElementById('inquiz-tens-wrap').classList.add('hidden');
+  document.getElementById('main-header').classList.add('hidden');
+  showView('view-quiz');
+  loadTask();
+}
+
+function startMixedExam() {
+  const pool = appData.activeExamTopics && appData.activeExamTopics.length > 0
+    ? appData.activeExamTopics
+    : TOPICS.map(t => t.id);
+
+  currentMode = 'mixed_exam';
+  currentExamScopeLabel = pool.length === TOPICS.length ? 'Alle Kapitel' : `${pool.length} Kapitel`;
+  examIndex = 0;
+  examScore = 0;
+  examTasks = [];
+
+  let count = 10;
+  if (selectedExamDiff === 'mittel') count = 15;
+  if (selectedExamDiff === 'schwer') count = 20;
+
+  for (let i = 0; i < count; i++) {
+    const tId = pool[i % pool.length];
+    examTasks.push(createVocabTask(tId, selectedExamDiff));
+  }
+  examTasks.sort(() => Math.random() - 0.5);
+
+  document.getElementById('progress-container').classList.remove('hidden');
+  document.getElementById('quiz-diff-box').classList.add('hidden');
+  document.getElementById('inquiz-tens-wrap').classList.add('hidden');
+  document.getElementById('main-header').classList.add('hidden');
+  showView('view-quiz');
+  loadTask();
+}
+
+function repeatLastExam() {
+  if (currentMode === 'topic_exam') startTopicExam(currentTopic);
+  else startMixedExam();
+}
+
+function loadTask() {
+  document.getElementById('feedback-box').className = 'feedback-box';
+  document.getElementById('btn-next').classList.add('hidden');
+  document.getElementById('intask-help-box').classList.add('hidden');
+
+  const input = document.getElementById('answer-input');
+  input.value = "";
+  input.disabled = false;
+
+  if (currentMode === 'practice') {
+    currentTask = createVocabTask(currentTopic, selectedPracticeDiff);
+  } else {
+    currentTask = examTasks[examIndex];
+    const total = examTasks.length;
+    document.getElementById('quiz-counter').textContent = `Test: ${examIndex + 1}/${total}`;
+    document.getElementById('progress-fill').style.width = `${(examIndex / total) * 100}%`;
+  }
+
+  document.getElementById('quiz-badge').textContent = currentTask.topicName;
+  document.getElementById('task-question').innerHTML = currentTask.question;
+  document.getElementById('task-visual').innerHTML = currentTask.visual;
+  document.getElementById('intask-help-box').innerHTML = currentTask.help || "";
+
+  const textWrap = document.getElementById('text-input-wrap');
+  const choiceArea = document.getElementById('choice-input-area');
+
+  if (currentTask.choices) {
+    textWrap.classList.add('hidden');
+    choiceArea.classList.remove('hidden');
+    choiceArea.innerHTML = "";
+    currentTask.choices.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.textContent = c;
+      btn.onclick = () => evaluateChoice(c, btn);
+      choiceArea.appendChild(btn);
+    });
+  } else {
+    choiceArea.classList.add('hidden');
+    textWrap.classList.remove('hidden');
+    document.getElementById('btn-submit').classList.remove('hidden');
+    setTimeout(() => input.focus(), 120);
+  }
+}
+
+function insertChar(ch) {
+  const input = document.getElementById('answer-input');
+  if (input.disabled) return;
+  const start = input.selectionStart || input.value.length;
+  const end = input.selectionEnd || input.value.length;
+  const val = input.value;
+  input.value = val.slice(0, start) + ch + val.slice(end);
+  input.focus();
+  input.setSelectionRange(start + ch.length, start + ch.length);
+}
+
+function toggleInTaskHelp() {
+  document.getElementById('intask-help-box').classList.toggle('hidden');
+}
+
+function normalizeFrench(str) {
+  return str
+    .toLowerCase()
+    .replace(/[’‘`]/g, "'")
+    .replace(/[?!.]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function evaluateChoice(selectedText, btnEl) {
+  const isCorrect = (selectedText === currentTask.correct);
+  document.querySelectorAll('.choice-btn').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === currentTask.correct) b.classList.add('correct-choice');
+  });
+  if (!isCorrect && btnEl) btnEl.classList.add('wrong-choice');
+  finalizeAnswer(isCorrect);
+}
+
+function checkTextAnswer() {
+  const input = document.getElementById('answer-input');
+  const raw = normalizeFrench(input.value);
+  if (!raw) return;
+
+  const validList = (currentTask.acceptedText || [currentTask.correct]).map(normalizeFrench);
+  const isCorrect = validList.includes(raw);
+
+  input.disabled = true;
+  document.getElementById('btn-submit').classList.add('hidden');
+  finalizeAnswer(isCorrect);
+}
+
+function finalizeAnswer(isCorrect) {
+  playTone(isCorrect);
+
+  const fb = document.getElementById('feedback-box');
+  document.getElementById('btn-next').classList.remove('hidden');
+
+  if (currentMode === 'practice') {
+    recordAnswer(currentTask.topicId, isCorrect);
+  } else {
+    if (isCorrect) examScore++;
+  }
+
+  if (isCorrect) {
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = `✅ <strong>Très bien ! Richtig: ${currentTask.correct}</strong><br><span style="font-size:0.82rem;">${currentTask.help || ''}</span>`;
+  } else {
+    fb.className = 'feedback-box wrong';
+    fb.innerHTML = `❌ <strong>Pas tout à fait !</strong> Richtig ist: <strong>${currentTask.correct}</strong><br><span style="font-size:0.82rem;">${currentTask.help || ''}</span>`;
+  }
+}
+
+document.getElementById('answer-input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    if (!document.getElementById('btn-submit').classList.contains('hidden')) {
+      checkTextAnswer();
+    } else if (!document.getElementById('btn-next').classList.contains('hidden')) {
+      nextTask();
+    }
+  }
+});
+
+function nextTask() {
+  if (currentMode !== 'practice') {
+    examIndex++;
+    if (examIndex >= examTasks.length) {
+      finishExam();
+      return;
+    }
+  }
+  loadTask();
+}
+
+function finishExam() {
+  showView('view-results');
+  const total = examTasks.length;
+  const percent = Math.round((examScore / total) * 100);
+
+  document.getElementById('result-title').textContent = currentMode === 'topic_exam'
+    ? `Vokabeltest (${currentExamScopeLabel}) beendet!`
+    : `Klassenarbeit (${currentExamScopeLabel}) beendet!`;
+
+  document.getElementById('result-score').textContent = `${examScore} von ${total} Vokabeln richtig`;
+  document.getElementById('result-percent').textContent = `${percent}% erreicht`;
+
+  let grade = 6, color = "#dc2626", feedback = "";
+  if (percent >= 90) { grade = 1; color = "#16a34a"; feedback = "Magnifique ! Du beherrschst die französischen Vokabeln und Zahlen perfekt!"; startConfetti(); }
+  else if (percent >= 75) { grade = 2; color = "#22c55e"; feedback = "Très bien ! Du bist schon richtig sicher für den Französischunterricht."; startConfetti(); }
+  else if (percent >= 60) { grade = 3; color = "#eab308"; feedback = "Bien ! Viele Wörter sitzen schon – achte noch auf die Artikel (le/la) und Akzente."; }
+  else if (percent >= 50) { grade = 4; color = "#f97316"; feedback = "Ausreichend. Schau dir die Wörter im Spickzettel noch einmal in Ruhe an."; }
+  else if (percent >= 25) { grade = 5; color = "#ef4444"; feedback = "Mangelhaft. Übe die Kapitel einzeln erst im Modus „Anklicken“."; }
+  else { grade = 6; color = "#991b1b"; feedback = "Ungenügend. Wiederhole die Vokabeln Schritt für Schritt mit der Vokabelliste."; }
+
+  const badge = document.getElementById('grade-badge');
+  badge.textContent = `Note ${grade}`;
+  badge.style.background = color;
+  document.getElementById('result-feedback').textContent = feedback;
+
+  const now = new Date();
+  const dateStr = `${now.getDate().toString().padStart(2,'0')}.${(now.getMonth()+1).toString().padStart(2,'0')}.`;
+  appData.examHistory.push({
+    date: dateStr,
+    scope: currentExamScopeLabel,
+    level: currentMode === 'topic_exam' ? selectedPracticeDiff : selectedExamDiff,
+    percent: percent,
+    grade: grade
+  });
+  saveData();
+  renderMenu();
+}
+
+// --- NAVIGATION & WHATSAPP ---
+function showView(viewId) {
+  ['view-menu', 'view-learn', 'view-quiz', 'view-results'].forEach(id => {
+    document.getElementById(id).classList.add('hidden');
+  });
+  document.getElementById(viewId).classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openLearnView() {
+  renderVocabReference();
+  showView('view-learn');
+}
+function closeLearnView() { showView('view-menu'); }
+function backToMenu() {
+  document.getElementById('main-header').classList.remove('hidden');
+  renderMenu();
+  showView('view-menu');
+}
+
+function toggleParent() {
+  const c = document.getElementById('parent-content');
+  const icon = document.getElementById('parent-toggle-icon');
+  c.classList.toggle('hidden');
+  icon.textContent = c.classList.contains('hidden') ? '▼' : '▲';
+}
+
+function openResetModal() { document.getElementById('reset-modal').classList.remove('hidden'); }
+function closeResetModal() { document.getElementById('reset-modal').classList.add('hidden'); }
+function confirmReset() {
+  localStorage.removeItem(getStorageKey());
+  appData = { topics: {}, examHistory: [], maxTens: 100, activeExamTopics: TOPICS.map(t => t.id) };
+  loadData();
+  renderTensSelectors();
+  renderMenu();
+  closeResetModal();
+}
+
+function shareProgressViaWhatsApp() {
+  const profile = getProfileName();
+  const payload = { profile: profile, appData: appData };
+  const encoded = btoa(encodeURIComponent(JSON.stringify(payload)));
+  const shareUrl = window.location.origin + window.location.pathname + "?data=" + encoded;
+
+  let totalTasks = 0, totalCorrect = 0;
+  TOPICS.forEach(t => {
+    totalTasks += appData.topics[t.id]?.total || 0;
+    totalCorrect += appData.topics[t.id]?.correct || 0;
+  });
+  const rate = totalTasks > 0 ? Math.round((totalCorrect / totalTasks) * 100) : 0;
+  const today = new Date().toLocaleDateString('de-DE');
+
+  let msg = `🇫🇷 *Französisch-Trainer – Lernbericht (${profile})* 🎯\n`;
+  msg += `📅 Datum: ${today}\n`;
+  msg += `🔢 Zahlenraum: 0 bis ${appData.maxTens}\n\n`;
+  msg += `⭐ *Gesamtübersicht:*\n`;
+  msg += `• Vokabeln geübt: ${totalTasks} 📝\n`;
+  msg += `• Richtige Antworten: ${totalCorrect} ✅\n`;
+  msg += `• Trefferquote: ${rate} % 🚀\n\n`;
+
+  if (appData.examHistory && appData.examHistory.length > 0) {
+    const lastExam = appData.examHistory[appData.examHistory.length - 1];
+    msg += `🏆 *Letzter Vokabeltest (${lastExam.scope || 'Gemischt'}):*\n`;
+    msg += `• Note ${lastExam.grade} (${lastExam.percent} %) am ${lastExam.date} 🎖️\n\n`;
+  }
+
+  msg += `🚦 *Kapitel-Ampel:*\n`;
+  TOPICS.forEach(t => {
+    const m = getTopicMastery(t.id);
+    const count = appData.topics[t.id]?.total || 0;
+    const corr = appData.topics[t.id]?.correct || 0;
+    let icon = "⚪";
+    if (m.status === 'stern') icon = "🌟";
+    else if (m.status === 'gruen') icon = "🟢";
+    else if (m.status === 'gelb') icon = "🟡";
+    else if (m.status === 'rot') icon = "🔴";
+    msg += `• ${icon} ${t.short}: ${m.label} (${corr}/${count})\n`;
+  });
+
+  msg += `\n🔗 *Eltern-Dashboard öffnen:*\n${shareUrl}`;
+
+  window.location.href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+}
+
+function startConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const colors = ['#1d4ed8', '#ffffff', '#dc2626', '#16a34a', '#f59e0b'];
+  for (let i = 0; i < 90; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 4 + 2,
+      angle: Math.random() * 6.28
+    });
+  }
+
+  let frames = 0;
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.x += Math.sin(p.angle);
+      p.angle += 0.05;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+    });
+    frames++;
+    if (frames < 140) requestAnimationFrame(update);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  update();
+}
+
+// --- INITIALISIERUNG ---
+window.addEventListener("DOMContentLoaded", () => {
+  const profile = getProfileName();
+  const statProfileEl = document.getElementById('stat-profile-name');
+  if (statProfileEl) statProfileEl.textContent = profile;
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("data")) {
+    try {
+      const decoded = decodeURIComponent(atob(params.get("data")));
+      const shared = JSON.parse(decoded);
+      if (shared && shared.appData) {
+        appData = { ...appData, ...shared.appData };
+        const banner = document.getElementById('shared-banner');
+        if (banner) {
+          banner.textContent = `📥 Geteilter Lernbericht geladen: Profil "${shared.profile || 'Unbekannt'}" (Ansichtsmodus)`;
+          banner.classList.remove('hidden');
+        }
+        if (statProfileEl) statProfileEl.textContent = `${shared.profile || profile} (Übermittelt)`;
+        const c = document.getElementById('parent-content');
+        if (c && c.classList.contains('hidden')) toggleParent();
+      }
+    } catch(e) {
+      loadData();
+    }
+  } else {
+    loadData();
+  }
+
+  renderTensSelectors();
+  renderMenu();
+});
+</script>
+</body>
+</html>
